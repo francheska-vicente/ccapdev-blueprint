@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
+
+body {
+	padding-bottom: 20px;
+	background-image: url("images/bg.png");
+}
+
+h1 {
+	font-family: 'Rubik', sans-serif;
+	font-weight: 600;
+}
+
+h3 {
+	font-family: 'Pangolin', cursive;
+	font-size: 24px;
+}
+
+h6 {
+	font-family: 'Pangolin', cursive;
+	font-size: 18px;
+	margin-top: -10px;
+}
+
+.navbar {
+	margin-bottom: 20px;
+}
+
+.navbar-custom { 
+	background-color: #1d3557; 
+} 
+
+.navbar-custom .nav-link { 
+	color: white;
+	font-family: 'Rubik', sans-serif;
+	font-size: 18px;
+} 
+
+#content {
+    padding: 40px;
+    height: 100vh;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: white;
+}
+
+#sched {
+    float: left;
+}
+
+#task {
+	margin-left: 80%;
+}
+
+.tg-wrap {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+.tg-wrap td {
+	border-color:#1d3557;
+	border-style:solid;
+	border-width:3px;
+	font-family: 'Rubik', sans-serif;
+	font-size:14px;
+	text-align: center;
+  	overflow:hidden;
+  	padding:10px 5px;
+  	word-break:normal;
+ }
+.tg-wrap th {
+	background-color: #1d3557; 
+	color: #fff;
+	border-color:#1d3557;
+	border-style:solid;
+	border-width:3px;
+	font-family: 'Rubik', sans-serif;
+	font-size:14px;
+	text-align: center;
+  	font-weight:500;
+  	overflow:hidden;padding:10px 5px;
+  	word-break:normal;
+ }
+
+.classtime {
+	background-color: #a8dadc; 
+}
