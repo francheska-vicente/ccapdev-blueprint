@@ -1,0 +1,67 @@
+body, html 	
+{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background: #457B9D !important;
+}
+
+.card 
+{
+	height: 400px;
+	width: 350px;
+	margin-top: auto;
+	margin-bottom: auto;
+	background: #A8DADC !important;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 5px;
+}
+
+.logo_container 
+{
+	position: absolute;
+	height: 170px;
+	width: 170px;
+	top: -75px;
+	border-radius: 50%;
+	background: #60a3bc;
+	padding: 10px;
+}
+
+.logo 
+{
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+	border: 2px solid white;
+}
+		
+.form_container 
+{
+	margin-top: 100px;
+}
+
+.login_button 
+{
+	width: 100%;
+	background: #1D3557 !important;
+	color: white !important;
+}
+
+.login_container 
+{
+	padding: 0 40px;
+}
+
+.group
+{
+	background: #1D3557 !important;
+	color: white !important;
+	border: 0;
+	height: 40px;
+}
