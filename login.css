@@ -1,12 +1,25 @@
-body, html 	
+body, html
 {
+	height: 100%;
+	width: 100%;
 	margin: 0;
 	padding: 0;
-	height: 100%;
 	background: #457B9D !important;
 }
 
-.card 
+.box
+{
+	height: 100%;
+	justify-content: center;
+}
+
+.display
+{
+	display: flex; 
+	justify-content: center;
+}
+
+.main 
 {
 	height: 400px;
 	width: 350px;
@@ -41,11 +54,9 @@ body, html
 	border: 2px solid white;
 }
 
-.login_button 
+.form_container
 {
-	width: 100%;
-	background: #1D3557 !important;
-	color: white !important;
+	margin-top: 100px;
 }
 
 .group
@@ -54,4 +65,11 @@ body, html
 	color: white !important;
 	border: 0;
 	height: 40px;
+}
+
+.login_button 
+{
+	width: 100%;
+	background: #1D3557 !important;
+	color: white !important;
 }
