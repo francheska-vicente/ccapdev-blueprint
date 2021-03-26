@@ -55,21 +55,41 @@ h6 {
 #text {
 	padding: 8vh;
 	background-color: #1D3557;
-    height: 50vh;
+    height: 400px;
     width: 100%;
     text-align: center;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #tagline {
-	margin-top: 14px;
+	margin-top: 12px;
+	margin-bottom: 30px;
 	font-size: 36;
 	color: #F1FAEE;
 }
 
 #logo-m {
-	margin-top: auto;
-	margin-bottom: auto;
+	margin: auto;
+}
+
+a.button {
+	display:inline-block;
+	padding:0.3em 1.2em;
+	margin:0 0.3em 0.3em 0;
+	border-radius:0.5em;
+	box-sizing: border-box;
+	text-decoration:none;
+	font-family:'Rubik',sans-serif;
+	font-size: 24px;
+	font-weight:400;
+	color:#1D3557;
+	background-color:#A8DADC;
+	text-align:center;
+	transition: all 0.2s;
+}
+
+a.button:hover {
+	background-color:#457B9D;
 }
 
 #left {
