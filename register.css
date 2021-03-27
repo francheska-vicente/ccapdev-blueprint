@@ -9,10 +9,9 @@ body, html
 
 .main
 {
-	height: 80%;
-	width: 100%;
-	padding: 0px;
-	margin-top: 100px;
+	height: 550px;
+	width: 550px;
+	margin-top: auto;
 	margin-bottom: auto;
 	background: #A8DADC !important;
 	position: relative;
@@ -68,7 +67,7 @@ body, html
 {
 	display: flex; 
 	justify-content: center; 
-	margin-top: 10%; 
+	margin-top: 120px; 
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
@@ -77,7 +76,7 @@ body, html
 
 #left {
     float: left;
-    width: 50%;
+    
     margin-left: auto;
     margin-right: auto;
     display: flex; 
@@ -86,7 +85,7 @@ body, html
 
 #right {
 	float: right;
-	width: 50%;
+	
 	display: flex; 
 	justify-content: center; 
 }
@@ -98,10 +97,17 @@ body, html
 	color: white !important;
 	clear: both;
 	margin-top: 20px;
+	width: 100px;
 }
 
 .field
 {
 	width: 80%;
 	clear: right;
+}
+
+.input_field
+{
+	line-height: 40px; 
+	width: 80px;
 }
