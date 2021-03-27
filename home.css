@@ -2,12 +2,14 @@
 
 body {
 	padding-bottom: 20px;
-	background-image: url("images/bg.png");
+	background-image: url("images/tile.png");
 }
 
 h1 {
 	font-family: 'Rubik', sans-serif;
 	font-weight: 600;
+	font-size: 48px;
+	margin-bottom: 0;
 }
 
 h3 {
@@ -43,14 +45,16 @@ h6 {
     margin-top: auto;
     margin-bottom: auto;
     background-color: white;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #sched {
-    float: left;
+	flex-grow: 6;
 }
 
 #task {
-	margin-left: 80%;
+	flex-grow: 1;
 }
 
 .tg-wrap {
@@ -67,6 +71,7 @@ h6 {
   	overflow:hidden;
   	padding:10px 5px;
   	word-break:normal;
+  	min-width: 150px;
  }
 .tg-wrap th {
 	background-color: #1d3557; 

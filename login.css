@@ -5,6 +5,29 @@ body, html
 	margin: 0;
 	padding: 0;
 	background: #457B9D !important;
+	
+}
+
+p, a {
+	color: white;
+	font-family: 'Rubik', sans-serif;
+	font-weight: 300;
+}
+
+#bg {
+	background-image: url("images/bg-login.jpg");
+	background-repeat: no-repeat;
+	background-position: center; 
+	background-attachment: fixed;
+	background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+#tile {
+	background-image: url("images/tile.png");
+    height: 100vh;
+    width: 100%;
 }
 
 .box
@@ -25,13 +48,13 @@ body, html
 	width: 350px;
 	margin-top: auto;
 	margin-bottom: auto;
-	background: #A8DADC !important;
+	background: #1D3557 !important;
 	position: relative;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	padding: 10px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 	border-radius: 5px;
 }
 
@@ -51,7 +74,6 @@ body, html
 	height: 150px;
 	width: 150px;
 	border-radius: 50%;
-	border: 2px solid white;
 }
 
 .form_container
@@ -61,8 +83,8 @@ body, html
 
 .group
 {
-	background: #1D3557 !important;
-	color: white !important;
+	background: #A8DADC !important;
+	color: #1D3557 !important;
 	border: 0;
 	height: 40px;
 }
@@ -70,6 +92,8 @@ body, html
 .login_button 
 {
 	width: 100%;
-	background: #1D3557 !important;
-	color: white !important;
+	background: #A8DADC !important;
+	color: #1D3557 !important;
+	font-family: 'Rubik', sans-serif;
+	font-weight: 400;
 }
