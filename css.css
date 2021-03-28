@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
+
+body {
+	
+}
+
+h1 {
+	font-family: 'Rubik', sans-serif;
+	font-weight: 600;
+	font-size: 48px;
+	margin-bottom: 0;
+}
+
+h2 {
+	font-family: 'Rubik', sans-serif;
+	font-size: 36px;
+}
+
+h3 {
+	font-family: 'Pangolin', cursive;
+	font-size: 24px;
+}
+
+h6 {
+	font-family: 'Pangolin', cursive;
+	font-size: 18px;
+	margin-top: -10px;
+}
+
+p, a, label, input[type="text"], input[type="password"] {
+	color: white;
+	font-family: 'Rubik', sans-serif;
+	font-weight: 300;
+}
+
+/*
+	Navigation Bar
+*/
+
+.navbar {
+	min-width: 1489px;
+}
+
+.navbar-custom { 
+	background-color: #1d3557; 
+} 
+
+.navbar-custom .nav-link { 
+	color: white;
+	font-family: 'Rubik', sans-serif;
+	font-size: 18px;
+} 
+
+.navbar-custom .nav-link:hover { 
+	color: white;
+	font-family: 'Rubik', sans-serif;
+	font-size: 18px;
+	transition: all 0.2s;
+} 
+
+/*
+	Containers
+*/
+
+.main-content {
+    padding: 30px;
+    height: 100vh;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-wrap: wrap;
+	min-width: 1460px;
+	min-height: 700px
+}
+
+.auth-content {
+	margin-top: auto;
+	margin-bottom: auto;
+	background: #1D3557;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 5px;
+}
+
+
+/*
+	Auth Elements (Login / Signup)
+*/
+
+.box {
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+}
+
+.display {
+	display: flex; 
+	justify-content: center;
+}
+
+.logo_container {
+	position: absolute;
+	height: 170px;
+	width: 170px;
+	top: -75px;
+	border-radius: 50%;
+	background: #60a3bc;
+	padding: 10px;
+}
+
+.logo {
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+}
+
+/*
+	Backgrounds
+*/
+
+.auth-bg {
+	background-image: url("images/bg-login.jpg");
+	background-repeat: no-repeat;
+	background-position: center; 
+	background-attachment: fixed;
+	background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+.tile {
+	background-image: url("images/tile.png");
+    height: 100vh;
+    width: 100%;
+}
