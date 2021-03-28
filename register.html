@@ -1,70 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sign Up | blueprint</title>
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href = "css.css" rel="stylesheet">
 	<link href="register.css" rel="stylesheet">
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
+	<link rel="icon" href="images/logo-nt.png">
+	<title>Sign Up | blueprint</title>
 </head>
 <body>
-	<div class = "container box">
-		<div class = "display box">
-			<div class = "main">
-				<div class = "display">
-					<div class = "logo_container">
-							<img src = "images/user.png" class = "logo" alt = "Blueprint Logo">
-					</div>
-				</div>
-				<div class = "form">
-					<form style = "width: 100%; height: 80%">
-						<div id = "left" style="display: block; width: 60%;">
-							<div class = "container input-group mb-3">
-								<label for="first_name" class="input_field">Name </label>
-								<input type = "text" name = "first_name" id = "first_name" class = "form-control input_user" value = "" placeholder = "First Name" style="border-radius: 0px">
+	<div class="auth-bg">
+		<div class="tile">
+			<div class = "container box">
+				<div class = "display box">
+					<div class = "auth-content">
+						<div class = "display">
+							<div class = "logo_container">
+									<img src = "images/user.png" class = "logo" alt = "Blueprint Logo">
 							</div>
 						</div>
-						<div id = "right" style="display: block; width: 40%;">
-							<div class = "container input-group mb-3">
-								<input type = "text" name = "last_name" id = "last_name" class = "form-control input_user" value = "" placeholder = "Last Name" style="border-radius: 0px">
-							</div>
+						<div class = "form">
+							<form style = "width: 100%; height: 80%">
+								<div id = "left" style="display: block; width: 65%;">
+									<div class = "container input-group mb-3">
+										<label for="first_name" class="input_field">Name </label>
+										<input type = "text" name = "first_name" id = "first_name" class = "form-control input_user" value = "" placeholder = "First Name" style="border-radius: 0px">
+									</div>
+								</div>
+								<div id = "right" style="display: block; width: 35%;">
+									<div class = "container input-group mb-3  ">
+										<input type = "text" name = "last_name" id = "last_name" class = "form-control input_user" value = "" placeholder = "Last Name" style="border-radius: 0px">
+									</div>
+								</div>
+								<div class = "container input-group mb-3">
+									<label for="email" class="input_field">E-mail </label>
+										<input type = "email" name = "email" id = "email" class = "form-control input_user" value = "" placeholder = "example@example.com" style="border-radius: 0px">
+								</div>
+								
+									<div class = "container input-group mb-3">
+										<label for="username" class="input_field">Username </label>
+										<input type = "text" name = "username" id = "username" class = "form-control input_user" value = "" placeholder = "" style="border-radius: 0px">
+									</div>
+								
+									<div class = "container input-group mb-3  ">
+										<label for="password" class="input_field">Password </label>
+										<input type = "password" name = "password" id = "password" class = "form-control input_pass" value = "" placeholder = "" style="border-radius: 0px">
+									</div>
+								<div class = "container input-group mb-3  ">
+										<label for="school" class="input_field">University</label>
+										<input type = "text" name = "school" id = "school" class = "form-control input_user" value = "" placeholder = "" style="border-radius: 0px">
+									</div>
+								<div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+								 	<button type = "button" name = "signup_button" class = "btn signup_button">Sign Up
+								 	</button>
+							   </div>
+							</form>
 						</div>
-						<div class = "container input-group mb-3" >
-							<label for="email" class="input_field">E-mail </label>
-								<input type = "email" name = "email" id = "email" class = "form-control input_user" value = "" placeholder = "example@example.com" style="border-radius: 0px">
-						</div>
-						
-							<div class = "container input-group mb-3">
-								<label for="username" class="input_field">Username </label>
-								<input type = "text" name = "username" id = "username" class = "form-control input_user" value = "" placeholder = "" style="border-radius: 0px">
-							</div>
-						
-							<div class = "container input-group mb-3  ">
-								<label for="password" class="input_field">Password </label>
-								<input type = "password" name = "password" id = "password" class = "form-control input_pass" value = "" placeholder = "" style="border-radius: 0px">
-							</div>
-						<div class = "container input-group mb-3  ">
-								<label for="school" class="input_field">University</label>
-								<input type = "text" name = "school" id = "school" class = "form-control input_user" value = "" placeholder = "" style="border-radius: 0px">
-							</div>
-						<div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-						 	<button type = "button" name = "signup_button" class = "btn signup_button">Sign Up
-						 	</button>
-					   </div>
-					</form>
-				</div>
 
-				<div style="margin-top: 0px;">
-					<div class = "display">
-						<p style = "margin-bottom: 0px"> Already have an account? </p> 
-					</div>
-					<div class = "display">
-						<a href = "login.html">Log In</a> 
-						<pre> </pre>
-						now!
+						<div style="margin-top: 0px;">
+							<div class = "display">
+								<p style = "margin-bottom: 0px"> Already have an account? </p> 
+							</div>
+							<div class = "display">
+								<a href = "login.html">Log In</a> 
+								<pre> </pre>
+								<p>now!</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<footer>
+      <div class="bg-light py-1">
+        <div class="container text-center">
+          <p class="text-muted mb-0 py-2">Photo by <a href="https://unsplash.com/@domlafou?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dom Fou</a> on <a href="https://unsplash.com/s/photos/university?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+          </p>
+        </div>
+      </div>
+    </footer>
 </body>
 </html>
