@@ -1,0 +1,98 @@
+body {
+	
+	background-image: url("images/tile.png");
+}
+
+.navbar {
+	margin-bottom: 20px;
+	min-width: 1489px;
+}
+
+.navbar-custom { 
+	background-color: #1d3557; 
+} 
+
+.navbar-custom .nav-link { 
+	color: white;
+	font-family: 'Rubik', sans-serif;
+	font-size: 18px;
+
+} 
+
+#content {
+    
+    height: 100vh;
+    min-width: 1460px;
+	min-height: 700px;
+	height: max-content;
+	
+	margin: 0px;
+    margin-top: -20px;
+    padding: 0px;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#sideNav
+{
+	width: 14%;
+	min-width: 14%;
+	min-height: 100%;
+	background-color: #5161ce;
+  	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+.active
+{
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	background-color: white;
+	margin-left: -10px;
+	padding-left: 10px 
+}
+
+content li a {
+  display: block;
+
+}
+
+.navigationDiv
+{
+	margin-left: 10px;
+	padding-left: 10px;
+	width: 100%;
+	height: 100%;
+	color: white;
+}
+
+.item
+{
+	padding-left: 10px;
+	background-color: #5161ce;
+	width: 95%;
+}
+
+.down
+{
+	border-top-right-radius: 15px;
+}
+
+.up
+{
+	border-bottom-right-radius: 15px;
+}
+
+.icon
+{
+	color: white;
+	font-size: 17px;
+}
+
+.icon_name
+{
+	color: white;
+	font-size: 15px;
+}
