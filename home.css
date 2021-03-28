@@ -1,64 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
 
 body {
-	padding-bottom: 20px;
 	background-image: url("images/tile.png");
 }
 
-h1 {
-	font-family: 'Rubik', sans-serif;
-	font-weight: 600;
-	font-size: 48px;
-	margin-bottom: 0;
-}
-
-h3 {
-	font-family: 'Pangolin', cursive;
-	font-size: 24px;
-}
-
-h6 {
-	font-family: 'Pangolin', cursive;
-	font-size: 18px;
-	margin-top: -10px;
-}
-
-.navbar {
-	margin-bottom: 20px;
-	min-width: 1489px;
-}
-
-.navbar-custom { 
-	background-color: #1d3557; 
-} 
-
-.navbar-custom .nav-link { 
-	color: white;
-	font-family: 'Rubik', sans-serif;
-	font-size: 18px;
-
-} 
-
-#content {
-    padding: 40px;
-    height: 100vh;
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top: auto;
-    margin-bottom: auto;
-    background-color: white;
-    display: flex;
-    flex-wrap: wrap;
-	min-width: 1460px;
-	min-height: 700px
+.main-content > div {
+  	margin: 20px;
 }
 
 #sched {
 	flex-grow: 6;
+	background-color: white;
+	padding: 40px;
 }
 
 #task {
 	flex-grow: 1;
+	background-color: white;
+	padding: 40px;
 }
 
 .tg-wrap {
@@ -78,7 +37,7 @@ h6 {
   	overflow:hidden;
   	padding:10px 5px;
   	word-break:normal;
-  	min-width: 150px;
+  	min-width: 120px;
  }
 .tg-wrap th {
 	background-color: #1d3557; 
