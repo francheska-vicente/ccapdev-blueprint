@@ -1,96 +1,28 @@
-body, html
-{
+body, html {
 	height: 100%;
 	width: 100%;
+	background: #457B9D !important;
 	margin: 0;
 	padding: 0;
-	background: #457B9D !important;
-	
 }
 
-p, a {
-	color: white;
-	font-family: 'Rubik', sans-serif;
-	font-weight: 300;
-}
-
-#bg {
-	background-image: url("images/bg-login.jpg");
-	background-repeat: no-repeat;
-	background-position: center; 
-	background-attachment: fixed;
-	background-size: cover;
-    height: 100vh;
-    width: 100%;
-}
-
-#tile {
-	background-image: url("images/tile.png");
-    height: 100vh;
-    width: 100%;
-}
-
-.box
-{
-	height: 100%;
-	justify-content: center;
-}
-
-.display
-{
-	display: flex; 
-	justify-content: center;
-}
-
-.main 
-{
+.auth-content {
 	height: 400px;
 	width: 350px;
-	margin-top: auto;
-	margin-bottom: auto;
-	background: #1D3557 !important;
-	position: relative;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	padding: 10px;
-	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
-	border-radius: 5px;
 }
 
-.logo_container 
-{
-	position: absolute;
-	height: 170px;
-	width: 170px;
-	top: -75px;
-	border-radius: 50%;
-	background: #60a3bc;
-	padding: 10px;
-}
-
-.logo 
-{
-	height: 150px;
-	width: 150px;
-	border-radius: 50%;
-}
-
-.form_container
-{
+.form_container {
 	margin-top: 100px;
 }
 
-.group
-{
+.group {
 	background: #A8DADC !important;
 	color: #1D3557 !important;
 	border: 0;
 	height: 40px;
 }
 
-.login_button 
-{
+.login_button {
 	width: 100%;
 	background: #A8DADC !important;
 	color: #1D3557 !important;
