@@ -1,70 +1,21 @@
-body, html
-{
-	width: 100%;
+body, html {
 	height: 100%;
+	width: 100%;
 	background: #457B9D !important;
 	margin: 0;
 	padding: 0;
 }
 
-.main
-{
+label {
+	margin-right: 20px;
+}
+
+.auth-content {
 	height: 550px;
-	width: 550px;
-	margin-top: auto;
-	margin-bottom: auto;
-	background: #A8DADC !important;
-	position: relative;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	padding: 10px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	border-radius: 5px;
+	width: 600px;
 }
 
-.box
-{
-	height: 100%;
-	width: 100%;
-	justify-content: center;
-}
-
-.display
-{
-	display: flex; 
-	justify-content: center;
-}
-
-.logo_container 
-{
-	position: absolute;
-	height: 170px;
-	width: 170px;
-	top: -75px;
-	border-radius: 50%;
-	background: #60a3bc;
-	padding: 10px;
-}
-
-.logo 
-{
-	height: 150px;
-	width: 150px;
-	border-radius: 50%;
-	border: 2px solid white;
-}
-
-.group
-{
-	background: #1D3557 !important;
-	color: white !important;
-	border: 0;
-	height: 40px;
-}
-
-.form
-{
+.form {
 	display: flex; 
 	justify-content: center; 
 	margin-top: 120px; 
@@ -76,7 +27,6 @@ body, html
 
 #left {
     float: left;
-    
     margin-left: auto;
     margin-right: auto;
     display: flex; 
@@ -85,29 +35,25 @@ body, html
 
 #right {
 	float: right;
-	
 	display: flex; 
 	justify-content: center; 
 }
 
-.signup_button 
-{
+.signup_button {
 	width: 10%;
-	background: #1D3557 !important;
-	color: white !important;
+	background: #A8DADC !important;
+	color: #1D3557 !important;
 	clear: both;
 	margin-top: 20px;
 	width: 100px;
 }
 
-.field
-{
+.field {
 	width: 80%;
 	clear: right;
 }
 
-.input_field
-{
+.input_field {
 	line-height: 40px; 
 	width: 80px;
 }
