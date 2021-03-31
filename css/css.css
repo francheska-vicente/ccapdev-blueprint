@@ -3,6 +3,7 @@
 body, html {
 	height: 100%;
 	width: 100%;
+	min-height: 100%
 }
 
 h1 {
@@ -125,15 +126,7 @@ p, label, input[type="text"], input[type="password"] {
 	Backgrounds
 */
 
-.splash-bg-main {
-	background-image: url("../images/bg-splash.jpg");
-	background-repeat: no-repeat;
-	background-position: center; 
-	background-attachment: fixed;
-	background-size: cover;
-    height: 100vh;
-    width: 100%;
-}
+
 
 .auth-bg {
 	background-image: url("../images/bg-login.jpg");
