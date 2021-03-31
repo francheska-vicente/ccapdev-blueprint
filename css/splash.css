@@ -3,8 +3,8 @@
 #content {
 }
 
-.splash-bg-main {
-	background-image: url("../images/bg-splash.jpg");
+.splash-bg-main, .splash-bg-sub1, 
+.splash-bg-sub2, .splash-bg-sub3 {
 	background-repeat: no-repeat;
 	background-position: center; 
 	background-attachment: fixed;
@@ -12,39 +12,22 @@
     height: 100vh;
     width: 100%;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.splash-bg-main {
+	background-image: url("../images/bg-splash.jpg");
 }
 
 .splash-bg-sub1 {
 	background-image: url("../images/bg-splash-1.jpg");
-	background-repeat: no-repeat;
-	background-position: center; 
-	background-attachment: fixed;
-	background-size: cover;
-    height: 100vh;
-    width: 100%;
-    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .splash-bg-sub2 {
-	background-image: url("../images/bg-splash.jpg");
-	background-repeat: no-repeat;
-	background-position: center; 
-	background-attachment: fixed;
-	background-size: cover;
-    height: 100vh;
-    width: 100%;
-    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	background-image: url("../images/bg-splash-2.jpg");
 }
 
 .splash-bg-sub3 {
-	background-image: url("../images/bg-splash.jpg");
-	background-repeat: no-repeat;
-	background-position: center; 
-	background-attachment: fixed;
-	background-size: cover;
-    height: 100vh;
-    width: 100%;
-    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	background-image: url("../images/bg-splash-3.jpg");
 }
 
 .tile {
@@ -53,22 +36,22 @@
 }
 
 .split {
-	background-color: #FFFFFF;
-	height: 10%;
+	background-color: #F1FAEE;
+	height: 5%;
 }
 
 #text {
 	padding: 6vh;
-	background-color: #1D3557;
-    height: 400px;
+	background-color: rgba(29, 53, 87, 0.9);
+    height: 350px;
     width: 100%;
     text-align: center;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #tagline {
-	margin-top: 12px;
-	margin-bottom: 30px;
+	margin-top: 8px;
+	margin-bottom: 20px;
 	color: #F1FAEE;
 	font-style: italic;
 }
