@@ -31,17 +31,17 @@
 										<span class = "input-group-text group"> <i class = "fas fa-user"></i>
 										</span>
 									</div>
-									<input type = "text" name = "username" id = "username" class = "form-control input_user" value = "" placeholder = "Username">
+									<input type = "text" name = "username" id = "username" class = "form-control input_user"  placeholder = "Username">
 								</div>
 								<div class = "input-group mb-2">
 									<div class = "input-group-append">
 										<span class = "input-group-text group"> <i class = "fas fa-key"></i>
 										</span>
 									</div>
-									<input type = "password" name = "password" id = "password" class = "form-control input_pass" value = "" placeholder = "Password">
+									<input type = "password" name = "password" id = "password" class = "form-control input_pass" placeholder = "Password">
 								</div>
 								<div class = "display" style = "padding: 0 40px; margin-top: 20px">
-								 	<button type = "button" name = "login_button" class = "btn login_button">Login
+								 	<button type = "button" name = "login_button" class = "btn login_button" id = "login_btn">Login
 								 	</button>
 							   </div>
 							</form>
@@ -70,5 +70,18 @@
         </div>
       </div>
     </footer>
+
+    <script type="text/javascript">
+    	function click_fn ()
+        {
+            var username = document.getElementById ("username"); 
+            var password = document.getElementById ("password"); 
+            location.href = "home.html";
+
+        }
+
+        var button = document.getElementById ("login_btn");
+        button.onclick = click_fn;
+    </script>
 </body>
 </html>
