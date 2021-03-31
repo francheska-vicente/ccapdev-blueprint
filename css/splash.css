@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
 
-#content {
+body {
+	min-width: 1000px;
 }
 
 .splash-bg-main, .splash-bg-sub1, 
@@ -46,10 +47,11 @@
 	padding-left: 25vh;
 	padding-right: 25vh;
 	background-color: rgba(29, 53, 87, 0.9);
-    height: 60vh;
+    height: 350px;
     width: 100%;
     text-align: center;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+    
 }
 
 .text-sub {
@@ -58,7 +60,7 @@
 	padding-left: 25vh;
 	padding-right: 25vh;
 	background-color: rgba(241, 250, 238, 0.9);
-    height: 50vh;
+    height: 300px;
     width: 100%;
     text-align: center;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
