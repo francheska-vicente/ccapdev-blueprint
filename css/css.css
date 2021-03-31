@@ -23,7 +23,7 @@ h6 {
 	margin-top: -10px;
 }
 
-p, a, label, input[type="text"], input[type="password"] {
+p, label, input[type="text"], input[type="password"] {
 	color: white;
 	font-family: 'Rubik', sans-serif;
 	font-weight: 300;
