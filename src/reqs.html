@@ -31,9 +31,9 @@
           </ul>
           <div class="input-group" style="justify-content: flex-end; margin-right: 25px">
           <div class="form-outline">
-            <input type="search" id="form1" class="form-control" placeholder = "Search"/>
+            <input type="search" id="form1" class="form-control" placeholder = "Search" value = ""/>
           </div>
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" id="seach_btn">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -66,5 +66,16 @@
         </div>
 	    </nav>
     </div>
+
+        <script type="text/javascript">
+      function click_fn ()
+        {
+            var searchVal = document.getElementById ("seach_btn1");
+            location.href = "search.html";
+        }
+
+        var button = document.getElementById ("seach_btn");
+        button.onclick = click_fn;
+    </script>
 </body>
 </html>
