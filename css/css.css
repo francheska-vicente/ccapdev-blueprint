@@ -41,7 +41,6 @@ p, label, input[type="text"], input[type="password"] {
 
 .navbar {
 	min-width: 700px;
-	width: 500px;
 }
 
 .navbar-custom { 
