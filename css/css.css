@@ -121,7 +121,7 @@ p, a, label, input[type="text"], input[type="password"] {
 */
 
 .splash-bg-main {
-	background-image: url("../images/bg-splash.png");
+	background-image: url("../images/bg-splash.jpg");
 	background-repeat: no-repeat;
 	background-position: center; 
 	background-attachment: fixed;
