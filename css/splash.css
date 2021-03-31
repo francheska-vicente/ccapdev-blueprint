@@ -1,16 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
 
 #content {
-    height: 100vh;
 }
 
 .splash-bg-main {
+	background-image: url("../images/bg-splash.jpg");
+	background-repeat: no-repeat;
+	background-position: center; 
+	background-attachment: fixed;
+	background-size: cover;
+    height: 100vh;
+    width: 100%;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.splash-bg-sub1 {
+	background-image: url("../images/bg-splash.jpg");
+	background-repeat: no-repeat;
+	background-position: center; 
+	background-attachment: fixed;
+	background-size: cover;
+    height: 100vh;
+    width: 100%;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.splash-bg-sub2 {
+	background-image: url("../images/bg-splash.jpg");
+	background-repeat: no-repeat;
+	background-position: center; 
+	background-attachment: fixed;
+	background-size: cover;
+    height: 100vh;
+    width: 100%;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.splash-bg-sub3 {
+	background-image: url("../images/bg-splash.jpg");
+	background-repeat: no-repeat;
+	background-position: center; 
+	background-attachment: fixed;
+	background-size: cover;
+    height: 100vh;
+    width: 100%;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .tile {
 	display: flex;
 	align-items: center;
+}
+
+.split {
+	background-color: #FFFFFF;
+	height: 10%;
 }
 
 #text {
