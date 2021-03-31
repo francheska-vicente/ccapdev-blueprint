@@ -31,9 +31,9 @@
           </ul>
           <div class="input-group" style="justify-content: flex-end; margin-right: 25px">
           <div class="form-outline">
-            <input type="search" id="form1" class="form-control" placeholder = "Search"/>
+            <input type="search" id="form1" class="form-control" placeholder = "Search" value = ""/>
           </div>
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" id="seach_btn">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -46,15 +46,26 @@
           <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
                 <li class="nav-item item up">
                   <div class="active" style="background-color: white">
-                    <a class="nav-link" href="profile.html" style="color: #5161ce; padding-left: 10px"><i class="fa fa-home"></i> Your Profile </a>
+                    <a class="nav-link" href="profile.html" style="color: #5161ce; padding-left: 10px"><i class="fas fa-child"></i> Your Profile </a>
                   </div>
                 </li>
                 <li class="nav-item item down">
-                    <a class="nav-link  icon_name" href="editprofile.html"><i class="far fa-address-book icon"></i> Edit Profile</a>
+                    <a class="nav-link icon_name" href="editprofile.html"><i class="fas fa-user-check icon"></i> Edit Profile</a>
                 </li>
             </ul>
         </div>
 	    </nav>
     </div>
+
+    <script type="text/javascript">
+      function click_fn ()
+        {
+            var searchVal = document.getElementById ("seach_btn1");
+            location.href = "search.html";
+        }
+
+        var button = document.getElementById ("seach_btn");
+        button.onclick = click_fn;
+    </script>
 </body>
 </html>
