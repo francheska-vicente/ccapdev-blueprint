@@ -74,8 +74,8 @@ p, label, input[type="text"], input[type="password"] {
     margin-bottom: auto;
     display: flex;
     flex-wrap: wrap;
-	min-width: 1460px;
-	min-height: 700px
+	min-width: 100px;
+	min-height: 700px;
 }
 
 .auth-content {
