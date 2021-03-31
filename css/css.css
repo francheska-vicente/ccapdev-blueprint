@@ -121,7 +121,7 @@ p, a, label, input[type="text"], input[type="password"] {
 */
 
 .splash-bg-main {
-	background-image: url("images/bg-splash.png");
+	background-image: url("../images/bg-splash.png");
 	background-repeat: no-repeat;
 	background-position: center; 
 	background-attachment: fixed;
@@ -131,7 +131,7 @@ p, a, label, input[type="text"], input[type="password"] {
 }
 
 .auth-bg {
-	background-image: url("images/bg-login.jpg");
+	background-image: url("../images/bg-login.jpg");
 	background-repeat: no-repeat;
 	background-position: center; 
 	background-attachment: fixed;
@@ -141,7 +141,7 @@ p, a, label, input[type="text"], input[type="password"] {
 }
 
 .tile {
-	background-image: url("images/tile.png");
+	background-image: url("../images/tile.png");
     height: 100vh;
     width: 100%;
 }
