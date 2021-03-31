@@ -2,9 +2,9 @@
     height: 100vh;
     min-width: 1460px;
 	min-height: 700px;
-	height: max-content;
+    height: max-content;
 	
-	margin: 0px;
+    margin: 0px;
     margin-top: -20px;
     padding: 0px;
 
@@ -21,6 +21,7 @@
   	padding: 0px;
 	margin: 0px;
 	overflow: hidden;
+	padding-top: 20px;
 }
 
 .active
