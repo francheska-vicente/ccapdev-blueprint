@@ -1,11 +1,35 @@
 .main-content {
-  	margin-top: 2%;
-  	margin-left: 2%;
-  	margin-right: 2%;
+	margin-top: auto;
+  	margin-left: auto;
+  	margin-right: auto;
+  	margin-bottom: auto;
   	flex-grow: 6;
 	background-color: white;
 	padding: 2%;
 	min-height: max-content;
-	height: 96%;
-	width: 96%;
+	height: 100%;
+	width: 100%;
+}
+
+.tile {
+	background-image: url("../images/tile.png");
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container
+{
+	margin-top: auto;
+  	margin-left: auto;
+  	margin-right: auto;
+  	margin-bottom: auto;
+  	flex-grow: 6;
+	
+	padding: 2%;
+	min-height: max-content;
+	height: 97%;
+	width: 98%;
+
 }
