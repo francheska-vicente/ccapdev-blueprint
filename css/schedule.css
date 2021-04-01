@@ -16,14 +16,12 @@
 
 #schedule {
 	background-color: white;
+	width: 80%;
 	padding: 40px;
 }
 
-.tg-wrap {
-	border-collapse:collapse;
-	border-spacing:0;
-	min-height: 500px;
-	min-width: 500px;
+table {
+	width: 100%;
 }
 
 .tg-wrap td {
@@ -34,21 +32,23 @@
 	font-size:14px;
 	text-align: center;
   	overflow:hidden;
-  	padding:10px 5px;
   	word-break:normal;
-  	min-width: 120px;
+  	width: 10%;
+  	height: 20px;
  }
+
 .tg-wrap th {
 	background-color: #1d3557; 
-	color: #fff;
+	color: white;
 	border-color:#1d3557;
 	border-style:solid;
 	border-width:3px;
 	font-family: 'Rubik', sans-serif;
-	font-size:14px;
+	font-size:16px;
 	text-align: center;
   	font-weight:500;
-  	overflow:hidden;padding:10px 5px;
+  	overflow:hidden;
+  	padding:10px 5px;
   	word-break:normal;
  }
 
