@@ -32,30 +32,51 @@
     width: 30%;
     background-color: #F1FAEE;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-content: center;
 }
 
 .logo_container 
 {
-    margin-top: 20%;
-    margin-right: auto;
     margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    margin-bottom: 0px;
 }
 
 .profile_container
 {
     width: 100%;
     height: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .login_button 
 {
     height: 50px;
-    width: 50%;
+    width: 30%;
     background: #A8DADC !important;
     color: #1D3557 !important;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    margin-top: 130%;
-    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2
+{
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    margin-top: 0px;
+}
+
+.logo {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
