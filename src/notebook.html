@@ -31,9 +31,9 @@
           </ul>
           <div class="input-group" style="justify-content: flex-end; margin-right: 25px">
           <div class="form-outline">
-            <input type="search" id="form1" class="form-control" placeholder = "Search" value = ""/>
+            <input type="search" class="form-control" placeholder = "Search" id="searchBox"/>
           </div>
-          <button type="button" class="btn btn-primary" id="seach_btn">
+          <button type="button" class="btn btn-primary" id="search_btn">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -68,13 +68,13 @@
     </div>
 
     <script type="text/javascript">
-      function click_fn ()
+        function click_fn ()
         {
-            var searchVal = document.getElementById ("seach_btn1");
+            var searchVal = document.getElementById ("searchBox");
             location.href = "search.html";
         }
-
-        var button = document.getElementById ("seach_btn");
+        
+        var button = document.getElementById ("search_btn");
         button.onclick = click_fn;
     </script>
 </body>
