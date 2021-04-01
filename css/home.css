@@ -42,9 +42,9 @@ table {
 .tg-wrap td {
 	border-color:#1d3557;
 	border-style:solid;
-	border-width:3px;
+	border-width:1px;
 	font-family: 'Rubik', sans-serif;
-	font-size:14px;
+	font-size:2vh;
 	text-align: center;
   	overflow:hidden;
   	padding:10px 5px;
@@ -59,7 +59,7 @@ table {
 	border-style:solid;
 	border-width:3px;
 	font-family: 'Rubik', sans-serif;
-	font-size:16px;
+	font-size:2vh;
 	text-align: center;
   	font-weight:500;
   	overflow:hidden;
