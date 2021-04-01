@@ -3,7 +3,7 @@
 <head>
 	<link href="../external/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/css.css" rel="stylesheet">
-    <link href="../css/class.css" rel="stylesheet">
+    <link href="../css/schedule.css" rel="stylesheet">
     <link rel="icon" href="../images/logo-nt.png">
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
@@ -61,6 +61,30 @@
             </ul>
         </div>
 	    </nav>
+      <div class="main">
+        <ul class="breadcrumb">
+          <li><a href="home.html">blueprint</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li>Drop a Class</li>
+        </ul> 
+        <h1>Drop a Class</h1>
+        <h5>Left a class? Pick a class to drop below to remove it from your classes!</h5><hr>
+        <div class="drop-container">
+          <div class = "container input-group mb-3">
+            <label for="cars">Choose a class:</label>
+            <select id="drop" name="drop">
+              <option value="ccapdev">CCAPDEV</option>
+              <option value="csarch1">CSARCH1</option>
+              <option value="geteams">GETEAMS</option>
+              <option value="stalgcm">STALGCM</option>
+              <option value="st-math">ST-MATH</option>
+            </select>
+          </div>
+          <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+            <button type = "button" name = "drop_button" id="drop_button">Drop!</button>
+          </div>
+        </div>
+      </div>
     </div>
     <script type="text/javascript">
         function click_fn ()
