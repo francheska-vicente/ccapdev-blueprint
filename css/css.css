@@ -88,7 +88,8 @@ p, label, input[type="text"], input[type="password"] {
 	width: 14%;
 	min-width: 141px;
 	min-height: 100%;
-	background-color: #457B9D;
+	background-color: rgba(69, 123, 157, 0.8);
+	background-image: url("../images/tile.png");
   	padding: 0px;
 	margin: 0px;
 	overflow: hidden;
@@ -121,7 +122,7 @@ content li a {
 .item
 {
 	padding-left: 10px;
-	background-color: #457B9D;
+	background-color: rgba(69, 123, 157, 0.85);
 	width: 95%;
 }
 
@@ -184,7 +185,7 @@ ul.breadcrumb li a:hover {
 
 .main-content {
     padding: 30px;
-    height: 100vh;
+    height: 100%;
     margin-left: 10px;
     margin-right: 10px;
     margin-top: auto;
@@ -238,6 +239,31 @@ ul.breadcrumb li a:hover {
 	height: 150px;
 	width: 150px;
 	border-radius: 50%;
+}
+
+/*
+	Form Elements
+*/
+
+.left {
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex; 
+	justify-content: center; 
+	width: 65%;
+}
+
+.right {
+	float: right;
+	display: flex; 
+	justify-content: center; 
+	width: 35%;
+}
+
+.input_field {
+	line-height: 40px; 
+	width: 120px;
 }
 
 /*
