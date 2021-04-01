@@ -8,6 +8,14 @@ body {
   	margin: 20px;
 }
 
+#title {
+	width: 100%;
+	background-color: white;
+	padding: 10px 40px;
+	margin-top: -6px;
+	margin-bottom: -2px;
+}
+
 #calendar {
 	flex-grow: 6;
 	background-color: white;
@@ -66,7 +74,13 @@ table {
 	height: 20px;
 }
 
-.today {
+.with-task {
 	background-color: #a8dadc; 
 	font-weight: bold;
+}
+
+.not-month {
+	background-color: #dddddd;
+	color: #616161;
+	font-weight: italic;
 }
