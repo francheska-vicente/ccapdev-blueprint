@@ -3,7 +3,6 @@
 <head>
 	<link href="../external/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/css.css" rel="stylesheet">
-    <link href="../css/newclass.css" rel="stylesheet">
     <link href="../css/schedule.css" rel="stylesheet">
     <link rel="icon" href="../images/logo-nt.png">
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
@@ -70,69 +69,66 @@
         </ul> 
         <h1>Create a New Class</h1>
         <h5>Didn't see your class? Create one right now and invite your classmates!</h5><hr>
-        <div class = "auth-content">
-        <div class = "form">
-              <form style = "width: 100%; height: 80%">
-                <div class = "container input-group mb-3">
-                  <label for="c_name" class="input_field">Course name</label>
-                    <input type = "text" name = "c_name" id = "c_name" class = "form-control input_user" value = "" placeholder = "Web Applications Development" style="border-radius: 0px; color: black">
-                </div>
-                
-                  <div class = "container input-group mb-3">
-                    <label for="c_code" class="input_field">Course code</label>
-                    <input type = "text" name = "c_code" id = "c_code" class = "form-control input_user" value = "" placeholder = "CCAPDEV" style="border-radius: 0px; color: black">
-                  </div>
-                
-                  <div class = "container input-group mb-3  ">
-                    <label for="p_name" class="input_field">Professor's Name</label>
-                    <input type = "text" name = "p_named" id = "p_name" class = "form-control input_pass" value = "" placeholder = "" style="border-radius: 0px; color: black">
-                  </div>
-                  <div class="left">
-                    <div class = "container input-group mb-3  ">
-                    <label for="daytime1" class="input_field">Day and Time</label>
-                    <select name="day1" id="day1" class="form-control input_user" style="border-radius: 0px; color: black">
-                      <option value="monday">Monday</option>
-                      <option value="tuesday">Tuesday</option>
-                      <option value="wednesday">Wednesday</option>
-                      <option value="thusday">Thursday</option>
-                      <option value="friday">Friday</option>
-                      <option value="saturday">Saturday</option>
-                      <option value="sunday">Sunday</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="right">
-                  <div class = "container input-group mb-3  ">
-                    <input type="time" id="time1" name="time1" style="width: 100%; height: 40px;">
-                  </div>
-                </div>
-                <div class="left">
-                    <div class = "container input-group mb-3  ">
-                    <label for="daytime2" class="input_field">Day and Time</label>
-                    <select name="day2" id="day2" class="form-control input_user" style="border-radius: 0px; color: black">
-                      <option value="monday">Monday</option>
-                      <option value="tuesday">Tuesday</option>
-                      <option value="wednesday">Wednesday</option>
-                      <option value="thusday">Thursday</option>
-                      <option value="friday">Friday</option>
-                      <option value="saturday">Saturday</option>
-                      <option value="sunday">Sunday</option>
-                      <option value="none">None</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="right">
-                  <div class = "container input-group mb-3  ">
-                    <input type="time" id="time2" name="time2" style="width: 100%; height: 40px;">
-                  </div>
-                </div>
-                <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-                  <button type = "button" name = "create_button" id="create_button" class = "btn signup_button">Create!
-                  </button>
-                 </div>
-              </form>
+        <div class="create-container">
+          <form style = "width: 100%; height: 80%">
+            <div class = "container input-group mb-3">
+              <label for="c_name" class="input_field">Course name</label>
+                <input type = "text" name = "c_name" id = "c_name" class = "form-control input_user" value = "" placeholder = "Web Applications Development" style="border-radius: 0px; color: black">
             </div>
-          </div>
+            
+              <div class = "container input-group mb-3">
+                <label for="c_code" class="input_field">Course code</label>
+                <input type = "text" name = "c_code" id = "c_code" class = "form-control input_user" value = "" placeholder = "CCAPDEV" style="border-radius: 0px; color: black">
+              </div>
+            
+              <div class = "container input-group mb-3  ">
+                <label for="p_name" class="input_field">Professor's Name</label>
+                <input type = "text" name = "p_named" id = "p_name" class = "form-control input_pass" value = "" placeholder = "" style="border-radius: 0px; color: black">
+              </div>
+              <div class="left">
+                <div class = "container input-group mb-3  ">
+                <label for="daytime1" class="input_field">Day and Time</label>
+                <select name="day1" id="day1" class="form-control input_user" style="border-radius: 0px; color: black">
+                  <option value="monday">Monday</option>
+                  <option value="tuesday">Tuesday</option>
+                  <option value="wednesday">Wednesday</option>
+                  <option value="thusday">Thursday</option>
+                  <option value="friday">Friday</option>
+                  <option value="saturday">Saturday</option>
+                  <option value="sunday">Sunday</option>
+                </select>
+                </div>
+              </div>
+              <div class="right">
+              <div class = "container input-group mb-3  ">
+                <input type="time" id="time1" name="time1" style="width: 100%; height: 40px;">
+              </div>
+            </div>
+            <div class="left">
+                <div class = "container input-group mb-3  ">
+                <label for="daytime2" class="input_field">Day and Time</label>
+                <select name="day2" id="day2" class="form-control input_user" style="border-radius: 0px; color: black">
+                  <option value="monday">Monday</option>
+                  <option value="tuesday">Tuesday</option>
+                  <option value="wednesday">Wednesday</option>
+                  <option value="thusday">Thursday</option>
+                  <option value="friday">Friday</option>
+                  <option value="saturday">Saturday</option>
+                  <option value="sunday">Sunday</option>
+                  <option value="none">None</option>
+                </select>
+                </div>
+              </div>
+              <div class="right">
+              <div class = "container input-group mb-3  ">
+                <input type="time" id="time2" name="time2" style="width: 100%; height: 40px;">
+              </div>
+            </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "create_button" id="create_button" class = "btn">Create!
+              </button>
+             </div>
+          </form>
         </div>
       </div>
     </div>
