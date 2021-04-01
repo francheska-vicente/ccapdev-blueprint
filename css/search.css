@@ -66,7 +66,7 @@
 	width: 100%;
 	min-height: max-content;
 	display: flex;
-	flex-direction: column;
+	justify-content: space-around;
 }
 
 .picture_container {
@@ -83,15 +83,49 @@
 	height: 120px;
 	width: 120px;
 	margin-top: 15px;
-	margin-left: 10px;
+	margin-left: 0px;
 }
 
 .person-content
 {
 	height: 150px;
-	width: 80%;
+	width: 70%;
 	float: right;
-	margin-top: 20px;
+	margin-top: 40px;
 	min-width: max-content;
 	overflow: hidden;
+
+}
+
+.left
+{
+	width: 45%;
+}
+
+.right
+{
+	width: 45%;
+}
+
+h1 {
+	font-weight: 600;
+	font-size: 35px;
+	
+}
+
+h2 {
+	font-size: 30px;
+}
+
+h3 {
+	font-size: 25px;
+}
+
+p {
+	font-size: 15px;
+	text-overflow: ellipsis;
+	font-family: 'Pangolin', cursive;
+	color: black;
+	width: 350px;
+	margin-top: -10px;
 }
