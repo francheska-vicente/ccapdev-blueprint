@@ -4,7 +4,6 @@ body {
 
 h2 {
 	font-size: 30px;
-	width: 800px;
 }
 
 h3 {
@@ -16,12 +15,11 @@ p {
 	text-overflow: ellipsis;
 	font-family: 'Pangolin', cursive;
 	color: black;
-	width: 1000px;
 	margin-top: -10px;
 }
 
 .main-content {
-	padding: 40px 20%;
+	padding: 40px 10%;
 }
 
 #class-list {
@@ -33,33 +31,7 @@ p {
 	width: 100%;
 }
 
-.person-content
-{
-    height: 150px;
-    width: 80%;
-    float: right;
-    margin-top: 40px;
-    min-width: max-content;
-    overflow: hidden;
-}
-
-
-.link
-{
-	color: black;
-	text-decoration: none;
-}
-
-
-.button
-{
-	 height: 40px;
-}
-
-
-
-.person
-{
+.class-container {
 	width: 100%;
 	height: auto;
 	margin-top: 10px;
@@ -67,23 +39,37 @@ p {
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #A8DADC;
-	display: inline-block;
+	padding: 10px 40px;
+	display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
-.picture_container {
-	height: 30px;
-	width: 10%;
-	padding: 10px;
-	margin-left: 10px;
-	margin-top: auto;
-	margin-bottom: auto;
-	float: left;
+.class-container > div {
+	margin-right: 20px;
+}
+
+.img-container {
+	margin: auto 10px;
 }
 
 .picture {
-	height: 120px;
-	width: 120px;
-	margin-top: 15px;
-	margin-left: 0px;
+	max-width: 100%;
+	height: auto;
+	max-height: 120px;
 }
+
+.text-container {
+	flex-grow: 8;
+	margin: auto;
+}
+
+
+.link {
+	color: black;
+	text-decoration: none;
+}
+
+
+
 
