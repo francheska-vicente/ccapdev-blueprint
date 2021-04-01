@@ -93,8 +93,6 @@
 	width: 70%;
 	float: right;
 	margin-top: 40px;
-	min-width: max-content;
-	overflow: hidden;
 }
 
 .left
@@ -126,6 +124,6 @@ p {
 	text-overflow: ellipsis;
 	font-family: 'Pangolin', cursive;
 	color: black;
-	width: 1000px;
+	width: 70%;
 	margin-top: -10px;
 }
