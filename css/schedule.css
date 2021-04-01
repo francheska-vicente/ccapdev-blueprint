@@ -56,7 +56,14 @@ table {
 	background-color: #a8dadc; 
 }
 
-.button
+#class_box
 {
+	border: #457B9D solid 2px;
+}
+
+#class_btn
+{
+	background-color: #457B9D;
+	border: #457B9D solid 2px;
 	height: 40px;
 }
