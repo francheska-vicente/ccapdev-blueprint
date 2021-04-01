@@ -4,6 +4,7 @@
 	<link href="../external/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/css.css" rel="stylesheet">
     <link href="../css/class.css" rel="stylesheet">
+    <link href="../css/newclass.css" rel="stylesheet">
     <link href="../css/schedule.css" rel="stylesheet">
     <link rel="icon" href="../images/logo-nt.png">
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
@@ -63,15 +64,55 @@
         </div>
 	    </nav>
       <div class="main">
-        <div class="input-group">
-          <div class="form-outline" style="width: 40%">
-            <h1>rawr</h1>
-            <input type="search" class="form-control" placeholder = "Search" id="class_box"/>
+        <div class = "form">
+              <form style = "width: 100%; height: 80%">
+                <div id = "left" style="display: block; width: 65%;">
+                  <div class = "container input-group mb-3">
+                    <label for="first_name" class="input_field">Name </label>
+                    <input type = "text" name = "first_name" id = "first_name" class = "form-control input_user" value = "" placeholder = "First Name" style="border-radius: 0px; color: black">
+                  </div>
+                </div>
+                <div id = "right" style="display: block; width: 35%;">
+                  <div class = "container input-group mb-3  ">
+                    <input type = "text" name = "last_name" id = "last_name" class = "form-control input_user" value = "" placeholder = "Last Name" style="border-radius: 0px; color: black">
+                  </div>
+                </div>
+                <div class = "container input-group mb-3">
+                  <label for="email" class="input_field">E-mail </label>
+                    <input type = "email" name = "email" id = "email" class = "form-control input_user" value = "" placeholder = "example@example.com" style="border-radius: 0px; color: black">
+                </div>
+                
+                  <div class = "container input-group mb-3">
+                    <label for="username" class="input_field">Username </label>
+                    <input type = "text" name = "username" id = "username" class = "form-control input_user" value = "" placeholder = "" style="border-radius: 0px; color: black">
+                  </div>
+                
+                  <div class = "container input-group mb-3  ">
+                    <label for="password" class="input_field">Password </label>
+                    <input type = "password" name = "password" id = "password" class = "form-control input_pass" value = "" placeholder = "" style="border-radius: 0px; color: black">
+                  </div>
+                <div class = "container input-group mb-3  ">
+                    <label for="school" class="input_field">University</label>
+                    <input type = "text" name = "school" id = "school" class = "form-control input_user" value = "" placeholder = "" style="border-radius: 0px; color: black">
+                  </div>
+                <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+                  <button type = "button" name = "signup_button" class = "btn signup_button">Sign Up
+                  </button>
+                 </div>
+              </form>
+            </div>
+
+            <div style="margin-top: 0px;">
+              <div class = "display">
+                <p style = "margin-bottom: 0px"> Already have an account? </p> 
+              </div>
+              <div class = "display">
+                <a href = "login.html">Log In</a> 
+                <pre> </pre>
+                <p>now!</p>
+              </div>
+            </div>
           </div>
-          <button type="button" class="btn btn-primary button" id="class_btn">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
       </div>
     </div>
     <script type="text/javascript">
