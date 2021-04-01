@@ -95,7 +95,6 @@
 	margin-top: 40px;
 	min-width: max-content;
 	overflow: hidden;
-
 }
 
 .left
@@ -111,7 +110,7 @@
 h1 {
 	font-weight: 600;
 	font-size: 35px;
-	
+	width: 800px;
 }
 
 h2 {
@@ -127,6 +126,6 @@ p {
 	text-overflow: ellipsis;
 	font-family: 'Pangolin', cursive;
 	color: black;
-	width: 350px;
+	width: 1000px;
 	margin-top: -10px;
 }
