@@ -25,19 +25,6 @@ label {
 	height: 80%;
 }
 
-#left {
-    float: left;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex; 
-	justify-content: center; 
-}
-
-#right {
-	float: right;
-	display: flex; 
-	justify-content: center; 
-}
 
 .signup_button {
 	width: 10%;
