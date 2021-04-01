@@ -29,7 +29,7 @@ table {
 	border-style:solid;
 	border-width:3px;
 	font-family: 'Rubik', sans-serif;
-	font-size:14px;
+	font-size:2vh;
 	text-align: center;
   	overflow:hidden;
   	word-break:normal;
@@ -44,7 +44,7 @@ table {
 	border-style:solid;
 	border-width:3px;
 	font-family: 'Rubik', sans-serif;
-	font-size:16px;
+	font-size:2vh;
 	text-align: center;
   	font-weight:500;
   	overflow:hidden;
