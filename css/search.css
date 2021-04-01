@@ -16,7 +16,8 @@
 
 .tile {
 	background-image: url("../images/tile.png");
-    height: 100%;
+    height: max-content;
+    min-height:  100%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -92,9 +93,6 @@
 	width: 70%;
 	float: right;
 	margin-top: 40px;
-	min-width: max-content;
-	overflow: hidden;
-
 }
 
 .left
@@ -110,7 +108,7 @@
 h1 {
 	font-weight: 600;
 	font-size: 35px;
-	
+	width: 800px;
 }
 
 h2 {
@@ -126,6 +124,6 @@ p {
 	text-overflow: ellipsis;
 	font-family: 'Pangolin', cursive;
 	color: black;
-	width: 350px;
+	width: 70%;
 	margin-top: -10px;
 }
