@@ -16,7 +16,8 @@
 
 .tile {
 	background-image: url("../images/tile.png");
-    height: 100%;
+    height: max-content;
+    min-height:  100%;
     width: 100%;
     display: flex;
     justify-content: center;
