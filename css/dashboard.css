@@ -1,6 +1,36 @@
-.left
-{
-    width: 80%;
+body {
+	background-image: url("../images/tile.png");
+}
+
+h2 {
+	font-size: 30px;
+	width: 800px;
+}
+
+h3 {
+	font-size: 25px;
+}
+
+p {
+	font-size: 15px;
+	text-overflow: ellipsis;
+	font-family: 'Pangolin', cursive;
+	color: black;
+	width: 1000px;
+	margin-top: -10px;
+}
+
+.main-content {
+	padding: 40px 20%;
+}
+
+#class-list {
+	display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: white;
+	padding: 40px;
+	width: 100%;
 }
 
 .person-content
@@ -20,56 +50,13 @@
 	text-decoration: none;
 }
 
-.main-content {
-	margin-top: auto;
-  	margin-left: auto;
-  	margin-right: auto;
-  	margin-bottom: auto;
-  	flex-grow: 6;
-	background-color: white;
-	min-height: max-content;
-	max-height: max-content;
-
-	height: 100%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
-.tile {
-	background-image: url("../images/tile.png");
-    height: max-content;
-    min-height:  100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 0px;
-}
-
-.container
-{
-	margin-top: auto;
-	margin-bottom: auto;
-  	margin-left: auto;
-  	margin-right: auto;
-  	
-  	flex-grow: 6;
-	
-	padding: 2%;
-	min-height: max-content;
-	height: 97%;
-	width: 98%;
-}
 
 .button
 {
 	 height: 40px;
 }
 
-#searchBox
-{
-	border: #1d3557 solid 2px;
-}
+
 
 .person
 {
@@ -81,15 +68,6 @@
 	margin-right: auto;
 	background-color: #A8DADC;
 	display: inline-block;
-}
-
-.person-container
-{
-	height: 100%;
-	width: 100%;
-	min-height: max-content;
-	display: flex;
-	justify-content: space-around;
 }
 
 .picture_container {
@@ -109,26 +87,3 @@
 	margin-left: 0px;
 }
 
-
-h1 {
-	font-weight: 600;
-	font-size: 35px;
-	width: 800px;
-}
-
-h2 {
-	font-size: 30px;
-}
-
-h3 {
-	font-size: 25px;
-}
-
-p {
-	font-size: 15px;
-	text-overflow: ellipsis;
-	font-family: 'Pangolin', cursive;
-	color: black;
-	width: 1000px;
-	margin-top: -10px;
-}

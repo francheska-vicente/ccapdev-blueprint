@@ -27,8 +27,8 @@ h5 {
 	font-family: 'Pangolin', cursive;
 	font-size: 20px;
 	margin-left: 20px;
-	margin-top: -5px;
-	margin-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 10px;
 	color: #457b9d;
 }
 
@@ -67,6 +67,16 @@ p, label, input[type="text"], input[type="password"] {
 	font-family: 'Rubik', sans-serif;
 	font-size: 18px;
 	transition: all 0.2s;
+}
+
+#searchBox {
+	border: #1d3557 solid 2px;
+}
+
+
+#search_btn {
+	background-color: #457B9D;
+	border: #457B9D solid 2px;
 }
 
 /*
@@ -234,8 +244,6 @@ ul.breadcrumb li a:hover {
 	Backgrounds
 */
 
-
-
 .auth-bg {
 	background-image: url("../images/bg-login.jpg");
 	background-repeat: no-repeat;
@@ -248,17 +256,6 @@ ul.breadcrumb li a:hover {
 
 .tile {
 	background-image: url("../images/tile.png");
-    height: 100vh;
+    height: 100%;
     width: 100%;
-}
-
-#searchBox
-{
-	border: #457B9D solid 2px;
-}
-
-#search_btn
-{
-	background-color: #457B9D;
-	border: #457B9D solid 2px;
 }
