@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
 
+label {
+	color: #1d3557;
+	font-family: 'Rubik', sans-serif;
+	font-weight: 300;
+	margin-right: 20px;
+	font-size: 15px;
+}
+
 #content {
     height: 100%;
     min-width: 1180px;
@@ -27,7 +35,7 @@ table {
 .tg-wrap td {
 	border-color:#1d3557;
 	border-style:solid;
-	border-width:3px;
+	border-width:1px;
 	font-family: 'Rubik', sans-serif;
 	font-size:2vh;
 	text-align: center;
@@ -56,14 +64,49 @@ table {
 	background-color: #a8dadc; 
 }
 
-#class_box
-{
+#drop {
+	height: 40px;
+	width: 80%;
+	margin: auto auto;
+}
+
+#class_box {
 	border: #457B9D solid 2px;
 }
 
-#class_btn
-{
+#class_btn {
 	background-color: #457B9D;
 	border: #457B9D solid 2px;
 	height: 40px;
 }
+
+.create-container, .drop-container {
+	display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+	padding: 40px;
+	width: 80%;
+}
+
+#create_button, #drop_button {
+	display:inline-block;
+	padding:0.3em 1.2em;
+	margin: auto auto;
+	border-style: none;
+	box-sizing: border-box;
+	text-decoration:none;
+	font-family:'Rubik',sans-serif;
+	font-size: 18px;
+	font-weight:400;
+	color:#000000;
+	background-color:#A8DADC;
+	text-align:center;
+	transition: all 0.2s;
+}
+
+#create_button:hover, #drop_button:hover {
+	background-color:#457B9D;
+}
+
