@@ -209,6 +209,39 @@ ul.breadcrumb li a:hover {
 	border-radius: 5px;
 }
 
+.img-container {
+	margin: auto 10px;
+}
+
+.img {
+	max-width: 100%;
+	height: auto;
+	max-height: 120px;
+}
+
+.text-container {
+	flex-grow: 8;
+	margin: auto;
+}
+
+.link {
+	color: black;
+	text-decoration: none;
+}
+
+.class-container, .person-container {
+	width: 100%;
+	height: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #A8DADC;
+	padding: 10px 40px;
+	display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 
 /*
 	Auth Elements (Login / Signup)
@@ -245,7 +278,7 @@ ul.breadcrumb li a:hover {
 	Form Elements
 */
 
-.left {
+.form-left {
     float: left;
     margin-left: auto;
     margin-right: auto;
@@ -254,7 +287,7 @@ ul.breadcrumb li a:hover {
 	width: 65%;
 }
 
-.right {
+.form-right {
 	float: right;
 	display: flex; 
 	justify-content: center; 
