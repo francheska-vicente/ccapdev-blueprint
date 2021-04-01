@@ -10,10 +10,9 @@ body {
 
 #title {
 	width: 100%;
-	background-color: white;
-	padding: 10px 40px;
-	margin-top: -6px;
-	margin-bottom: -2px;
+	padding: 10px;
+	margin-top: -15px;
+	margin-bottom: -35px;
 }
 
 #calendar {

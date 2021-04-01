@@ -28,7 +28,7 @@ h5 {
 	font-size: 20px;
 	margin-left: 20px;
 	margin-top: -5px;
-	margin-bottom: -5px;
+	margin-bottom: 0px;
 	color: #457b9d;
 }
 
@@ -135,6 +135,36 @@ content li a {
 {
 	color: white;
 	font-size: 15px;
+}
+
+
+/*
+	Breadcrumbs
+*/
+ul.breadcrumb {
+	list-style: none;
+}
+
+ul.breadcrumb li {
+	display: inline;
+	font-family: 'Pangolin', cursive;
+	font-size: 20px;
+}
+
+ul.breadcrumb li+li:before {
+	padding: 8px;
+	color: black;
+	content: ">";
+}
+
+ul.breadcrumb li a {
+	color: #0275d8;
+	text-decoration: none;
+}
+
+ul.breadcrumb li a:hover {
+	color: #01447e;
+	text-decoration: underline;
 }
 
 
