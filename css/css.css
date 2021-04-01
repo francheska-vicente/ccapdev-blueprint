@@ -139,6 +139,36 @@ content li a {
 
 
 /*
+	Breadcrumbs
+*/
+ul.breadcrumb {
+	list-style: none;
+}
+
+ul.breadcrumb li {
+	display: inline;
+	font-family: 'Pangolin', cursive;
+	font-size: 20px;
+}
+
+ul.breadcrumb li+li:before {
+	padding: 8px;
+	color: black;
+	content: ">";
+}
+
+ul.breadcrumb li a {
+	color: #0275d8;
+	text-decoration: none;
+}
+
+ul.breadcrumb li a:hover {
+	color: #01447e;
+	text-decoration: underline;
+}
+
+
+/*
 	Containers
 */
 
