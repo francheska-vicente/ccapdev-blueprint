@@ -8,7 +8,7 @@
     <link href="../../../css/schedule.css" rel="stylesheet">
     <link rel="icon" href="../../../images/logo-nt.png">
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
-    <link rel="stylesheet" href="navbar-fixed-right.min.css">
+    <link rel="stylesheet" href="../../../extenal/css/navbar-fixed-right.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Discussion | blueprint</title>
 
@@ -29,6 +29,17 @@
       background-color: white;
       padding: 40px;
       width: 80%;
+    }
+
+    .comment
+    {
+
+    }
+
+    .comment h5, .comment h6
+    {
+      text-align: left;
+      text-align: justify;
     }
   </style>
 </head>
@@ -101,6 +112,16 @@
         <button class="btn" id = "comment_btn" style="float: right;"><i class="fas fa-comment" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Comment on discussion"></i></button>
         <br>
         <hr> 
+        <div class="comment">
+          <h5>Harry Potter</h5>
+          <h6 id="comment1">When I was a beginner, I used Layla. She takes a while to get used to since she dies quickly if not used properly (just like most marksman). But, she's actually strong for a free character. Also, take note that marksman (marksmen?) has a low hp, which is why they are usually covered by tanks.</h6>
+          <button class="btn" id = "commentC_btn" style="float: right;"><i class="fas fa-comment" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Comment on discussion"></i></button>
+          <button class="btn" id = "editC_btn" style="float: right;"><i class="fa fa-pencil" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Edit discussion"></i></button>
+          <button class="btn" id = "deleteC_btn" title="Delete discussion" style="float: right;"><i class="fas fa-eraser" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D"></i></button>
+          <br>
+          <hr> 
+        </div>
+        
         <div id="createcontainer" style="margin-right: auto; margin-left: auto">
           <form style = "width: 100%; height: 80%;">
               <div class = "container input-group mb-3">
@@ -136,6 +157,7 @@
         function visible_fn ()
         {
           document.getElementById ('createcontainer').style.display = "flex";
+          document.getElementById ('editcontainer').style.display = "none";
         }
 
         function comment_fn ()
@@ -144,18 +166,25 @@
             location.href = "discussions0.html";
         }
 
-        function delete_fn ()
+        function commentC_fn ()
         {
-            location.href = "discussions.html";
+            location.href = "discussions0.html";
         }
 
-        function editvis_fn ()
+        function deleteC_fn ()
+        {
+            location.href = "discussions0.html";
+        }
+        
+        function editCvis_fn ()
         {
           document.getElementById ('editcontainer').style.display = "flex";
-          var searchVal = document.getElementById ("discussion_txt");
+          document.getElementById ('createcontainer').style.display = "none";
+          var comment = document.getElementById ("comment1");
 
-          document.getElementById("discussion_txt").defaultValue = "Hey, friends, it is I AGAIN! Since it is THE MP season, we are finding another group member. If you are interested, please do not hesitate to comment and we will message you immediately. Promise, hindi kami pabigat ehe! ";
+          document.getElementById("discussion_txt").defaultValue = comment.innerHTML;
         }
+
 
         function edit_fn ()
         {
@@ -171,14 +200,17 @@
         var commentB = document.getElementById ("comment_button");
         commentB.onclick = comment_fn;
 
-        var _delete = document.getElementById ("delete_btn");
-        _delete.onclick = delete_fn;
-
-        var edit = document.getElementById ("edit_btn");
-        edit.onclick = editvis_fn;
-
         var editB = document.getElementById ("edit_button");
         editB.onclick = edit_fn;
+
+        var editC = document.getElementById ("editC_btn");
+        editC.onclick = editCvis_fn;
+
+        var _deleteC = document.getElementById ("deleteC_btn");
+        _deleteC.onclick = deleteC_fn;
+
+        var commentCB = document.getElementById ("commentC_btn");
+        commentCB.onclick = visible_fn;
     </script>
 </body>
 </html>
