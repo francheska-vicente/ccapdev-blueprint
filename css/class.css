@@ -84,12 +84,25 @@ textarea
     Requirements
 */
 
-.
-
 .task-container {
     padding: 20px;
 } 
 
 .req-title {
     font-size: 4vh;
+} 
+
+.req-type {
+    font-size: 2vh;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    margin-left: 20px;
+    color: #444444;
+} 
+
+.req-details {
+    font-size: 2vh;
+    margin-top: 10px;
+    margin-bottom: 0;
 } 
