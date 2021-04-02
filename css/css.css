@@ -234,10 +234,18 @@ ul.breadcrumb li a:hover {
 }
 
 .task-container {
-	background-color: #a8dadc;
-	padding: 10px;
-	padding-bottom: 2px;
+	width: 100%;
+	height: auto;
 	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #A8DADC;
+	padding: 10px;
+	display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .class-container, .person-container {
