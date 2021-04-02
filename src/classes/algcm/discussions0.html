@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>Class | blueprint</title>
+	<title>Discussion | blueprint</title>
 
   <style>
     h6
@@ -90,27 +91,32 @@
         <ul class="breadcrumb">
           <li><a href="../../home.html">blueprint</a></li>
           <li><a href="../../dashboard.html">Classes</a></li>
-          <li><a href="class.html">STMATH</a></li>
-          <li>Discussions</li>
+          <li><a href="class.html">STALGCM</a></li>
+          <li><a href="discussions.html">Discussions</a></li>
+          <li>The Importance of RAM</li>
         </ul> 
-        <h1>Discussions</h1>
-        <h5>This is your current schedule for the term!</h5>
-        <a href ="add_disc.html"><i class="fa fa-plus" style="font-size: 25px; margin-top: -3%; float: right; color: #457B9D"></i></a>
-        <hr>
-        <div class="row">
-          <div class="left">
-            <h3>General</h3>
-          </div>
-          <div class="right">
-            <h3>Replies</h3>
-          </div>
+        <h1>The Importance of RAM</h1>
+        <h5>By: Alexandria Ramos</h5>
+        <h6>From the start of the term, sir was already hinting the importance of RAM and that technically, a machine's power would be limited when its RAM is removed. However, as I was researching on this topic, I could not seem to find any papers or answers to why a machine's power is highly dependent on its RAM. If anyone could enlighten me on this topic, I would be greatly thankful!</h6>
+        <button class="btn" id = "comment_btn" style="float: right;"><i class="fas fa-comment" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Comment on discussion"></i></button>
+        <br>
+        <hr> 
+        <div id="createcontainer" style="margin-right: auto; margin-left: auto">
+          <form style = "width: 100%; height: 80%;">
+              <div class = "container input-group mb-3">
+                <textarea name="paragraph_text" cols="97" rows="10" style="border-radius: 0px; color: black; margin-right: auto; margin-left: auto"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "comment_button" id="comment_button" class = "btn">Comment!
+              </button>
+             </div>
+          </form>
         </div>
-        <div class="row" style="margin-top: 10px; border-bottom: 0px solid white">
-        <h4 style="text-align: center;">There are no discussions yet.</h4>
-        </div>
+        
+      </div>
     </div>
 
-   <script type="text/javascript">
+    <script type="text/javascript">
         function click_fn ()
         {
             var searchVal = document.getElementById ("searchBox");

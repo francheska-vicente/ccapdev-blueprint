@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,25 +10,13 @@
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>Class | blueprint</title>
+	<title>Discussion | blueprint</title>
 
   <style>
     h6
     {
-      margin:  20px;
-      text-indent: 20px;
-      text-align: justify;
-    }
-
-    #createcontainer
-    {
-      display: none;
-      flex-wrap: wrap;
-      flex-direction: column;
-      justify-content: center;
-      background-color: white;
-      padding: 40px;
-      width: 80%;
+      margin-top:  20px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -90,52 +79,42 @@
         <ul class="breadcrumb">
           <li><a href="../../home.html">blueprint</a></li>
           <li><a href="../../dashboard.html">Classes</a></li>
-          <li><a href="class.html">STMATH</a></li>
-          <li>Discussions</li>
+          <li><a href="class.html">STALGCM</a></li>
+          <li><a href="discussions.html">Discussions</a></li>
+          <li>Add New Discussion</li>
         </ul> 
         <h1>Discussions</h1>
         <h5>This is your current schedule for the term!</h5>
-        <a href ="add_disc.html"><i class="fa fa-plus" style="font-size: 25px; margin-top: -3%; float: right; color: #457B9D"></i></a>
         <hr>
-        <div class="row">
-          <div class="left">
-            <h3>General</h3>
-          </div>
-          <div class="right">
-            <h3>Replies</h3>
-          </div>
+        <div class="create-container" style="margin-right: auto; margin-left: auto">
+          <form style = "width: 100%; height: 80%">
+            <div class = "container input-group mb-3">
+              <label for="title" class="input_field">Title</label>
+                <input type = "text" name = "title" id = "title" class = "form-control input_user" value = "" style="border-radius: 0px; color: black">
+            </div>
+            
+              <div class = "container input-group mb-3">
+                <label for="description" class="input_field">Description</label>
+                <textarea name="paragraph_text" cols="97" rows="10" style="border-radius: 0px; color: black"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "create_button" id="create_button" class = "btn">Create!
+              </button>
+             </div>
+          </form>
         </div>
-        <div class="row" style="margin-top: 10px; border-bottom: 0px solid white">
-        <h4 style="text-align: center;">There are no discussions yet.</h4>
-        </div>
+   
+      </div>
     </div>
 
-   <script type="text/javascript">
+    <script type="text/javascript">
         function click_fn ()
         {
-            var searchVal = document.getElementById ("searchBox");
-            location.href = "../../search.html";
+            location.href = "discussions.html";
         }
         
-        function visible_fn ()
-        {
-          document.getElementById ('createcontainer').style.display = "flex";
-        }
-
-        function comment_fn ()
-        {
-            var searchVal = document.getElementById ("searchBox");
-            location.href = "discussions0.html";
-        }
-
-        var button = document.getElementById ("search_btn");
+        var button = document.getElementById ("create_button");
         button.onclick = click_fn;
-
-        var comment = document.getElementById ("comment_btn");
-        comment.onclick = visible_fn;
-
-        var commentB = document.getElementById ("comment_button");
-        commentB.onclick = comment_fn;
     </script>
 </body>
 </html>
