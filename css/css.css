@@ -233,6 +233,13 @@ ul.breadcrumb li a:hover {
 	text-decoration: none;
 }
 
+.task-container {
+	background-color: #a8dadc;
+	padding: 10px;
+	padding-bottom: 2px;
+	margin-top: 10px;
+}
+
 .class-container, .person-container {
 	width: 100%;
 	height: auto;

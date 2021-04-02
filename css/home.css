@@ -29,13 +29,6 @@ body {
 	box-shadow: 0 4px 4px 0 rgba(29, 53, 87, 0.2), 0 4px 10px 0 rgba(29, 53, 87, 0.19);
 }
 
-.task-container {
-	background-color: #a8dadc;
-	padding: 10px;
-	padding-bottom: 2px;
-	margin-top: 10px;
-}
-
 table {
 	width: 100%;
 	height: 70vh;
