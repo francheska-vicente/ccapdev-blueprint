@@ -68,7 +68,8 @@ h6 {
     margin-left: 2%;
     margin-right: 2%;
     background-color: white;
-    height: 95%
+    height: 95%;
+    box-shadow: 0 4px 4px 0 rgba(29, 53, 87, 0.2), 0 4px 10px 0 rgba(29, 53, 87, 0.19);
 }
 
 .logo_container 
