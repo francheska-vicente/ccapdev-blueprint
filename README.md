@@ -13,4 +13,4 @@
 ## Resources
 - [Unsplash](https://unsplash.com/)
 - [Google Fonts](https://fonts.google.com/)
-- [Coolors](https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557)
+- [Coolors](https://coolors.co/f1faee-a8dadc-457b9d-1d3557-222222)

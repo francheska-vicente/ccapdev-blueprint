@@ -101,6 +101,13 @@
         <button class="btn" id = "comment_btn" style="float: right;"><i class="fas fa-comment" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Comment on discussion"></i></button>
         <br>
         <hr> 
+        <div class="comment">
+          <h5>Francheska Vicente</h5>
+          <h6>This has been my problem until a while ago, and my (current, I might be wrong) understanding is that there are actually a few situations where flexbox is recommended. (1) We want our elements aligned in a certain way or (2) there are elements that need to be in the same row or column, that without flexbox, we would need to float. </h6>
+          <button class="btn" id = "commentC_btn" style="float: right;"><i class="fas fa-comment" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Comment on discussion"></i></button>
+        <br>
+        <hr> 
+        </div>
         <div id="createcontainer" style="margin-right: auto; margin-left: auto">
           <form style = "width: 100%; height: 80%;">
               <div class = "container input-group mb-3">
@@ -142,6 +149,9 @@
 
         var commentB = document.getElementById ("comment_button");
         commentB.onclick = comment_fn;
+
+        var commentCB = document.getElementById ("commentC_btn");
+        commentCB.onclick = visible_fn;
     </script>
 </body>
 </html>
