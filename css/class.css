@@ -44,3 +44,38 @@
     text-decoration: none;
     color: black;
 }
+
+.disc_icon
+{
+    font-size: 25px !important; 
+    margin-top: -10px; 
+    float: right; 
+    color: #457B9D;
+}
+
+#edit_btn, #comment_btn, #delete_btn,
+#editC_btn, #commentC_btn, #deleteC_btn
+{
+    float: right;
+}
+
+#createcontainer, #editcontainer
+{
+      display: none;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      background-color: white;
+      padding: 40px;
+      width: 80%;
+      margin-right: auto; 
+      margin-left: auto;
+}
+
+textarea
+{
+    border-radius: 0px; 
+    color: black; 
+    margin-right: auto; 
+    margin-left: auto;
+}
