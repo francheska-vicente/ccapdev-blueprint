@@ -40,6 +40,16 @@ p {
 	box-shadow: 0 4px 4px 0 rgba(29, 53, 87, 0.2), 0 4px 10px 0 rgba(29, 53, 87, 0.19);
 }
 
+#search-class-results {
+	display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: white;
+	padding: 40px;
+	width: 100%;
+	margin-top: -70px;
+}
+
 .button {
 	 height: 40px;
 }
