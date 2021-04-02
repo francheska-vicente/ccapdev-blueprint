@@ -18,3 +18,29 @@
     padding: 40px;
 }
 
+.left
+{
+    width: 80%;
+    margin-right: 3%;
+}
+
+.right
+{
+    width: 14%;
+    margin-right: 3%;
+    text-align: center;
+}
+
+.row
+{
+    width: 85%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-bottom: 1px solid black;
+}
+
+.links
+{
+    text-decoration: none;
+    color: black;
+}
