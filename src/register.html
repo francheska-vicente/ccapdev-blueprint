@@ -56,7 +56,7 @@
 										<input type = "text" name = "school" id = "school" class = "form-control input_user" value = "" placeholder = "" style="border-radius: 0px; color: black">
 									</div>
 								<div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-								 	<button type = "button" name = "signup_button" class = "btn signup_button">Sign Up
+								 	<button type = "button" name = "signup_button" id="signup_button" class = "btn signup_button">Sign Up
 								 	</button>
 							   </div>
 							</form>
@@ -85,5 +85,16 @@
         </div>
       </div>
     </footer>
+
+    <script type="text/javascript">
+        function click_fn ()
+        {
+            location.href = "login.html";
+        }
+
+        var signup = document.getElementById ("signup_button");
+        signup.onclick = click_fn;
+
+    </script>
 </body>
 </html>
