@@ -19,12 +19,14 @@ body {
 	flex-grow: 6;
 	background-color: white;
 	padding: 40px;
+	box-shadow: 0 4px 4px 0 rgba(29, 53, 87, 0.2), 0 4px 10px 0 rgba(29, 53, 87, 0.19);
 }
 
 #task {
 	flex-grow: 1;
 	background-color: white;
 	padding: 40px;
+	box-shadow: 0 4px 4px 0 rgba(29, 53, 87, 0.2), 0 4px 10px 0 rgba(29, 53, 87, 0.19);
 }
 
 .task-container {
