@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Class | blueprint</title>
+
+    <style>
+    h6
+    {
+      margin-top:  20px;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar navbar-expand-sm navbar-custom">
@@ -42,30 +50,59 @@
     </nav>
     <div id = "content">
     	<nav id = "sideNav">
-	  <div class="navigationDiv">
-		  <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
-			<li class="nav-item item">
-			    <a class="nav-link icon_name" href="class.html"><i class="fa fa-home icon"></i> Home </a>
-			</li>
-			<li class="nav-item item">
-			    <a class="nav-link icon_name" href="classlist.html"><i class="far fa-address-book icon"></i> Class List</a>
-			</li>
-			<li class="nav-item item">
-			    <a class="nav-link icon_name" href="discussions.html"><i class="far fa-clone icon"></i> Discussions</a>
-			</li>
-			<li class="nav-item item up">
-			    <a class="nav-link icon_name" href="reqs.html"><i class="far fa-calendar-alt icon"></i> Requirements</a>
-			</li>
-			<li class="nav-item item">
-			    <div class="active" style="background-color: white">
-			      <a class="nav-link" href="notebook.html" style="color: #5161ce; padding-left: 10px"><i class="fa fa-pencil-square-o"></i> Notebook</a>
-			  </div>
-			</li>
-
-		    </ul>
-           </div>
-       </nav>
-    </div>
+    	  <div class="navigationDiv">
+    		  <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
+    			<li class="nav-item item">
+    			    <a class="nav-link icon_name" href="class.html"><i class="fa fa-home icon"></i> Home </a>
+    			</li>
+    			<li class="nav-item item">
+    			    <a class="nav-link icon_name" href="classlist.html"><i class="far fa-address-book icon"></i> Class List</a>
+    			</li>
+    			<li class="nav-item item">
+    			    <a class="nav-link icon_name" href="discussions.html"><i class="far fa-clone icon"></i> Discussions</a>
+    			</li>
+    			<li class="nav-item item up">
+    			    <a class="nav-link icon_name" href="reqs.html"><i class="far fa-calendar-alt icon"></i> Requirements</a>
+    			</li>
+    			<li class="nav-item item">
+    			    <div class="active" style="background-color: white">
+    			      <a class="nav-link" href="notebook.html" style="color: #5161ce; padding-left: 10px"><i class="fa fa-pencil-square-o"></i> Notebook</a>
+    			  </div>
+    			</li>
+    		</ul>
+       </div>
+    </nav>
+    <div class="main" style="width: 85%">
+        <ul class="breadcrumb">
+          <li><a href="../../home.html">blueprint</a></li>
+          <li><a href="../../dashboard.html">Classes</a></li>
+          <li><a href="class.html">STALGCM</a></li>
+          <li>Notebook</li>
+        </ul> 
+        <h1>Notebook</h1>
+        <h5>You can start conversations, ask for help, or make new friends with your fellow classmates!</h5>
+        <a href ="add_notes.html" title = "Add notes"><i class="fa fa-plus" style="font-size: 25px; margin-top: -3%; float: right; color: #457B9D"></i></a>
+        <hr>
+        <div class="row">
+          <div class="left">
+            <h3>General</h3>
+          </div>
+          <div class="right">
+            <h3>Replies</h3>
+          </div>
+        </div>
+        <a href = "notes0.html" class="links">
+          <div class="row">
+            <div class="left">
+              <h6>NFA vs. DFA</h6>
+            </div>
+            <div class="right">
+              <h6>0</h6>
+            </div>
+          </div>
+        </a>
+      </div>
+  </div>
 
     <script type="text/javascript">
         function click_fn ()

@@ -1,19 +1,23 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <link href="../../../external/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../css/css.css" rel="stylesheet">
     <link href="../../../css/class.css" rel="stylesheet">
+    <link href="../../../css/schedule.css" rel="stylesheet">
     <link rel="icon" href="../../../images/logo-nt.png">
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Class | blueprint</title>
+    <title>NFA vs. DFA | blueprint</title>
+
     <style>
     h6
     {
-      margin-top:  20px;
-      margin-bottom: 20px;
+      margin:  20px;
+      text-indent: 20px;
+      text-align: justify;
     }
   </style>
 </head>
@@ -68,7 +72,6 @@
 			      <a class="nav-link" href="notebook.html" style="color: #5161ce; padding-left: 10px"><i class="fa fa-pencil-square-o"></i> Notebook</a>
 			  </div>
 			</li>
-
 		    </ul>
            </div>
        </nav>
@@ -77,30 +80,47 @@
           <li><a href="../../home.html">blueprint</a></li>
           <li><a href="../../dashboard.html">Classes</a></li>
           <li><a href="class.html">STALGCM</a></li>
-          <li>Notebook</li>
+          <li><a href="notebook.html">Notebook</a></li>
+          <li>NFA vs. DFA</li>
         </ul> 
-        <h1>Notebook</h1>
-        <h5>You can start conversations, ask for help, or make new friends with your fellow classmates!</h5>
-        <a href ="add_notes.html" title = "Add notes"><i class="fa fa-plus" style="font-size: 25px; margin-top: -3%; float: right; color: #457B9D"></i></a>
+        <h1>NFA vs. DFA</h1>
+        <h5>by: Sophia Vista</h5>
+        <h6 id="note">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h6>
+        <button class="btn" id = "comment_btn">
+          <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
+        </button>
+        <button class="btn" id = "edit_btn">
+          <i class="fa fa-pencil disc_icon" title="Edit discussion"></i>
+        </button>
+        <button class="btn" id = "delete_btn" title = "Delete discussion">
+          <i class="fas fa-eraser disc_icon"></i>
+        </button>
+        <br>
         <hr>
-        <div class="row">
-          <div class="left">
-            <h3>General</h3>
-          </div>
-          <div class="right">
-            <h3>Replies</h3>
-          </div>
-        </div>
-        <a href = "notes0.html" class="links">
-          <div class="row">
-            <div class="left">
-              <h6>Integral of Trigonometric Function</h6>
-            </div>
-            <div class="right">
-              <h6>0</h6>
-            </div>
-          </div>
-        </a>
+        
+        <div id="createcontainer">
+          <form style = "width: 100%; height: 80%;">
+              <div class = "container input-group mb-3">
+                <textarea name="paragraph_text" cols="97" rows="10"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "comment_button" id="comment_button" class = "btn">Comment!
+              </button>
+             </div>
+          </form>
+        </div>      
+        <div id="editcontainer">
+          <form style = "width: 100%; height: 80%;">
+              <div class = "container input-group mb-3">
+                <textarea name="paragraph_text" cols="97" rows="10" id = "discussion_txt">
+                </textarea>
+              </div>
+              <div class = "display" style = "padding: 0 40px; margin-top: 10px;">
+                <button type = "button" name = "edit_button" id="edit_button" class = "btn">Edit!
+                </button>
+             </div>
+          </form>
+        </div>      
       </div>
     </div>
 
@@ -111,8 +131,53 @@
             location.href = "../../search.html";
         }
         
+        function visible_fn ()
+        {
+          document.getElementById ('createcontainer').style.display = "flex";
+        }
+
+        function comment_fn ()
+        {
+            var searchVal = document.getElementById ("searchBox");
+            location.href = "notes0.html";
+        }
+
+        function delete_fn ()
+        {
+            location.href = "notebook.html";
+        }
+
+        function editvis_fn ()
+        {
+          document.getElementById ('editcontainer').style.display = "flex";
+          var searchVal = document.getElementById ("discussion_txt");
+
+          document.getElementById("discussion_txt").defaultValue = document.getElementById("note").innerHTML;
+        }
+
+        function edit_fn ()
+        {
+          location.href = "notes0.html";
+        }
+
+
         var button = document.getElementById ("search_btn");
         button.onclick = click_fn;
+
+        var comment = document.getElementById ("comment_btn");
+        comment.onclick = visible_fn;
+
+        var commentB = document.getElementById ("comment_button");
+        commentB.onclick = comment_fn;
+
+        var _delete = document.getElementById ("delete_btn");
+        _delete.onclick = delete_fn;
+
+        var edit = document.getElementById ("edit_btn");
+        edit.onclick = editvis_fn;
+
+        var editB = document.getElementById ("edit_button");
+        editB.onclick = edit_fn;
     </script>
 </body>
 </html>
