@@ -10,7 +10,7 @@
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>Discussion | blueprint</title>
+  <title>Discussion | blueprint</title>
 
   <style>
     h6
@@ -20,7 +20,7 @@
       text-align: justify;
     }
 
-    #createcontainer
+    #createcontainer, #editcontainer
     {
       display: none;
       flex-wrap: wrap;
@@ -64,8 +64,8 @@
     </nav>
      
     <div id = "content">
-    	<nav id = "sideNav">
-	    	<div class="navigationDiv">
+      <nav id = "sideNav">
+        <div class="navigationDiv">
           <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
                 <li class="nav-item item ">
                     <a class="nav-link icon_name" href="class.html"><i class="fa fa-home icon"></i> Home </a>
@@ -75,7 +75,7 @@
                 </li>
                 <li class="nav-item item">
                   <div class="active" style="background-color: white">
-                    <a class="nav-link" href="discussions.html" style="color: #5161ce; padding-left: 10px"><i class="far fa-clone"></i> Discussions</a>
+                    <a class="nav-link" href="discussions.html" style="color: #5161ce; padding-left: 10px"><i class="far fa-clone"></i>Discussions</a>
                   </div>
                 </li>
                 <li class="nav-item item down">
@@ -86,18 +86,18 @@
                 </li>
             </ul>
         </div>
-	    </nav>
+      </nav>
       <div class="main" style="width: 85%">
         <ul class="breadcrumb">
           <li><a href="../../home.html">blueprint</a></li>
           <li><a href="../../dashboard.html">Classes</a></li>
-          <li><a href="class.html">CCAPDEV</a></li>
+          <li><a href="class.html">GETEAMS</a></li>
           <li><a href="discussions.html">Discussions</a></li>
-          <li>Clarification on the usage of Flexbox</li>
+          <li>Best Marksman character for a beginner?</li>
         </ul> 
-        <h1>Clarification on the usage of Flexbox</h1>
-        <h5>By: Alexa Dela Cruz</h5>
-        <h6>Hi! Lately, I have been using "display: flex;" on most of my divs as I thought that this would allow me to put multiple elements inside my divs. However, as time progresses, I realized that this just makes my elements float (it does not move the way I want to, even with the use of margins!), which messes up some of my divs. Do you have any recommendations on when "display: flex;" would be needed? </h6>
+        <h1>Best Marksman character for a beginner?</h1>
+        <h5>By: Alexander Reyes</h5>
+        <h6>So, I just installed Mobile Legends (ML) as I am not that into mobile games (Let's Genshin, mga dudeparechongs!). Please recommend some marksman that is easy to use for a beginner like me.</h6>
         <button class="btn" id = "comment_btn" style="float: right;"><i class="fas fa-comment" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Comment on discussion"></i></button>
         <br>
         <hr> 
@@ -111,8 +111,18 @@
               </button>
              </div>
           </form>
-        </div>
-        
+        </div>      
+        <div id="editcontainer" style="margin-right: auto; margin-left: auto">
+          <form style = "width: 100%; height: 80%;">
+              <div class = "container input-group mb-3">
+                <textarea name="paragraph_text" cols="97" rows="10" id="discussion_txt" style="border-radius: 0px; color: black; margin-right: auto; margin-left: auto"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "edit_button" id="edit_button" class = "btn">Edit!
+              </button>
+             </div>
+          </form>
+        </div>      
       </div>
     </div>
 
@@ -134,6 +144,24 @@
             location.href = "discussions0.html";
         }
 
+        function delete_fn ()
+        {
+            location.href = "discussions.html";
+        }
+
+        function editvis_fn ()
+        {
+          document.getElementById ('editcontainer').style.display = "flex";
+          var searchVal = document.getElementById ("discussion_txt");
+
+          document.getElementById("discussion_txt").defaultValue = "Hey, friends, it is I AGAIN! Since it is THE MP season, we are finding another group member. If you are interested, please do not hesitate to comment and we will message you immediately. Promise, hindi kami pabigat ehe! ";
+        }
+
+        function edit_fn ()
+        {
+          location.href = "discussions0.html";
+        }
+
         var button = document.getElementById ("search_btn");
         button.onclick = click_fn;
 
@@ -142,6 +170,15 @@
 
         var commentB = document.getElementById ("comment_button");
         commentB.onclick = comment_fn;
+
+        var _delete = document.getElementById ("delete_btn");
+        _delete.onclick = delete_fn;
+
+        var edit = document.getElementById ("edit_btn");
+        edit.onclick = editvis_fn;
+
+        var editB = document.getElementById ("edit_button");
+        editB.onclick = edit_fn;
     </script>
 </body>
 </html>

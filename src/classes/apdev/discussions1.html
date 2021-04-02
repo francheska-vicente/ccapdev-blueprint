@@ -5,6 +5,7 @@
     <link href="../../../external/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../css/css.css" rel="stylesheet">
     <link href="../../../css/class.css" rel="stylesheet">
+    <link href="../../../css/schedule.css" rel="stylesheet">
     <link rel="icon" href="../../../images/logo-nt.png">
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
@@ -17,7 +18,18 @@
       margin:  20px;
       text-indent: 20px;
       text-align: justify;
-    
+    }
+
+    #createcontainer, #editcontainer
+    {
+      display: none;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      background-color: white;
+      padding: 40px;
+      width: 80%;
+    }
   </style>
 </head>
 <body>
@@ -85,8 +97,34 @@
         </ul> 
         <h1>Finding group mates!</h1>
         <h5>By: Harry Potter</h5>
-        <h6>Hey, friends! Our group still needs one more member for the machine project. If you are interested, please do not hesitate to comment and we will message you immediately. Promise, hindi kami pabigat ehe!</h6>
-        <hr>        
+        <h6>Hey, friends! Our group still needs one more member for the machine project. If you are interested, please do not hesitate to comment and we will message you immediately. Promise, hindi kami pabigat ehe! </h6>
+        <button class="btn" id = "comment_btn" style="float: right;"><i class="fas fa-comment" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Comment on discussion"></i></button>
+        <button class="btn" id = "edit_btn" style="float: right;"><i class="fa fa-pencil" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Edit discussion"></i></button>
+        <button class="btn" id = "delete_btn" title="Delete discussion" style="float: right;"><i class="fas fa-eraser" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D"></i></button>
+        <br>
+        <hr> 
+        <div id="createcontainer" style="margin-right: auto; margin-left: auto">
+          <form style = "width: 100%; height: 80%;">
+              <div class = "container input-group mb-3">
+                <textarea name="paragraph_text" cols="97" rows="10" style="border-radius: 0px; color: black; margin-right: auto; margin-left: auto"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "comment_button" id="comment_button" class = "btn">Comment!
+              </button>
+             </div>
+          </form>
+        </div>      
+        <div id="editcontainer" style="margin-right: auto; margin-left: auto">
+          <form style = "width: 100%; height: 80%;">
+              <div class = "container input-group mb-3">
+                <textarea name="paragraph_text" cols="97" rows="10" id="discussion_txt" style="border-radius: 0px; color: black; margin-right: auto; margin-left: auto"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "edit_button" id="edit_button" class = "btn">Edit!
+              </button>
+             </div>
+          </form>
+        </div>      
       </div>
     </div>
 
@@ -97,8 +135,52 @@
             location.href = "../../search.html";
         }
         
+        function visible_fn ()
+        {
+          document.getElementById ('createcontainer').style.display = "flex";
+        }
+
+        function comment_fn ()
+        {
+            var searchVal = document.getElementById ("searchBox");
+            location.href = "discussions1.html";
+        }
+
+        function delete_fn ()
+        {
+            location.href = "discussions.html";
+        }
+
+        function editvis_fn ()
+        {
+          document.getElementById ('editcontainer').style.display = "flex";
+          var searchVal = document.getElementById ("discussion_txt");
+
+          document.getElementById("discussion_txt").defaultValue = "Hey, friends! Our group still needs one more member for the machine project. If you are interested, please do not hesitate to comment and we will message you immediately. Promise, hindi kami pabigat ehe!";
+        }
+
+        function edit_fn ()
+        {
+          location.href = "discussions1.html";
+        }
+
         var button = document.getElementById ("search_btn");
         button.onclick = click_fn;
+
+        var comment = document.getElementById ("comment_btn");
+        comment.onclick = visible_fn;
+
+        var commentB = document.getElementById ("comment_button");
+        commentB.onclick = comment_fn;
+
+        var _delete = document.getElementById ("delete_btn");
+        _delete.onclick = delete_fn;
+
+        var edit = document.getElementById ("edit_btn");
+        edit.onclick = editvis_fn;
+
+        var editB = document.getElementById ("edit_button");
+        editB.onclick = edit_fn;
     </script>
 </body>
 </html>
