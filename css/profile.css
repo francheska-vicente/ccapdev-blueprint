@@ -40,7 +40,7 @@ h6 {
 
 .main {
     background-color: white;
-    width: 80%;
+    width: 86%;
     display: flex;
     flex-direction: row;
 }
@@ -56,12 +56,19 @@ h6 {
     background-color: white;
 }
 
-.info-box {
-    padding: 40px;
+.info-bg {
+    background-image: url("../images/tile.png");
+    padding: 30px; 
     flex-grow: 8;
+}
+
+.info-box {
+    padding: 40px; 
     margin-top: 2%;
     margin-left: 2%;
     margin-right: 2%;
+    background-color: white;
+    height: 95%
 }
 
 .logo_container 
