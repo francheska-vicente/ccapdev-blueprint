@@ -92,9 +92,17 @@
             var searchVal = document.getElementById ("searchBox");
             location.href = "search.html";
         }
+
+        function drop_fn ()
+        {
+            location.href = "schedule.html";
+        }
         
         var button = document.getElementById ("search_btn");
         button.onclick = click_fn;
+
+        var drop = document.getElementById ("drop_button");
+        drop.onclick = drop_fn;
     </script>
 </body>
 </html>
