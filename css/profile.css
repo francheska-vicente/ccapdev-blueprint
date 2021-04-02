@@ -59,7 +59,7 @@ h6 {
 .info-bg {
     background-image: url("../images/tile.png");
     padding: 30px; 
-    flex-grow: 8;
+    flex-grow: 9;
 }
 
 .info-box {
