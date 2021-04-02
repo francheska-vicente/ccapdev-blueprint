@@ -97,12 +97,19 @@
         </ul> 
         <h1>Finding group mates!</h1>
         <h5>By: Harry Potter</h5>
-        <h6>Hey, friends! Our group still needs one more member for the machine project. If you are interested, please do not hesitate to comment and we will message you immediately. Promise, hindi kami pabigat ehe! </h6>
+        <h6 id="comment1">Hey, friends! Our group still needs one more member for the machine project. If you are interested, please do not hesitate to comment and we will message you immediately. Promise, hindi kami pabigat ehe! </h6>
         <button class="btn" id = "comment_btn" style="float: right;"><i class="fas fa-comment" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Comment on discussion"></i></button>
         <button class="btn" id = "edit_btn" style="float: right;"><i class="fa fa-pencil" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Edit discussion"></i></button>
         <button class="btn" id = "delete_btn" title="Delete discussion" style="float: right;"><i class="fas fa-eraser" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D"></i></button>
         <br>
         <hr> 
+        <div id="comment">
+          <h5>Sophia Vista</h5>
+          <h6>Hi! I am wondering if you still happen to have a vacant spot in your group?</h6>
+          <button class="btn" id = "commentC_btn" style="float: right;"><i class="fas fa-comment" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Comment on discussion"></i></button>
+          <br>
+          <hr>
+        </div>
         <div id="createcontainer" style="margin-right: auto; margin-left: auto">
           <form style = "width: 100%; height: 80%;">
               <div class = "container input-group mb-3">
@@ -156,7 +163,7 @@
           document.getElementById ('editcontainer').style.display = "flex";
           var searchVal = document.getElementById ("discussion_txt");
 
-          document.getElementById("discussion_txt").defaultValue = "Hey, friends! Our group still needs one more member for the machine project. If you are interested, please do not hesitate to comment and we will message you immediately. Promise, hindi kami pabigat ehe!";
+          document.getElementById("discussion_txt").defaultValue = document.getElementById("comment1").innerHTML;
         }
 
         function edit_fn ()
@@ -181,6 +188,9 @@
 
         var editB = document.getElementById ("edit_button");
         editB.onclick = edit_fn;
+
+        var commentCB = document.getElementById ("commentC_btn");
+        commentCB.onclick = visible_fn;
     </script>
 </body>
 </html>
