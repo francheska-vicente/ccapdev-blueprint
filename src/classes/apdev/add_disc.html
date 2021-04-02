@@ -110,11 +110,19 @@
     <script type="text/javascript">
         function click_fn ()
         {
-            location.href = "discussions.html";
+            location.href = "notebook.html";
         }
         
+        function search_fn ()
+        {
+          location.href = "../../search.html";
+        }
+
         var button = document.getElementById ("create_button");
         button.onclick = click_fn;
+
+        var search = document.getElementById ("search_btn");
+        search.onclick = search_fn;
     </script>
 </body>
 </html>
