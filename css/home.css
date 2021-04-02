@@ -78,3 +78,7 @@ table {
 	color: #616161;
 	font-weight: italic;
 }
+
+.task-details {
+	margin-bottom: 0;
+}
