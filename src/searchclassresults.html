@@ -2,9 +2,10 @@
 <html>
 <head>
   <link href="../external/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/css.css" rel="stylesheet">
     <link href="../css/class.css" rel="stylesheet">
+    <link href="../css/css.css" rel="stylesheet">
     <link href="../css/schedule.css" rel="stylesheet">
+    <link href="../css/search.css" rel="stylesheet">
     <link rel="icon" href="../images/logo-nt.png">
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
@@ -12,27 +13,27 @@
   <title>Schedule | blueprint</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-sm navbar-custom">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="home.html"><img src="../images/logo.png" id="logo" height ="30px"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navibar" aria-controls="navibar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navibar">
-        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-          <li class="nav-item">
-            <a class="nav-link" href="schedule.html">Schedule</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="dashboard.html">Classes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="profile.html">Profile</a>
-          </li>
-        </ul>
-        <div class="input-group" style="justify-content: flex-end; margin-right: 25px">
-          <div class="form-outline">
-            <input type="search" class="form-control" placeholder = "Search for users" id="searchBox"/>
+   <nav class="navbar navbar-expand-sm navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home.html"><img src="../images/logo.png" id="logo" height ="30px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navibar" aria-controls="navibar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navibar">
+          <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+            <li class="nav-item">
+              <a class="nav-link" href="schedule.html">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard.html">Classes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.html">Profile</a>
+            </li>
+          </ul>
+          <div class="input-group" style="justify-content: flex-end; margin-right: 25px;">
+          <div class="form-outline" style="width: 205px; height: 40px">
+            <input type="search" class="form-control" placeholder = "Search for users" id="searchBox" style="height: 40px"/>
           </div>
           <button type="button" class="btn btn-primary" id="search_btn">
             <i class="fas fa-search"></i>
@@ -41,7 +42,7 @@
       </div>
     </div>
   </nav>
-    <div id = "content">
+    <div id = "content" style="width: 100%; background-color: white;">
       <nav id = "sideNav">
         <div class="navigationDiv">
           <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
@@ -78,7 +79,32 @@
             <i class="fas fa-search"></i>
           </button>
         </div>
-      </div>
+        <div id="search-user-results">
+          <div class="class-container">
+            <div class="img-container"><img src = "../images/user.png" class = "img" alt = "Blueprint Logo"></div>
+            <div class="text-container">
+              <a href="#" class="link"><h2>Web Application Development</h2></a>
+              <h3>De La Salle University | Computer Science</h3>
+              <h6>M 1430 - 1600 | W 1430 - 1600</h6>
+            </div>
+          </div>
+          <div class="class-container">
+            <div class="img-container"><img src = "../images/user.png" class = "img" alt = "Blueprint Logo"></div>
+            <div class="text-container">
+              <a href="#" class="link"><h2>Web Application Development</h2></a>
+              <h3>De La Salle University | Computer Science</h3>
+              <h6>M 0915 - 1045 | W 0915 - 1045</h6>
+            </div>
+          </div>
+          <div class="class-container">
+            <div class="img-container"><img src = "../images/user.png" class = "img" alt = "Blueprint Logo"></div>
+            <div class="text-container">
+              <a href="#" class="link"><h2>Web Application Development</h2></a>
+              <h3>De La Salle University | Computer Science</h3>
+              <h6>M 1245 - 1415 | W 1245 - 1415</h6>
+            </div>
+          </div>
+        </div>
     </div>
     <script type="text/javascript">
         function click_fn ()
@@ -86,11 +112,20 @@
             var searchVal = document.getElementById ("class_box");
             location.href = "searchclassresults.html";
         }
+
+        function search_fn ()
+        {
+            var searchVal = document.getElementById ("class_box");
+            location.href = "search.html";
+        }
         
         document.getElementById("class_box").defaultValue = "CCAPDEV";
 
-        var button = document.getElementById ("class_btn");
-        button.onclick = click_fn;
+        var classbutton = document.getElementById ("class_btn");
+        classbutton.onclick = click_fn;
+
+        var classbutton = document.getElementById ("search_btn");
+        search_btn.onclick = search_fn;
     </script>
 </body>
 </html>
