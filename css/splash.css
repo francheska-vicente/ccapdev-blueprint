@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
 
+h6 {
+	margin-top: 10px;
+	color: #555555;
+}
 
 .splash-bg-main, .splash-bg-sub1, 
 .splash-bg-sub2, .splash-bg-sub3 {
@@ -55,11 +59,17 @@
 	padding-bottom: 6vh;
 	padding-left: 25vh;
 	padding-right: 25vh;
-	background-color: rgba(241, 250, 238, 0.9);
+	background-color: rgba(250, 246, 250, 0.9);
     height: auto;
     width: 100%;
     text-align: center;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.feature {
+	margin-top: 10px;
+	font-weight: 600;
+	font-style: italic;
 }
 
 #logo-m {
@@ -73,6 +83,7 @@
 	margin-bottom: 20px;
 	color: #F1FAEE;
 	font-size: 5vh;
+	font-weight: 800;
 	font-style: italic;
 }
 
@@ -83,7 +94,7 @@ a.button {
 	border-radius:0.5em;
 	box-sizing: border-box;
 	text-decoration:none;
-	font-family:'Rubik',sans-serif;
+	font-family: 'Pangolin', cursive;
 	font-size: 24px;
 	font-weight:400;
 	color:#000000;
