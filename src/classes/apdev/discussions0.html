@@ -5,6 +5,7 @@
     <link href="../../../external/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../css/css.css" rel="stylesheet">
     <link href="../../../css/class.css" rel="stylesheet">
+    <link href="../../../css/schedule.css" rel="stylesheet">
     <link rel="icon" href="../../../images/logo-nt.png">
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
@@ -17,6 +18,17 @@
       margin:  20px;
       text-indent: 20px;
       text-align: justify;
+    }
+
+    #createcontainer
+    {
+      display: none;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      background-color: white;
+      padding: 40px;
+      width: 80%;
     }
   </style>
 </head>
@@ -86,7 +98,21 @@
         <h1>Clarification on the usage of Flexbox</h1>
         <h5>By: Alexa Dela Cruz</h5>
         <h6>Hi! Lately, I have been using "display: flex;" on most of my divs as I thought that this would allow me to put multiple elements inside my divs. However, as time progresses, I realized that this just makes my elements float (it does not move the way I want to, even with the use of margins!), which messes up some of my divs. Do you have any recommendations on when "display: flex;" would be needed? </h6>
-        <hr>  
+        <button class="btn" id = "comment_btn" style="float: right;"><i class="fas fa-comment" style="font-size: 25px; margin-top: -10px; float: right; color: #457B9D" title="Comment on discussion"></i></button>
+        <br>
+        <hr> 
+        <div id="createcontainer" style="margin-right: auto; margin-left: auto">
+          <form style = "width: 100%; height: 80%;">
+              <div class = "container input-group mb-3">
+                <textarea name="paragraph_text" cols="97" rows="10" style="border-radius: 0px; color: black; margin-right: auto; margin-left: auto"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "comment_button" id="comment_button" class = "btn">Comment!
+              </button>
+             </div>
+          </form>
+        </div>
+        
       </div>
     </div>
 
@@ -97,8 +123,25 @@
             location.href = "../../search.html";
         }
         
+        function visible_fn ()
+        {
+          document.getElementById ('createcontainer').style.display = "flex";
+        }
+
+        function comment_fn ()
+        {
+            var searchVal = document.getElementById ("searchBox");
+            location.href = "discussions0.html";
+        }
+
         var button = document.getElementById ("search_btn");
         button.onclick = click_fn;
+
+        var comment = document.getElementById ("comment_btn");
+        comment.onclick = visible_fn;
+
+        var commentB = document.getElementById ("comment_button");
+        commentB.onclick = comment_fn;
     </script>
 </body>
 </html>
