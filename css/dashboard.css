@@ -19,7 +19,7 @@ p {
 }
 
 .main-content {
-	padding: 40px 10%;
+	padding: 40px 10vh;
 }
 
 #class-list {
@@ -29,6 +29,7 @@ p {
     background-color: white;
 	padding: 40px;
 	width: 100%;
+	box-shadow: 0 4px 4px 0 rgba(29, 53, 87, 0.2), 0 4px 10px 0 rgba(29, 53, 87, 0.19);
 }
 
 .class-container > div {
