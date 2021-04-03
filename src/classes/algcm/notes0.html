@@ -85,7 +85,24 @@
         </ul> 
         <h1>NFA vs. DFA</h1>
         <h5>by: Francheska Vicente</h5>
-        <h6 id="note">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h6>
+        <div id="note">
+        NFA
+          - Non-deterministic Finite Accepters
+          - there can be more than one transition per input per state; there can also be no transition for an input in a certain state (this just means that this input would go to a dead state or outside of the graph, which would result to an immediate termination)
+
+        DFA
+          - Deterministic Finite Accepters
+          - there should be SPECIFICALLY one transition per input per state (e.g. if {0, 1}*, each state should have transitions for 0 and for 1).
+
+        NOTES:
+          - For both, 
+              - the input is a string
+              - the outputs possible are 1 (if the string is accepted) and 0 (if the string is rejected)
+          - If the two machines are equivalent, then a string that is accepted by the NFA is also accepted by the DFA.
+          - If we want to convert a DFA to an NFA, we don't have to do anything because TECHNICALLY a DFA is an NFA (since it is not required to have more than one transition in a certain state for the same input).
+
+        I hope this has been helpful in differentiating the two!
+        </div>
         <button class="btn" id = "comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
         </button>
