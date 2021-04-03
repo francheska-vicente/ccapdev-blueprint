@@ -33,9 +33,7 @@ table {
 }
 
 .tg-wrap td {
-	border-color:#1d3557;
-	border-style:solid;
-	border-width:1px;
+	border-bottom: 1px solid #dddddd;
 	font-family: 'Rubik', sans-serif;
 	font-size:2vh;
 	text-align: center;
@@ -48,9 +46,7 @@ table {
 .tg-wrap th {
 	background-color: #1d3557; 
 	color: white;
-	border-color:#1d3557;
-	border-style:solid;
-	border-width:3px;
+	border-bottom: 1px solid #dddddd;
 	font-family: 'Rubik', sans-serif;
 	font-size:2vh;
 	text-align: center;
