@@ -5,6 +5,7 @@
   <link href="../../../external/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../css/css.css" rel="stylesheet">
     <link href="../../../css/class.css" rel="stylesheet">
+    <link href="../../../css/schedule.css" rel="stylesheet">
     <link rel="icon" href="../../../images/logo-nt.png">
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
@@ -81,20 +82,65 @@
             <h3 class="req-title">Long Quiz 1</h3>
             <h6 class="req-type">Exam | Due April 06, 2021</h6>
             <h6 class="req-details">Study all topics from Positional Number Systems to Karnaugh Map.</h6>
+          <div style="display: flex; flex-direction: row; margin-top: 10px; margin-bottom: 0px; width: max-content; margin: auto 0 auto auto">
+              <button class="btn" id = "edit_btn">
+                <i class="fa fa-pencil disc_icon" title="Edit discussion"></i>
+              </button>
+              <button class="btn" id = "delete_btn" title = "Delete discussion">
+                <i class="fas fa-eraser disc_icon"></i>
+              </button>
+            </div>
           </div>
+          <div id="editcontainer">
+            <form style = "width: 100%; height: 80%;">
+                <div class = "container input-group mb-3">
+                  <textarea name="paragraph_text" cols="97" rows="10" id = "discussion_txt">
+                  </textarea>
+                </div>
+                <div class = "display" style = "padding: 0 40px; margin-top: 10px;">
+                  <button type = "button" name = "edit_button" id="edit_button" class = "btn">Edit!
+                  </button>
+               </div>
+            </form>
+          </div> 
         </div>
       </div>
     </div>
 
-    <script type="text/javascript">
+     <script type="text/javascript">
         function click_fn ()
         {
             var searchVal = document.getElementById ("searchBox");
             location.href = "../../search.html";
         }
         
+        function delete_fn ()
+        {
+            location.href = "reqs.html";
+        }
+
+        function editvis_fn ()
+        {
+          document.getElementById ('editcontainer').style.display = "flex";
+          
+        }
+
+        function edit_fn ()
+        {
+          location.href = "reqs.html";
+        }
+
         var button = document.getElementById ("search_btn");
         button.onclick = click_fn;
+
+        var _delete = document.getElementById ("delete_btn");
+        _delete.onclick = delete_fn;
+
+        var edit = document.getElementById ("edit_btn");
+        edit.onclick = editvis_fn;
+
+        var editB = document.getElementById ("edit_button");
+        editB.onclick = edit_fn;
     </script>
 </body>
 </html>
