@@ -24,7 +24,7 @@ h3 {
 	font-family: 'Pangolin', cursive;
 	font-size: 24px;
 	color: #333333;
-	
+	margin-bottom: 0px;
 }
 
 h5 {
@@ -43,7 +43,8 @@ h6 {
 	color: #333333;
 }
 
-p, label, input[type="text"], input[type="password"] {
+p, label, input[type="text"], input[type="password"],
+input[type="email"], select {
 	color: white;
 	font-family: 'Rubik', sans-serif;
 	font-weight: 300;
@@ -227,6 +228,12 @@ ul.breadcrumb li a:hover {
 .text-container {
 	flex-grow: 8;
 	margin: auto;
+	margin-left: 20px;
+}
+
+.text-container > hr {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .link {
@@ -262,6 +269,8 @@ ul.breadcrumb li a:hover {
     flex-wrap: wrap;
     flex-direction: row;
 }
+
+
 
 /*
 	Auth Elements (Login / Signup)
