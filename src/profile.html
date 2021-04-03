@@ -9,6 +9,20 @@
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Profile | blueprint</title>
+
+  <style>
+    input[type="file"] 
+    {
+      cursor: pointer;
+      display: block;
+      height: 100%;
+      left: 0;
+      opacity: 0 !important;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-sm navbar-custom">
@@ -58,7 +72,10 @@
       <div class="main">
         <div class = "side-prof">
             <div class = "logo_container">
-              <img src = "../images/user.png" class = "logo" alt = "Blueprint Logo">
+              <span title="Click to edit the profile picture">
+                <img src = "../images/user.png" class = "logo" alt = "Profile picture">
+                <input type="file" id="prof-picture">
+              </span>
             </div>
             <h2>Harry Potter</h2>
             <h6 id="bio">The best error message is the one that never shows up.</h6><br>
