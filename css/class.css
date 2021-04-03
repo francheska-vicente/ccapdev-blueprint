@@ -1,3 +1,29 @@
+h2 {
+    margin: 0px auto;
+    font-family: 'Pangolin', cursive;
+    font-size: 4vh;
+    color: #333333;
+}
+
+h3 {
+    margin-top: -5px;
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+
+h6 {
+    margin-top: 0px;
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+
+p {
+    margin: 0px auto;
+    text-overflow: ellipsis;
+    font-family: 'Pangolin', cursive;
+    color: #333333;
+}
+
 #content {
     height: 100%;
     min-width: 1180px;
@@ -91,6 +117,7 @@ textarea
 
 .req-title {
     font-size: 4.5vh;
+    margin: 0 0 8px 0;
 } 
 
 .req-type {
