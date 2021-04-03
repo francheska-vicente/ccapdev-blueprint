@@ -3,19 +3,23 @@ body {
 }
 
 h2 {
-	font-size: 30px;
+	margin: 0px auto;
+	font-family: 'Pangolin', cursive;
+	font-size: 4.5vh
+	color: #333333;
 }
 
 h3 {
-	font-size: 25px;
+	margin-top: -5px;
+	margin-bottom: 20px;
+	margin-left: 20px;
 }
 
 p {
-	font-size: 15px;
+	margin: 0px auto;
 	text-overflow: ellipsis;
 	font-family: 'Pangolin', cursive;
-	color: black;
-	margin-top: -10px;
+	color: #333333;
 }
 
 .main-content {
