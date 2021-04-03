@@ -19,6 +19,7 @@
       text-indent: 20px;
       text-align: justify;
     }
+
   </style>
 </head>
 <body>
@@ -85,7 +86,21 @@
         </ul> 
         <h1>Von Neumann Architecture</h1>
         <h5>by: Alexander Reyes</h5>
-        <h6 id="note">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h6>
+        <div id="note" style="white-space: pre-wrap;"> 
+        Hello, guys! This is my notes from today's lesson. Study well for the long test!
+        
+        Von Neumann Architecture
+            - is a type of computer architecture that has three parts (or "black boxes"): (1) the memory, the CPU and (3) the I/O (input/output).
+            - the architecture that is used by most computers nowadays
+            - "store program architecture" -> the program and data are stored in the main memory and not in the CPU.
+            - instructions in the main memory are fetched, decoded, and executed sequentially.
+            - has three buses: (1) address bus, (2) data bus, and (3) control bus.
+                - control bus -> used to carry control signals (what the "box" needs to do with the given data)
+                                        -> originates from the CPU (as the CPU holds the instructions)
+                - address bus -> uni-directional from CPU to memory or I/O
+                - data bus    -> used to transfer data to/from the 3 boxes
+
+        </div>
         <button class="btn" id = "comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
         </button>

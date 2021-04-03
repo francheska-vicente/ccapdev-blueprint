@@ -106,3 +106,13 @@ textarea
     margin-top: 10px;
     margin-bottom: 0;
 } 
+
+#note
+{
+    margin:  0px 20px;
+    text-indent: 20px;
+    font-family: 'Pangolin', cursive;
+    font-size: 18px;
+    color: #222222;
+    width: 100%;
+}
