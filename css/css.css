@@ -44,7 +44,7 @@ h6 {
 }
 
 p, label, input[type="text"], input[type="password"],
-input[type="email"], select {
+input[type="email"] {
 	color: white;
 	font-family: 'Rubik', sans-serif;
 	font-weight: 300;
