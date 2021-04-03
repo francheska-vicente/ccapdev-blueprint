@@ -75,7 +75,7 @@
           <div class="form-outline" style="width: 40%">
             <input type="search" class="form-control" placeholder = "i.e. 'CCAPDEV' or 'Web Application Development'" id="class_box"/>
           </div>
-          <button type="button" class="btn btn-primary button" id="class_btn">
+          <button type="button" class="btn btn-primary button" id = "class_btn">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -83,25 +83,34 @@
           <div class="class-container">
             <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
             <div class="text-container">
-              <a href="#" class="link"><h2>Web Application Development</h2></a>
+              <h2>Web Application Development</h2>
               <h3>De La Salle University</h3>
               <h6>M 1430 - 1600 | W 1430 - 1600</h6>
+              <button class="btn" id = "add_btn0" style="margin-right: -30px">
+                <i class="fa fa-plus disc_icon" title="Comment on discussion"></i>
+              </button>
             </div>
           </div>
           <div class="class-container">
             <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
             <div class="text-container">
-              <a href="#" class="link"><h2>Web Application Development</h2></a>
+              <h2>Web Application Development</h2>
               <h3>De La Salle University</h3>
               <h6>M 0915 - 1045 | W 0915 - 1045</h6>
+              <button class="btn" id = "add_btn1" style="margin-right: -30px">
+                <i class="fa fa-plus disc_icon" title="Comment on discussion"></i>
+              </button>
             </div>
           </div>
           <div class="class-container">
             <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
             <div class="text-container">
-              <a href="#" class="link"><h2>Web Application Development</h2></a>
+              <h2>Web Application Development</h2>
               <h3>De La Salle University</h3>
               <h6>M 1245 - 1415 | W 1245 - 1415</h6>
+              <button class="btn" id = "add_btn2" style="margin-right: -30px">
+                <i class="fa fa-plus disc_icon" title="Comment on discussion"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -119,13 +128,28 @@
             location.href = "search.html";
         }
         
+        function add_func ()
+        {
+          alert ('Class added.');
+          location.href = "schedule.html"
+        }
+
         document.getElementById("class_box").defaultValue = "CCAPDEV";
 
         var classbutton = document.getElementById ("class_btn");
         classbutton.onclick = click_fn;
 
-        var classbutton = document.getElementById ("search_btn");
+        var search_btn = document.getElementById ("search_btn");
         search_btn.onclick = search_fn;
+
+        var add_btn0 = document.getElementById ("add_btn0");
+        add_btn0.onclick = add_func;
+
+        var add_btn1 = document.getElementById ("add_btn1");
+        add_btn1.onclick = add_func;
+
+        var add_btn2 = document.getElementById ("add_btn2");
+        add_btn2.onclick = add_func;
     </script>
 </body>
 </html>
