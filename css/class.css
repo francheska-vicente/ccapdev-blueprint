@@ -55,7 +55,7 @@
 
 #edit_btn, #comment_btn, #delete_btn,
 #editC_btn, #commentC_btn, #deleteC_btn, 
-#add_btn0, #add_btn1, #add_btn2
+#add_btn0, #add_btn1, #add_btn2, #confirm_button
 {
     float: right;
 }
