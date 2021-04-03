@@ -114,11 +114,12 @@
         </button>
         <br>
         <hr>
-        
+        <div id="comment">
+        </div>
         <div id="createcontainer">
           <form style = "width: 100%; height: 80%;">
               <div class = "container input-group mb-3">
-                <textarea name="paragraph_text" cols="97" rows="10"></textarea>
+                <textarea name="paragraph_text" cols="97" rows="10" id="comment_box"></textarea>
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
               <button type = "button" name = "comment_button" id="comment_button" class = "btn">Comment!
@@ -155,8 +156,20 @@
 
         function comment_fn ()
         {
-            var searchVal = document.getElementById ("searchBox");
-            location.href = "notes0.html";
+            var searchVal = document.getElementById ("comment_box");
+            var reply = document.createElement ("h6");
+            var name = document.createElement ("h5");
+            var hr = document.createElement ("hr");
+
+            var nameN = document.createTextNode ("Harry Potter");
+            var node = document.createTextNode (comment_box.value);
+            reply.appendChild (node); 
+            name.appendChild (nameN);
+
+            var elem = document.getElementById ("comment");
+            elem.appendChild (name);
+            elem.appendChild (reply);
+            elem.appendChild (hr);
         }
 
         function delete_fn ()
