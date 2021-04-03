@@ -2,32 +2,6 @@ body {
 	background-image: url("../images/tile.png");
 }
 
-h2 {
-	margin: 0px auto;
-	font-family: 'Pangolin', cursive;
-	font-size: 4vh;
-	color: #333333;
-}
-
-h3 {
-	margin-top: -5px;
-	margin-bottom: 20px;
-	margin-left: 20px;
-}
-
-h6 {
-    margin-top: 0px;
-    margin-left: 20px;
-    margin-bottom: 0px;
-}
-
-p {
-	margin: 0px auto;
-	text-overflow: ellipsis;
-	font-family: 'Pangolin', cursive;
-	color: #333333;
-}
-
 .main-content {
 	padding: 40px 10%;
 }
