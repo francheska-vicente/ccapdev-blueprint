@@ -11,19 +11,19 @@ h1 {
 	font-weight: 600;
 	font-size: 6vh;
 	margin-bottom: 0;
-	color: #222222;
+	color: #333333;
 }
 
 h2 {
 	font-family: 'Rubik', sans-serif;
 	font-size: 36px;
-	color: #222222;
+	color: #333333;
 }
 
 h3 {
 	font-family: 'Pangolin', cursive;
 	font-size: 24px;
-	color: #222222;
+	color: #333333;
 }
 
 h5 {
@@ -39,7 +39,7 @@ h6 {
 	font-family: 'Pangolin', cursive;
 	font-size: 18px;
 	margin-top: -10px;
-	color: #222222;
+	color: #333333;
 }
 
 p, label, input[type="text"], input[type="password"] {
