@@ -82,3 +82,9 @@ table {
 .task-details {
 	margin-bottom: 0;
 }
+
+.links
+{
+    text-decoration: none;
+    color: black;
+}
