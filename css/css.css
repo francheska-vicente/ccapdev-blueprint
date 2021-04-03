@@ -89,8 +89,7 @@ input[type="email"] {
 	Navigation Bar (Side)
 */
 
-#sideNav
-{
+#sideNav {
 	width: 14%;
 	min-width: 141px;
 	min-height: 100%;
@@ -102,8 +101,7 @@ input[type="email"] {
 	padding-top: 20px;
 }
 
-.active
-{
+.active {
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
 	background-color: white;
@@ -113,11 +111,9 @@ input[type="email"] {
 
 content li a {
   display: block;
-
 }
 
-.navigationDiv
-{
+.navigationDiv {
 	margin-left: 10px;
 	padding-left: 10px;
 	width: 100%;
@@ -125,31 +121,26 @@ content li a {
 	color: white;
 }
 
-.item
-{
+.item {
 	padding-left: 10px;
 	background-color: rgba(69, 123, 157, 0.85);
 	width: 95%;
 }
 
-.down
-{
+.down {
 	border-top-right-radius: 15px;
 }
 
-.up
-{
+.up {
 	border-bottom-right-radius: 15px;
 }
 
-.icon
-{
+.icon {
 	color: white;
 	font-size: 17px;
 }
 
-.icon_name
-{
+.icon_name {
 	color: white;
 	font-size: 15px;
 }
@@ -270,6 +261,32 @@ ul.breadcrumb li a:hover {
     flex-direction: row;
 }
 
+
+.class-container h2, .person-container h2 {
+	margin: 0px auto;
+	font-family: 'Pangolin', cursive;
+	font-size: 4vh;
+	color: #333333;
+}
+
+.class-container h3, .person-container h3 {
+	margin-top: -5px;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+
+.class-container h6, .person-container h6 {
+    margin-top: 0px;
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+
+.class-container p, .person-container p {
+	margin: 0px auto;
+	text-overflow: ellipsis;
+	font-family: 'Pangolin', cursive;
+	color: #333333;
+}
 
 
 /*
