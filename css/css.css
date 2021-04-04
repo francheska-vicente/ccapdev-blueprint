@@ -284,7 +284,7 @@ ul.breadcrumb li a:hover {
 	transition: all 0.2s;
 }
 
-.class-container:hover, a > .person-container:hover, a > .task-container:hover {
+a > .class-container:hover, a > .person-container:hover, a > .task-container:hover {
 	background-color: #7cc8cb;
 	transition: all 0.2s;
 }
