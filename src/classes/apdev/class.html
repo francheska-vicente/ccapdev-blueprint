@@ -68,7 +68,7 @@
     <div class="main">
       <ul class="breadcrumb">
         <li><a href="../../home.html">blueprint</a></li>
-        <li><a href="class.html">Class</a></li>
+        <li><a href="../../dashboard.html">List of Classes</a></li>
         <li>Home</li>
       </ul> 
       <h1>CCAPDEV</h1>
@@ -105,17 +105,15 @@
       </div>
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+    function click_fn ()
+    {
+      var searchVal = document.getElementById ("searchBox");
+      location.href = "../../search.html";
+    }
 
-<script type="text/javascript">
-  function click_fn ()
-  {
-    var searchVal = document.getElementById ("searchBox");
-    location.href = "../../search.html";
-  }
-
-  var button = document.getElementById ("search_btn");
-  button.onclick = click_fn;
-</script>
+    var button = document.getElementById ("search_btn");
+    button.onclick = click_fn;
+  </script>
 </body>
 </html>
