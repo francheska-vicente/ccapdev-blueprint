@@ -13,7 +13,7 @@
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>The Importance of RAM | blueprint</title>
+  <title>The Importance of RAM | blueprint</title>
 
   <style>
     h6
@@ -23,7 +23,7 @@
       text-align: justify;
     }
 
-    #origCommentDiv, .createcontainer
+    #origCommentDiv, .createcontainer, .editcontainer
     {
       display: none;
     }
@@ -61,8 +61,8 @@
     </nav>
      
     <div id = "content">
-    	<nav id = "sideNav">
-	    	<div class="navigationDiv">
+      <nav id = "sideNav">
+        <div class="navigationDiv">
           <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
                 <li class="nav-item item ">
                     <a class="nav-link icon_name" href="class.html"><i class="fa fa-home icon"></i> Home </a>
@@ -83,7 +83,7 @@
                 </li>
             </ul>
         </div>
-	    </nav>
+      </nav>
       <div class="main" style="width: 85%">
         <ul class="breadcrumb">
           <li><a href="../../home.html">blueprint</a></li>
@@ -100,29 +100,44 @@
         </button>
         <br>
         <hr>
+        
         <div id = "origCommentDiv" class = "commentDiv">
           <button class="btn cmt_btn" id = "comment_btn">
-            <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
+            <i class="fas fa-comment disc_icon" title = "Comment on discussion"></i>
           </button>
-          <button class="btn" id = "edit_btn">
-            <i class="fa fa-pencil disc_icon" title="Edit discussion"></i>
+          <button class="btn edt_btn" id = "edit_btn">
+            <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
           </button>
-          <button class="btn" id = "delete_btn" title="Delete discussion">
+          <button class="btn dlt_btn" id = "delete_btn" title = "Delete discussion">
             <i class="fas fa-eraser disc_icon"></i>
           </button>
         </div>
+        
         <div class ="createcontainer" id = "origCreateDiv">
-          <form style = "width: 100%; height: 80%;" class = "form"> 
-              <div class = "container input-group mb-3" id ="hello">
+          <form style = "width: 100%; height: 80%;"> 
+              <div class = "container input-group mb-3">
                 <textarea name="paragraph_text" cols="97" rows="10" class = ".comment_box"></textarea>
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-              <button type = "button" name = "comment_button" id="comment_button" class = "btn Addcmt_btn">Comment!
+              <button type = "button" name = "comment_button" id = "comment_button" class = "btn Addcmt_btn">Comment!
               </button>
              </div>
           </form>
         </div>
         
+        <div class = "editcontainer" id = "origEditDiv"
+             style = "margin-right: auto; margin-left: auto">
+          <form style = "width: 100%; height: 80%;">
+              <div class = "container input-group mb-3">
+                <textarea name = "paragraph_text" cols = "97" rows = "10" class = "edit_txt"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "edit_button" id = "edit_button" class = "btn Editcmt_btn">Edit!
+              </button>
+             </div>
+          </form>
+        </div>  
+      
       </div>
     </div>
 
@@ -135,14 +150,24 @@
             location.href = "../../search.html";
           });
 
-        $(".cmt_btn").click (function ()
-          {
-            $(".createcontainer").css ("display", "block");
-          });
-
-        function comment ()
+        function comment_func ()
         {
           $(this).closest(".commentDiv").find (".createcontainer").css ("display", "block");
+        }
+
+        function edit_func ()
+        {
+          var div = $(this).closest(".commentDiv");
+          var content = div.children (".comment_content").html ();
+
+          var container = div.find (".editcontainer");
+          container.find (".container").children ().val (content);
+          container.css ("display", "block");
+        }
+
+        function delete_func ()
+        {
+          alert ("deleted");
         }
 
         function post_comment ()
@@ -153,6 +178,7 @@
             var numOfComments = $(".commentDiv").length;
 
             var commentNode = $("<h6/>").html (commentVal);
+            commentNode.attr ("class", "comment_content");
             var nameNode = $("<h5/>").html ("Harry Potter");
             var commentDiv = $("#origCommentDiv").clone ();
 
@@ -164,21 +190,64 @@
 
             var commentButton  = commentDiv.find ("#comment_btn");
             commentButton.attr ("id", "comment_btn" + numOfComments);
-            commentButton.click (comment);
+            commentButton.click (comment_func);
+
+            var editButton = commentDiv.find ("#edit_btn");
+            editButton.attr ("id", "edit_btn" + numOfComments);
+            editButton.click (edit_func);
+
+            var delButton = commentDiv.find ("#delete_btn");
+            delButton.attr ("id", "delete_btn" + numOfComments);
+            delButton.click (delete_func);
 
             var createC = $("#origCreateDiv").clone ();
             createC.attr ("id", "createcontainer" + numOfComments);
             createC.find ("#comment_button").attr ("id", "comment_button" + numOfComments).click (post_comment);
             createC.find (".container").children ().val ("");
 
+            var editC = $("#origEditDiv").clone ();
+            editC.attr ("id", "editcontainer" + numOfComments);
+            editC.find ("#edit_button").attr ("id", "edit_button" + numOfComments).click (edit_comment);
+
             commentDiv.append (createC);
+            commentDiv.append (editC);
+
             $(".main").append (commentDiv);
             commentDiv.css ("display", "block");
             $(".createcontainer").css ("display", "none");
             comment_box.val ("");
         }
 
+        function edit_comment ()
+        {
+          var form = $(this).closest(".editcontainer").find (".container");
+          var edit_box = form.children ();
+          var commentVal = edit_box.val ();
+          
+          $(this).closest (".commentDiv").children (".comment_content").html (commentVal);
+          $(".editcontainer").css ("display", "none");
+        }
+
         $(".createcontainer").on ("click", ".Addcmt_btn", post_comment);
+
+        $(".editcontainer").on ("click", ".Editcmt_btn", edit_comment);
+
+        $(".cmt_btn").click (function ()
+        {
+            $(".createcontainer").css ("display", "block");
+        });
+
+        $(".edt_btn").click (function ()
+        {
+            $(".editcontainer").css ("display", "block");
+        });
+
+        $(".dlt_btn").click (function ()
+        {
+            // add something here
+            alert ('deleted');
+        });
+
       });
     </script>
 </body>
