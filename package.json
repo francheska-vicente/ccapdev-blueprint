@@ -1,0 +1,24 @@
+{
+  "name": "2021T2-G28",
+  "version": "1.0.0",
+  "description": "<p><img src=\"https://github.com/DLSU-CCAPDEV/2021T2-G28/blob/15ec5b6bf1ae579b7bd4a88375c06626d0887f23/images/logo.png\" width=\"400px\"></p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DLSU-CCAPDEV/2021T2-G28.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DLSU-CCAPDEV/2021T2-G28/issues"
+  },
+  "homepage": "https://github.com/DLSU-CCAPDEV/2021T2-G28#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.0"
+  }
+}

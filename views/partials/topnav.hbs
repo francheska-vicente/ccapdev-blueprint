@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-sm navbar-custom">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="home.html"><img src="../images/logo.png" id="logo" height ="30px"></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navibar" aria-controls="navibar" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navibar">
+			<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+				<li class="nav-item">
+					<a class="nav-link" href="schedule.html">Schedule</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="dashboard.html">Classes</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="profile.html">Profile</a>
+				</li>
+			</ul>
+			<div class="input-group" style="justify-content: flex-end; margin-right: 25px">
+				<div class="form-outline">
+					<input type="search" class="form-control" placeholder = "Search for users" id="searchBox"/>
+				</div>
+				<button type="button" class="btn btn-primary" id="search_btn">
+					<i class="fas fa-search"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</nav>
+<script type="text/javascript">
+		function click_fn ()
+		{
+			var searchVal = document.getElementById ("searchBox");
+			location.href = "search.html";
+		}
+		var search = document.getElementById ("search_btn");
+		search.onclick = click_fn;
+	</script>
