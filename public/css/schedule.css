@@ -88,7 +88,8 @@ table {
 }
 
 #create_button, #drop_button, #edit_button, #comment_button,
-#confirm_button {
+#confirm_button, .Addcmt_btn
+{
 	display:inline-block;
 	padding:0.3em 1.2em;
 	margin: auto auto;

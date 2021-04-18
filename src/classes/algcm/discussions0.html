@@ -23,7 +23,7 @@
       text-align: justify;
     }
 
-    #origCommentDiv
+    #origCommentDiv, .createcontainer
     {
       display: none;
     }
@@ -100,7 +100,7 @@
         </button>
         <br>
         <hr>
-        <div id = "origCommentDiv">
+        <div id = "origCommentDiv" class = "commentDiv">
           <button class="btn cmt_btn" id = "comment_btn">
             <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
           </button>
@@ -111,13 +111,13 @@
             <i class="fas fa-eraser disc_icon"></i>
           </button>
         </div>
-        <div id="createcontainer">
-          <form style = "width: 100%; height: 80%;">
-              <div class = "container input-group mb-3">
-                <textarea name="paragraph_text" cols="97" rows="10" id="comment_box"></textarea>
+        <div class ="createcontainer" id = "origCreateDiv">
+          <form style = "width: 100%; height: 80%;" class = "form"> 
+              <div class = "container input-group mb-3" id ="hello">
+                <textarea name="paragraph_text" cols="97" rows="10" class = ".comment_box"></textarea>
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-              <button type = "button" name = "comment_button" id="comment_button" class = "btn">Comment!
+              <button type = "button" name = "comment_button" id="comment_button" class = "btn Addcmt_btn">Comment!
               </button>
              </div>
           </form>
@@ -137,17 +137,19 @@
 
         $(".cmt_btn").click (function ()
           {
-            $("#createcontainer").css ("display", "block");
+            $(".createcontainer").css ("display", "block");
           });
 
         function comment ()
         {
-          $("#createcontainer").css ("display", "block");
+          $(this).closest(".commentDiv").find (".createcontainer").css ("display", "block");
         }
 
-        $("#createcontainer").on (`click`, `#comment_button`, function ()
-          {
-            var commentVal = $("#comment_box").val ();
+        function post_comment ()
+        {
+            var form = $(this).closest(".createcontainer").find (".container");
+            var comment_box = form.children ();
+            var commentVal =  comment_box.val ();
             var numOfComments = $(".commentDiv").length;
 
             var commentNode = $("<h6/>").html (commentVal);
@@ -161,14 +163,22 @@
             commentDiv.attr ("class", "commentDiv");
 
             var commentButton  = commentDiv.find ("#comment_btn");
-            commentButton.attr ("id", "comment_button" + numOfComments);
+            commentButton.attr ("id", "comment_btn" + numOfComments);
             commentButton.click (comment);
 
+            var createC = $("#origCreateDiv").clone ();
+            createC.attr ("id", "createcontainer" + numOfComments);
+            createC.find ("#comment_button").attr ("id", "comment_button" + numOfComments).click (post_comment);
+            createC.find (".container").children ().val ("");
+
+            commentDiv.append (createC);
             $(".main").append (commentDiv);
             commentDiv.css ("display", "block");
-            $("#createcontainer").css ("display", "none");
-            $("#comment_box").val ("");
-          });
+            $(".createcontainer").css ("display", "none");
+            comment_box.val ("");
+        }
+
+        $(".createcontainer").on ("click", ".Addcmt_btn", post_comment);
       });
     </script>
 </body>
