@@ -26,10 +26,15 @@ app.get('/', function (req, res) {
             degree: 'Computer Science'
         }
     });
-}); */
+}); 
 
 app.get('/', function (req, res) {
     res.render('home', {
+    });
+}); */
+
+app.get('/', function (req, res) {
+    res.render('schedule', {
     });
 });
 
