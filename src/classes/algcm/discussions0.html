@@ -23,7 +23,7 @@
       text-align: justify;
     }
 
-    .commentDiv
+    #origCommentDiv
     {
       display: none;
     }
@@ -100,8 +100,8 @@
         </button>
         <br>
         <hr>
-        <div class = "commentDiv">
-          <button class="btn" id = "comment_btn">
+        <div id = "origCommentDiv">
+          <button class="btn cmt_btn" id = "comment_btn">
             <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
           </button>
           <button class="btn" id = "edit_btn">
@@ -137,24 +137,38 @@
 
         $(".cmt_btn").click (function ()
           {
-            $("#createcontainer").css ("display", "flex");
+            $("#createcontainer").css ("display", "block");
           });
 
-          $("#comment_button").click (function ()
+        function comment ()
+        {
+          $("#createcontainer").css ("display", "block");
+        }
+
+        $("#createcontainer").on (`click`, `#comment_button`, function ()
           {
             var commentVal = $("#comment_box").val ();
             var numOfComments = $(".commentDiv").length;
+
             var commentNode = $("<h6/>").html (commentVal);
             var nameNode = $("<h5/>").html ("Harry Potter");
-            var commentDiv = $(".commentDiv").clone ();
+            var commentDiv = $("#origCommentDiv").clone ();
 
             commentDiv.prepend (commentNode);
             commentDiv.prepend (nameNode);
             commentDiv.append ($("<br/><hr/>"));
+            commentDiv.attr ("id", "commentDiv" + numOfComments);
+            commentDiv.attr ("class", "commentDiv");
+
+            var commentButton  = commentDiv.find ("#comment_btn");
+            commentButton.attr ("id", "comment_button" + numOfComments);
+            commentButton.click (comment);
+
             $(".main").append (commentDiv);
             commentDiv.css ("display", "block");
             $("#createcontainer").css ("display", "none");
-          }); 
+            $("#comment_box").val ("");
+          });
       });
     </script>
 </body>
