@@ -1,9 +1,0 @@
-var user = {
-    fName: 'Ned',
-    lName: 'Stark',
-    username: 'LordHandStark',
-    bio: `You think my life is some precious thing to me?
-    That I would trade my honour for a few more years of...of what?!
-    You grew up with actors; you learned their craft and you learnt it well.
-    But I grew up with soldiers. I learned how to die a long time ago.`
-};
