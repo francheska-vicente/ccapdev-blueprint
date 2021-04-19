@@ -34,7 +34,7 @@ app.get('/', function (req, res) {
 }); */
 
 app.get('/', function (req, res) {
-    res.render('schedule', {
+    res.render('searchclass', {
     });
 });
 
