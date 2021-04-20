@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="../../../css/class.css" rel="stylesheet">
+  <title>{{coursecode}} | blueprint</title>
+</head>
+<body>
+  {{>topnav}}
+  <div id = "content">
+    <nav id = "sideNav">
+      <div class="navigationDiv">
+        <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
+          <li class="nav-item item up">
+            <div class="active" style="background-color: white">
+              <a class="nav-link" href="class.html" style="color: #5161ce; padding-left: 10px"><i class="fa fa-home"></i> Home </a>
+            </div>
+          </li>
+          <li class="nav-item item down">
+            <a class="nav-link  icon_name" href="classlist.html"><i class="far fa-address-book icon"></i> Class List</a>
+          </li>
+          <li class="nav-item item">
+            <a class="nav-link icon_name" href="discussions.html"><i class="far fa-clone icon"></i> Discussions</a>
+          </li>
+          <li class="nav-item item">
+            <a class="nav-link icon_name" href="reqs.html"><i class="far fa-calendar-alt icon"></i> Requirements</a>
+          </li>
+          <li class="nav-item item">
+            <a class="nav-link icon_name" href="notebook.html"><i class="fa fa-pencil-square-o icon"></i> Notebook</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+    <div class="main">
+      <ul class="breadcrumb">
+        <li><a href="../../home.html">blueprint</a></li>
+        <li><a href="../../dashboard.html">List of Classes</a></li>
+        <li>Home</li>
+      </ul> 
+      <h1>{{coursecode}}</h1>
+      <h5>Welcome to {{classname}}!</h5><hr>
+      <div id="class-info">
+        <h3>Information</h3>
+        <div class="row">
+          <div class="col">
+            <h4>Course Code</h4>
+            <h6>{{coursecode}}</h6>
+          </div>
+          <div class="col">
+            <h4>Course Name</h4>
+            <h6>{{classname}}</h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h4>Professor's Name</h4>
+            <h6>{{professor}}</h6>
+          </div>
+        </div><br>
+        <h3>Class Times</h3>
+        <div class="row">
+          <div class="col">
+            <h4>{{classdayA}}</h4>
+            <h6>{{classtimeA}}</h6>
+          </div>
+          <div class="col">
+            <h4>{{classdayB}}</h4>
+            <h6>{{classtimeB}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
