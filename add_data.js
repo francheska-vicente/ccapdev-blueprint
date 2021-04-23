@@ -114,3 +114,51 @@ var course = {
 };
 
 db.insertOne(collection2, course);
+
+var course = {
+    classname: 'Introduction to Computer Organization and Architecture',
+    coursecode: 'CSARCH1',
+    professor: 'ausdkhjl',
+    classtimeA: 'asdasd',
+    classdayA: 'Tuesday',
+    classtimeB: 'dfgdg',
+    classdayB: 'Thursday'
+};
+
+db.insertOne(collection2, course);
+
+var course = {
+    classname: 'Physical Fitness and Wellness in Team Sports',
+    coursecode: 'GETEAMS',
+    professor: 'ausdkhjl',
+    classtimeA: 'asdasd',
+    classdayA: 'Thursday',
+    classtimeB: 'N/A',
+    classdayB: 'N/A'
+};
+
+db.insertOne(collection2, course);
+
+var course = {
+    classname: 'Advanced Algorithms and Complexities',
+    coursecode: 'STALGCM',
+    professor: 'ausdkhjl',
+    classtimeA: 'asdasd',
+    classdayA: 'Monday',
+    classtimeB: 'dfgdg',
+    classdayB: 'Tuesday'
+};
+
+db.insertOne(collection2, course);
+
+var course = {
+    classname: 'Integral Calculus for Computer Science Students',
+    coursecode: 'ST-MATH',
+    professor: 'ausdkhjl',
+    classtimeA: 'asdasd',
+    classdayA: 'Monday',
+    classtimeB: 'dfgdg',
+    classdayB: 'Wednesday'
+};
+
+db.insertOne(collection2, course);
