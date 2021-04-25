@@ -13,7 +13,7 @@
     <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
     <link rel="stylesheet" href="navbar-fixed-right.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>The Importance of RAM | blueprint</title>
+  <title>The Importance of RAM | blueprint</title>
 
   <style>
     h6
@@ -23,7 +23,8 @@
       text-align: justify;
     }
 
-    #origCommentDiv
+    #origCommentDiv, .createcontainer, .editcontainer,
+    #main_edit_container
     {
       display: none;
     }
@@ -61,8 +62,8 @@
     </nav>
      
     <div id = "content">
-    	<nav id = "sideNav">
-	    	<div class="navigationDiv">
+      <nav id = "sideNav">
+        <div class="navigationDiv">
           <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
                 <li class="nav-item item ">
                     <a class="nav-link icon_name" href="class.html"><i class="fa fa-home icon"></i> Home </a>
@@ -83,7 +84,7 @@
                 </li>
             </ul>
         </div>
-	    </nav>
+      </nav>
       <div class="main" style="width: 85%">
         <ul class="breadcrumb">
           <li><a href="../../home.html">blueprint</a></li>
@@ -94,63 +95,112 @@
         </ul> 
         <h1>The Importance of RAM</h1>
         <a href="../../users/alexandria_ramos.html" class="link"><h5>By: Alexandria Ramos</h5></a>
-        <h6>From the start of the term, sir was already hinting the importance of RAM and that technically, a machine's power would be limited when its RAM is removed. However, as I was researching on this topic, I could not seem to find any papers or answers to why a machine's power is highly dependent on its RAM. If anyone could enlighten me on this topic, I would be greatly thankful!</h6>
-        <button class = "btn cmt_btn" id = "comment_btn">
+        <h6 class = "main_cmt">From the start of the term, sir was already hinting the importance of RAM and that technically, a machine's power would be limited when its RAM is removed. However, as I was researching on this topic, I could not seem to find any papers or answers to why a machine's power is highly dependent on its RAM. If anyone could enlighten me on this topic, I would be greatly thankful!</h6>
+        <button class = "btn cmt_btn" id = "main_comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
         </button>
+        <button class="btn" id = "main_edit_btn" style = "float: right">
+            <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
+          </button>
+          <button class="btn dlt_btn" id = "main_delete_btn" title = "Delete discussion">
+            <i class="fas fa-eraser disc_icon"></i>
+          </button>
         <br>
         <hr>
-        <div id = "origCommentDiv">
+        
+        <div id = "origCommentDiv" class = "commentDiv">
           <button class="btn cmt_btn" id = "comment_btn">
-            <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
+            <i class="fas fa-comment disc_icon" title = "Comment on discussion"></i>
           </button>
-          <button class="btn" id = "edit_btn">
-            <i class="fa fa-pencil disc_icon" title="Edit discussion"></i>
+          <button class="btn edt_btn" id = "edit_btn">
+            <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
           </button>
-          <button class="btn" id = "delete_btn" title="Delete discussion">
+          <button class="btn dlt_btn" id = "delete_btn" title = "Delete discussion">
             <i class="fas fa-eraser disc_icon"></i>
           </button>
         </div>
-        <div id="createcontainer">
-          <form style = "width: 100%; height: 80%;">
+        
+        <div class ="createcontainer" id = "origCreateDiv">
+          <form style = "width: 100%; height: 80%;"> 
               <div class = "container input-group mb-3">
-                <textarea name="paragraph_text" cols="97" rows="10" id="comment_box"></textarea>
+                <textarea name="paragraph_text" cols="97" rows="10" class = ".comment_box"></textarea>
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-              <button type = "button" name = "comment_button" id="comment_button" class = "btn">Comment!
+              <button type = "button" name = "comment_button" id = "comment_button" class = "btn Addcmt_btn">Comment!
               </button>
              </div>
           </form>
         </div>
         
+        <div class = "editcontainer" id = "origEditDiv"
+             style = "margin-right: auto; margin-left: auto">
+          <form style = "width: 100%; height: 80%;">
+              <div class = "container input-group mb-3">
+                <textarea name = "paragraph_text" cols = "97" rows = "10" class = "edit_txt"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "edit_button" id = "edit_button" class = "btn Editcmt_btn">Edit!
+              </button>
+             </div>
+          </form>
+        </div>  
+        
+        <div id = "main_edit_container"
+             style = "margin-right: auto; margin-left: auto">
+          <form style = "width: 100%; height: 80%;">
+              <div class = "container input-group mb-3">
+                <textarea name = "paragraph_text" cols = "97" rows = "10" class = "edit_txt" id = "main_txt"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "main_edit_button" id = "main_edit_button" class = "btn Editcmt_btn">Edit!
+              </button>
+             </div>
+          </form>
+        </div>  
+
       </div>
     </div>
 
     <script type="text/javascript">
       $(document).ready (function ()
       {
+        $("#main_txt").val ($(".main_cmt").html ());
+
         $("#search_btn").click (function ()
           {
             var searchVal = $("#searchBox").val ();
             location.href = "../../search.html";
           });
 
-        $(".cmt_btn").click (function ()
-          {
-            $("#createcontainer").css ("display", "block");
-          });
-
-        function comment ()
+        function comment_func ()
         {
-          $("#createcontainer").css ("display", "block");
+          $(this).closest(".commentDiv").find (".createcontainer").css ("display", "block");
         }
 
-        $("#createcontainer").on (`click`, `#comment_button`, function ()
-          {
-            var commentVal = $("#comment_box").val ();
+        function edit_func ()
+        {
+          var div = $(this).closest(".commentDiv");
+          var content = div.children (".comment_content").html ();
+
+          var container = div.find (".editcontainer");
+          container.find (".container").children ().val (content);
+          container.css ("display", "block");
+        }
+
+        function delete_func ()
+        {
+          alert ("deleted");
+        }
+
+        function post_comment ()
+        {
+            var form = $(this).closest(".createcontainer").find (".container");
+            var comment_box = form.children ();
+            var commentVal =  comment_box.val ();
             var numOfComments = $(".commentDiv").length;
 
             var commentNode = $("<h6/>").html (commentVal);
+            commentNode.attr ("class", "comment_content");
             var nameNode = $("<h5/>").html ("Harry Potter");
             var commentDiv = $("#origCommentDiv").clone ();
 
@@ -161,14 +211,73 @@
             commentDiv.attr ("class", "commentDiv");
 
             var commentButton  = commentDiv.find ("#comment_btn");
-            commentButton.attr ("id", "comment_button" + numOfComments);
-            commentButton.click (comment);
+            commentButton.attr ("id", "comment_btn" + numOfComments);
+            commentButton.click (comment_func);
+
+            var editButton = commentDiv.find ("#edit_btn");
+            editButton.attr ("id", "edit_btn" + numOfComments);
+            editButton.click (edit_func);
+
+            var delButton = commentDiv.find ("#delete_btn");
+            delButton.attr ("id", "delete_btn" + numOfComments);
+            delButton.click (delete_func);
+
+            var createC = $("#origCreateDiv").clone ();
+            createC.attr ("id", "createcontainer" + numOfComments);
+            createC.find ("#comment_button").attr ("id", "comment_button" + numOfComments).click (post_comment);
+            createC.find (".container").children ().val ("");
+
+            var editC = $("#origEditDiv").clone ();
+            editC.attr ("id", "editcontainer" + numOfComments);
+            editC.find ("#edit_button").attr ("id", "edit_button" + numOfComments).click (edit_comment);
+
+            commentDiv.append (createC);
+            commentDiv.append (editC);
 
             $(".main").append (commentDiv);
             commentDiv.css ("display", "block");
-            $("#createcontainer").css ("display", "none");
-            $("#comment_box").val ("");
-          });
+            $(".createcontainer").css ("display", "none");
+            comment_box.val ("");
+        }
+
+        function edit_comment ()
+        {
+          var form = $(this).closest(".editcontainer").find (".container");
+          var edit_box = form.children ();
+          var commentVal = edit_box.val ();
+          
+          $(this).closest (".commentDiv").children (".comment_content").html (commentVal);
+          $(".editcontainer").css ("display", "none");
+        }
+
+        $(".createcontainer").on ("click", ".Addcmt_btn", post_comment);
+
+        $(".editcontainer").on ("click", ".Editcmt_btn", edit_comment);
+
+        $(".cmt_btn").click (function ()
+        {
+            $(".createcontainer").css ("display", "block");
+        });
+
+        $(".edt_btn").click (function ()
+        {
+            $(".editcontainer").css ("display", "block");
+        });
+
+        $(".dlt_btn").click (function ()
+        {
+            // add something here
+            alert ('deleted');
+        });
+
+        $("#main_edit_button").click (function () {
+          $(".main_cmt").html ($("#main_txt").val ());
+          $("#main_edit_container").css ("display", "none");
+        });
+
+        $("#main_edit_btn").click (function () {
+          $("#main_edit_container").css ("display", "block");
+        });
       });
     </script>
 </body>
