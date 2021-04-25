@@ -1,7 +1,7 @@
 <html>
   <head>
     <link href="../css/dashboard.css" rel="stylesheet">
-    <title>Dashboard | blueprint</title> 
+    <title>Class Dashboard | blueprint</title> 
   </head>
   <body>
    {{>topnav}}
@@ -13,12 +13,15 @@
       <div id="class-list">
         <h1>Your Classes</h1>
         <h5>A list of all your classes for the term. Click on any of the classes below!</h5><hr>
-        {{#each }}
-          <div class="results__container--box">
-            {{auction.marque}}
-            {{auction.model}}
-          </div>
-        {{/each}}
+        <a href="classes/apdev/class.html" class="link">
+          <div class="class-container">
+            <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
+            <div class="text-container">
+               <h2>Web Application Development</h2>
+              <h3>CCAPDEV</h3>
+            </div>
+          </div>  
+        </a>
         <a href="classes/apdev/class.html" class="link">
           <div class="class-container">
             <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>

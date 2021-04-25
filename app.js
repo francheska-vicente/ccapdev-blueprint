@@ -17,6 +17,12 @@ app.use(express.static('public'));
 
 app.use('/', routes);
 
+app.use(function (req, res) {
+    res.render('error');
+});
+
+db.connect();
+
 app.listen(port, () => {
     console.log('The web server has started on port ' + port);
 });
