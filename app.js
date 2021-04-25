@@ -1,4 +1,7 @@
 const express = require('express');
+
+const bodyParser = require('body-parser');
+
 const exphbs = require('express-handlebars');
 
 const routes = require('./routes/routes.js');
@@ -12,6 +15,8 @@ app.engine('hbs', exphbs({
     defaultLayout: 'main',
     extname: '.hbs'
 }));
+
+app.use (bodyParser.urlencoded ({ extended : true}));
 
 app.set('view engine', 'hbs');
 

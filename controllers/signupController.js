@@ -8,8 +8,8 @@ const signupController = {
     },
 
     postSignUp: function (req, res) {
-        var fName = req.body.first_name;
-        var lName = req.body.last_name;
+        var fName = req.body.fName;
+        var lName = req.body.lName;
         var email = req.body.email;
         var username = req.body.username;
         var password = req.body.password;
@@ -26,7 +26,7 @@ const signupController = {
 
         db.insertOne(User, user, function(flag) {
             if(flag) {
-                res.redirect('/success?username=' + username);
+                res.redirect('/success?fName=' + fName +'&lName=' + lName + '&username=' + username);
             }
         });
     }
