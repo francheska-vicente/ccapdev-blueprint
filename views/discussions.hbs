@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="../../../css/class.css" rel="stylesheet">
+	<title>Discussion | blueprint</title>
+  <style>
+    h6
+    {
+      margin-top:  20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  {{>topnav}}
+    <div id = "content">
+    	<nav id = "sideNav">
+	    	<div class="navigationDiv">
+          <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
+                <li class="nav-item item ">
+                    <a class="nav-link icon_name" href="class.html"><i class="fa fa-home icon"></i> Home </a>
+                </li>
+                <li class="nav-item item up">
+                    <a class="nav-link  icon_name" href="classlist.html"><i class="far fa-address-book icon"></i> Class List</a>
+                </li>
+                <li class="nav-item item">
+                  <div class="active" style="background-color: white">
+                    <a class="nav-link" href="discussions.html" style="color: #5161ce; padding-left: 10px"><i class="far fa-clone"></i> Discussions</a>
+                  </div>
+                </li>
+                <li class="nav-item item down">
+                    <a class="nav-link icon_name" href="reqs.html"><i class="far fa-calendar-alt icon"></i> Requirements</a>
+                </li>
+                <li class="nav-item item">
+                    <a class="nav-link icon_name" href="notebook.html"><i class="fa fa-pencil-square-o icon"></i> Notebook</a>
+                </li>
+            </ul>
+        </div>
+	    </nav>
+      <div class="main" style="width: 85%">
+        <ul class="breadcrumb">
+          <li><a href="../../home.html">blueprint</a></li>
+          <li><a href="../../dashboard.html">Classes</a></li>
+          <li><a href="class.html">CCAPDEV</a></li>
+          <li>Discussions</li>
+        </ul> 
+        <h1>Discussions</h1>
+        <h5>You can start conversations, ask for help, or make new friends with your fellow classmates!</h5>
+        <a href ="add_disc.html" title="Add a new discussion"><i class="fa fa-plus" style="font-size: 25px; margin-top: -3%; float: right; color: #457B9D"></i></a>
+        <hr>
+        <div class="row">
+          <div class="left">
+            <h3>General</h3>
+          </div>
+          <div class="right">
+            <h3>Replies</h3>
+          </div>
+        </div>
+        <a href = "discussions0.html" class="links">
+          <div class="row">
+            <div class="left">
+              <h6>Clarification on the usage of Flexbox</h6>
+            </div>
+            <div class="right">
+              <h6>1</h6>
+            </div>
+          </div>
+        </a>
+        <a href = "discussions1.html" class="links">
+          <div class="row">
+            <div class="left">
+              <h6>Finding group mates!</h6>
+            </div>
+            <div class="right">
+              <h6>1</h6>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function click_fn ()
+        {
+            var searchVal = document.getElementById ("searchBox");
+            location.href = "../../search.html";
+        }
+        
+        var button = document.getElementById ("search_btn");
+        button.onclick = click_fn;
+    </script>
+</body>
+</html>
