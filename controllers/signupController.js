@@ -14,13 +14,12 @@ const signupController = {
             email:  req.body.email,
             username: req.body.username,
             password: req.body.password,
-            school:  req.body.school
+            uni:  req.body.school
         };
 
         db.insertOne(User, user, function(flag) {
             if(flag) {
-                //res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName + '&username=' + user.username);
-                console.log (user.fName);
+                res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName + '&username=' + user.username);
             }
         });
     }

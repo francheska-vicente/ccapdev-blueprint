@@ -23,11 +23,11 @@ var UserSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: false
+        required: true
     },
     bday: {
         type: Date,
-        required: true
+        required: false
     },
     phone: {
         type: String,
