@@ -7,9 +7,6 @@
 - **Francheska Josefa Vicente**
 - **Sophia Danielle S. Vista**
 
-## External Libraries
-- Bootstrap
-
 ## Resources
 - [Unsplash](https://unsplash.com/)
 - [Google Fonts](https://fonts.google.com/)
