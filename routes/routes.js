@@ -12,14 +12,14 @@ app.use(bodyParser.json());
 
 app.get('/', controller.getSplash);
 
-app.get('/login', signupController.getLogin);
+app.get('/login', controller.getLogin);
 app.get('/register', signupController.getSignUp);
 app.post('/register', signupController.postSignUp);
 app.get('/success', successController.getSuccess);
 
 app.get('/home', controller.getHome);
 
-app.get('/profile', controller.getYourProfile);
+app.get('/profile/:username', controller.getYourProfile);
 app.get('/schedule/yourschedule', controller.getYourSchedule);
 
 app.get('/:username/profile', controller.getUserProfile);

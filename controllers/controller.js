@@ -14,6 +14,10 @@ const controller = {
         });
     },
 
+    getLogin: function (req, res) {
+        res.render('login', result);
+    },
+
     getYourProfile: function (req, res) {
         var u = req.params.username;
         var query = {username: u};
