@@ -23,7 +23,8 @@
       text-align: justify;
     }
 
-    #origCommentDiv, .createcontainer, .editcontainer
+    #origCommentDiv, .createcontainer, .editcontainer,
+    #main_edit_container
     {
       display: none;
     }
@@ -94,10 +95,16 @@
         </ul> 
         <h1>The Importance of RAM</h1>
         <a href="../../users/alexandria_ramos.html" class="link"><h5>By: Alexandria Ramos</h5></a>
-        <h6>From the start of the term, sir was already hinting the importance of RAM and that technically, a machine's power would be limited when its RAM is removed. However, as I was researching on this topic, I could not seem to find any papers or answers to why a machine's power is highly dependent on its RAM. If anyone could enlighten me on this topic, I would be greatly thankful!</h6>
-        <button class = "btn cmt_btn" id = "comment_btn">
+        <h6 class = "main_cmt">From the start of the term, sir was already hinting the importance of RAM and that technically, a machine's power would be limited when its RAM is removed. However, as I was researching on this topic, I could not seem to find any papers or answers to why a machine's power is highly dependent on its RAM. If anyone could enlighten me on this topic, I would be greatly thankful!</h6>
+        <button class = "btn cmt_btn" id = "main_comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
         </button>
+        <button class="btn" id = "main_edit_btn" style = "float: right">
+            <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
+          </button>
+          <button class="btn dlt_btn" id = "main_delete_btn" title = "Delete discussion">
+            <i class="fas fa-eraser disc_icon"></i>
+          </button>
         <br>
         <hr>
         
@@ -137,13 +144,28 @@
              </div>
           </form>
         </div>  
-      
+        
+        <div id = "main_edit_container"
+             style = "margin-right: auto; margin-left: auto">
+          <form style = "width: 100%; height: 80%;">
+              <div class = "container input-group mb-3">
+                <textarea name = "paragraph_text" cols = "97" rows = "10" class = "edit_txt" id = "main_txt"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <button type = "button" name = "main_edit_button" id = "main_edit_button" class = "btn Editcmt_btn">Edit!
+              </button>
+             </div>
+          </form>
+        </div>  
+
       </div>
     </div>
 
     <script type="text/javascript">
       $(document).ready (function ()
       {
+        $("#main_txt").val ($(".main_cmt").html ());
+
         $("#search_btn").click (function ()
           {
             var searchVal = $("#searchBox").val ();
@@ -248,6 +270,14 @@
             alert ('deleted');
         });
 
+        $("#main_edit_button").click (function () {
+          $(".main_cmt").html ($("#main_txt").val ());
+          $("#main_edit_container").css ("display", "none");
+        });
+
+        $("#main_edit_btn").click (function () {
+          $("#main_edit_container").css ("display", "block");
+        });
       });
     </script>
 </body>
