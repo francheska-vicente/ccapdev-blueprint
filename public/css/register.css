@@ -44,3 +44,19 @@ label {
 	line-height: 40px; 
 	width: 80px;
 }
+
+.form-left .form-right {
+	display: block;
+}
+
+#first_name, #last_name,
+#email, #username,
+#password, #school {
+	border-radius: 0px; 
+	color: black;
+}
+
+#button-div {
+	padding: 0 40px; 
+	margin-top: 10px;
+}

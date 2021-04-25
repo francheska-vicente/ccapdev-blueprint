@@ -11,27 +11,35 @@ var UserSchema = new mongoose.Schema({
     },
     bio: {
         type: String,
-        required: true
+        required: false
     },
     username: {
         type: String,
         required: true
-    }
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: false
+    },
     bday: {
         type: Date,
         required: true
-    }
+    },
     phone: {
         type: String,
-        required: true
-    }
+        required: false
+    },
     uni: {
         type: String,
         required: true
-    }
+    },
     degree: {
         type: String,
-        required: true
+        required: false
     }
 });
 

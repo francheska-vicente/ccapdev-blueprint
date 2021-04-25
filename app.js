@@ -3,6 +3,8 @@ const exphbs = require('express-handlebars');
 
 const routes = require('./routes/routes.js');
 
+const db = require('./models/db.js');
+
 const app = express();
 const port = 3000;
 

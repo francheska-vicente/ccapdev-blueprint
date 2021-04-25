@@ -19,6 +19,7 @@
   "homepage": "https://github.com/DLSU-CCAPDEV/2021T2-G28#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^5.3.0"
+    "express-handlebars": "^5.3.0",
+    "mongoose": "^5.12.5"
   }
 }

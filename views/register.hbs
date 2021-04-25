@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="../css/register.css" rel="stylesheet">
+	<title>Sign Up | blueprint</title>
+</head>
+<body>
+	{{>topnav-alt}}
+	<div class="auth-bg">
+		<div class="tile">
+			<div class = "container box">
+				<div class = "display box" style="padding-top: 40px">
+					<div class = "auth-content">
+						<div class = "display">
+							<div class = "logo_container" style="margin-top: 5px">
+								<img src = "../images/user.png" class = "logo" alt = "Blueprint Logo">
+							</div>
+						</div>
+						<div class = "form">
+							<form id = "register" method="post">
+								<div class = "form-left">
+									<div class = "container input-group mb-3">
+										<label for="first_name" class="input_field">Name </label>
+										<input type = "text" name = "first_name" id = "first_name" class = "form-control input_user" value = "" placeholder = "First Name">
+									</div>
+								</div>
+								<div class = "form-right">
+									<div class = "container input-group mb-3  ">
+										<input type = "text" name = "last_name" id = "last_name" class = "form-control input_user" value = "" placeholder = "Last Name">
+									</div>
+								</div>
+								<div class = "container input-group mb-3">
+									<label for="email" class="input_field">E-mail </label>
+									<input type = "email" name = "email" id = "email" class = "form-control input_user" value = "" placeholder = "example@example.com">
+								</div>
+								
+								<div class = "container input-group mb-3">
+									<label for="username" class="input_field">Username </label>
+									<input type = "text" name = "username" id = "username" class = "form-control input_user" value = "" placeholder = "">
+								</div>
+								
+								<div class = "container input-group mb-3  ">
+									<label for="password" class="input_field">Password </label>
+									<input type = "password" name = "password" id = "password" class = "form-control input_pass" value = "" placeholder = "">
+								</div>
+								<div class = "container input-group mb-3  ">
+									<label for="school" class="input_field">University</label>
+									<input type = "text" name = "school" id = "school" class = "form-control input_user" value = "" placeholder = "">
+								</div>
+								<div class = "display" id = "button-div">
+									<input type="submit" id="signup_button" value="Sign Up" class = "btn signup_button" name = "signup_button">
+								</div>
+							</form>
+						</div>
+
+						<div style="margin-top: 0px;">
+							<div class = "display">
+								<p style = "margin-bottom: 0px"> Already have an account? </p> 
+							</div>
+							<div class = "display">
+								<a href = "login.html">Log In</a><pre> </pre><p>now!</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
