@@ -2,11 +2,13 @@ const express = require('express');
 
 const controller = require('../controllers/controller.js');
 const signupController = require('../controllers/signupController.js');
+const successController = require('../controllers/successController.js');
 
 const app = express();
 
 app.get('/register', signupController.getSignUp);
 app.post('/register', signupController.postSignUp);
+app.get('/success', successController.getSuccess);
 
 app.get('/profile/:username', controller.getProfile);
 app.get('/home', controller.getHome);

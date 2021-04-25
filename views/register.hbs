@@ -16,36 +16,36 @@
 								<img src = "../images/user.png" class = "logo" alt = "Blueprint Logo">
 							</div>
 						</div>
-						<div class = "form">
-							<form id = "register" method="post">
+						<div class = "form" style="padding-top: 40px">
+							<form id = "register" method="post" enctype="text/plain">
 								<div class = "form-left">
 									<div class = "container input-group mb-3">
-										<label for="first_name" class="input_field">Name </label>
-										<input type = "text" name = "first_name" id = "first_name" class = "form-control input_user" value = "" placeholder = "First Name">
+										<label for="fName" class="input_field">Name</label>
+										<input type="text" name="fName" id="fName" class="form-control input_user" placeholder="First Name" required>
 									</div>
 								</div>
 								<div class = "form-right">
-									<div class = "container input-group mb-3  ">
-										<input type = "text" name = "last_name" id = "last_name" class = "form-control input_user" value = "" placeholder = "Last Name">
+									<div class = "container input-group mb-3">
+										<input type="text" name="lName" id="lName" class="form-control input_user" placeholder="Last Name" required>
 									</div>
 								</div>
 								<div class = "container input-group mb-3">
-									<label for="email" class="input_field">E-mail </label>
-									<input type = "email" name = "email" id = "email" class = "form-control input_user" value = "" placeholder = "example@example.com">
+									<label for="email" class="input_field">E-mail</label>
+									<input type="email" name="email" id="email" class="form-control input_user" placeholder="example@example.com" required>
 								</div>
 								
 								<div class = "container input-group mb-3">
-									<label for="username" class="input_field">Username </label>
-									<input type = "text" name = "username" id = "username" class = "form-control input_user" value = "" placeholder = "">
+									<label for="username" class="input_field">Username</label>
+									<input type="text" name="username" id="username" class="form-control input_user" placeholder="" required>
 								</div>
 								
 								<div class = "container input-group mb-3  ">
-									<label for="password" class="input_field">Password </label>
-									<input type = "password" name = "password" id = "password" class = "form-control input_pass" value = "" placeholder = "">
+									<label for="password" class="input_field">Password</label>
+									<input type="password" name="password" id="password" class="form-control input_pass" placeholder = "" required>
 								</div>
 								<div class = "container input-group mb-3  ">
 									<label for="school" class="input_field">University</label>
-									<input type = "text" name = "school" id = "school" class = "form-control input_user" value = "" placeholder = "">
+									<input type="text" name="school" id="school" class="form-control input_user" placeholder="De La Salle University" required>
 								</div>
 								<div class = "display" id = "button-div">
 									<input type="submit" id="signup_button" value="Sign Up" class = "btn signup_button" name = "signup_button">
