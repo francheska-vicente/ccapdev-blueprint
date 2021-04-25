@@ -1,11 +1,8 @@
 const express = require('express');
-
 const bodyParser = require('body-parser');
-
 const exphbs = require('express-handlebars');
 
 const routes = require('./routes/routes.js');
-
 const db = require('./models/db.js');
 
 const app = express();
@@ -16,7 +13,7 @@ app.engine('hbs', exphbs({
     extname: '.hbs'
 }));
 
-app.use (bodyParser.urlencoded ({ extended : false}));
+app.use(bodyParser.urlencoded ({ extended : false}));
 app.use(bodyParser.json());
 app.set('view engine', 'hbs');
 

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="../css/register.css" rel="stylesheet">
+	<link href="../css/success.css" rel="stylesheet">
 	<title>Sign Up | blueprint</title>
 </head>
 <body>
 	{{>topnav-alt}}
-	<div class="auth-bg">
-		<div class="tile">
-			<h1 id="title"> Welcome {{fName}} {{lName}}!</h1>
-        	<p> Go to your profile <a href="/profile/{{username}}">here</a></p>
+		<div id="container">
+			<div id="welcome">
+				<h1>Welcome to</h1><pre>  </pre><h3>blueprint</h3><pre> </pre><h1>, {{fName}} {{lName}}!</h1>
+			</div>
+			<div id="link">
+		  	<a href="login">You can now log in!</a>
+			</div>
 		</div>
-	</div>
 </body>
 </html>

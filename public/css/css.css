@@ -56,6 +56,7 @@ input[type="email"] {
 
 .navbar {
 	min-width: 700px;
+	height: 6%;
 }
 
 .navbar-custom { 
