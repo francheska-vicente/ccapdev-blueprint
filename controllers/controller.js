@@ -1,14 +1,8 @@
 const db = require('../models/db.js');
 
 const controller = {
-
-    getProfile: function (req, res) {
-        var u = req.params.username;
-        var query = {username: u};
-
-        db.findOne('profiles', query, function (result) {
-            res.render('profile', result);
-        });
+    getSplash: function (req, res) {
+        res.render('splash');
     },
 
     getHome: function (req, res) {
@@ -20,6 +14,14 @@ const controller = {
         });
     },
 
+    getYourProfile: function (req, res) {
+        var u = req.params.username;
+        var query = {username: u};
+
+        db.findOne('profiles', query, function (result) {
+            res.render('profile', result);
+        });
+    },
     getYourSchedule: function (req, res) {
         var u = req.params.username;
         var query = {username: u};
@@ -29,21 +31,30 @@ const controller = {
         });
     },
 
+    getUserProfile: function (req, res) {
+        var u = req.params.username;
+        var query = {username: u};
+
+        db.findOne('profiles', query, function (result) {
+            res.render('userprofile', result);
+        });
+    },
+
+    getUserSchedule: function (req, res) {
+        var u = req.params.username;
+        var query = {username: u};
+
+        db.findOne('profiles', query, function (result) {
+            res.render('userschedule', result);
+        });
+    },
+
     getDashboard: function (req, res) {
         var u = req.params.username;
         var query = {username: u};
 
         db.findOne('profiles', query, function (result) {
             res.render('dashboard', result);
-        });
-    },
-
-    getUser: function (req, res) {
-        var u = req.params.username;
-        var query = {username: u};
-
-        db.findOne('profiles', query, function (result) {
-            res.render('user', result);
         });
     },
 

@@ -10,14 +10,21 @@ const app = express();
 app.use (bodyParser.urlencoded ({extended : false}));
 app.use(bodyParser.json());
 
+app.get('/', controller.getSplash);
+
+app.get('/login', signupController.getLogin);
 app.get('/register', signupController.getSignUp);
 app.post('/register', signupController.postSignUp);
 app.get('/success', successController.getSuccess);
 
-app.get('/profile/:username', controller.getProfile);
 app.get('/home', controller.getHome);
+
+app.get('/profile', controller.getYourProfile);
 app.get('/schedule/yourschedule', controller.getYourSchedule);
-app.get('/user/:username/profile', controller.getUser);
+
+app.get('/:username/profile', controller.getUserProfile);
+app.get('/:username/schedule', controller.getUserSchedule);
+
 app.get('/classes/dashboard', controller.getDashboard);
 app.get('/classes/:coursecode/home', controller.getClass);
 
