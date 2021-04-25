@@ -5,8 +5,7 @@ const User = require('./UserModel.js');
 const url = 'mongodb://localhost:27017/blueprint';
 
 const options = {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
+    useUnifiedTopology: true
 };
 
 const database = {

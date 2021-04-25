@@ -8,25 +8,19 @@ const signupController = {
     },
 
     postSignUp: function (req, res) {
-        var fName = req.body.fName;
-        var lName = req.body.lName;
-        var email = req.body.email;
-        var username = req.body.username;
-        var password = req.body.password;
-        var school = req.body.school;
-
         var user = {
-            fName: fName,
-            lName: lName,
-            email: email,
-            username: email,
-            password: password,
-            school: school
-        }
+            fName: req.body.fName,
+            lName: req.body.lName,
+            email:  req.body.email,
+            username: req.body.username,
+            password: req.body.password,
+            school:  req.body.school
+        };
 
         db.insertOne(User, user, function(flag) {
             if(flag) {
-                res.redirect('/success?fName=' + fName +'&lName=' + lName + '&username=' + username);
+                //res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName + '&username=' + user.username);
+                console.log (user.fName);
             }
         });
     }
