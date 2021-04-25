@@ -81,14 +81,123 @@
     </div>
 
     <script type="text/javascript">
-        function click_fn ()
-        {
-            var searchVal = document.getElementById ("searchBox");
+        $(document).ready (function ()
+      {
+        $("#main_txt").val ($(".main_cmt").html ());
+
+        $("#search_btn").click (function ()
+          {
+            var searchVal = $("#searchBox").val ();
             location.href = "../../search.html";
+          });
+
+        function comment_func ()
+        {
+          $(this).closest(".commentDiv").find (".createcontainer").css ("display", "block");
         }
-        
-        var button = document.getElementById ("search_btn");
-        button.onclick = click_fn;
+
+        function edit_func ()
+        {
+          var div = $(this).closest(".commentDiv");
+          var content = div.children (".comment_content").html ();
+
+          var container = div.find (".editcontainer");
+          container.find (".container").children ().val (content);
+          container.css ("display", "block");
+        }
+
+        function delete_func ()
+        {
+          alert ("deleted");
+        }
+
+        function post_comment ()
+        {
+            var form = $(this).closest(".createcontainer").find (".container");
+            var comment_box = form.children ();
+            var commentVal =  comment_box.val ();
+            var numOfComments = $(".commentDiv").length;
+
+            var commentNode = $("<h6/>").html (commentVal);
+            commentNode.attr ("class", "comment_content");
+            var nameNode = $("<h5/>").html ("Harry Potter");
+            var commentDiv = $("#origCommentDiv").clone ();
+
+            commentDiv.prepend (commentNode);
+            commentDiv.prepend (nameNode);
+            commentDiv.append ($("<br/><hr/>"));
+            commentDiv.attr ("id", "commentDiv" + numOfComments);
+            commentDiv.attr ("class", "commentDiv");
+
+            var commentButton  = commentDiv.find ("#comment_btn");
+            commentButton.attr ("id", "comment_btn" + numOfComments);
+            commentButton.click (comment_func);
+
+            var editButton = commentDiv.find ("#edit_btn");
+            editButton.attr ("id", "edit_btn" + numOfComments);
+            editButton.click (edit_func);
+
+            var delButton = commentDiv.find ("#delete_btn");
+            delButton.attr ("id", "delete_btn" + numOfComments);
+            delButton.click (delete_func);
+
+            var createC = $("#origCreateDiv").clone ();
+            createC.attr ("id", "createcontainer" + numOfComments);
+            createC.find ("#comment_button").attr ("id", "comment_button" + numOfComments).click (post_comment);
+            createC.find (".container").children ().val ("");
+
+            var editC = $("#origEditDiv").clone ();
+            editC.attr ("id", "editcontainer" + numOfComments);
+            editC.find ("#edit_button").attr ("id", "edit_button" + numOfComments).click (edit_comment);
+
+            commentDiv.append (createC);
+            commentDiv.append (editC);
+
+            $(".main").append (commentDiv);
+            commentDiv.css ("display", "block");
+            $(".createcontainer").css ("display", "none");
+            comment_box.val ("");
+        }
+
+        function edit_comment ()
+        {
+          var form = $(this).closest(".editcontainer").find (".container");
+          var edit_box = form.children ();
+          var commentVal = edit_box.val ();
+          
+          $(this).closest (".commentDiv").children (".comment_content").html (commentVal);
+          $(".editcontainer").css ("display", "none");
+        }
+
+        $(".createcontainer").on ("click", ".Addcmt_btn", post_comment);
+
+        $(".editcontainer").on ("click", ".Editcmt_btn", edit_comment);
+
+        $(".cmt_btn").click (function ()
+        {
+            $(".createcontainer").css ("display", "block");
+        });
+
+        $(".edt_btn").click (function ()
+        {
+            $(".editcontainer").css ("display", "block");
+        });
+
+        $(".dlt_btn").click (function ()
+        {
+            // add something here
+            alert ('deleted');
+        });
+
+        $("#main_edit_button").click (function () {
+          $(".main_cmt").html ($("#main_txt").val ());
+          $("#main_edit_container").css ("display", "none");
+        });
+
+        $("#main_edit_btn").click (function () {
+          $("#main_edit_container").css ("display", "block");
+        });
+      });
     </script>
 </body>
 </html>
