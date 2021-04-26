@@ -5,6 +5,10 @@ var ClassSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    classID : {
+        type: String,
+        required: true
+    },
     coursecode: {
         type: String,
         required: true
