@@ -27,5 +27,6 @@ app.get('/:username/schedule', controller.getUserSchedule);
 
 app.get('/classes/dashboard', controller.getDashboard);
 app.get('/classes/:coursecode/home', controller.getClass);
+app.get('/classes/:coursecode/discussions', controller.getDiscussions);
 
 module.exports = app;
