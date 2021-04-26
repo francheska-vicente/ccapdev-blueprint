@@ -60,15 +60,6 @@ const controller = {
         db.findOne('profiles', query, function (result) {
             res.render('dashboard', result);
         });
-    },
-
-    getClass: function (req, res) {
-        var c = req.params.coursecode;
-        var query = {coursecode: c};
-
-        db.findOne('classes', query, function (result) {
-            res.render('class', result);
-        });
     }
 }
 
