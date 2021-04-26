@@ -16,18 +16,22 @@ var ClassSchema = new mongoose.Schema({
     classtimeA: {
         type: String,
         required: true
-    }
+    },
     classdayA: {
         type: Date,
         required: true
-    }
+    },
     classtimeB: {
         type: String,
         required: true
-    }
+    },
     classdayB: {
         type: Date,
         required: true
+    },
+    classList : {
+        type : [String],
+        required: false
     }
 });
 
