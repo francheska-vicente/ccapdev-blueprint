@@ -30,6 +30,7 @@ const controller = {
             res.render('profile', result);
         });
     },
+    
     getYourSchedule: function (req, res) {
         var u = req.params.username;
         var query = {username: u};
