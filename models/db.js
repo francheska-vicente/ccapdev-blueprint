@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
 const User = require('./UserModel.js');
-const Discussions = require ('./DiscModel.js');
-const Courses = require ('./ClassModel.js');
+const Discussion = require ('./DiscModel.js');
+const Course = require ('./ClassModel.js');
+const Note = require ('./NotesModel.js');
 
 const url = 'mongodb://localhost:27017/blueprint';
 
@@ -43,7 +44,6 @@ const database = {
     },
 
     findMany: function(model, query, projection, callback) {
-        console.log (Discussions);
         model.find(query, projection, function(error, result) {
             if(error) return callback(false);
             return callback(result);
