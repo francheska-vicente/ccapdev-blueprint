@@ -22,10 +22,6 @@ const classController = {
         db.findMany (Discussions, query, null, function (err, result) {
             res.render('discussions', result);
         });
-
-        db.count (Discussions, query, function (err, result) {
-        	res.render('discussions', result);
-        });
     }
 }
 
