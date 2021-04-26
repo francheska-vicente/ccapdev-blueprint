@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const User = require('./UserModel.js');
 const Discussions = require ('./DiscModel.js');
+const Courses = require ('./ClassModel.js');
 
 const url = 'mongodb://localhost:27017/blueprint';
 
