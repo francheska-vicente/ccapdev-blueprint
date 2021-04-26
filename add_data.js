@@ -3,8 +3,6 @@ const db = require('./models/db.js');
 const collection1 = 'profiles';
 const collection2 = 'classes';
 
-db.createDatabase();
-
 var user = {
     fName: 'Harry',
     lName: 'Potter',
