@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const User = require('./UserModel.js');
+const Discussions = require ('./DiscModel.js');
 
 const url = 'mongodb://localhost:27017/blueprint';
 
@@ -41,6 +42,7 @@ const database = {
     },
 
     findMany: function(model, query, projection, callback) {
+        console.log (Discussions);
         model.find(query, projection, function(error, result) {
             if(error) return callback(false);
             return callback(result);
@@ -76,6 +78,14 @@ const database = {
             if(error) return callback(false);
             console.log('Document deleted: ' + result.deletedCount);
             return callback(true);
+        });
+    },
+
+    count : function (model, query, callback) {
+        model.count (query, function (error, result) {
+            if(error) return callback(false);
+            console.log('Documents: ' + resultt);
+            return callback(result);
         });
     }
 }

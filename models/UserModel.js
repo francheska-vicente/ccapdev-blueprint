@@ -40,6 +40,11 @@ var UserSchema = new mongoose.Schema({
     degree: {
         type: String,
         required: false
+    },
+    classes :
+    {
+        type: [String],
+        required: false
     }
 });
 
