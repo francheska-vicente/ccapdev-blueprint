@@ -38,4 +38,4 @@ var DiscSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Discussions', DiscSchema);
+module.exports = mongoose.model('Discussion', DiscSchema);
