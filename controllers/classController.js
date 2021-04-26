@@ -3,8 +3,10 @@ const Discussions = require('../models/DiscModel.js');
 
 const classController = {
 	getClass: function (req, res) {
-        var c = req.params.coursecode;
-        var query = {coursecode: c};
+        var c = req.params.classID;
+        var query = {
+        	classID: c
+        };
 
         db.findOne('Class', query, function (result) {
             res.render('Class', result);
@@ -12,13 +14,17 @@ const classController = {
     },
 
     getDiscussions: function (req, res) {
-    	var c = req.params.coursecode;
+    	var c = req.params.classID;
         var query = {
-        	coursecode: c
+        	classID: c
         };
-        console.log ("updated");
+
         db.findMany (Discussions, query, null, function (err, result) {
-            res.render('Discussions', result);
+            res.render('discussions', result);
+        });
+
+        db.count (Discussions, query, function (err, result) {
+        	res.render('discussions', result);
         });
     }
 }
