@@ -3,7 +3,7 @@
 <html>
 <head>
     <link href="../../../css/class.css" rel="stylesheet">
-	<title>Discussion | blueprint</title>
+	<title>Discussion | {{subj}}</title>
   <style>
     h6
     {
@@ -42,7 +42,7 @@
         <ul class="breadcrumb">
           <li><a href="../../home.html">blueprint</a></li>
           <li><a href="../../dashboard.html">Classes</a></li>
-          <li><a href="class.html">CCAPDEV</a></li>
+          <li><a href="class.html">{{subj}}</a></li>
           <li>Discussions</li>
         </ul> 
         <h1>Discussions</h1>
@@ -57,26 +57,18 @@
             <h3>Replies</h3>
           </div>
         </div>
+        {{#each discussions}}
         <a href = "discussions0.html" class="links">
           <div class="row">
             <div class="left">
-              <h6>Clarification on the usage of Flexbox</h6>
+              <h6>{{disc_title}}</h6>
             </div>
             <div class="right">
-              <h6>1</h6>
+              <h6>{{disc_replies}}</h6>
             </div>
           </div>
         </a>
-        <a href = "discussions1.html" class="links">
-          <div class="row">
-            <div class="left">
-              <h6>Finding group mates!</h6>
-            </div>
-            <div class="right">
-              <h6>1</h6>
-            </div>
-          </div>
-        </a>
+        {{/each}}
       </div>
     </div>
 

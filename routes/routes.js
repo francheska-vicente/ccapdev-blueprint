@@ -4,6 +4,7 @@ const bodyParser = require (`body-parser`);
 const controller = require('../controllers/controller.js');
 const signupController = require('../controllers/signupController.js');
 const successController = require('../controllers/successController.js');
+const classController = require('../controllers/classController.js');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.get('/:username/profile', controller.getUserProfile);
 app.get('/:username/schedule', controller.getUserSchedule);
 
 app.get('/classes/dashboard', controller.getDashboard);
-app.get('/classes/:coursecode/home', controller.getClass);
+app.get('/classes/:coursecode/home', classController.getClass);
+app.get('/classes/:coursecode/discussions', classController.getDiscussions);
 
 module.exports = app;
