@@ -46,6 +46,22 @@ const controller = {
         });
     },
 
+    getEditProfile: function (req, res) {
+        var query = log;
+
+        db.findOne(User, query, '', function (result) {
+            res.render('editprofile', result);
+        });
+    },
+
+    getYourProfile: function (req, res) {
+        var query = log;
+
+        db.findOne(User, query, '', function (result) {
+            res.render('profile', result);
+        });
+    },
+
     getYourSchedule: function (req, res) {
         var query = log;
 
