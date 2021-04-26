@@ -3,10 +3,6 @@ const User = require('../models/UserModel.js');
 
 const signupController = {
 
-    getSignUp: function (req, res) {
-        res.render('register');
-    },
-
     postSignUp: function (req, res) {
         var user = {
             fName: req.body.fName,
@@ -19,14 +15,10 @@ const signupController = {
 
         db.insertOne(User, user, function(flag) {
             if(flag) {
-                res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName + '&username=' + user.username);
+                res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName);
             }
         });
     }
 }
 
-/*
-    exports the object `signupController` (defined above)
-    when another script exports from this file
-*/
 module.exports = signupController;
