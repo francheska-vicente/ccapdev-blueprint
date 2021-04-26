@@ -32,4 +32,4 @@ var ReqsSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Requirements', ReqsSchema);
+module.exports = mongoose.model('Requirement', ReqsSchema);
