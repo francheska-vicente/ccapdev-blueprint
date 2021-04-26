@@ -1,4 +1,5 @@
 const db = require('../models/db.js');
+const Discussions = require('../models/DiscModel.js');
 
 const classController = {
 	getClass: function (req, res) {
@@ -15,8 +16,8 @@ const classController = {
         var query = {
         	coursecode: c
         };
-
-        db.findMany ('Discussions', query, function (result) {
+        console.log ("updated");
+        db.findMany (Discussions, query, null, function (err, result) {
             res.render('Discussions', result);
         });
     }
