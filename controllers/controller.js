@@ -54,7 +54,7 @@ const controller = {
         });
     },
 
-    getYourProfile: function (req, res) {
+    getDelProfile: function (req, res) {
         var query = log;
 
         db.findOne(User, query, '', function (result) {

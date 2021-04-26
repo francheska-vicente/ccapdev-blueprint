@@ -18,7 +18,7 @@ const signupController = {
                 res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName + '&username=' + user.username);
             }
         });
-    }
+    },
 
     postDelProfile: function (req, res) {
         var user = {
