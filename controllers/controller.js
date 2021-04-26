@@ -14,8 +14,12 @@ const controller = {
         });
     },
 
+    getSignUp: function (req, res) {
+        res.render('register');
+    },
+
     getLogin: function (req, res) {
-        res.render('login', result);
+        res.render('login');
     },
 
     getYourProfile: function (req, res) {
