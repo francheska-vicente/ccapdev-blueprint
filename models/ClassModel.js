@@ -33,10 +33,11 @@ var ClassSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    
     classList : {
         type : [String],
         required: false
     }
 });
 
-module.exports = mongoose.model('Courses', ClassSchema);
+module.exports = mongoose.model('Course', ClassSchema);
