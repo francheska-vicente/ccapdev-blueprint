@@ -13,7 +13,7 @@ const signupController = {
             uni:  req.body.school
         };
 
-        db.insertOne(User, user, function(flag) {
+        db.updateOne(User, user, function(flag) {
             if(flag) {
                 res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName + '&username=' + user.username);
             }

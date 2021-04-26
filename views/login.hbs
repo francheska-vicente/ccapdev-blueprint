@@ -17,7 +17,7 @@
 							</div>
 						</div>
 						<div class = "display form_container">
-							<form>
+							<form id = "login" method="post">
 								<div class = "input-group mb-3">
 									<div class = "input-group-append">
 										<span class = "input-group-text group"> <i class = "fas fa-user"></i>
@@ -33,8 +33,7 @@
 									<input type = "password" name = "password" id = "password" class = "form-control input_pass" placeholder = "Password" style="color: black">
 								</div>
 								<div class = "display" style = "padding: 0 40px; margin-top: 20px">
-								 	<button type = "button" name = "login_button" class = "btn login_button" id = "login_btn">Login
-								 	</button>
+								 	<input type="submit" id="login_btn" value="Log In" class = "btn login_button" name = "login_button">
 							   </div>
 							</form>
 						</div>
@@ -44,7 +43,7 @@
 								<p style = "margin-bottom: 0px"> Don't have an account yet? </p> 
 							</div>
 							<div class = "display">
-								<a href = "register.html">Sign Up</a> 
+								<a href = "register">Sign Up</a> 
 								<pre> </pre>
 								<p>now!</p>
 							</div>

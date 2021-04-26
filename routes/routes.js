@@ -14,13 +14,17 @@ app.use(bodyParser.json());
 app.get('/', controller.getSplash);
 
 app.get('/login', controller.getLogin);
-app.get('/register', signupController.getSignUp);
+app.post('/login', controller.postLogin);
+app.get('/register', controller.getSignUp);
 app.post('/register', signupController.postSignUp);
 app.get('/register-success', successController.getSuccessReg);
 
 app.get('/home', controller.getHome);
 
-app.get('/profile/:username', controller.getYourProfile);
+app.get('/profile', controller.getYourProfile);
+app.get('/profile/edit', controller.getYourProfile);
+app.get('/profile/delete', controller.getYourProfile);
+
 app.get('/schedule/yourschedule', controller.getYourSchedule);
 
 app.get('/profile-deletion-success', successController.getSuccessReg);

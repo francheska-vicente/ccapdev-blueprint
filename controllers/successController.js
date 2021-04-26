@@ -7,7 +7,7 @@ const successController = {
         };
 
         res.render('success-reg', details);
-    }
+    },
     getSuccessDel: function (req, res) {
         res.render('success-del');
     }

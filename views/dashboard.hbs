@@ -13,60 +13,17 @@
       <div id="class-list">
         <h1>Your Classes</h1>
         <h5>A list of all your classes for the term. Click on any of the classes below!</h5><hr>
-        <a href="classes/apdev/class.html" class="link">
-          <div class="class-container">
-            <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
-            <div class="text-container">
-               <h2>Web Application Development</h2>
-              <h3>CCAPDEV</h3>
-            </div>
-          </div>  
-        </a>
-        <a href="classes/apdev/class.html" class="link">
-          <div class="class-container">
-            <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
-            <div class="text-container">
-               <h2>Web Application Development</h2>
-              <h3>CCAPDEV</h3>
-            </div>
-          </div>  
-        </a>
-        <a href="classes/arch1/class.html" class="link">
-          <div class="class-container">
-            <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
-            <div class="text-container">
-               <h2>Introduction to Computer Organization and Architecture</h2>
-              <h3>CSARCH1</h3>
-            </div>
-          </div>  
-        </a>
-        <a href="classes/geteams/class.html" class="link"> 
-          <div class="class-container">
-            <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
-            <div class="text-container">
-              <h2>Physical Fitness and Wellness in Team Sports</h2>
-              <h3>GETEAMS</h3>
-            </div>
-          </div>
-         </a>
-        <a href="classes/algcm/class.html" class="link"> 
-          <div class="class-container">
-            <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
-            <div class="text-container">
-              <h2>Advanced Algorithms and Complexities</h2> 
-              <h3>STALGCM</h3>
-            </div>
-          </div>
-        </a>
-        <a href="classes/stmath/class.html" class="link"> 
-          <div class="class-container">
-            <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
-            <div class="text-container">
-              <h2>Integral Calculus for Computer Science Students</h2> 
-              <h3>ST-MATH</h3>
-            </div>
-          </div>
-        </a>
+          {{#each class}}
+            <a href="classes/apdev/class.html" class="link">
+              <div class="class-container">
+                <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
+                <div class="text-container">
+                   <h2>{{classname}}</h2>
+                  <h3>{{coursecode}}</h3>
+                </div>
+              </div>  
+            </a>
+          {{/each}}
       </div>
     </div>
   </body>

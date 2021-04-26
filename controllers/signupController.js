@@ -15,7 +15,7 @@ const signupController = {
 
         db.insertOne(User, user, function(flag) {
             if(flag) {
-                res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName);
+                res.redirect('/register-success?fName=' + user.fName +'&lName=' + user.lName);
             }
         });
     }
