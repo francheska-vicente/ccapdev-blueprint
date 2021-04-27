@@ -43,7 +43,7 @@ const classController = {
         db.findMany (Discussion, {classID: c}, null, function (result) {
             var temp = {
                 coursecode: coursecode, 
-                classIDclassID: classID, 
+                classID: coursecode, 
                 results: result
             }
             console.log (temp.coursecode);
