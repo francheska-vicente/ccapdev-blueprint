@@ -10,6 +10,16 @@ var CommentsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+
+    fName : {
+        type: String,
+        required: true
+    },
+
+    lName : {
+        type: String,
+        required: true
+    },
     
     parentID: {
         type: String,
