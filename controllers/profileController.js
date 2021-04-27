@@ -3,34 +3,7 @@ const User = require('../models/UserModel.js');
 
 const signupController = {
 
-    postEditProfile: function (req, res) {
-        var user = {
-            fName: req.body.fName,
-            lName: req.body.lName,
-            email:  req.body.email,
-            username: req.body.username,
-            password: req.body.password,
-            uni:  req.body.school
-        };
-
-        db.updateOne(User, user, function(flag) {
-            if(flag) {
-                res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName + '&username=' + user.username);
-            }
-        });
-    },
-
-    postDelProfile: function (req, res) {
-        var user = {
-            username: req.body.username,
-        };
-
-        db.deleteOne(User, user, function(flag) {
-            if(flag) {
-                res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName + '&username=' + user.username);
-            }
-        });
-    }
+    
 }
 
 /*

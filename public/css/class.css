@@ -1,8 +1,6 @@
 #content {
-    height: 100%;
     min-width: 1180px;
-    min-height: 100%;
-    height: max-content;
+    height: 93.5%;
     
     margin: 0px;
     margin-top: -20px;
@@ -14,6 +12,7 @@
 
 .main {
     background-color: white;
+    height: 93.5%;
     width: 80%;
     padding: 40px;
 }
@@ -21,7 +20,7 @@
 #class-info {
     padding: 40px; 
     background-color: white;
-    height: 95%;
+    height: 70%;
 }
 
 .left

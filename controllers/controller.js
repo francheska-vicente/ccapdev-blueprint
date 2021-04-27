@@ -42,8 +42,35 @@ const controller = {
         res.render('editprofile', user);
     },
 
+    postEditProfile: function (req, res) {
+        var update = {
+            username: req.body.username,
+            phone: req.body.contact_no,
+            bday:  req.body.bday,
+            degree:  req.body.degree,
+            bio:  req.body.bio,
+            password:  req.body.n_password,
+        };
+
+        db.updateOne(User, {username: user.username}, update, function(result) {
+            res.redirect('/profile');
+        });
+    },
+
     getDelProfile: function (req, res) {
         res.render('profile', user);
+    },
+
+    postDelProfile: function (req, res) {
+        var user = {
+            username: req.body.username,
+        };
+
+        db.deleteOne(User, user, function(flag) {
+            if(flag) {
+                res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName + '&username=' + user.username);
+            }
+        });
     },
 
     getYourSchedule: function (req, res) {
