@@ -37,22 +37,21 @@ const classController = {
 
     getDiscussions: function (req, res) {
     	var c = req.params.classID;
-        var query = {
-        	classID: c
-        };
-
-        var classInfo;
-        var results;
-        
-        db.findOne (Course, query, null, function (classInfo) {
-        	classInfo = classInfo;
-        });
-
-        db.findMany (Discussion, query, null, function (err, result) {
-            results = result;
-        });
-
-        res.render('discussions', classInfo, results);
+    
+        var coursecode;
+       
+        db.findOne (Course, {classID: c}, null, function (result) {
+            coursecode = result.coursecode;
+        }); 
+       
+        db.findMany (Discussion, {classID: c}, null, function (result) {
+            var temp = {
+                coursecode: coursecode, 
+                results: result
+            }
+            console.log (temp.coursecode);
+           res.render('discussions', temp);
+        });  
     },
 
     getDiscussionsPost: function (req, res) {
