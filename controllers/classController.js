@@ -47,6 +47,7 @@ const classController = {
                 classID: coursecode, 
                 results: result
             }
+
            res.render('discussions', temp);
         });  
     },
@@ -56,41 +57,35 @@ const classController = {
         var b = req.params.discID;
 
         var coursecode;
-        var disc = {
-            classID : "",
-            username : "", 
-            discID : "",
-            title : "",
-            content : "", 
-            date : "",
-            numOfComments : ""
-        };
+        var content, title, author;
         
         var comments;
         
         db.findOne (Course, {classID : c}, null, function (classInfo) {
             coursecode = classInfo.coursecode;
         });
-
-        db.findOne (Discussion, {discID : b}, null, function (result) {
-            disc.classID = result.classID;
-            disc.username = result.username; 
-            disc.discID = result.discID;
-            disc.title = result.title;
-            disc.content = result.content;
-            disc.date = result.date;
-            disc.numOfComments = result.numOfComments;
+      
+        db.findOne (Discussion, {discID : b}, null, function (discInfo) {
+            console.log (discInfo.content);
+            content = discInfo.content;
+            title = discInfo.title;
+            author = discInfo.username;
         });
 
-        db.findMany (Comment, {}, null, function (result) {
+        db.findMany (Comment, {mainID: b}, null, function (result) {
+            var disc = {
+                content: content,
+                title: title,
+                username : author,
+                discID : b
+            }
+
             var temp = {
                 coursecode: coursecode,
                 disc : disc,
                 comments : result
             }
-            console.log (temp.coursecode);
-            console.log (" " + temp.disc);
-            console.log (" " + temp.comments);
+            
             res.render('discussions-post', temp);
         });
 
