@@ -71,36 +71,15 @@ const controller = {
     },
 
     getDashboard: function (req, res) {
-        var classes = [];
-        // for (let j = 0; j < user.classes.length; j++) {
-        //     var c = {
-        //         classID: user.classes[j]
-        //     }
-        //     console.log(c.classID);
-        //     db.findOne(Course, c, '', function (result) {
-        //         classes.push(result);
-        //         console.log("0 " + result.classname)
-        //         console.log("1 " + classes[0].classname)
-        //     });
-        // }
+        var classIDs = user.classes.map(function(a){return a.classID})
+        // db.findMany(Course, {classID : {$in : classIDs}}, '', function (result) {
+        //     res.render('dashboard', result);
+        // });
 
-        var result = {
-            classname: "rawr",
-            coursecode: "CCAPDEV",
-            classID: "1234"
-        }
-
-        classes.push(result);
-
-        // result = {
-        //     classname: "rawr2",
-        //     coursecode: "CCAPDEV2",
-        //     classID: "4321"
-        // }
-
-        // classes.push(result);
-
-        res.render('dashboard', result);
+        db.findOne(Course, {classID : "123"}, '', function (result) {
+            res.render('dashboard', result);
+        });
+        
     }
 }
 

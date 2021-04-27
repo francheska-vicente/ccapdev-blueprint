@@ -11,7 +11,18 @@ const classController = {
         };
 
         db.findOne(Course, query, null, function (result) {
-            res.render(Course, result);
+            res.render('class', result);
+        });
+    },
+
+    getClassList: function (req, res) {
+        var c = req.params.classID;
+        var query = {
+            classID: c
+        };
+
+        db.findOne(Course, query, null, function (result) {
+            res.render('classlist', result);
         });
     },
 
@@ -33,6 +44,17 @@ const classController = {
         });
 
         res.render('discussions', classInfo, results);
+    },
+
+    getReqs: function (req, res) {
+        var c = req.params.classID;
+        var query = {
+            classID: c
+        };
+
+        db.findOne(Course, query, null, function (result) {
+            res.render('reqs', result);
+        });
     },
 
     getNotes : function (req, res) {
