@@ -3,6 +3,7 @@ const User = require('../models/UserModel.js');
 const Discussion = require('../models/DiscModel.js');
 const Course = require ('../models/ClassModel.js');
 const Note = require ('../models/NotesModel.js');
+const Comment = require ('../models/CommentModel.js');
 
 const classController = {
 	getClass: function (req, res) {
@@ -53,22 +54,48 @@ const classController = {
 
     getDiscussionsPost: function (req, res) {
         var c = req.params.classID;
-        var query = {
-            classID: c
+        var b = req.params.discID;
+
+        var coursecode;
+        var disc = {
+            classID : "",
+            username : "", 
+            discID : "",
+            title : "",
+            content : "", 
+            date : "",
+            numOfComments : ""
         };
-
-        var classInfo;
-        var results;
         
-        db.findOne (Course, query, null, function (classInfo) {
-            classInfo = classInfo;
+        var comments;
+        
+        db.findOne (Course, {classID : c}, null, function (classInfo) {
+            coursecode = classInfo.coursecode;
         });
 
-        db.findMany (Discussion, query, null, function (err, result) {
-            results = result;
+        db.findOne (Discussion, {discID : b}, null, function (result) {
+            disc.classID = result.classID;
+            disc.username = result.username; 
+            disc.discID = result.discID;
+            disc.title = result.title;
+            disc.content = result.content;
+            disc.date = result.date;
+            disc.numOfComments = result.numOfComments;
         });
 
-        res.render('discussions-post', classInfo, results);
+        db.findMany (Comment, {}, null, function (result) {
+            var temp = {
+                coursecode: coursecode,
+                disc : disc,
+                comments : result
+            }
+            console.log (temp.coursecode);
+            console.log (" " + temp.disc);
+            console.log (" " + temp.comments);
+            res.render('discussions-post', temp);
+        });
+
+        
     },
 
     getReqs: function (req, res) {
