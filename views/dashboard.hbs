@@ -13,11 +13,10 @@
       <div id="class-list">
         <h1>Your Classes</h1>
         <h5>A list of all your classes for the term. Click on any of the classes below!</h5><hr>
-          {{#if result}}
-            {{#each result}}
-              <a href="classes/{{classID}}/class" class="link">
+            {{#each this}}
+              <a href="/classes/{{classID}}/home" class="link">
                 <div class="class-container">
-                  <div class="img-container"><img src = "../images/book.png" class = "img" alt = "Blueprint Logo"></div>
+                  <div class="img-container"><img src="../images/book.png" class="img" alt="{{classname}}"></div>
                   <div class="text-container">
                     <h2>{{classname}}</h2>
                     <h3>{{coursecode}}</h3>
@@ -25,9 +24,7 @@
                 </div>  
               </a>
             {{/each}}
-          {{else}}
-            <h3 style="text-align: center; padding: 40px">You have no classes yet.</h3>
-          {{/if}}
+            <!-- <h3 style="text-align: center; padding: 40px">You have no classes yet.</h3> -->
       </div>
     </div>
   </body>

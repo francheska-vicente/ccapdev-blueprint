@@ -47,7 +47,7 @@ const database = {
         model.find(query, projection, function(error, result) {
             if(error) return callback(false);
             return callback(result);
-        });
+        }).lean();
     },
 
     updateOne: function(model, filter, update) {

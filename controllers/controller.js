@@ -71,27 +71,10 @@ const controller = {
     },
 
     getDashboard: function (req, res) {
-        var classIDs = ['123'];
-        // db.findMany(Course, {classID : {$in : classIDs}}, '', function (result) {
-        //     res.render('dashboard', result);
-        // });
-
-        var class1 = {
-            classname : "rawr",
-            coursecode :  "CCAPDEV",
-            classID : "1234"
-        }
-
-        var class2 = {
-            classname : "rawr2",
-            coursecode :  "CCAPDEV2",
-            classID : "4321"
-        }
-
-        var result = []
-        result.push(class1)
-        result.push(class2)
-        res.render('dashboard', result);
+        var classIDs = ['123', '1234'];
+        db.findMany(Course, {classID : {$in : classIDs}}, '', function (result) {
+            res.render('dashboard', result);
+        });
     }
 }
 
