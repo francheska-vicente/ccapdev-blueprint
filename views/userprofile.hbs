@@ -12,11 +12,11 @@
         <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
           <li class="nav-item item up">
             <div class="active" style="background-color: white">
-              <a class="nav-link" href="{{username}}/profile" style="color: #5161ce; padding-left: 10px"><i class="fas fa-child"></i>Profile</a>
+              <a class="nav-link" href="/{{username}}/profile" style="color: #5161ce; padding-left: 10px"><i class="fas fa-child"></i>Profile</a>
             </div>
           </li>
           <li class="nav-item item down">
-            <a class="nav-link icon_name" href="{{username}}/schedule"><i class="fa fa-calendar-check-o icon"></i>Schedule</a>
+            <a class="nav-link icon_name" href="/{{username}}/schedule"><i class="fa fa-calendar-check-o icon"></i>Schedule</a>
           </li>
         </ul>
       </div>
@@ -24,16 +24,20 @@
     <div class="main">
       <div class = "side-prof">
         <div class = "logo_container">
-          <img src = "profile.jpg" class = "logo" alt = "Profile Picture">
+          <img src = "/images/user.png" class = "logo" alt = "Profile Picture">
         </div>
         <h2>{{fName}} {{lName}}</h2>
+        {{#if bio}}
         <h6 id="bio">{{bio}}</h6><br>
+        {{else}}
+        <h6 id="bio">This user has no bio yet.</h6><br>
+        {{/if}}
         <div id="spacer"></div>
       </div>
       <div class="info-bg">
         <div class="info-box">
           <ul class="breadcrumb">
-            <li><a href="../../home.html">blueprint</a></li>
+            <li><a href="/home">blueprint</a></li>
             <li>{{fName}}'s Profile</li>
           </ul> 
           <h1>Profile</h1>
@@ -46,7 +50,11 @@
             </div>
             <div class="col">
               <h4>Birthday</h4>
+              {{#if bday}}
               <h6>{{bday}}</h6>
+              {{else}}
+              <h6>This user has not set their birthday.</h6>
+              {{/if}}
             </div>
           </div>
           <div class="row">
@@ -56,7 +64,11 @@
             </div>
             <div class="col">
               <h4>Phone</h4>
+              {{#if phone}}
               <h6>{{phone}}</h6>
+              {{else}}
+              <h6>This user has not set their phone number.</h6>
+              {{/if}}
             </div>
           </div>
           <h3>Educational Information</h3>
@@ -67,7 +79,11 @@
             </div>
             <div class="col">
               <h4>Degree</h4>
+              {{#if degree}}
               <h6>{{degree}}</h6>
+              {{else}}
+              <h6>This user has not set their degree.</h6>
+              {{/if}}
             </div>
           </div>
         </div>

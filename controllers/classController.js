@@ -47,7 +47,6 @@ const classController = {
                 classID: coursecode, 
                 results: result
             }
-            console.log (temp.coursecode);
            res.render('discussions', temp);
         });  
     },
