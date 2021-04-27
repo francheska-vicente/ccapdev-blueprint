@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="../../../css/schedule.css" rel="stylesheet">
+  <link href="/css/schedule.css" rel="stylesheet">
   <title>{{fName}} {{lName}} | blueprint</title>
 </head>
 <body>
@@ -34,19 +34,10 @@
 </div>
 
 <script type="text/javascript">
-  function click_fn ()
-  {
-    var searchVal = document.getElementById ("searchBox");
-    location.href = "../../search.html";
-  }
-
   function logout_fn ()
   {
     location.href = "../../splash.html";
   }
-
-  var search = document.getElementById ("search_btn");
-  search.onclick = click_fn;
 
   var logout = document.getElementById ("logout_btn");
   logout.onclick = logout_fn;
