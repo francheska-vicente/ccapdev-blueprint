@@ -72,28 +72,25 @@ const controller = {
 
     getDashboard: function (req, res) {
         var classes = [];
-        var temp;
-        for (let j = 0; j < user.classes.length; j++) {
-            var c = {
-                classID: user.classes[j]
-            }
-            console.log(c.classID);
-            db.findOne(Course, c, '', function (result) {
-                temp = result.clone();
-                console.log("0 " + result.classname)
-                console.log("1 " + temp.classname)
-            });
-            // classes.push(temp);
-            console.log("2 " + temp.classname)
-        }
-
-        // var result = {
-        //     classname: "rawr",
-        //     coursecode: "CCAPDEV",
-        //     classID: "1234"
+        // for (let j = 0; j < user.classes.length; j++) {
+        //     var c = {
+        //         classID: user.classes[j]
+        //     }
+        //     console.log(c.classID);
+        //     db.findOne(Course, c, '', function (result) {
+        //         classes.push(result);
+        //         console.log("0 " + result.classname)
+        //         console.log("1 " + classes[0].classname)
+        //     });
         // }
 
-        // classes.push(result);
+        var result = {
+            classname: "rawr",
+            coursecode: "CCAPDEV",
+            classID: "1234"
+        }
+
+        classes.push(result);
 
         // result = {
         //     classname: "rawr2",
@@ -103,7 +100,7 @@ const controller = {
 
         // classes.push(result);
 
-        res.render('dashboard', classes);
+        res.render('dashboard', result);
     }
 }
 
