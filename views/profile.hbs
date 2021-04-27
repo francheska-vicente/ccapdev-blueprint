@@ -33,7 +33,11 @@
         </span>
       </div>
       <h2>{{fName}} {{lName}}</h2>
+      {{#if bio}}
       <h6 id="bio">{{bio}}</h6><br>
+      {{else}}
+      <h6 id="bio">You have no bio yet.</h6><br>
+      {{/if}}
       <button type = "button" name = "logout_button" class = "btn login_button" id = "logout_btn">Log Out</button>
       <div id="spacer"></div>
     </div>
@@ -54,7 +58,11 @@
           </div>
           <div class="col">
             <h4>Birthday</h4>
+            {{#if bday}}
             <h6>{{bday}}</h6>
+            {{else}}
+            <h6>You have not set your birthday.</h6>
+            {{/if}}
           </div>
         </div>
         <div class="row">
@@ -64,7 +72,11 @@
           </div>
           <div class="col">
             <h4>Phone</h4>
+            {{#if phone}}
             <h6>{{phone}}</h6>
+            {{else}}
+            <h6>You have not set your phone number.</h6>
+            {{/if}}
           </div>
         </div>
         <h3>Educational Information</h3>
@@ -75,7 +87,11 @@
           </div>
           <div class="col">
             <h4>Degree</h4>
+            {{#if degree}}
             <h6>{{degree}}</h6>
+            {{else}}
+            <h6>You have not set your degree.</h6>
+            {{/if}}
           </div>
         </div>
       </div>

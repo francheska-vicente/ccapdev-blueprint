@@ -1,6 +1,7 @@
 const db = require('../models/db.js');
 const User = require('../models/UserModel.js');
-var log;
+const Course = require('../models/ClassModel.js');
+var user;
 
 const controller = {
     getSplash: function (req, res) {
@@ -16,58 +17,37 @@ const controller = {
     },
 
     postLogin: function (req, res) {
-        log = {
+        var query = {
             username: req.body.username,
             password: req.body.password
         };
 
-        var query = log;
-
         db.findOne(User, query, '', function(flag) {
             if(flag){
+                user = flag;
                 res.redirect('/home');
             }
         });
     },
 
     getHome: function (req, res) {
-        var query = log;
-
-        db.findOne(User, query, '', function (result) {
-            res.render('home', result);
-        });
+        res.render('home', user);
     },
 
     getYourProfile: function (req, res) {
-        var query = log;
-
-        db.findOne(User, query, '', function (result) {
-            res.render('profile', result);
-        });
+        res.render('profile', user);
     },
 
     getEditProfile: function (req, res) {
-        var query = log;
-
-        db.findOne(User, query, '', function (result) {
-            res.render('editprofile', result);
-        });
+        res.render('editprofile', user);
     },
 
     getDelProfile: function (req, res) {
-        var query = log;
-
-        db.findOne(User, query, '', function (result) {
-            res.render('profile', result);
-        });
+        res.render('profile', user);
     },
 
     getYourSchedule: function (req, res) {
-        var query = log;
-
-        db.findOne(User, query, '', function (result) {
-            res.render('schedule', result);
-        });
+        res.render('schedule', user);
     },
 
     getUserProfile: function (req, res) {
@@ -91,11 +71,39 @@ const controller = {
     },
 
     getDashboard: function (req, res) {
-        var query = log;
+        var classes = [];
+        var temp;
+        for (let j = 0; j < user.classes.length; j++) {
+            var c = {
+                classID: user.classes[j]
+            }
+            console.log(c.classID);
+            db.findOne(Course, c, '', function (result) {
+                temp = result.clone();
+                console.log("0 " + result.classname)
+                console.log("1 " + temp.classname)
+            });
+            // classes.push(temp);
+            console.log("2 " + temp.classname)
+        }
 
-        db.findOne(User, query, '', function (result) {
-            res.render('dashboard', result);
-        });
+        // var result = {
+        //     classname: "rawr",
+        //     coursecode: "CCAPDEV",
+        //     classID: "1234"
+        // }
+
+        // classes.push(result);
+
+        // result = {
+        //     classname: "rawr2",
+        //     coursecode: "CCAPDEV2",
+        //     classID: "4321"
+        // }
+
+        // classes.push(result);
+
+        res.render('dashboard', classes);
     }
 }
 

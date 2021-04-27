@@ -190,6 +190,7 @@ ul.breadcrumb li a:hover {
     margin-bottom: auto;
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
 	min-width: 100px;
 	min-height: 700px;
 }
