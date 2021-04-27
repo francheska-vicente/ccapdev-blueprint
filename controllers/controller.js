@@ -71,15 +71,10 @@ const controller = {
     },
 
     getDashboard: function (req, res) {
-        var classIDs = user.classes.map(function(a){return a.classID})
-        // db.findMany(Course, {classID : {$in : classIDs}}, '', function (result) {
-        //     res.render('dashboard', result);
-        // });
-
-        db.findOne(Course, {classID : "123"}, '', function (result) {
+        var classIDs = ['123'];
+        db.findMany(Course, {classID : {$in : classIDs}}, '', function (result) {
             res.render('dashboard', result);
         });
-        
     }
 }
 
