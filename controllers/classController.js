@@ -2,6 +2,7 @@ const db = require('../models/db.js');
 const Discussion = require('../models/DiscModel.js');
 const Course = require ('../models/ClassModel.js');
 const Note = require ('../models/NotesModel.js');
+const Comment = require ('../models/CommentModel.js');
 
 const classController = {
 	getClass: function (req, res) {
@@ -49,29 +50,28 @@ const classController = {
                 coursecode: coursecode, 
                 results: result
             }
-            console.log (temp.coursecode);
+            
            res.render('discussions', temp);
         });  
     },
 
     getDiscussionsPost: function (req, res) {
-        var c = req.params.classID;
-        var query = {
-            classID: c
-        };
-
-        var classInfo;
+        var c = req.params.discID;
+        
+        var discInfo;
         var results;
         
-        db.findOne (Course, query, null, function (classInfo) {
-            classInfo = classInfo;
+        db.findOne (Discussion, {discID: c}, null, function (result) {
+            discInfo = result;
         });
 
-        db.findMany (Discussion, query, null, function (err, result) {
-            results = result;
+        db.findMany (Comment, {mainID: c}, null, function (result) {
+            var temp = {
+               discInfo: discInfo, 
+               results: result
+            }
+            res.render('discussions-post', temp);
         });
-
-        res.render('discussions-post', classInfo, results);
     },
 
     getReqs: function (req, res) {
