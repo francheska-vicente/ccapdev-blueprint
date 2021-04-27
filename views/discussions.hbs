@@ -2,7 +2,7 @@
 <html>
 <head>
     <link href="../../../css/class.css" rel="stylesheet">
-	<title>Discussion | {{classname}}</title>
+	<title>Discussion | {{coursecode}}</title>
   <style>
     h6
     {
@@ -41,7 +41,7 @@
         <ul class="breadcrumb">
           <li><a href="../../home.html">blueprint</a></li>
           <li><a href="../../dashboard.html">Classes</a></li>
-          <li><a href="class.html">{{classname}}</a></li>
+          <li><a href="class.html">{{coursecode}}</a></li>
           <li>Discussions</li>
         </ul> 
         <h1>Discussions</h1>
@@ -56,8 +56,8 @@
             <h3>Replies</h3>
           </div>
         </div>
-        {{#each result}}
-        <a href = "discussions0.html" class="links">
+        {{#each results}}
+        <a href = "discussions/{{discID}}" class="links">
           <div class="row">
             <div class="left">
               <h6>{{title}}</h6>
@@ -67,6 +67,8 @@
             </div>
           </div>
         </a>
+        {{else}}
+          <h3 style="text-align: center; padding: 40px">There are no discussions yet.</h3>
         {{/each}}
       </div>
     </div>
