@@ -57,19 +57,29 @@ const classController = {
         var b = req.params.discID;
 
         var coursecode;
-        var content, title, author;
+        var content, title, author, fName, lName;
         
         var comments;
         
         db.findOne (Course, {classID : c}, null, function (classInfo) {
             coursecode = classInfo.coursecode;
         });
-      
+
         db.findOne (Discussion, {discID : b}, null, function (discInfo) {
-            console.log (discInfo.content);
-            content = discInfo.content;
-            title = discInfo.title;
-            author = discInfo.username;
+            if (discInfo != null)
+            {
+                content = discInfo.content;
+                title = discInfo.title;
+                author = discInfo.username;
+            }
+        });
+
+        db.findOne (User, {username : "sophia-vista"}, null, function (result) {
+            if (result != null)
+            {
+                fName = result.fName;
+                lName = result.lName;
+            }
         });
 
         db.findMany (Comment, {mainID: b}, null, function (result) {
@@ -77,19 +87,19 @@ const classController = {
                 content: content,
                 title: title,
                 username : author,
-                discID : b
+                discID : b,
+                lName : lName,
+                fName : fName
             }
-
+            console.log (disc.fName);
             var temp = {
-                coursecode: coursecode,
-                disc : disc,
-                comments : result
+                    coursecode: coursecode,
+                    disc : disc,
+                    comments : result
             }
             
-            res.render('discussions-post', temp);
+             res.render('discussions-post', temp);
         });
-
-        
     },
 
     getReqs: function (req, res) {
