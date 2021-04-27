@@ -4,6 +4,7 @@ const User = require('./UserModel.js');
 const Discussion = require ('./DiscModel.js');
 const Course = require ('./ClassModel.js');
 const Note = require ('./NotesModel.js');
+const Comment = require ('./CommentModel.js');
 
 const url = 'mongodb://localhost:27017/blueprint';
 
