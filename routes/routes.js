@@ -38,6 +38,7 @@ app.get('/classes/dashboard', controller.getDashboard);
 app.get('/classes/:classID/home', classController.getClass);
 app.get('/classes/:classID/classlist', classController.getClassList);
 app.get('/classes/:classID/discussions', classController.getDiscussions);
+app.get('/classes/:classID/discussions/:discID', classController.getDiscussions);
 app.get('/classes/:classID/requirements', classController.getReqs);
 app.get('/classes/:classID/notebook', classController.getNotes);
 

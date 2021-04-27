@@ -21,8 +21,17 @@ const classController = {
             classID: c
         };
 
+        var course;
         db.findOne(Course, query, null, function (result) {
-            res.render('classlist', result);
+            course = result;
+        });
+
+        var userIDs = course.classlist;
+        db.findMany(Course, {username : {$in : userIDs}}, '', function (result) {
+            var temp = {
+                results : result
+            }
+            res.render('classlist', temp);
         });
     },
 
@@ -44,6 +53,26 @@ const classController = {
         });
 
         res.render('discussions', classInfo, results);
+    },
+
+    getDiscussionsPost: function (req, res) {
+        var c = req.params.classID;
+        var query = {
+            classID: c
+        };
+
+        var classInfo;
+        var results;
+        
+        db.findOne (Course, query, null, function (classInfo) {
+            classInfo = classInfo;
+        });
+
+        db.findMany (Discussion, query, null, function (err, result) {
+            results = result;
+        });
+
+        res.render('discussions-post', classInfo, results);
     },
 
     getReqs: function (req, res) {

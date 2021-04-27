@@ -33,7 +33,7 @@ var CourseSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    classList : {
+    classlist : {
         type : [String],
         required: false
     }

@@ -71,9 +71,12 @@ const controller = {
     },
 
     getDashboard: function (req, res) {
-        var classIDs = ['123', '1234'];
+        var classIDs = user.classes;
         db.findMany(Course, {classID : {$in : classIDs}}, '', function (result) {
-            res.render('dashboard', result);
+            var temp = {
+                results : result
+            }
+            res.render('dashboard', temp);
         });
     }
 }

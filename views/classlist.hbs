@@ -27,7 +27,6 @@
         <li class="nav-item item">
           <a class="nav-link icon_name" href="notebook.html"><i class="fa fa-pencil-square-o icon"></i> Notebook</a>
         </li>
-
       </ul>
     </div>
   </nav>
@@ -36,61 +35,23 @@
       <li><a href="../../home.html">blueprint</a></li>
       <li><a href="../../dashboard.html">Classes</a></li>
       <li><a href="class.html">CCAPDEV</a></li>
-      <li>ClassList</li>
+      <li>Class List</li>
     </ul> 
     <h1>Class List</h1>
     <h5>These are your classmates, say hi!</h5><hr>
     <div id="class-list">
-      <a href="../../profile.html" class="link">
-        <div class="person-container">
-          <div class="img-container"><img src = "../../../images/user.png" class = "img" alt = "Blueprint Logo"></div>
-          <div class="text-container">
-            <h2>Harry Potter</h2>
-            <h3>De La Salle University</h3><hr>
-            <h6>The best error message is the one that never shows up.</h6>
+      {{#each results}}
+        <a href="../../profile.html" class="link">
+          <div class="person-container">
+            <div class="img-container"><img src = "../../../images/user.png" class = "img" alt = "Blueprint Logo"></div>
+            <div class="text-container">
+              <h2>{{fName}} {{lName}}</h2>
+              <h3>{{degree}}</h3><hr>
+              <h6>{{bio}}</h6>
+            </div>
           </div>
-        </div>
-      </a>
-      <a href="../../users/alexa_delacruz/alexa_delacruz.html" class="link">
-        <div class="person-container">
-          <div class="img-container"><img src = "../../../images/user.png" class = "img" alt = "Blueprint Logo"></div>
-          <div class="text-container">
-            <h2>Alexa Dela Cruz</h2>
-            <h3>De La Salle University</h3><hr>
-            <h6>Semicolon is my greatest weakness, but programming is my greatest strength.</h6>
-          </div>
-        </div>
-      </a>
-      <a href="../../users/francheska_vicente/francheska_vicente.html" class="link">
-        <div class="person-container">
-          <div class="img-container"><img src = "../../../images/user.png" class = "img" alt = "Blueprint Logo"></div>
-          <div class="text-container">
-            <h2>Francheska Vicente</h2>
-            <h3>De La Salle University</h3><hr>
-            <h6>The code that only the prof knows.</h6>
-          </div>
-        </div>
-      </a>
-      <a href="../../users/sophia_vista/sophia_vista.html" class="link">
-        <div class="person-container">
-          <div class="img-container"><img src = "../../../images/user.png" class = "img" alt = "Blueprint Logo"></div>
-          <div class="text-container">
-            <h2>Sophia Vista</h2>
-            <h3>De La Salle University</h3><hr>
-            <h6>ehe</h6>
-          </div>
-        </div>
-      </a>
-      <a href="../../users/venti_bard/venti_bard.html" class="link">
-        <div class="person-container">
-          <div class="img-container"><img src = "../../../images/user.png" class = "img" alt = "Blueprint Logo"></div>
-          <div class="text-container">
-            <h2>Venti Bard</h2>
-            <h3>De La Salle University</h3><hr>
-            <h6>Yahoo!</h6>
-          </div>
-        </div>
-      </a>
+        </a>
+      {{/each}}
     </div>
   </div>
 </div>
