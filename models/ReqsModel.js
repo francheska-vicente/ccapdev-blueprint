@@ -6,7 +6,7 @@ var ReqsSchema = new mongoose.Schema({
         required: true
     },
 
-    userID: {
+    username: {
         type: String,
         required: true
     },
@@ -23,7 +23,8 @@ var ReqsSchema = new mongoose.Schema({
 
     postDate : {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     },
 
     deadline : {

@@ -35,7 +35,8 @@ app.get('/:username/profile', controller.getUserProfile);
 app.get('/:username/schedule', controller.getUserSchedule);
 
 app.get('/classes/dashboard', controller.getDashboard);
-app.get('/classes/:coursecode/home', classController.getClass);
-app.get('/classes/:coursecode/discussions', classController.getDiscussions);
+app.get('/classes/:classID/home', classController.getClass);
+app.get('/classes/:classID/discussions', classController.getDiscussions);
+app.get('/classes/:classID/notebook', classController.getNotes);
 
 module.exports = app;

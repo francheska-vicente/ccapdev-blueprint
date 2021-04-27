@@ -6,7 +6,7 @@ var DiscSchema = new mongoose.Schema({
         required: true
     },
 
-    userID: {
+    username: {
         type: String,
         required: true
     },
