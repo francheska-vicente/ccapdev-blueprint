@@ -51,28 +51,19 @@ const controller = {
     },
 
     getUserProfile: function (req, res) {
-        var user = {
-            username: req.body.username,
-        };
-
-        db.findOne(User, user, '', function (result) {
+        db.findOne(User, {username: req.params.username}, '', function (result) {
             res.render('userprofile', result);
         });
     },
 
     getUserSchedule: function (req, res) {
-        var user = {
-            username: req.body.username,
-        };
-
-        db.findOne(User, user, '', function (result) {
+        db.findOne(User, {username: req.params.username}, '', function (result) {
             res.render('userschedule', result);
         });
     },
 
     getDashboard: function (req, res) {
-        var classIDs = user.classes;
-        db.findMany(Course, {classID : {$in : classIDs}}, '', function (result) {
+        db.findMany(Course, {classID : {$in : user.classes}}, '', function (result) {
             var temp = {
                 results : result
             }
