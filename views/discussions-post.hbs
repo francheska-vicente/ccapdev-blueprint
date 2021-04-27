@@ -6,7 +6,7 @@
     <script src = "https://code.jquery.com/jquery-3.4.1.min.js" type = "text/javascript">
     </script>
 
-  <title>{{disc_title}} | {{subj}}</title>
+  <title>{{#with results}}{{title}} {{/with}}| {{coursecode}}</title>
 
   <style>
     h6
@@ -53,7 +53,7 @@
         <ul class="breadcrumb">
           <li><a href="home.html">blueprint</a></li>
           <li><a href="dashboard.html">Classes</a></li>
-          <li><a href="class.html">{{subj}}</a></li>
+          <li><a href="class.html">{{coursecode}}</a></li>
           <li><a href="discussions.html">Discussions</a></li>
           <li>{{title}}</li>
         </ul> 
