@@ -27,7 +27,7 @@ app.get('/profile/edit', controller.getEditProfile);
 app.post('/profile/edit', profileController.postEditProfile);
 app.get('/profile/delete', controller.getDelProfile);
 
-app.get('/schedule/yourschedule', controller.getYourSchedule);
+app.get('/schedule', controller.getYourSchedule);
 
 app.get('/profile-deletion-success', successController.getSuccessReg);
 
