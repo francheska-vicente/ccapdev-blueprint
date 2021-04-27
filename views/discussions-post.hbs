@@ -6,7 +6,7 @@
     <script src = "https://code.jquery.com/jquery-3.4.1.min.js" type = "text/javascript">
     </script>
 
-  <title>{{#with results}}{{title}} {{/with}}| {{coursecode}}</title>
+  <title>{{#with disc}}{{title}} {{/with}}| {{coursecode}}</title>
 
   <style>
     h6
@@ -55,11 +55,11 @@
           <li><a href="dashboard.html">Classes</a></li>
           <li><a href="class.html">{{coursecode}}</a></li>
           <li><a href="discussions.html">Discussions</a></li>
-          <li>{{title}}</li>
+          <li>{{#with disc}}{{title}} {{/with}}</li>
         </ul> 
-        <h1>{{title}}</h1>
-        <a href="../../users/alexandria_ramos.html" class="link"><h5>By: {{username}}</h5></a>
-        <h6 class = "main_cmt">{{content}}</h6>
+        <h1>{{#with disc}}{{title}} {{/with}}</h1>
+        <a href="../../../../{{#with disc}}{{username}}{{/with}}/profile" class="link"><h5>By: {{#with disc}}{{fName}} {{lName}}{{/with}}</h5></a>
+        <h6 class = "main_cmt">{{#with disc}}{{content}}{{/with}}</h6>
         <button class = "btn cmt_btn" id = "main_comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
         </button>
@@ -71,7 +71,26 @@
           </button>
         <br>
         <hr>
-        
+        {{#each comments}}
+        <div class = "commentDiv">
+          <a href="../../../../{{../../disc}}{{username}}/profile" class="link">
+          <h5>{{fName}} {{lName}}</h5>
+          </a>
+          <h6>{{content}}</h6>
+          <button class="btn cmt_btn" id = "comment_btn">
+            <i class="fas fa-comment disc_icon" title = "Comment on discussion"></i>
+          </button>
+          <button class="btn edt_btn" id = "edit_btn">
+            <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
+          </button>
+          <button class="btn dlt_btn" id = "delete_btn" title = "Delete discussion">
+            <i class="fas fa-eraser disc_icon"></i>
+          </button>
+          <br>
+          <hr>
+        </div>
+        {{/each}}
+
         <div id = "origCommentDiv" class = "commentDiv">
           <button class="btn cmt_btn" id = "comment_btn">
             <i class="fas fa-comment disc_icon" title = "Comment on discussion"></i>
