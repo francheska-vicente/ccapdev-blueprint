@@ -41,5 +41,6 @@ app.get('/classes/:classID/discussions', classController.getDiscussions);
 app.get('/classes/:classID/discussions/:discID', classController.getDiscussionsPost);
 app.get('/classes/:classID/requirements', classController.getReqs);
 app.get('/classes/:classID/notebook', classController.getNotes);
+app.put('/classes/:classID/:discID/:commentID', classController.editComment);
 
 module.exports = app;
