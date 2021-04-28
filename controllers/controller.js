@@ -179,6 +179,7 @@ const controller = {
         var lName = user.lName;
         var username = user.username;
         
+        console.log ("hello");
         db.count (Comment, {}, function (result) {
             if (result < 10)
                 result = "0" + (result + 1);
