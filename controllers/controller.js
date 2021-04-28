@@ -1,6 +1,9 @@
 const db = require('../models/db.js');
 const User = require('../models/UserModel.js');
-const Course = require('../models/ClassModel.js');
+const Discussion = require('../models/DiscModel.js');
+const Course = require ('../models/ClassModel.js');
+const Note = require ('../models/NotesModel.js');
+const Comment = require ('../models/CommentModel.js');
 var user;
 
 const controller = {
@@ -95,6 +98,25 @@ const controller = {
                 results : result
             }
             res.render('dashboard', temp);
+        });
+    },
+
+    addCommentDiscussions: function (req, res) {
+        var d = req.params.discID;
+        var c = req.params.classID;
+
+        var comment = {
+            classID : c,
+            username: user.username, 
+            fName : user.fName,
+            lName : user.lName, 
+            parentID : d, 
+            mainID : d, 
+            content : req.body.main_comment_text,
+        };
+
+        db.insertOne (Discussion, comment ,function (discInfo) {
+            res.redirect ('/classes/' + c + '/discussions/' + d);
         });
     }
 }
