@@ -3,6 +3,9 @@ const User = require('../models/UserModel.js');
 
 const signupController = {
 
+	postEditProfile: function (req, res) {
+		
+	}
     
 }
 
