@@ -10,7 +10,12 @@ const signupController = {
             email:  req.body.email,
             username: req.body.username,
             password: req.body.password,
-            uni:  req.body.school
+            uni:  req.body.school,
+            bday: '',
+            phone: '',
+            degree: '',
+            bio: '',
+            classes: []
         };
 
         db.insertOne(User, user, function(flag) {

@@ -43,34 +43,34 @@ const controller = {
     },
 
     postEditProfile: function (req, res) {
-        var update = {
-            username: req.body.username,
-            phone: req.body.contact_no,
-            bday:  req.body.bday,
-            degree:  req.body.degree,
-            bio:  req.body.bio,
-            password:  req.body.n_password,
-        };
+        var update = user;
 
-        db.updateOne(User, {username: user.username}, update, function(result) {
-            res.redirect('/profile');
-        });
+        if (req.body.username != '') update.username = req.body.username;
+        if (req.body.contact_no != '') update.phone = req.body.contact_no;
+        if (req.body.bday != '') update.bday = req.body.bday;
+        if (req.body.degree != '') update.degree = req.body.degree;
+        if (req.body.bio != '') update.bio = req.body.bio;
+        if (req.body.n_password != '') update.password = req.body.n_password;
+
+        if (req.body.o_password == user.password) {
+            db.updateOne(User, {username: user.username}, update, function(result) {
+                res.redirect('/profile');
+            });
+        }
     },
 
     getDelProfile: function (req, res) {
-        res.render('profile', user);
+        res.render('deleteprofile', user);
     },
 
     postDelProfile: function (req, res) {
-        var user = {
-            username: req.body.username,
-        };
-
-        db.deleteOne(User, user, function(flag) {
-            if(flag) {
-                res.redirect('/success?fName=' + user.fName +'&lName=' + user.lName + '&username=' + user.username);
-            }
-        });
+        if (user.password == req.body.password && user.password == req.body.c_password) {
+            db.deleteOne(User, {username: user.username}, function(flag) {
+                if(flag) {
+                    res.redirect('/profile-deletion-success');
+                }
+            });
+        }
     },
 
     getYourSchedule: function (req, res) {
