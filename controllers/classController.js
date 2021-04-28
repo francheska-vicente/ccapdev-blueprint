@@ -66,19 +66,13 @@ const classController = {
         });
 
         db.findOne (Discussion, {discID : b}, null, function (discInfo) {
-            if (discInfo != null)
+            if (discInfo != undefined)
             {
                 content = discInfo.content;
                 title = discInfo.title;
                 author = discInfo.username;
-            }
-        });
-
-        db.findOne (User, {username : "sophia-vista"}, null, function (result) {
-            if (result != null)
-            {
-                fName = result.fName;
-                lName = result.lName;
+                fName = discInfo.fName;
+                lName = discInfo.lName;
             }
         });
 
@@ -91,7 +85,7 @@ const classController = {
                 lName : lName,
                 fName : fName
             }
-            console.log (disc.fName);
+            
             var temp = {
                     coursecode: coursecode,
                     disc : disc,
@@ -131,6 +125,10 @@ const classController = {
         });
 
         res.render('notes', classInfo, results);
+    }, 
+
+    editComment : function (req, res) {
+
     }
 }
 

@@ -59,9 +59,11 @@
     color: #457B9D;
 }
 
-.cmt_btn, .Addcmt_btn, #edit_btn, #comment_btn, #delete_btn,
+.cmt_btn, .edt_btn, .dlt_btn,
+.Addcmt_btn, #edit_btn, #comment_btn, #delete_btn,
 #editC_btn, #commentC_btn, #deleteC_btn, 
-#add_btn0, #add_btn1, #add_btn2, #confirm_button
+#add_btn0, #add_btn1, #add_btn2, #confirm_button, 
+#main_edit_btn
 {
     float: right;
 }

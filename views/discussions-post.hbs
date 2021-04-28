@@ -63,7 +63,7 @@
         <button class = "btn cmt_btn" id = "main_comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
         </button>
-        <button class="btn" id = "main_edit_btn" style = "float: right">
+        <button class="btn" id = "main_edit_btn">
             <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
           </button>
           <button class="btn dlt_btn" id = "main_delete_btn" title = "Delete discussion">
@@ -72,7 +72,7 @@
         <br>
         <hr>
         {{#each comments}}
-        <div class = "commentDiv">
+        <div class = "commentDiv" id = "{{commentID}}">
           <a href="../../../../{{../../disc}}{{username}}/profile" class="link">
           <h5>{{fName}} {{lName}}</h5>
           </a>
@@ -104,7 +104,7 @@
         </div>
         
         <div class ="createcontainer" id = "origCreateDiv">
-          <form style = "width: 100%; height: 80%;"> 
+          <form style = "width: 100%; height: 80%;" action = ""> 
               <div class = "container input-group mb-3">
                 <textarea name="paragraph_text" cols="97" rows="10" class = ".comment_box"></textarea>
               </div>
@@ -117,7 +117,7 @@
         
         <div class = "editcontainer" id = "origEditDiv"
              style = "margin-right: auto; margin-left: auto">
-          <form style = "width: 100%; height: 80%;">
+          <form style = "width: 100%; height: 80%;" method = "put">
               <div class = "container input-group mb-3">
                 <textarea name = "paragraph_text" cols = "97" rows = "10" class = "edit_txt"></textarea>
               </div>
@@ -130,7 +130,7 @@
         
         <div id = "main_edit_container"
              style = "margin-right: auto; margin-left: auto">
-          <form style = "width: 100%; height: 80%;">
+          <form style = "width: 100%; height: 80%;" action = "/classes/{{#with disc}}{{classID}}{{/with}}/{{#with disc}}{{discID}}{{/with}}/">
               <div class = "container input-group mb-3">
                 <textarea name = "paragraph_text" cols = "97" rows = "10" class = "edit_txt" id = "main_txt"></textarea>
               </div>

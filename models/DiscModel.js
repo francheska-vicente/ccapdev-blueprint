@@ -11,6 +11,16 @@ var DiscSchema = new mongoose.Schema({
         required: true
     },
     
+    fName : {
+        type: String,
+        required: true
+    },
+
+    lName: {
+        type: String,
+        required: true
+    },
+
     discID: {
         type: String,
         required: true
