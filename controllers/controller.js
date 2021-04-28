@@ -105,18 +105,36 @@ const controller = {
         var d = req.params.discID;
         var c = req.params.classID;
 
-        var comment = {
-            classID : c,
-            username: user.username, 
-            fName : user.fName,
-            lName : user.lName, 
-            parentID : d, 
-            mainID : d, 
-            content : req.body.main_comment_text,
-        };
+        var fName = user.fName;
+        var lName = user.lName;
+        var username = user.username;
+        var commentID;
 
-        db.insertOne (Discussion, comment ,function (discInfo) {
-            res.redirect ('/classes/' + c + '/discussions/' + d);
+        db.count (Comment, {}, function (result) {
+            if (result < 10)
+                result = "0" + (result + 1);
+
+            var comment = {
+                classID : c,
+                username: username, 
+                fName : fName,
+                lName : lName, 
+                parentID : d, 
+                mainID : d, 
+                content : req.body.main_comment_text,
+                commentID: ("com" + result)
+            };
+
+            db.findOne (Discussion, {discID: d}, {}, function (result) {
+                result.numOfComments = result.numOfComments + 1;
+
+                db.updateOne (Discussion, {}, result, function (result) {
+                });
+            });
+
+            db.insertOne (Comment, comment, function (discInfo) {
+                res.redirect ('/classes/' + c + '/discussions/' + d);
+            });
         });
     }
 }
