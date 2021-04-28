@@ -85,20 +85,27 @@ const controller = {
     },
 
     postAddClass: function (req, res) {
-        var course = new Course();
-        course.classname = req.body.classname;
-        course.coursecode = req.body.coursecode;
-        course.professor = req.body.professor;
-        course.classtimeA = req.body.classtimeA;
-        course.classdayA = req.body.classdayA;
-        course.classtimeB = req.body.classtimeB;
-        course.classdayB = req.body.classdayB;
-        course.classID = ObjectId().str;
-        course.classlist = [user.username];
+        var u = user.username;
+        var id;
+        var course = {
+            classname : req.body.classname,
+            coursecode : req.body.coursecode,
+            professor : req.body.professor,
+            classtimeA : req.body.classtimeA,
+            classdayA : req.body.classdayA,
+            classtimeB : req.body.classtimeB,
+            classdayB : req.body.classdayB
+        }
 
-        db.insertOne(Courses, course, function(flag) {
-            if(flag) {
-                res.redirect('/classes/' + course.classID + '/home');
+        db.findOne(Course, course, '', function(flag) {
+            if(!flag) {
+                db.count (Course, {}, function (result) {
+                    course.classID = id;
+                    course.classlist = [u];
+                    db.insertOne(Course, course, function(flag) {
+                        res.redirect('/classes/' + course.classID + '/home');
+                    });
+                });
             }
         });
     },

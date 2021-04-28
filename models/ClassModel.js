@@ -7,7 +7,7 @@ var CourseSchema = new mongoose.Schema({
     },
     classID : {
         type: String,
-        required: true
+        required: false
     },
     coursecode: {
         type: String,
@@ -22,16 +22,16 @@ var CourseSchema = new mongoose.Schema({
         required: true
     },
     classdayA: {
-        type: Date,
+        type: String,
         required: true
     },
     classtimeB: {
         type: String,
-        required: true
+        required: false
     },
     classdayB: {
-        type: Date,
-        required: true
+        type: String,
+        required: false
     },
     classlist : {
         type : [String],

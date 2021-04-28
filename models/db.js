@@ -90,6 +90,10 @@ const database = {
             console.log('Documents: ' + result);
             return callback(result);
         });
+    },
+
+    getObjectID : function () {
+        return mongoose.Types.ObjectId().toString();
     }
 }
 
