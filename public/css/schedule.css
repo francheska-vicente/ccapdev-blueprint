@@ -109,3 +109,7 @@ table {
 	background-color:#457B9D;
 }
 
+.newclass {
+	border-radius: 0px; 
+	color: black;
+}

@@ -80,6 +80,37 @@ const controller = {
         res.render('schedule', user);
     },
 
+    getAddClass: function (req, res) {
+        res.render('newclass', user);
+    },
+
+    postAddClass: function (req, res) {
+        var course = new Course();
+        course.classname = req.body.classname;
+        course.coursecode = req.body.coursecode;
+        course.professor = req.body.professor;
+        course.classtimeA = req.body.classtimeA;
+        course.classdayA = req.body.classdayA;
+        course.classtimeB = req.body.classtimeB;
+        course.classdayB = req.body.classdayB;
+        course.classID = ObjectId().str;
+        course.classlist = [user.username];
+
+        db.insertOne(Courses, course, function(flag) {
+            if(flag) {
+                res.redirect('/classes/' + course.classID + '/home');
+            }
+        });
+    },
+
+    getSearchClass: function (req, res) {
+        res.render('schedule', user);
+    },
+
+    getDeleteClass: function (req, res) {
+        res.render('schedule', user);
+    },
+
     getUserProfile: function (req, res) {
         db.findOne(User, {username: req.params.username}, '', function (result) {
             res.render('userprofile', result);
@@ -93,7 +124,8 @@ const controller = {
     },
 
     getDashboard: function (req, res) {
-        db.findMany(Course, {classID : {$in : user.classes}}, '', function (result) {
+        var classes = user.classes;
+        db.findMany(Course, {classID : {$in : classes}}, '', function (result) {
             var temp = {
                 results : result
             }
