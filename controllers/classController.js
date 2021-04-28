@@ -131,6 +131,10 @@ const classController = {
         });
 
         res.render('notes', classInfo, results);
+    }, 
+
+    editComment : function (req, res) {
+
     }
 }
 
