@@ -24,8 +24,9 @@ app.get('/home', controller.getHome);
 
 app.get('/profile', controller.getYourProfile);
 app.get('/profile/edit', controller.getEditProfile);
-app.post('/profile/edit', profileController.postEditProfile);
+app.post('/profile/edit', controller.postEditProfile);
 app.get('/profile/delete', controller.getDelProfile);
+app.post('/profile/delete', controller.postDelProfile);
 
 app.get('/schedule', controller.getYourSchedule);
 

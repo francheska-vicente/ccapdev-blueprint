@@ -37,23 +37,23 @@
       <form style = "width: 100%; height: 80%" method="post">
         <div class = "container input-group mb-3">
           <label for="username" class="input_field">Username</label>
-          <input type = "text" name = "username" id = "username" class = "form-control input_user" value = "" placeholder = "" style="border-radius: 0px; color: black">
+          <input type = "text" name = "username" id = "username" class = "form-control input_user" value = "{{username}}" style="border-radius: 0px; color: black">
         </div>
         <div class = "container input-group mb-3">
           <label for="contact_no" class="input_field">Contact Number</label>
-          <input type = "text" name = "contact_no" id = "contact_no" class = "form-control input_user" value = "" placeholder = "+639XXXXXXXXX" style="border-radius: 0px; color: black">
+          <input type = "text" name = "contact_no" id = "contact_no" class = "form-control input_user" value = "{{phone}}" style="border-radius: 0px; color: black">
         </div>
         <div class = "container input-group mb-3  ">
           <label for="bday" class="input_field">Birthday</label>
-          <input type = "date" name = "bday" id = "bday" class = "form-control input_pass" value = "" placeholder = "" style="border-radius: 0px; color: black">
+          <input type = "date" name = "bday" id = "bday" class = "form-control input_pass" value = "{{bday}}" style="border-radius: 0px; color: black">
         </div>
         <div class = "container input-group mb-3">
           <label for="degree" class="input_field">Degree</label>
-          <input type = "text" name = "degree" id = "degree" class = "form-control input_user" value = "" style="border-radius: 0px; color: black">
+          <input type = "text" name = "degree" id = "degree" class = "form-control input_user" value = "{{degree}}" style="border-radius: 0px; color: black">
         </div>
         <div class = "container input-group mb-3">
           <label for="bio" class="input_field">Bio</label>
-          <input type = "text" name = "bio" id = "bio" class = "form-control input_user" value = "" style="border-radius: 0px; color: black">
+          <input type = "text" name = "bio" id = "bio" class = "form-control input_user" value = "{{bio}}" style="border-radius: 0px; color: black">
         </div>
         <div class = "container input-group mb-3">
           <label for="prof-picture" class="input_field">Profile Picture</label>
@@ -75,23 +75,5 @@
   </div>
 </div>
 </div>
-
-<script type="text/javascript">
-  function click_fn ()
-  {
-    location.href = "profile.html";
-  }
-  
-  function search_fn ()
-  {
-    location.href = "search.html"
-  }
-
-  var button = document.getElementById ("edit_button");
-  button.onclick = click_fn;
-
-  var search = document.getElementById ("search_btn");
-  search.onclick = search_fn;
-</script>
 </body>
 </html>
