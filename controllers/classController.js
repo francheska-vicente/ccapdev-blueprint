@@ -134,12 +134,12 @@ const classController = {
 
     editDiscussions : function (req, res) {
         var d = req.params.discID;
-
+        console.log ("hello");
          db.findOne (Discussion, {discID : d}, null, function (discInfo) {
             discInfo.content = req.body.main_discussion_text;
 
             db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
-                res.redirect ('/classes/:classID/discussions/:discID');
+                res.redirect ('/classes/' + discInfo.classID + '/discussions/' + d);
             });
          });
     }
