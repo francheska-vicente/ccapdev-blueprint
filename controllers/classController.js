@@ -142,7 +142,7 @@ const classController = {
                 res.redirect ('/classes/' + discInfo.classID + '/discussions/' + d);
             });
          });
-    }
+    },
 }
 
 module.exports = classController;
