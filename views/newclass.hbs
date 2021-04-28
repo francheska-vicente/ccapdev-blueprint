@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="../css/schedule.css" rel="stylesheet">
+  <title>Create a New Class | blueprint</title>
+</head>
+<body>
+	{{>topnav}}
+  <div id = "content">
+    <nav id = "sideNav">
+      <div class="navigationDiv">
+        <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
+          <li class="nav-item item">
+            <a class="nav-link icon_name" href="/schedule"><i class="fa fa-calendar-check-o"></i> Your Schedule </a>
+          </li>
+          <li class="nav-item item up">
+            <a class="nav-link  icon_name" href="/schedule/search"><i class="fa fa-plus"></i> Search for Classes</a>
+          </li>
+          <li class="nav-item item">
+            <div class="active" style="background-color: white">
+              <a class="nav-link icon_name" href="/schedule/create" style="color: #5161ce; padding-left: 10px"><i class="fa fa-pencil"></i> Create a New Class</a>
+            </div>
+          </li>
+          <li class="nav-item item down">
+            <a class="nav-link icon_name" href="/schedule/drop"><i class="fa fa-minus icon"></i> Drop a Class</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="main">
+      <ul class="breadcrumb">
+        <li><a href="/home">blueprint</a></li>
+        <li><a href="/schedule">Schedule</a></li>
+        <li>Create a New Class</li>
+      </ul> 
+      <h1>Create a New Class</h1>
+      <h5>Didn't see your class? Create one right now and invite your classmates!</h5><hr>
+      <div class="create-container" style="margin-right: auto; margin-left: auto">
+        <form style = "width: 100%; height: 80%" method="post">
+          <div class = "container input-group mb-3">
+            <label for="c_name" class="input_field">Course Name</label>
+            <input type="text" name="classname" id="classname" class="form-control input_user newclass" value="" placeholder="Web Applications Development">
+          </div>
+
+          <div class = "container input-group mb-3">
+            <label for="c_code" class="input_field">Course Code</label>
+            <input type="text" name="coursecode" id="coursecode" class="form-control input_user newclass" value="" placeholder="CCAPDEV">
+          </div>
+
+          <div class = "container input-group mb-3  ">
+            <label for="p_name" class="input_field">Professor's Name</label>
+            <input type="text" name="professor" id="professor" class="form-control input_pass newclass" value="" placeholder = "" >
+          </div>
+          <div class="form-left">
+            <div class = "container input-group mb-3  ">
+              <label for="daytime1" class="input_field">Day and Time (1)</label>
+              <select name="classdayA" id="classdayA" class="form-control input_user newclass">
+                <option value="monday">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
+                <option value="saturday">Saturday</option>
+                <option value="sunday">Sunday</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-right">
+            <div class = "container input-group mb-3  ">
+              <input type="time" id="classtimeA" name="classtimeA" style="width: 100%; height: 40px;">
+            </div>
+          </div>
+          <div class="form-left">
+            <div class = "container input-group mb-3  ">
+              <label for="daytime2" class="input_field">Day and Time (2)</label>
+              <select name="classdayB" id="classdayB" class="form-control input_user newclass">
+                <option value="monday">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
+                <option value="saturday">Saturday</option>
+                <option value="sunday">Sunday</option>
+                <option value="none">None</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-right">
+            <div class = "container input-group mb-3  ">
+              <input type="time" id="classtimeB" name="classtimeB" style="width: 100%; height: 40px;">
+            </div>
+          </div>
+          <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+            <input type="submit" id="create_button" value="Create!" class = "btn" name = "create_button">
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+<script type="text/javascript">
+  function click_fn ()
+  {
+    location.href = "schedule.html";
+  }
+
+  var button = document.getElementById ("create_button");
+  button.onclick = click_fn;
+</script>
+</body>
+</html>

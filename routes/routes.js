@@ -4,7 +4,6 @@ const bodyParser = require (`body-parser`);
 const controller = require('../controllers/controller.js');
 const signupController = require('../controllers/signupController.js');
 const successController = require('../controllers/successController.js');
-const profileController = require('../controllers/profileController.js');
 const classController = require('../controllers/classController.js');
 
 const app = express();
@@ -29,6 +28,10 @@ app.get('/profile/delete', controller.getDelProfile);
 app.post('/profile/delete', controller.postDelProfile);
 
 app.get('/schedule', controller.getYourSchedule);
+app.get('/schedule/create', controller.getAddClass);
+app.post('/schedule/create', controller.postAddClass);
+app.get('/schedule/search', controller.getSearchClass);
+app.get('/schedule/delete', controller.getDeleteClass);
 
 app.get('/profile-deletion-success', successController.getSuccessReg);
 
