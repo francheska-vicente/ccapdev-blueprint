@@ -147,8 +147,8 @@ const controller = {
         var fName = user.fName;
         var lName = user.lName;
         var username = user.username;
-        var commentID;
-
+        
+        
         db.count (Comment, {}, function (result) {
             if (result < 10)
                 result = "0" + (result + 1);
@@ -162,6 +162,44 @@ const controller = {
                 mainID : d, 
                 content : req.body.main_comment_text,
                 commentID: ("com" + result)
+            };
+
+            db.findOne (Discussion, {discID: d}, {}, function (result) {
+                result.numOfComments = result.numOfComments + 1;
+
+                db.updateOne (Discussion, {}, result, function (result) {
+                });
+            });
+
+            db.insertOne (Comment, comment, function (discInfo) {
+                res.redirect ('/classes/' + c + '/discussions/' + d);
+            });
+        });
+    },
+
+    addComment : function (req, res) {
+        var d = req.params.discID;
+        var c = req.params.classID;
+        var p = req.params.commentID;
+
+        var fName = user.fName;
+        var lName = user.lName;
+        var username = user.username;
+        
+        console.log ("hello");
+        db.count (Comment, {}, function (result) {
+            if (result < 10)
+                result = "0" + (result + 1);
+
+            var comment = {
+                classID : c,
+                username : username,
+                fName : fName,
+                lName : lName,
+                parentID : p,
+                mainID : d,
+                commentID : ("com" + result),
+                content : req.body.paragraph_text
             };
 
             db.findOne (Discussion, {discID: d}, {}, function (result) {

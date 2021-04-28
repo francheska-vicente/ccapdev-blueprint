@@ -21,11 +21,13 @@ var CommentsSchema = new mongoose.Schema({
         required: true
     },
     
+    // the direct parent of the comment
     parentID: {
         type: String,
         required: true
     },
 
+    // the discID or notesID 
     mainID: {
         type: String,
         required: true

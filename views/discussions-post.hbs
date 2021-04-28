@@ -30,31 +30,31 @@
         <div class="navigationDiv">
           <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
                 <li class="nav-item item ">
-                    <a class="nav-link icon_name" href="class.html"><i class="fa fa-home icon"></i> Home </a>
+                    <a class="nav-link icon_name" href="/classes/{{classID}}/home"><i class="fa fa-home icon"></i> Home </a>
                 </li>
                 <li class="nav-item item up">
-                    <a class="nav-link  icon_name" href="classlist.html"><i class="far fa-address-book icon"></i> Class List</a>
+                    <a class="nav-link  icon_name" href="/classes/{{classID}}/classlist"><i class="far fa-address-book icon"></i> Class List</a>
                 </li>
                 <li class="nav-item item">
                   <div class="active" style="background-color: white">
-                    <a class="nav-link" href="discussions.html" style="color: #5161ce; padding-left: 10px"><i class="far fa-clone"></i> Discussions</a>
+                    <a class="nav-link" href="/classes/{{classID}}/discussions" style="color: #5161ce; padding-left: 10px"><i class="far fa-clone"></i> Discussions</a>
                   </div>
                 </li>
                 <li class="nav-item item down">
-                    <a class="nav-link icon_name" href="reqs.html"><i class="far fa-calendar-alt icon"></i> Requirements</a>
+                    <a class="nav-link icon_name" href="/classes/{{classID}}/requirements"><i class="far fa-calendar-alt icon"></i> Requirements</a>
                 </li>
                 <li class="nav-item item">
-                    <a class="nav-link icon_name" href="notebook.html"><i class="fa fa-pencil-square-o icon"></i> Notebook</a>
+                    <a class="nav-link icon_name" href="/classes/{{classID}}/notebook"><i class="fa fa-pencil-square-o icon"></i> Notebook</a>
                 </li>
             </ul>
         </div>
       </nav>
       <div class="main" style="width: 85%">
         <ul class="breadcrumb">
-          <li><a href="home.html">blueprint</a></li>
-          <li><a href="dashboard.html">Classes</a></li>
-          <li><a href="class.html">{{coursecode}}</a></li>
-          <li><a href="discussions.html">Discussions</a></li>
+          <li><a href="/home">blueprint</a></li>
+          <li><a href="/classes/dashboard">Classes</a></li>
+          <li><a href="/classes/{{classID}}/home">{{coursecode}}</a></li>
+          <li><a href="/classes/{{classID}}/discussions">Discussions</a></li>
           <li>{{#with disc}}{{title}} {{/with}}</li>
         </ul> 
 
@@ -92,7 +92,20 @@
           </button>
           <br>
           <hr>
+          <div class ="createcontainer" id = "createDiv">
+            <form style = "width: 100%; height: 80%;" 
+            action = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/comment" method = "post"> 
+                <div class = "container input-group mb-3">
+                  <textarea name="paragraph_text" cols="97" rows="10" class = ".comment_box"></textarea>
+                </div>
+              <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+                <input type = "submit" name = "comment_button" id = "{{commentID}}comment_button" class = "btn Addcmt_btn" value = "Comment!">
+                </input>
+               </div>
+            </form>
+          </div>
         </div>
+
         {{/each}}
 
         <!-- Showing new comments not in DB. -->
@@ -109,17 +122,7 @@
         </div>
         
         <!-- Creating and Editing comments -->
-        <div class ="createcontainer" id = "origCreateDiv">
-          <form style = "width: 100%; height: 80%;" action = ""> 
-              <div class = "container input-group mb-3">
-                <textarea name="paragraph_text" cols="97" rows="10" class = ".comment_box"></textarea>
-              </div>
-            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-              <button type = "button" name = "comment_button" id = "comment_button" class = "btn Addcmt_btn">Comment!
-              </button>
-             </div>
-          </form>
-        </div>
+        
         
         <div class = "editcontainer" id = "origEditDiv"
              style = "margin-right: auto; margin-left: auto">
@@ -264,7 +267,7 @@
 
         $(".cmt_btn").click (function ()
         {
-            $(".createcontainer").css ("display", "block");
+          $(this).closest(".commentDiv").find (".createcontainer").css ("display", "block");
         });
 
         $(".edt_btn").click (function ()
