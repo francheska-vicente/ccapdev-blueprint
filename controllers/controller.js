@@ -179,11 +179,11 @@ const controller = {
         var lName = user.lName;
         var username = user.username;
         
-        console.log ("hello");
+        console.log ("hello 0 ");
         db.count (Comment, {}, function (result) {
             if (result < 10)
                 result = "0" + (result + 1);
-
+            console.log ("hello 1");
             var comment = {
                 classID : c,
                 username : username,
@@ -192,16 +192,16 @@ const controller = {
                 parentID : p,
                 mainID : d,
                 commentID : ("com" + result),
-                content : req.body.paragraph_text
+                content : req.body.comment_text
             };
-
+            console.log (req.body.comment_text);
             db.findOne (Discussion, {discID: d}, {}, function (result) {
                 result.numOfComments = result.numOfComments + 1;
 
                 db.updateOne (Discussion, {}, result, function (result) {
                 });
             });
-
+            console.log ("hello 3");
             db.insertOne (Comment, comment, function (discInfo) {
                 res.redirect ('/classes/' + c + '/discussions/' + d);
             });

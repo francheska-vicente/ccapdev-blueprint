@@ -76,7 +76,8 @@
         
         <!-- Showing comments from DB. -->
         {{#each comments}}
-        <div class = "commentDiv" id = "{{commentID}}">
+        <div class = "commentDiv" id = "{{commentID}}" 
+             name = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/comment">
           <a href="../../../../{{../../disc}}{{username}}/profile" class="link">
           <h5>{{fName}} {{lName}}</h5>
           </a>
@@ -92,22 +93,8 @@
           </button>
           <br>
           <hr>
-          <div class ="createcontainer" id = "createDiv">
-            <form style = "width: 100%; height: 80%;" 
-            action = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/comment" method = "post"> 
-                <div class = "container input-group mb-3">
-                  <textarea name="paragraph_text" cols="97" rows="10" class = ".comment_box"></textarea>
-                </div>
-              <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-                <input type = "submit" name = "comment_button" id = "{{commentID}}comment_button" class = "btn Addcmt_btn" value = "Comment!">
-                </input>
-               </div>
-            </form>
-          </div>
         </div>
-
         {{/each}}
-
         <!-- Showing new comments not in DB. -->
         <div id = "origCommentDiv" class = "commentDiv">
           <button class="btn cmt_btn" id = "comment_btn">
@@ -120,8 +107,18 @@
             <i class="fas fa-eraser disc_icon"></i>
           </button>
         </div>
-        
         <!-- Creating and Editing comments -->
+        <div class ="createcontainer" id = "createDiv">
+            <form style = "width: 100%; height: 80%;" method = "post"> 
+                <div class = "container input-group mb-3">
+                  <textarea name = "comment_text" cols="97" rows="10" class = ".comment_box" id = "haha"value = "hahahaha"></textarea>
+                </div>
+              <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+                <input type = "submit" name = "comment_button" id = "{{commentID}}comment_button" class = "btn Addcmt_btn" value = "Comment!" onclick = "alert ($('#haha').val())">
+                </input>
+               </div>
+            </form>
+          </div>
         
         
         <div class = "editcontainer" id = "origEditDiv"
@@ -267,7 +264,11 @@
 
         $(".cmt_btn").click (function ()
         {
-          $(this).closest(".commentDiv").find (".createcontainer").css ("display", "block");
+          var commentDiv =  $(this).closest(".commentDiv").attr ("name");
+          var container = $("#createDiv");
+          container.css ("display", "block");
+          container.children ().attr ("action", commentDiv);
+          
         });
 
         $(".edt_btn").click (function ()
