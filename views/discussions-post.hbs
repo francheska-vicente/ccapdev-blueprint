@@ -17,7 +17,7 @@
     }
 
     #origCommentDiv, .createcontainer, .editcontainer,
-    #main_edit_container
+    #main_edit_container, #main_CreateDiv
     {
       display: none;
     }
@@ -57,20 +57,24 @@
           <li><a href="discussions.html">Discussions</a></li>
           <li>{{#with disc}}{{title}} {{/with}}</li>
         </ul> 
+
+        <!-- Main discussion topic -->
         <h1>{{#with disc}}{{title}} {{/with}}</h1>
         <a href="../../../../{{#with disc}}{{username}}{{/with}}/profile" class="link"><h5>By: {{#with disc}}{{fName}} {{lName}}{{/with}}</h5></a>
         <h6 class = "main_cmt">{{#with disc}}{{content}}{{/with}}</h6>
-        <button class = "btn cmt_btn" id = "main_comment_btn">
+        <button class = "btn" id = "main_comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
         </button>
         <button class="btn" id = "main_edit_btn">
             <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
           </button>
-          <button class="btn dlt_btn" id = "main_delete_btn" title = "Delete discussion">
+          <button class="btn" id = "main_delete_btn" title = "Delete discussion">
             <i class="fas fa-eraser disc_icon"></i>
           </button>
         <br>
         <hr>
+        
+        <!-- Showing comments from DB. -->
         {{#each comments}}
         <div class = "commentDiv" id = "{{commentID}}">
           <a href="../../../../{{../../disc}}{{username}}/profile" class="link">
@@ -91,9 +95,8 @@
         </div>
         {{/each}}
 
-        <div id = "origCommentDiv" class = "commentDiv"
-             action = "/classes/{{classID}}/{{#with disc}}{{discID}}{{/with}}/"
-             method = "post">
+        <!-- Showing new comments not in DB. -->
+        <div id = "origCommentDiv" class = "commentDiv">
           <button class="btn cmt_btn" id = "comment_btn">
             <i class="fas fa-comment disc_icon" title = "Comment on discussion"></i>
           </button>
@@ -105,6 +108,7 @@
           </button>
         </div>
         
+        <!-- Creating and Editing comments -->
         <div class ="createcontainer" id = "origCreateDiv">
           <form style = "width: 100%; height: 80%;" action = ""> 
               <div class = "container input-group mb-3">
@@ -128,8 +132,23 @@
               </button>
              </div>
           </form>
-        </div>  
-        
+        </div>
+
+        <!-- For the main discussion.  -->
+        <div class =".createcontainer" id = "main_CreateDiv">
+          <form style = "width: 100%; height: 80%;" method = "post"
+                action = "/classes/{{classID}}/discussions/{{#with disc}}{{discID}}{{/with}}/comment"> 
+              <div class = "container input-group mb-3">
+                <textarea name = "main_comment_text" cols="97" rows="10" class = ".comment_box"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <input type = "submit" name = "main_comment_button" id = "main_comment_button" 
+                     class = "btn Addcmt_btn" value = "Comment!">
+              </input>
+             </div>
+          </form>
+        </div>
+
         <div id = "main_edit_container"
              style = "margin-right: auto; margin-left: auto">
           <form style = "width: 100%; height: 80%;" 
@@ -139,8 +158,9 @@
                 <textarea name = "main_discussion_text" cols = "97" rows = "10" class = "edit_txt" id = "main_txt"></textarea>
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-              <input type = "submit" name = "main_edit_button" id = "main_edit_button" class = "btn Editcmt_btn" value = "Edit!">
-              </button>
+              <input type = "submit" name = "main_edit_button" id = "main_edit_button" 
+                     class = "btn Editcmt_btn" value = "Edit!">
+              </input>
              </div>
           </form>
         </div>  
@@ -181,16 +201,17 @@
 
         function post_comment ()
         {
+          console.log ("Hello 0");
             var form = $(this).closest(".createcontainer").find (".container");
             var comment_box = form.children ();
             var commentVal =  comment_box.val ();
             var numOfComments = $(".commentDiv").length;
-
+            console.log ("Hello 1");
             var commentNode = $("<h6/>").html (commentVal);
             commentNode.attr ("class", "comment_content");
             var nameNode = $("<h5/>").html ("Harry Potter");
             var commentDiv = $("#origCommentDiv").clone ();
-
+            console.log ("Hello 2");
             commentDiv.prepend (commentNode);
             commentDiv.prepend (nameNode);
             commentDiv.append ($("<br/><hr/>"));
@@ -264,6 +285,10 @@
 
         $("#main_edit_btn").click (function () {
           $("#main_edit_container").css ("display", "block");
+        });
+
+        $("#main_comment_btn").click (function () {
+          $("#main_CreateDiv").css ("display", "block");
         });
       });
     </script>
