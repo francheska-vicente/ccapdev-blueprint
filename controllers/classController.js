@@ -83,13 +83,14 @@ const classController = {
                 username : author,
                 discID : b,
                 lName : lName,
-                fName : fName
+                fName : fName,
             }
             
             var temp = {
                     coursecode: coursecode,
                     disc : disc,
-                    comments : result
+                    comments : result, 
+                    classID: c
             }
             
              res.render('discussions-post', temp);
