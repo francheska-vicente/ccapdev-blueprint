@@ -31,6 +31,11 @@ var CommentsSchema = new mongoose.Schema({
         required: true
     },
 
+    commentID : {
+        type: String,
+        required: true
+    },
+
     content: {
         type: String,
         required: true
