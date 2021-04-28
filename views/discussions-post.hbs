@@ -91,7 +91,9 @@
         </div>
         {{/each}}
 
-        <div id = "origCommentDiv" class = "commentDiv">
+        <div id = "origCommentDiv" class = "commentDiv"
+             action = "/classes/{{classID}}/{{#with disc}}{{discID}}{{/with}}/"
+             method = "post">
           <button class="btn cmt_btn" id = "comment_btn">
             <i class="fas fa-comment disc_icon" title = "Comment on discussion"></i>
           </button>
