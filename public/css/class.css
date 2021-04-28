@@ -63,7 +63,7 @@
 .Addcmt_btn, #edit_btn, #comment_btn, #delete_btn,
 #editC_btn, #commentC_btn, #deleteC_btn, 
 #add_btn0, #add_btn1, #add_btn2, #confirm_button, 
-#main_edit_btn
+#main_edit_btn, #main_comment_btn, #main_delete_btn
 {
     float: right;
 }
