@@ -69,7 +69,7 @@
             <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
         </button>
         <form action = "/classes/{{classID}}/discussions/{{#with disc}}{{discID}}{{/with}}/delete"
-                method = "post">
+                method = "get">
             <button class="btn" id = "main_delete_btn" title = "Delete discussion">
               <i class="fas fa-eraser disc_icon"></i>
             </button>
@@ -92,7 +92,7 @@
             <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
           </button>
           <form action = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/delete"
-                method = "post">
+                method = "get">
             <button class = "btn dlt_btn" id = "delete_btn" title = "Delete discussion">
               <i class = "fas fa-eraser disc_icon"></i>
             </button>
