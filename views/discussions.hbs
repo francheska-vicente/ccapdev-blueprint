@@ -46,7 +46,10 @@
         </ul> 
         <h1>Discussions</h1>
         <h5>You can start conversations, ask for help, or make new friends with your fellow classmates!</h5>
-        <a href ="add_disc.html" title="Add a new discussion"><i class="fa fa-plus" style="font-size: 25px; margin-top: -3%; float: right; color: #457B9D"></i></a>
+        <a href ="/classes/{{classID}}/new_discussion" 
+           title = "Add a new discussion">
+           <i class="fa fa-plus" style="font-size: 25px; margin-top: -3%; float: right; color: #457B9D"></i>
+        </a>
         <hr>
         <div class="row">
           <div class="left">
@@ -57,7 +60,7 @@
           </div>
         </div>
         {{#each results}}
-        <a href = "discussions/{{discID}}" class="links">
+        <a href = "/classes/{{classID}}/discussions/{{discID}}" class="links">
           <div class="row">
             <div class="left">
               <h6>{{title}}</h6>
