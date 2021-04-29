@@ -47,7 +47,7 @@ app.get('/classes/:classID/discussions', classController.getDiscussions);
 app.get('/classes/:classID/discussions/add', classController.getAddDiscussion);
 app.post('/classes/:classID/discussions/add', controller.postAddDiscussion);
 
-app.get('/classes/:classID/discussions/:discID', classController.getDiscussionPost);
+app.get('/classes/:classID/discussions/:discID', controller.getDiscussionPost);
 app.post('/classes/:classID/discussions/:discID/edit', classController.editDiscussionPost);
 app.post('/classes/:classID/discussions/:discID/delete', classController.deleteDiscussionPost);
 

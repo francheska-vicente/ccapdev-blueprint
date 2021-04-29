@@ -132,11 +132,57 @@ const controller = {
 
     getDashboard: function (req, res) {
         var classes = user.classes;
-        db.findMany(Course, {classID : {$in : classes}}, '', function (result) {
+        db.findMany (Course, {classID : {$in : classes}}, '', function (result) {
             var temp = {
                 results : result
             }
             res.render('dashboard', temp);
+        });
+    },
+
+    getDiscussionPost: function (req, res) {
+        var c = req.params.classID;
+        var b = req.params.discID;
+
+        var coursecode;
+        var content, title, author, fName, lName, loggedIn = user.username;
+
+        var comments;
+
+        db.findOne (Course, {classID : c}, null, function (classInfo) {
+            coursecode = classInfo.coursecode;
+        });
+
+        db.findOne (Discussion, {discID : b}, null, function (discInfo) {
+            if (discInfo != undefined)
+            {
+                content = discInfo.content;
+                title = discInfo.title;
+                author = discInfo.username;
+                fName = discInfo.fName;
+                lName = discInfo.lName;
+            }
+        });
+
+        db.findMany (Comment, {mainID: b}, null, function (result) {
+            var disc = {
+                content: content,
+                title: title,
+                username : author,
+                discID : b,
+                lName : lName,
+                fName : fName,
+            }
+
+            var temp = {
+                coursecode: coursecode,
+                disc : disc,
+                comments : result, 
+                classID: c,
+                currentUser : loggedIn
+            }
+
+            res.render('discussion-post', temp);
         });
     },
 
@@ -186,11 +232,11 @@ const controller = {
         var lName = user.lName;
         var username = user.username;
         console.log (req.body.comment_text);
-        console.log ("hello 0 ");
+        
         db.count (Comment, {}, function (result) {
             if (result < 10)
                 result = "0" + (result + 1);
-            console.log ("hello 1");
+            
             var comment = {
                 classID : c,
                 username : username,
@@ -208,7 +254,7 @@ const controller = {
                 db.updateOne (Discussion, {}, result, function (result) {
                 });
             });
-            console.log ("hello 3");
+            
             db.insertOne (Comment, comment, function (discInfo) {
                 res.redirect ('/classes/' + c + '/discussions/' + d);
             });

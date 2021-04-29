@@ -10,8 +10,17 @@ const port = 3000;
 
 app.engine('hbs', exphbs({
     defaultLayout: 'main',
-    extname: '.hbs'
+    extname: '.hbs',
+    helpers: {
+    	ifEqual : function (user1, user2) {
+          if (user1.toLowerCase () == user2.toLowerCase ())
+            return true;
+          else
+            return false;
+      }
+    }
 }));
+
 
 app.use(bodyParser.urlencoded ({ extended : false}));
 app.use(bodyParser.json());

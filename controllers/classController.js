@@ -130,7 +130,17 @@ const classController = {
 	}, 
 
 	editCommentOfDiscussion : function (req, res) {
+        var commentID = req.params.commentID;
+        var classID = req.params.classID;
+        var discID = req.params.discID;
 
+        db.findOne (Comment, {commentID : commentID}, null, function (comment) {
+            comment.content = req.body.edit_text;
+
+            db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
+                res.redirect ('/classes/' + classID + '/discussions/' + discID);
+            });
+        });
 	}, 
 
 	editDiscussionPost: function (req, res) {
