@@ -26,14 +26,13 @@ app.get('/profile/edit', controller.getEditProfile);
 app.post('/profile/edit', controller.postEditProfile);
 app.get('/profile/delete', controller.getDelProfile);
 app.post('/profile/delete', controller.postDelProfile);
+app.get('/profile-deletion-success', successController.getSuccessReg);
 
 app.get('/schedule', controller.getYourSchedule);
 app.get('/schedule/create', controller.getAddClass);
 app.post('/schedule/create', controller.postAddClass);
 app.get('/schedule/search', controller.getSearchClass);
 app.get('/schedule/drop', controller.getDeleteClass);
-
-app.get('/profile-deletion-success', successController.getSuccessReg);
 
 app.get('/:username/profile', controller.getUserProfile);
 app.get('/:username/schedule', controller.getUserSchedule);
@@ -45,15 +44,19 @@ app.get('/classes/:classID/requirements', classController.getReqs);
 app.get('/classes/:classID/notebook', classController.getNotes);
 
 app.get('/classes/:classID/discussions', classController.getDiscussions);
-app.get('/classes/:classID/discussions/:discID', classController.getDiscussionsPost);
-app.post('/classes/:classID/:discID', classController.editDiscussions);
-app.post('/classes/:classID/discussions/:discID/comment', controller.addCommentDiscussions);
-app.get('/classes/:classID/discussions/:discID/delete', classController.deleteDiscussion);
-app.post('/classes/:classID/:discID/:commentID', classController.editComment);
-app.post('/classes/:classID/discussions/:discID/:commentID/comment', controller.addComment);
-app.get('/classes/:classID/discussions/:discID/:commentID/delete', classController.deleteComment);
+app.get('/classes/:classID/discussions/add', classController.getAddDiscussion);
+app.post('/classes/:classID/discussions/add', controller.postAddDiscussion);
 
-app.get('/classes/:classID/new_discussion', classController.newDiscussion);
-app.post('/classes/:classID/discussions/addNewDisc', controller.addNewDisc);
+app.get('/classes/:classID/discussions/:discID', classController.getDiscussionPost);
+app.post('/classes/:classID/discussions/:discID/edit', classController.editDiscussionPost);
+app.post('/classes/:classID/discussions/:discID/delete', classController.deleteDiscussionPost);
+
+app.post('/classes/:classID/discussions/:discID/comment', controller.addCommentToDiscussion);
+app.post('/classes/:classID/discussions/:discID/comment', classController.editCommentOfDiscussion);
+
+app.post('/classes/:classID/discussions/:discID/:commentID/comment', controller.addCommentToComment);
+app.post('/classes/:classID/discussions/:discID/:commentID/delete', classController.deleteCommentOfComment);
+
+
 
 module.exports = app;

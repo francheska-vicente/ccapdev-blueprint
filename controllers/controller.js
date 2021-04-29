@@ -140,7 +140,7 @@ const controller = {
         });
     },
 
-    addCommentDiscussions: function (req, res) {
+    addCommentToDiscussion: function (req, res) {
         var d = req.params.discID;
         var c = req.params.classID;
 
@@ -177,7 +177,7 @@ const controller = {
         });
     },
 
-    addComment : function (req, res) {
+    addCommentToComment : function (req, res) {
         var d = req.params.discID;
         var c = req.params.classID;
         var p = req.params.commentID;
@@ -215,7 +215,7 @@ const controller = {
         });
     },
 
-    addNewDisc : function (req, res) {
+    postAddDiscussion : function (req, res) {
         console.log ('heheheheh');
         var c = req.params.classID;
         

@@ -49,11 +49,11 @@ const classController = {
                 results: result
             }
             console.log (result);
-           res.render('discussions', temp);
+           res.render('discussions-list', temp);
         });  
     },
 
-    getDiscussionsPost: function (req, res) {
+    getDiscussionPost: function (req, res) {
         var c = req.params.classID;
         var b = req.params.discID;
 
@@ -94,7 +94,7 @@ const classController = {
                     classID: c
             }
             
-             res.render('discussions-post', temp);
+             res.render('discussion-post', temp);
         });
     },
 
@@ -129,11 +129,11 @@ const classController = {
         res.render('notes', classInfo, results);
     }, 
 
-    editComment : function (req, res) {
+    editCommentOfDiscussion : function (req, res) {
 
     }, 
 
-    editDiscussions : function (req, res) {
+    editDiscussionPost: function (req, res) {
         var d = req.params.discID;
         console.log ("mama bakit d2");
          db.findOne (Discussion, {discID : d}, null, function (discInfo) {
@@ -145,7 +145,7 @@ const classController = {
          });
     },
 
-    deleteComment : function (req, res) {
+    deleteCommentOfComment : function (req, res) {
         var c = req.params.commentID;
         var a = req.params.classID;
         var d = req.params.discID;
@@ -160,7 +160,7 @@ const classController = {
          });
     },
 
-    deleteDiscussion : function (req, res) {
+    deleteDiscussionPost : function (req, res) {
         var d = req.params.discID;
         var a = req.params.classID;
 
@@ -169,7 +169,7 @@ const classController = {
         })
     }, 
 
-    newDiscussion : function (req, res) {
+    getAddDiscussion : function (req, res) {
         var a = req.params.classID;
         console.log ("hello");
        db.findOne(Course, {classID : a}, null, function (result) {
