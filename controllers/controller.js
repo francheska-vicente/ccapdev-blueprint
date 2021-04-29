@@ -239,7 +239,7 @@ const controller = {
             };
 
             db.insertOne (Discussion, discussion, function (result) {
-                res.render ('/classes/' + c + '/discussions');
+                res.redirect ('/classes/' + c + '/discussions');
             });
         });
     }
