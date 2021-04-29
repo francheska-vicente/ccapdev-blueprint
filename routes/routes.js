@@ -48,9 +48,12 @@ app.get('/classes/:classID/discussions', classController.getDiscussions);
 app.get('/classes/:classID/discussions/:discID', classController.getDiscussionsPost);
 app.post('/classes/:classID/:discID', classController.editDiscussions);
 app.post('/classes/:classID/discussions/:discID/comment', controller.addCommentDiscussions);
+app.get('/classes/:classID/discussions/:discID/delete', classController.deleteDiscussion);
 app.post('/classes/:classID/:discID/:commentID', classController.editComment);
 app.post('/classes/:classID/discussions/:discID/:commentID/comment', controller.addComment);
-app.get('/classes/:classID/discussions/:discID/delete', classController.deleteDiscussion);
 app.get('/classes/:classID/discussions/:discID/:commentID/delete', classController.deleteComment);
+
+app.get('/classes/:classID/new_discussion', classController.newDiscussion);
+app.post('/classes/:classID/discussions/addNewDisc', controller.addNewDisc);
 
 module.exports = app;
