@@ -143,6 +143,30 @@ const classController = {
             });
          });
     },
+
+    deleteComment : function (req, res) {
+        var c = req.params.commentID;
+        var a = req.params.classID;
+        var d = req.params.discID;
+        
+        db.findOne (Discussion, {discID : d}, null, function (discInfo) {
+            db.deleteOne (Comment, {commentID : c}, function (result) {
+                discInfo.numOfComments = discInfo.numOfComments - 1;
+                db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
+                    res.redirect ('/classes/' + a + '/discussions/' + d);
+                });
+            });
+         });
+    },
+
+    deleteDiscussion : function (req, res) {
+        var d = req.params.discID;
+        var a = req.params.classID;
+        
+        db.deleteOne (Discussion, {discID : d}, function (result) {
+            res.redirect ('/classes/' + a + '/discussions/');
+        })
+    }
 }
 
 module.exports = classController;
