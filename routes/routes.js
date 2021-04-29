@@ -50,5 +50,7 @@ app.post('/classes/:classID/:discID', classController.editDiscussions);
 app.post('/classes/:classID/discussions/:discID/comment', controller.addCommentDiscussions);
 app.post('/classes/:classID/:discID/:commentID', classController.editComment);
 app.post('/classes/:classID/discussions/:discID/:commentID/comment', controller.addComment);
+app.post('/classes/:classID/discussions/:discID/delete', classController.deleteDiscussion);
+app.post('/classes/:classID/discussions/:discID/:commentID/delete', classController.deleteComment);
 
 module.exports = app;
