@@ -213,6 +213,35 @@ const controller = {
                 res.redirect ('/classes/' + c + '/discussions/' + d);
             });
         });
+    },
+
+    addNewDisc : function (req, res) {
+        console.log ('heheheheh');
+        var c = req.params.classID;
+        
+        db.count (Discussion, {}, function (result) {
+            if (result < 10)
+                result = "0" + (result + 1);
+
+            var fName = user.fName;
+            var lName = user.lName;
+            var username = user.username;
+
+            var discussion = {
+                classID : c,
+                username : username,
+                fName : fName,
+                lName : lName,
+                discID : ("disc" + result),
+                title : req.body.title,
+                content: req.body.new_paragraph_text,
+                numOfComments : 0, 
+            };
+
+            db.insertOne (Discussion, discussion, function (result) {
+                res.render ('/classes/' + c + '/discussions');
+            });
+        });
     }
 }
 
