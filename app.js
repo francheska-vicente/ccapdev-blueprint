@@ -12,11 +12,14 @@ app.engine('hbs', exphbs({
     defaultLayout: 'main',
     extname: '.hbs',
     helpers: {
-    	ifEqual : function (user1, user2) {
+    	ifEqual : function (user1, user2, opts) {
+        try
+        {
           if (user1.toLowerCase () == user2.toLowerCase ())
-            return true;
+            return opts.fn (this);
           else
-            return false;
+            return opts.inverse(this);
+        } catch (error) { }
       }
     }
 }));

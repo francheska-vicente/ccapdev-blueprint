@@ -90,6 +90,7 @@
           <button class="btn cmt_btn" id = "cbtn_{{commentID}}">
             <i class="fas fa-comment disc_icon" title = "Reply to this comment"></i>
           </button>
+          {{#ifEqual ../currentUser username}}
           <button class="btn edt_btn" id = "ebtn_{{commentID}}">
             <i class="fa fa-pencil disc_icon" title = "Edit comment"></i>
           </button>
@@ -99,6 +100,7 @@
               <i class = "fas fa-eraser disc_icon"></i>
             </button>
           </form>
+          {{/ifEqual}}
           <br>
           <hr>
         </div>
