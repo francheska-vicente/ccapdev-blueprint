@@ -185,7 +185,7 @@ const controller = {
         var fName = user.fName;
         var lName = user.lName;
         var username = user.username;
-        
+        console.log (req.body.comment_text);
         console.log ("hello 0 ");
         db.count (Comment, {}, function (result) {
             if (result < 10)
@@ -201,7 +201,7 @@ const controller = {
                 commentID : ("com" + result),
                 content : req.body.comment_text
             };
-            console.log (req.body.comment_text);
+            
             db.findOne (Discussion, {discID: d}, {}, function (result) {
                 result.numOfComments = result.numOfComments + 1;
 
