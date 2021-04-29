@@ -37,6 +37,7 @@ const classController = {
         var classID;
        
         db.findOne (Course, {classID: c}, null, function (result) {
+            console.log (result);
             coursecode = result.coursecode;
             classID = result.classID;
         }); 
@@ -44,10 +45,10 @@ const classController = {
         db.findMany (Discussion, {classID: c}, null, function (result) {
             var temp = {
                 coursecode: coursecode, 
-                classID: coursecode, 
+                classID: classID, 
                 results: result
             }
-
+            console.log (result);
            res.render('discussions', temp);
         });  
     },
@@ -134,7 +135,7 @@ const classController = {
 
     editDiscussions : function (req, res) {
         var d = req.params.discID;
-        console.log ("hello");
+        console.log ("mama bakit d2");
          db.findOne (Discussion, {discID : d}, null, function (discInfo) {
             discInfo.content = req.body.main_discussion_text;
 
@@ -162,10 +163,19 @@ const classController = {
     deleteDiscussion : function (req, res) {
         var d = req.params.discID;
         var a = req.params.classID;
-        
+
         db.deleteOne (Discussion, {discID : d}, function (result) {
             res.redirect ('/classes/' + a + '/discussions/');
         })
+    }, 
+
+    newDiscussion : function (req, res) {
+        var a = req.params.classID;
+        console.log ("hello");
+       db.findOne(Course, {classID : a}, null, function (result) {
+            console.log (result);
+            res.render ('new_discussion', result);
+        });
     }
 }
 
