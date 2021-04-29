@@ -100,7 +100,7 @@ const controller = {
         db.findOne(Course, course, '', function(flag) {
             if(!flag) {
                 db.count (Course, {}, function (result) {
-                    course.classID = id;
+                    course.classID = db.generateRandomUniqueID(Course);
                     course.classlist = [u];
                     db.insertOne(Course, course, function(flag) {
                         res.redirect('/classes/' + course.classID + '/home');

@@ -5,7 +5,8 @@ const Discussion = require ('./DiscModel.js');
 const Course = require ('./ClassModel.js');
 const Note = require ('./NotesModel.js');
 const Comment = require ('./CommentModel.js');
-
+const Requirement = require ('./ReqsModel.js');
+ 
 const url = 'mongodb://localhost:27017/blueprint';
 
 const options = {
@@ -93,8 +94,30 @@ const database = {
         });
     },
 
-    getObjectID : function () {
-        return mongoose.Types.ObjectId().toString();
+    generateRandomUniqueID : function (model) {
+        console.log("hallu");
+        do {
+            console.log("rawr");
+            var temp = Math.floor(Math.random() * (999999 - 0 + 1)) + 0;
+            var query;
+            switch (true) {
+                case model instanceof Course: 
+                    query = {classID : temp}; console.log("1"); break;
+                case model instanceof Discussion: 
+                    query = {discID : temp}; console.log("2"); break;
+                case model instanceof Note: 
+                    query = {notesID : temp}; console.log("3"); break;
+                case model instanceof Comment: 
+                    query = {commentID : temp}; console.log("4"); break;
+                case model instanceof Requirement: 
+                    query = {reqID : temp}; console.log("5");
+            }
+            
+            model.findOne(query, '', function (flag) {
+                if(!flag) return temp;
+            });
+            console.log("sadt");
+        } while (true);
     }
 }
 

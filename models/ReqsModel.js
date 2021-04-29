@@ -30,6 +30,11 @@ var ReqsSchema = new mongoose.Schema({
     deadline : {
         type: Date,
         required: true
+    },
+
+    reqID : {
+        type: String,
+        required: true
     }
 });
 
