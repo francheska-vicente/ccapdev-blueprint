@@ -111,7 +111,7 @@ const controller = {
     },
 
     getSearchClass: function (req, res) {
-        res.render('schedule', user);
+        res.render('searchclass', user);
     },
 
     getDeleteClass: function (req, res) {

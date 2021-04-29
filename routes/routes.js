@@ -31,7 +31,7 @@ app.get('/schedule', controller.getYourSchedule);
 app.get('/schedule/create', controller.getAddClass);
 app.post('/schedule/create', controller.postAddClass);
 app.get('/schedule/search', controller.getSearchClass);
-app.get('/schedule/delete', controller.getDeleteClass);
+app.get('/schedule/drop', controller.getDeleteClass);
 
 app.get('/profile-deletion-success', successController.getSuccessReg);
 

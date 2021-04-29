@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="../external/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/css.css" rel="stylesheet">
     <link href="../css/class.css" rel="stylesheet">
     <link href="../css/schedule.css" rel="stylesheet">
-    <link rel="icon" href="../images/logo-nt.png">
-    <link href = "https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
-    <link rel="stylesheet" href="navbar-fixed-right.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Schedule | blueprint</title>
 </head>
 <body>
@@ -18,26 +12,26 @@
         <div class="navigationDiv">
           <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
                 <li class="nav-item item up">
-                    <a class="nav-link icon_name" href="schedule.html"><i class="fa fa-calendar-check-o"></i> Your Schedule </a>
+                    <a class="nav-link icon_name" href="/schedule"><i class="fa fa-calendar-check-o"></i> Your Schedule </a>
                 </li>
                 <li class="nav-item item">
                   <div class="active" style="background-color: white">
-                    <a class="nav-link  icon_name" href="searchclass.html" style="color: #5161ce; padding-left: 10px"><i class="fa fa-plus"></i> Search for Classes</a>
+                    <a class="nav-link  icon_name" href="/schedule/search" style="color: #5161ce; padding-left: 10px"><i class="fa fa-plus"></i> Search for Classes</a>
                   </div>
                 </li>
                 <li class="nav-item item down">
-                    <a class="nav-link icon_name" href="newclass.html"><i class="fa fa-pencil icon"></i> Create a New Class</a>
+                    <a class="nav-link icon_name" href="/schedule/create"><i class="fa fa-pencil icon"></i> Create a New Class</a>
                 </li>
                 <li class="nav-item item">
-                    <a class="nav-link icon_name" href="delclass.html"><i class="fa fa-minus icon"></i> Drop a Class</a>
+                    <a class="nav-link icon_name" href="/schedule/drop"><i class="fa fa-minus icon"></i> Drop a Class</a>
                 </li>
             </ul>
         </div>
       </nav>
       <div class="main">
         <ul class="breadcrumb">
-          <li><a href="home.html">blueprint</a></li>
-          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="/home">blueprint</a></li>
+          <li><a href="/schedule">Schedule</a></li>
           <li>Search For Classes</li>
         </ul> 
         <h1>Search for Classes</h1>
@@ -52,15 +46,5 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-        function click_fn ()
-        {
-            var searchVal = document.getElementById ("class_box");
-            location.href = "searchclassresults.html";
-        }
-        
-        var button = document.getElementById ("class_btn");
-        button.onclick = click_fn;
-    </script>
 </body>
 </html>

@@ -358,7 +358,7 @@ a > .class-container:hover, a > .person-container:hover, a > .task-container:hov
 	background-position: center; 
 	background-attachment: fixed;
 	background-size: cover;
-    height: 100vh;
+    height: 93.5%;
     width: 100%;
 }
 
