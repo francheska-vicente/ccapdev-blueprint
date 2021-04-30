@@ -3,7 +3,7 @@
 <head>
     <link href="../../../css/css.css" rel="stylesheet">
     <link href="../../../css/class.css" rel="stylesheet">
-    <title>Notebook | {{classname}}</title>
+    <title>Notebook | {{coursecode}}</title>
 
     <style>
     h6
@@ -43,7 +43,7 @@
         <ul class="breadcrumb">
           <li><a href="/home">blueprint</a></li>
           <li><a href="/classes/dashboard">Classes</a></li>
-          <li><a href="/classes/{{classID}}/home">{{classname}}</a></li>
+          <li><a href="/classes/{{classID}}/home">{{coursecode}}</a></li>
           <li>Notebook</li>
         </ul> 
         <h1>Notebook</h1>
@@ -59,7 +59,7 @@
           </div>
         </div>
         {{#each result}}
-        <a href = "notes0.html" class="links">
+        <a href = "/classes/{{../results}}{{classID}}/notebook/{{notesID}}" class="links">
           <div class="row">
             <div class="left">
               <h6>{{title}}</h6>
@@ -70,7 +70,7 @@
           </div>
         </a>
         {{else}}
-  <h3 style="text-align: center; padding: 40px">There are no shared notes yet.</h3>
+           <h3 style="text-align: center; padding: 40px">There are no shared notes yet.</h3>
         {{/each}}
       </div>
   </div>
