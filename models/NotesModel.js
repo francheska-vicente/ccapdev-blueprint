@@ -10,6 +10,16 @@ var NotesSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+
+    fName : {
+        type: String,
+        required: true
+    },
+
+    lName : {
+        type: String,
+        required: true
+    },
     
     notesID: {
         type: String,

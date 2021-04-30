@@ -90,7 +90,7 @@ const classController = {
 
 	getAddNotes : function (req, res) {
 		var c = req.params.classID;
-		console.log ("hello");
+		
 		db.findOne (Course, {classID : c}, null, function (classInfo) {
 			res.render ('add_notes', classInfo);
 		});
@@ -150,9 +150,7 @@ const classController = {
 
 	getAddDiscussion : function (req, res) {
 		var a = req.params.classID;
-		console.log ("hello");
 		db.findOne(Course, {classID : a}, null, function (result) {
-			console.log (result);
 			res.render ('discussions-add', result);
 		});
 	}

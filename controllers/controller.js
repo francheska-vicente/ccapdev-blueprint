@@ -314,6 +314,8 @@ const controller = {
         var title = req.body.title;
         var notesID = db.getObjectID();
         var username = temp.username;
+        var fName = temp.fName;
+        var lName = temp.lName;
 
         var notes = {
             classID : c,
@@ -321,7 +323,9 @@ const controller = {
             notesID : notesID,
             content : content,
             title : title,
-            numOfComments : 0
+            numOfComments : 0,
+            fName : fName,
+            lName : lName
         };
 
         db.insertOne (Note, notes, function (result) {
@@ -351,36 +355,32 @@ const controller = {
                 content = notesInfo.content;
                 title = notesInfo.title;
                 author = notesInfo.username;
-                
-                db.findOne (User, {username : author}, null, function (notesUser) {
-                    fName = notesUser.fName;
-                    lName = notesUser.lName;
-                });
-
-                db.findMany (Comment, {mainID: b}, null, function (result) {
-                    var notes = {
-                        content: content,
-                        title: title,
-                        username : author,
-                        notesID : b,
-                        lName : lName,
-                        fName : fName
-                    }
-
-                    var temp = {
-                        coursecode: coursecode,
-                        notes : notes,
-                        comments : result, 
-                        classID: c,
-                        currentUser : loggedIn,
-
-                    }
-                    console.log (fName + " " + lName);
-                    res.render('notes-post', temp);
-                });
+                fName = notesInfo.fName;
+                lName = notesInfo.lName;
             }
         });
 
+        db.findMany (Comment, {mainID: b}, null, function (result) {
+            var notes = {
+                content: content,
+                title: title,
+                username : author,
+                notesID : b,
+                lName : lName,
+                fName : fName
+            }
+
+            var temp = {
+                coursecode: coursecode,
+                notes : notes,
+                comments : result, 
+                classID: c,
+                currentUser : loggedIn,
+
+            }
+
+            res.render('notes-post', temp);
+        });
     }
 }
 
