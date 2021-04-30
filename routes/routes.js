@@ -32,6 +32,8 @@ app.get('/schedule', controller.getYourSchedule);
 app.get('/schedule/create', controller.getAddClass);
 app.post('/schedule/create', controller.postAddClass);
 app.get('/schedule/search', controller.getSearchClass);
+app.post('/schedule/search', controller.getSearchClass);
+app.get('/schedule/search/results', controller.getSearchClassResults);
 app.get('/schedule/drop', controller.getDeleteClass);
 app.post('/schedule/drop', controller.postDeleteClass);
 
@@ -48,6 +50,7 @@ app.get('/classes/:classID/notebook/add', classController.getAddNotes);
 app.post('/classes/:classID/notebook/add', controller.postAddNotes);
 
 app.get('/classes/:classID/notebook/:notesID', controller.getNotesPost);
+<<<<<<< HEAD
 app.post('/classes/:classID/notebook/:notesID/edit', classController.editNotesPost);
 app.post('/classes/:classID/notebook/:notesID/delete', classController.deleteNotesPost);
 
@@ -56,6 +59,10 @@ app.post('/classes/:classID/notebook/:notesID/:commentID/edit', classController.
 
 app.post('/classes/:classID/notebook/:notesID/:commentID/comment', controller.addCommentToComment);
 app.post('/classes/:classID/notebook/:notesID/:commentID/delete', classController.deleteCommentOfComment);
+=======
+// app.post('/classes/:classID/notebook/:notesID/edit', classController.editNotesPost);
+app.post('/classes/:classID/notebook/:notesID/delete', classController.deleteNotesPost);
+>>>>>>> d29c6b86cd6d9080da8e6ab3ca35881130180510
 
 app.get('/classes/:classID/discussions', classController.getDiscussions);
 app.get('/classes/:classID/discussions/add', classController.getAddDiscussion);
