@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const db = require('../models/db.js');
 const User = require('../models/UserModel.js');
 const Discussion = require('../models/DiscModel.js');
@@ -86,7 +87,6 @@ const controller = {
 
     postAddClass: function (req, res) {
         var u = user.username;
-        var id;
         var course = {
             classname : req.body.classname,
             coursecode : req.body.coursecode,
@@ -100,10 +100,14 @@ const controller = {
         db.findOne(Course, course, '', function(flag) {
             if(!flag) {
                 db.count (Course, {}, function (result) {
-                    course.classID = db.generateRandomUniqueID(Course);
+                    course.classID = db.getObjectID();
                     course.classlist = [u];
                     db.insertOne(Course, course, function(flag) {
-                        res.redirect('/classes/' + course.classID + '/home');
+                        var classes = user.classes;
+                        classes.push(course.classID);
+                        db.updateOne(User, {username: user.username}, classes, function(result) {
+                            res.redirect('/classes/' + course.classID + '/home');
+                        });
                     });
                 });
             }
@@ -193,11 +197,8 @@ const controller = {
         var fName = user.fName;
         var lName = user.lName;
         var username = user.username;
-        
-        
-        db.count (Comment, {}, function (result) {
-            if (result < 10)
-                result = "0" + (result + 1);
+        var id = db.getObjectID();
+
 
             var comment = {
                 classID : c,
@@ -207,7 +208,7 @@ const controller = {
                 parentID : d, 
                 mainID : d, 
                 content : req.body.main_comment_text,
-                commentID: ("com" + result)
+                commentID: id
             };
 
             db.findOne (Discussion, {discID: d}, {}, function (result) {
@@ -220,7 +221,7 @@ const controller = {
             db.insertOne (Comment, comment, function (discInfo) {
                 res.redirect ('/classes/' + c + '/discussions/' + d);
             });
-        });
+
     },
 
     addCommentToComment : function (req, res) {
