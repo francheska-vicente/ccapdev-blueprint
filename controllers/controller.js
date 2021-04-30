@@ -260,7 +260,7 @@ const controller = {
     },
 
     postAddDiscussion : function (req, res) {
-        console.log ('heheheheh');
+        
         var c = req.params.classID;
         var id = db.getObjectID();
         var fName = user.fName;
@@ -281,7 +281,25 @@ const controller = {
         db.insertOne (Discussion, discussion, function (result) {
             res.redirect ('/classes/' + c + '/discussions');
         });
+    },
 
+    postAddNotes : function (req, res) {
+        var c = req.params.classID;
+        var content = req.body.paragraph_text;
+        var title = req.body.title;
+        var notesID = db.getObjectID();
+        var username = user.username;
+
+        var notes = {
+            classID : c,
+            username : username,
+            notesID : notesID,
+            content : content,
+        };
+
+        db.insertOne (Note, notes, function (result) {
+            res.redirect ('/classes' + c + 'notebook');
+        });
     }
 }
 
