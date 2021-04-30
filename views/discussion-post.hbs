@@ -81,12 +81,11 @@
         <!-- Showing comments from DB. -->
         {{#each comments}}
         <div class = "commentDiv" id = "div_{{commentID}}" 
-             name = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/comment">
+             name = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/">
           <a href="../../../../{{../../disc}}{{username}}/profile" class="link">
           <h5>{{fName}} {{lName}}</h5>
           </a>
-          <h6 id = "{{commentID}}" 
-              name = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/edit">{{content}}</h6>
+          <h6 id = "{{commentID}}">{{content}}</h6>
           <button class="btn cmt_btn" id = "cbtn_{{commentID}}">
             <i class="fas fa-comment disc_icon" title = "Reply to this comment"></i>
           </button>
@@ -95,7 +94,7 @@
             <i class="fa fa-pencil disc_icon" title = "Edit comment"></i>
           </button>
           <form action = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/delete"
-                method = "get">
+                method = "post">
             <button class = "btn dlt_btn" id = "delete_btn" title = "Delete comment">
               <i class = "fas fa-eraser disc_icon"></i>
             </button>
@@ -210,17 +209,17 @@
 
         function post_comment ()
         {
-          console.log ("Hello 0");
+        
             var form = $(this).closest(".createcontainer").find (".container");
             var comment_box = form.children ();
             var commentVal =  comment_box.val ();
             var numOfComments = $(".commentDiv").length;
-            console.log ("Hello 1");
+            
             var commentNode = $("<h6/>").html (commentVal);
             commentNode.attr ("class", "comment_content");
             var nameNode = $("<h5/>").html ("Harry Potter");
             var commentDiv = $("#origCommentDiv").clone ();
-            console.log ("Hello 2");
+            
             commentDiv.prepend (commentNode);
             commentDiv.prepend (nameNode);
             commentDiv.append ($("<br/><hr/>"));
@@ -274,7 +273,7 @@
 
         $(".cmt_btn").click (function ()
         {
-          var commentDiv =  $(this).closest(".commentDiv").attr ("name");
+          var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "comment";
           var container = $("#createDiv");
           container.css ("display", "block");
           container.children ().attr ("action", commentDiv);
@@ -288,7 +287,7 @@
           
           $(".editcontainer").css ("display", "block");
           $(".edit_txt").val ($("#" + commentID).html ());
-          $("#edit_com").attr ("action", $("#" + commentID).attr ("name"));
+          $("#edit_com").attr ("action", $("#div_" + commentID).attr ("name") + "edit");
         });
 
         $("#main_edit_button").click (function () {
