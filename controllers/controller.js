@@ -172,8 +172,8 @@ const controller = {
         var c = req.params.classID;
         var b = req.params.discID;
 
-        var coursecode;
-        var content, title, author, fName, lName, loggedIn = user.username;
+        var coursecode, temp = user;
+        var content, title, author, fName, lName, loggedIn = temp.username;
 
         var comments;
 
@@ -379,6 +379,73 @@ const controller = {
             }
 
             res.render('notes-post', temp);
+        });
+    },
+
+    addCommentToNotes: function (req, res) {
+        var d = req.params.notesID;
+        var c = req.params.classID;
+
+        var fName = user.fName;
+        var lName = user.lName;
+        var username = user.username;
+        var id = db.getObjectID();
+
+
+        var comment = {
+            classID : c,
+            username: username, 
+            fName : fName,
+            lName : lName, 
+            parentID : d, 
+            mainID : d, 
+            content : req.body.main_comment_text,
+            commentID: id
+        };
+
+        db.findOne (Note, {notesID: d}, {}, function (result) {
+            result.numOfComments = result.numOfComments + 1;
+
+            db.updateOne (Note, {}, result, function (result) {
+            });
+        });
+
+        db.insertOne (Comment, comment, function (discInfo) {
+            res.redirect ('/classes/' + c + '/notebook/' + d);
+        });
+    },
+
+    addCommentToCommentNote: function (req, res) {
+        var d = req.params.notesID;
+        var c = req.params.classID;
+        var p = req.params.commentID;
+
+        var fName = user.fName;
+        var lName = user.lName;
+        var username = user.username;
+        var id = db.getObjectID();
+        console.log (req.body.comment_text);
+        
+        var comment = {
+            classID : c,
+            username : username,
+            fName : fName,
+            lName : lName,
+            parentID : p,
+            mainID : d,
+            commentID : id,
+            content : req.body.comment_text
+        };
+
+        db.findOne (Note, {notesID: d}, {}, function (result) {
+            result.numOfComments = result.numOfComments + 1;
+
+            db.updateOne (Note, {}, result, function (result) {
+            });
+        });
+
+        db.insertOne (Comment, comment, function (notesInfo) {
+            res.redirect ('/classes/' + c + '/notebook/' + d);
         });
     }
 }

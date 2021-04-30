@@ -119,11 +119,53 @@ const classController = {
                 res.redirect ('/classes/' + classID + '/discussions/' + discID);
             });
         });
-	}, 
+	},
+
+	editNotesPost : function (req, res) {
+		var d = req.params.notesID;
+		var a = req.params.classID;
+
+		db.findOne (Note, {notesID : d}, null, function (notes) {
+			notes.content = req.body.main_notes_text;
+
+			db.updateOne (Note, {notesID : d}, notes, function (result) {
+				res.redirect ('/classes/' + a + '/notebook/' + d)
+			})
+		});
+	},
+
+	editCommentOfNotes : function (req, res) {
+		var commentID = req.params.commentID;
+        var classID = req.params.classID;
+        var notesID = req.params.notesID;
+
+        db.findOne (Comment, {commentID : commentID}, null, function (comment) {
+            comment.content = req.body.edit_text;
+
+            db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
+                res.redirect ('/classes/' + classID + '/notebook/' + notesID);
+            });
+        });
+	},
+
+	deleteCommentOfCommentNotes : function (req, res) {
+		var c = req.params.commentID;
+		var a = req.params.classID;
+		var d = req.params.notesID;
+
+		db.findOne (Note, {notesID : d}, null, function (notesInfo) {
+			db.deleteOne (Comment, {commentID : c}, function (result) {
+				notesInfo.numOfComments = notesInfo.numOfComments - 1;
+				db.updateOne (Note, {notesID : d}, notesInfo, function (result) {
+					res.redirect ('/classes/' + a + '/notebook/' + d);
+				});
+			});
+		});
+	},
 
 	editDiscussionPost: function (req, res) {
 		var d = req.params.discID;
-		console.log ("mama bakit d2");
+		
 		db.findOne (Discussion, {discID : d}, null, function (discInfo) {
 			discInfo.content = req.body.main_discussion_text;
 

@@ -17,6 +17,12 @@
       text-indent: 20px;
       text-align: justify;
     }
+
+    #origCommentDiv, .createcontainer, .editcontainer,
+    #main_edit_container, #main_CreateDiv
+    {
+      display: none;
+    }
   </style>
 
 </head>
@@ -57,10 +63,10 @@
   
         <h1>{{#with notes}} {{title}} {{/with}}</h1>
         <a href="../../users/{{notes.username}}.html" class="link"><h5>by: {{notes.fName}} {{notes.lName}}</h5></a>
-        <div id="note">
+        <div id="note" class = "main_cmt">
         {{#with notes}}{{content}} {{/with}}
         </div>
-        <button class="btn" id = "comment_btn">
+        <button class = "btn" id = "main_comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on note"></i>
         </button>
         <button class="btn" id = "main_edit_btn">
@@ -76,136 +82,231 @@
         <hr>
         
 
-        <div class = "comment">
-          <h5>Harry Potter</h5>
-          <h6 id = "comment1">Hope this helps!</h6>
-          <button class="btn" id = "commentC_btn">
-            <i class="fas fa-comment disc_icon" title="Comment on comment"></i>
+        <!-- Showing comments from DB. -->
+        {{#each comments}}
+        <div class = "commentDiv" id = "div_{{commentID}}" 
+             name = "/classes/{{classID}}/notebook/{{mainID}}/{{commentID}}/">
+          <a href="../../../../{{../../result}}{{username}}/profile" class="link">
+          <h5>{{fName}} {{lName}}</h5>
+          </a>
+          <h6 id = "{{commentID}}">{{content}}</h6>
+          <button class="btn cmt_btn" id = "cbtn_{{commentID}}">
+            <i class="fas fa-comment disc_icon" title = "Reply to this comment"></i>
           </button>
-          <button class="btn" id = "editC_btn">
-            <i class="fa fa-pencil disc_icon" title="Edit comment"></i>
+          {{#ifEqual ../currentUser username}}
+          <button class="btn edt_btn" id = "ebtn_{{commentID}}">
+            <i class="fa fa-pencil disc_icon" title = "Edit comment"></i>
           </button>
-          <button class="btn" id = "deleteC_btn" title = "Delete comment">
-            <i class="fas fa-eraser disc_icon"></i>
-          </button>
+          <form action = "/classes/{{classID}}/notebook/{{mainID}}/{{commentID}}/delete"
+                method = "post">
+            <button class = "btn dlt_btn" id = "delete_btn" title = "Delete comment">
+              <i class = "fas fa-eraser disc_icon"></i>
+            </button>
+          </form>
+          {{/ifEqual}}
           <br>
           <hr>
         </div>
+        {{/each}}
 
+        <!-- Showing new comments not in DB. -->
+        <div id = "origCommentDiv" class = "commentDiv">
+          <button class="btn cmt_btn" id = "comment_btn">
+            <i class="fas fa-comment disc_icon" title = "Reply to this comment"></i>
+          </button>
+          <button class="btn edt_btn" id = "edit_btn">
+            <i class="fa fa-pencil disc_icon" title = "Edit comment"></i>
+          </button>
+          <button class="btn dlt_btn" id = "delete_btn" title = "Delete comment">
+            <i class="fas fa-eraser disc_icon"></i>
+          </button>
+        </div>
+
+        <!-- Creating and Editing comments -->
+        <div class ="createcontainer containers" id = "createDiv">
+            <form style = "width: 100%; height: 80%;" method = "post"> 
+                <div class = "container input-group mb-3">
+                  <textarea name = "comment_text" cols="97" rows="10" class = ".comment_box">
+                  </textarea>
+                </div>
+              <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+                <input type = "submit" name = "comment_button" id = "{{commentID}}comment_button" class = "btn Addcmt_btn" value = "Comment!">
+                </input>
+               </div>
+            </form>
+          </div>
         
-        <div id="createcontainer">
-          <form style = "width: 100%; height: 80%;">
+        <div class = "editcontainer containers" id = "origEditDiv"
+             style = "margin-right: auto; margin-left: auto">
+          <form style="width:100%; height:80%;" method="post" id = "edit_com">
               <div class = "container input-group mb-3">
-                <textarea name="paragraph_text" cols="97" rows="10" id="comment_box"></textarea>
+                <textarea name = "edit_text" cols = "97" rows = "10" class = "edit_txt"></textarea>
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-              <button type = "button" name = "comment_button" id="comment_button" class = "btn">Comment!
+              <input type = "submit" name = "edit_button" id = "edit_button" class = "btn Editcmt_btn" value = "Edit!">
               </button>
              </div>
           </form>
-        </div>      
-        <div id="editcontainer">
-          <form style = "width: 100%; height: 80%;">
+        </div>
+
+        <!-- For the main discussion.  -->
+        <div class =".createcontainer containers" id = "main_CreateDiv">
+          <form style = "width: 100%; height: 80%;" method = "post"
+                action = "/classes/{{classID}}/notebook/{{#with notes}}{{notesID}}{{/with}}/comment"> 
               <div class = "container input-group mb-3">
-                <textarea name="paragraph_text" cols="97" rows="10" id = "discussion_txt">
-                </textarea>
+                <textarea name = "main_comment_text" cols="97" rows="10" class = ".comment_box"></textarea>
               </div>
-              <div class = "display" style = "padding: 0 40px; margin-top: 10px;">
-                <button type = "button" name = "edit_button" id="edit_button" class = "btn">Edit!
-                </button>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <input type = "submit" name = "main_comment_button" id = "main_comment_button" 
+                     class = "btn Addcmt_btn" value = "Comment!">
+              </input>
              </div>
           </form>
-        </div>      
+        </div>
+
+        <div id = "main_edit_container"
+             style = "margin-right: auto; margin-left: auto" class = "containers">
+          <form style = "width: 100%; height: 80%;" 
+                action="/classes/{{classID}}/notebook/{{#with notes}}{{notesID}}{{/with}}/edit" 
+                method="post">
+              <div class = "container input-group mb-3">
+                <textarea name = "main_notes_text" cols = "97" rows = "10" class = "main_notes_text" id = "main_txt"></textarea>
+              </div>
+            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+              <input type = "submit" name = "main_edit_button" id = "main_edit_button" 
+                     class = "btn Editcmt_btn" value = "Edit!">
+              </input>
+             </div>
+          </form>
+        </div> 
+
       </div>
     </div>
 
     <script type="text/javascript">
-        function click_fn ()
-        {
-            var searchVal = document.getElementById ("searchBox");
+        $(document).ready (function ()
+      {
+        $("#main_txt").val ($(".main_cmt").html ());
+
+        $("#search_btn").click (function ()
+          {
+            var searchVal = $("#searchBox").val ();
             location.href = "../../search.html";
+          });
+
+        function comment_func ()
+        {
+          $(this).closest(".commentDiv").find (".createcontainer").css ("display", "block");
         }
+
+        function edit_func ()
+        {
+          var div = $(this).closest(".commentDiv");
+          var content = div.children (".comment_content").html ();
+
+          var container = div.find (".editcontainer");
+          container.find (".container").children ().val (content);
+          container.css ("display", "block");
+        }
+
+        function post_comment ()
+        {
         
-        function visible_fn ()
-        {
-          document.getElementById ('createcontainer').style.display = "flex";
+            var form = $(this).closest(".createcontainer").find (".container");
+            var comment_box = form.children ();
+            var commentVal =  comment_box.val ();
+            var numOfComments = $(".commentDiv").length;
+            
+            var commentNode = $("<h6/>").html (commentVal);
+            commentNode.attr ("class", "comment_content");
+            var nameNode = $("<h5/>").html ("Harry Potter");
+            var commentDiv = $("#origCommentDiv").clone ();
+            
+            commentDiv.prepend (commentNode);
+            commentDiv.prepend (nameNode);
+            commentDiv.append ($("<br/><hr/>"));
+            commentDiv.attr ("id", "commentDiv" + numOfComments);
+            commentDiv.attr ("class", "commentDiv");
+
+            var commentButton  = commentDiv.find ("#comment_btn");
+            commentButton.attr ("id", "comment_btn" + numOfComments);
+            commentButton.click (comment_func);
+
+            var editButton = commentDiv.find ("#edit_btn");
+            editButton.attr ("id", "edit_btn" + numOfComments);
+            editButton.click (edit_func);
+
+            var delButton = commentDiv.find ("#delete_btn");
+            delButton.attr ("id", "delete_btn" + numOfComments);
+            delButton.click (delete_func);
+
+            var createC = $("#origCreateDiv").clone ();
+            createC.attr ("id", "createcontainer" + numOfComments);
+            createC.find ("#comment_button").attr ("id", "comment_button" + numOfComments).click (post_comment);
+            createC.find (".container").children ().val ("");
+
+            var editC = $("#origEditDiv").clone ();
+            editC.attr ("id", "editcontainer" + numOfComments);
+            editC.find ("#edit_button").attr ("id", "edit_button" + numOfComments).click (edit_comment);
+
+            commentDiv.append (createC);
+            commentDiv.append (editC);
+
+            $(".main").append (commentDiv);
+            commentDiv.css ("display", "block");
+            $(".createcontainer").css ("display", "none");
+            comment_box.val ("");
         }
 
-        function comment_fn ()
+        function edit_comment ()
         {
-            var searchVal = document.getElementById ("comment_box");
-            var reply = document.createElement ("h6");
-            var name = document.createElement ("h5");
-            var hr = document.createElement ("hr");
-
-            var nameN = document.createTextNode ("Harry Potter");
-            var node = document.createTextNode (comment_box.value);
-            reply.appendChild (node); 
-            name.appendChild (nameN);
-
-            var elem = document.getElementById ("comment");
-            elem.appendChild (name);
-            elem.appendChild (reply);
-            elem.appendChild (hr);
+          var form = $(this).closest(".editcontainer").find (".container");
+          var edit_box = form.children ();
+          var commentVal = edit_box.val ();
+          
+          $(this).closest (".commentDiv").children (".comment_content").html (commentVal);
+          
+          $(".editcontainer").css ("display", "none");
         }
 
-        function delete_fn ()
+        $(".createcontainer").on ("click", ".Addcmt_btn", post_comment);
+
+        $(".editcontainer").on ("click", ".Editcmt_btn", edit_comment);
+
+        $(".cmt_btn").click (function ()
         {
-            location.href = "notebook.html";
-        }
+          var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "comment";
+          var container = $("#createDiv");
+          $(".containers").css ("display", "none");
+          container.css ("display", "block");
+          container.children ().attr ("action", commentDiv);
+        });
 
-        function editvis_fn ()
+        $(".edt_btn").click (function ()
         {
-          document.getElementById ('editcontainer').style.display = "flex";
-          var searchVal = document.getElementById ("discussion_txt");
+          var btn_id = $(this).attr ("id");
+          var commentID = btn_id.substring (5, btn_id.length);
+          $(".containers").css ("display", "none");
+          $(".editcontainer").css ("display", "block");
+          $(".edit_txt").val ($("#" + commentID).html ());
+          $("#edit_com").attr ("action", $("#div_" + commentID).attr ("name") + "edit");
+        });
 
-          document.getElementById("discussion_txt").defaultValue = document.getElementById("note").innerHTML;
-        }
+        $("#main_edit_button").click (function () {
+          $(".main_cmt").html ($("#main_txt").val ());
+          $("#main_edit_container").css ("display", "none");
+        });
 
-        function editCvis_fn ()
-        {
-          document.getElementById ('editcontainer').style.display = "flex";
-          var searchVal = document.getElementById ("discussion_txt");
+        $("#main_edit_btn").click (function () {
+          $(".containers").css ("display", "none");
+          $("#main_edit_container").css ("display", "block");
+        });
 
-          document.getElementById("discussion_txt").defaultValue = document.getElementById("comment1").innerHTML;
-        }
-
-        function edit_fn ()
-        {
-          location.href = "notes0.html";
-        }
-
-        function deleteC_fn ()
-        {
-          location.href = "notes0.html";
-        }
-
-        var button = document.getElementById ("search_btn");
-        button.onclick = click_fn;
-
-        var comment = document.getElementById ("comment_btn");
-        comment.onclick = visible_fn;
-
-        var commentB = document.getElementById ("comment_button");
-        commentB.onclick = comment_fn;
-
-        var _delete = document.getElementById ("delete_btn");
-        _delete.onclick = delete_fn;
-
-        var edit = document.getElementById ("edit_btn");
-        edit.onclick = editvis_fn;
-
-        var editB = document.getElementById ("edit_button");
-        editB.onclick = edit_fn;
-
-        var commentCB = document.getElementById ("commentC_btn");
-        commentCB.onclick = visible_fn;
-
-        var editCB = document.getElementById ("editC_btn");
-        editCB.onclick = editCvis_fn;
-
-        var deleteCB = document.getElementById ("deleteC_btn");
-        deleteCB.onclick = deleteC_fn;
+        $("#main_comment_btn").click (function () {
+          $(".containers").css ("display", "none");
+          $("#main_CreateDiv").css ("display", "block");
+        });
+      });
     </script>
 </body>
 </html>

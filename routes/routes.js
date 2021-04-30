@@ -48,8 +48,14 @@ app.get('/classes/:classID/notebook/add', classController.getAddNotes);
 app.post('/classes/:classID/notebook/add', controller.postAddNotes);
 
 app.get('/classes/:classID/notebook/:notesID', controller.getNotesPost);
-// app.post('/classes/:classID/notebook/:notesID/edit', classController.editNotesPost);
-// app.post('/classes/:classID/notebook/:notesID/delete', classController.deleteNotesPost);
+app.post('/classes/:classID/notebook/:notesID/edit', classController.editNotesPost);
+app.post('/classes/:classID/notebook/:notesID/delete', classController.deleteNotesPost);
+
+app.post('/classes/:classID/notebook/:notesID/comment', controller.addCommentToNotes);
+app.post('/classes/:classID/notebook/:notesID/:commentID/edit', classController.editCommentOfNotes);
+
+app.post('/classes/:classID/notebook/:notesID/:commentID/comment', controller.addCommentToComment);
+app.post('/classes/:classID/notebook/:notesID/:commentID/delete', classController.deleteCommentOfComment);
 
 app.get('/classes/:classID/discussions', classController.getDiscussions);
 app.get('/classes/:classID/discussions/add', classController.getAddDiscussion);
