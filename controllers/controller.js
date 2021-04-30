@@ -376,7 +376,6 @@ const controller = {
                 comments : result, 
                 classID: c,
                 currentUser : loggedIn,
-
             }
 
             res.render('notes-post', temp);

@@ -63,14 +63,15 @@
         <button class="btn" id = "comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on note"></i>
         </button>
-        {{#ifEqual notes.username currentUser}}
-        <button class="btn" id = "edit_btn">
-          <i class="fa fa-pencil disc_icon" title="Edit note"></i>
+        <button class="btn" id = "main_edit_btn">
+            <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
         </button>
-        <button class="btn" id = "delete_btn" title = "Delete note">
-          <i class="fas fa-eraser disc_icon"></i>
-        </button>
-        {{/ifEqual}}
+        <form action = "/classes/{{classID}}/notebook/{{#with notes}}{{notesID}}{{/with}}/delete" 
+              method = "post">
+            <button class="btn" id = "main_delete_btn" title = "Delete discussion">
+              <i class="fas fa-eraser disc_icon"></i>
+            </button>
+        </form>
         <br>
         <hr>
         

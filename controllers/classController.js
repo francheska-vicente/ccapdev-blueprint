@@ -96,6 +96,17 @@ const classController = {
 		});
 	},
 
+	deleteNotesPost : function (req, res) {
+		var d = req.params.notesID;
+		var a = req.params.classID;
+
+		db.deleteOne (Note, {notesID : d}, function (result) {
+            db.deleteMany (Comment, {mainID: d}, function (result) {
+                res.redirect ('/classes/' + a + '/notebook/');
+            });
+		})
+	},
+
 	editCommentOfDiscussion : function (req, res) {
         var commentID = req.params.commentID;
         var classID = req.params.classID;
