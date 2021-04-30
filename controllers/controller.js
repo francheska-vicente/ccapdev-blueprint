@@ -303,6 +303,50 @@ const controller = {
         db.insertOne (Note, notes, function (result) {
             res.redirect ('/classes/' + c + '/notebook');
         });
+    },
+
+    getNotesPost : function (req, res) {
+        var c = req.params.classID;
+        var n = req.params.notesID;
+
+        var coursecode;
+        var loggedIn = user.username;
+
+        var comments;
+
+        db.findOne (Course, {classID : c}, null, function (classInfo) {
+            coursecode = classInfo.coursecode;
+        });
+
+        db.findOne (Note, {notesID : n}, null, function (notesR) {
+            var notes = {
+                classID : c,
+                username : notesR.username,
+                notesID : notesR.notesID,
+                content : notesR.content,
+                title : notes.title,
+                numOfComments : notesR.numOfComments,
+                fName : "",
+                lName : ""
+            };
+
+            db.findOne (User, {username : notes.username}, null, function (user) {
+                notes.fName = user.fName;
+                notes.lName = user.lName;
+            });
+
+            db.findMany (Comment, {mainID : n}, null, function (comments) {
+                var temp = {
+                    currentUser : loggedIn,
+                    comments: comments,
+                    notes: notes,
+                    coursecode: coursecode,
+                    classID : c
+                }
+
+                res.render ('notes-post', temp);
+            });
+        });
     }
 }
 
