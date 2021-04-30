@@ -296,6 +296,8 @@ const controller = {
             username : username,
             notesID : notesID,
             content : content,
+            title : title,
+            numOfComments : 0
         };
 
         db.insertOne (Note, notes, function (result) {
