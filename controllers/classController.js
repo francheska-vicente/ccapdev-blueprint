@@ -37,7 +37,6 @@ const classController = {
 		var classID;
 
 		db.findOne (Course, {classID: c}, null, function (result) {
-			console.log (result);
 			coursecode = result.coursecode;
 			classID = result.classID;
 		}); 
@@ -75,13 +74,18 @@ const classController = {
 
 		db.findOne (Course, query, null, function (classInfo) {
 			classInfo = classInfo;
-		});
 
-		db.findMany (Note, query, null, function (err, result) {
-			results = result;
-		});
+			db.findMany (Note, query, null, function (result) {
 
-		res.render('notes', classInfo, results);
+				var temp = {
+					coursecode : classInfo.coursecode,
+					classID : c,
+					result : result
+				}
+
+				res.render('notes', temp);
+			});
+		});
 	}, 
 
 	editCommentOfDiscussion : function (req, res) {
