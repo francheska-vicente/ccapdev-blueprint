@@ -90,7 +90,6 @@ const classController = {
 
 	getAddNotes : function (req, res) {
 		var c = req.params.classID;
-		
 		db.findOne (Course, {classID : c}, null, function (classInfo) {
 			res.render ('add_notes', classInfo);
 		});
