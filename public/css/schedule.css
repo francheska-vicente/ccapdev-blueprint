@@ -88,7 +88,7 @@ table {
 }
 
 #create_button, #drop_button, #edit_button, #comment_button,
-#confirm_button, .Editcmt_btn, .Addcmt_btn
+#confirm_button, .Editcmt_btn, .Addcmt_, #create_discussion
 {
 	display:inline-block;
 	padding:0.3em 1.2em;
