@@ -415,7 +415,7 @@ const controller = {
         });
     },
 
-    addCommentToCommentNote: function (req, res) {
+    addCommentToCommentNotes: function (req, res) {
         var d = req.params.notesID;
         var c = req.params.classID;
         var p = req.params.commentID;
@@ -425,7 +425,7 @@ const controller = {
         var username = user.username;
         var id = db.getObjectID();
         console.log (req.body.comment_text);
-        
+        console.log ("hello");
         var comment = {
             classID : c,
             username : username,
