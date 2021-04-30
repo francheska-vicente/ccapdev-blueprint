@@ -47,7 +47,7 @@ const classController = {
 				classID: classID, 
 				results: result
 			}
-			console.log (result);
+			
 			res.render('discussions-list', temp);
 		});  
 	},
@@ -82,7 +82,7 @@ const classController = {
 					classID : c,
 					result : result
 				}
-
+				
 				res.render('notes', temp);
 			});
 		});
