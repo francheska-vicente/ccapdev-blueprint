@@ -16,6 +16,11 @@ var NotesSchema = new mongoose.Schema({
         required: true
     },
 
+    title : {
+        type: String,
+        required: true
+    },
+
     content: {
         type: String,
         required: true
@@ -25,6 +30,11 @@ var NotesSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
+    },
+
+    numOfComments : {
+        type: Number,
+        required : true
     }
 });
 
