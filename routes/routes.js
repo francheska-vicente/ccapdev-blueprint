@@ -33,6 +33,7 @@ app.get('/schedule/create', controller.getAddClass);
 app.post('/schedule/create', controller.postAddClass);
 app.get('/schedule/search', controller.getSearchClass);
 app.get('/schedule/drop', controller.getDeleteClass);
+app.post('/schedule/drop', controller.postDeleteClass);
 
 app.get('/:username/profile', controller.getUserProfile);
 app.get('/:username/schedule', controller.getUserSchedule);
@@ -59,7 +60,5 @@ app.post('/classes/:classID/discussions/:discID/:commentID/edit', classControlle
 
 app.post('/classes/:classID/discussions/:discID/:commentID/comment', controller.addCommentToComment);
 app.post('/classes/:classID/discussions/:discID/:commentID/delete', classController.deleteCommentOfComment);
-
-
 
 module.exports = app;

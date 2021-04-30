@@ -39,7 +39,7 @@ const controller = {
     },
 
     getYourProfile: function (req, res) {
-        res.render('profile', user);
+        res.render('profile-view', user);
     },
 
     getEditProfile: function (req, res) {
@@ -119,7 +119,31 @@ const controller = {
     },
 
     getDeleteClass: function (req, res) {
-        res.render('schedule', user);
+        var classes = user.classes;
+        db.findMany (Course, {classID : {$in : classes}}, '', function (result) {
+            var temp = {
+                results : result,
+                user : user
+            }
+            res.render('class-drop', temp);
+        });
+    },
+
+    postDeleteClass: function (req, res) {
+        var coursecode = req.body.drop;
+        var classes = user.classes;
+        var index = classes.indexOf(coursecode);
+        if (index > -1) {
+            classes.splice(index, 1);
+        }
+
+        var update = {
+            classes : classes
+        }
+
+        db.updateOne(User, {username: user.username}, update, function(result) {
+                res.redirect('/classes/dashboard');
+            });
     },
 
     getUserProfile: function (req, res) {
@@ -235,28 +259,28 @@ const controller = {
         var id = db.getObjectID();
         console.log (req.body.comment_text);
         
-            
-            var comment = {
-                classID : c,
-                username : username,
-                fName : fName,
-                lName : lName,
-                parentID : p,
-                mainID : d,
-                commentID : id,
-                content : req.body.comment_text
-            };
-            
-            db.findOne (Discussion, {discID: d}, {}, function (result) {
-                result.numOfComments = result.numOfComments + 1;
 
-                db.updateOne (Discussion, {}, result, function (result) {
-                });
+        var comment = {
+            classID : c,
+            username : username,
+            fName : fName,
+            lName : lName,
+            parentID : p,
+            mainID : d,
+            commentID : id,
+            content : req.body.comment_text
+        };
+
+        db.findOne (Discussion, {discID: d}, {}, function (result) {
+            result.numOfComments = result.numOfComments + 1;
+
+            db.updateOne (Discussion, {}, result, function (result) {
             });
-            
-            db.insertOne (Comment, comment, function (discInfo) {
-                res.redirect ('/classes/' + c + '/discussions/' + d);
-            });
+        });
+
+        db.insertOne (Comment, comment, function (discInfo) {
+            res.redirect ('/classes/' + c + '/discussions/' + d);
+        });
     },
 
     postAddDiscussion : function (req, res) {

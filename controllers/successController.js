@@ -10,6 +10,14 @@ const successController = {
     },
     getSuccessDel: function (req, res) {
         res.render('success-del');
+    },
+    getSuccessDrop: function (req, res) {
+        res.render('success-drop');
+        var details = {
+            fName: req.query.fName,
+            lName: req.query.lName,
+            username: req.query.username
+        };
     }
 }
 
