@@ -32,6 +32,8 @@ app.get('/schedule', controller.getYourSchedule);
 app.get('/schedule/create', controller.getAddClass);
 app.post('/schedule/create', controller.postAddClass);
 app.get('/schedule/search', controller.getSearchClass);
+app.post('/schedule/search', controller.getSearchClass);
+app.get('/schedule/search/results', controller.getSearchClassResults);
 app.get('/schedule/drop', controller.getDeleteClass);
 app.post('/schedule/drop', controller.postDeleteClass);
 
@@ -49,7 +51,7 @@ app.post('/classes/:classID/notebook/add', controller.postAddNotes);
 
 app.get('/classes/:classID/notebook/:notesID', controller.getNotesPost);
 // app.post('/classes/:classID/notebook/:notesID/edit', classController.editNotesPost);
-// app.post('/classes/:classID/notebook/:notesID/delete', classController.deleteNotesPost);
+app.post('/classes/:classID/notebook/:notesID/delete', classController.deleteNotesPost);
 
 app.get('/classes/:classID/discussions', classController.getDiscussions);
 app.get('/classes/:classID/discussions/add', classController.getAddDiscussion);

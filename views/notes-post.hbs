@@ -1,16 +1,13 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="/css/css.css" rel="stylesheet">
-    <link href="/css/class.css" rel="stylesheet">
-    <link href="/css/schedule.css" rel="stylesheet">
-    <script src = "https://code.jquery.com/jquery-3.4.1.min.js" type = "text/javascript">
-    </script>
+  <link href="/css/class.css" rel="stylesheet">
+  <link href="/css/schedule.css" rel="stylesheet">
+  <script src = "https://code.jquery.com/jquery-3.4.1.min.js" type = "text/javascript">
+  </script>
+  <title>{{#with notes}}{{title}} {{/with}}| {{coursecode}}</title>
 
-    <title>{{#with notes}}{{title}} {{/with}}| {{coursecode}}</title>
-
-    <style>
+  <style>
     h6
     {
       margin:  20px;
@@ -21,191 +18,190 @@
 
 </head>
 <body>
-    {{>topnav}}
-    <div id = "content">
-    	<nav id = "sideNav">
-	  <div class="navigationDiv">
-		  <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
-			<li class="nav-item item">
-			    <a class="nav-link icon_name" href="/classes/{{classID}}/home"><i class="fa fa-home icon"></i> Home </a>
-			</li>
-			<li class="nav-item item">
-			    <a class="nav-link icon_name" href="/classes/{{classID}}/classlist"><i class="far fa-address-book icon"></i> Class List</a>
-			</li>
-			<li class="nav-item item">
-			    <a class="nav-link icon_name" href="/classes/{{classID}}/discussions"><i class="far fa-clone icon"></i> Discussions</a>
-			</li>
-			<li class="nav-item item up">
-			    <a class="nav-link icon_name" href="/classes/{{classID}}/requirements"><i class="far fa-calendar-alt icon"></i> Requirements</a>
-			</li>
-			<li class="nav-item item">
-			    <div class="active" style="background-color: white">
-			      <a class="nav-link" href="/classes/{{classID}}/notebook" style="color: #5161ce; padding-left: 10px"><i class="fa fa-pencil-square-o"></i> Notebook</a>
-			  </div>
-			</li>
-		    </ul>
-           </div>
-       </nav>
-       <div class="main" style="width: 85%">
-        <ul class="breadcrumb">
-          <li><a href="/home">blueprint</a></li>
-          <li><a href="/classes/dashboard">Classes</a></li>
-          <li><a href="/classes/{{classID}}/home">CCAPDEV</a></li>
-          <li><a href="/classes/{{classID}}/notebook">Notebook</a></li>
-          <li>{{#with notes}}{{title}} {{/with}}</li>
-        </ul> 
+  {{>topnav}}
+  <div id = "content">
+   <nav id = "sideNav">
+     <div class="navigationDiv">
+      <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
+       <li class="nav-item item">
+         <a class="nav-link icon_name" href="/classes/{{classID}}/home"><i class="fa fa-home icon"></i> Home </a>
+       </li>
+       <li class="nav-item item">
+         <a class="nav-link icon_name" href="/classes/{{classID}}/classlist"><i class="far fa-address-book icon"></i> Class List</a>
+       </li>
+       <li class="nav-item item">
+         <a class="nav-link icon_name" href="/classes/{{classID}}/discussions"><i class="far fa-clone icon"></i> Discussions</a>
+       </li>
+       <li class="nav-item item up">
+         <a class="nav-link icon_name" href="/classes/{{classID}}/requirements"><i class="far fa-calendar-alt icon"></i> Requirements</a>
+       </li>
+       <li class="nav-item item">
+         <div class="active" style="background-color: white">
+           <a class="nav-link" href="/classes/{{classID}}/notebook" style="color: #5161ce; padding-left: 10px"><i class="fa fa-pencil-square-o"></i> Notebook</a>
+         </div>
+       </li>
+     </ul>
+   </div>
+ </nav>
+ <div class="main" style="width: 85%">
+  <ul class="breadcrumb">
+    <li><a href="/home">blueprint</a></li>
+    <li><a href="/classes/dashboard">Classes</a></li>
+    <li><a href="/classes/{{classID}}/home">CCAPDEV</a></li>
+    <li><a href="/classes/{{classID}}/notebook">Notebook</a></li>
+    <li>{{#with notes}}{{title}} {{/with}}</li>
+  </ul> 
   
-        <h1>{{#with notes}} {{title}} {{/with}}</h1>
-        <a href="../../users/{{notes.username}}.html" class="link"><h5>by: {{notes.fName}} {{notes.lName}}</h5></a>
-        <div id="note">
-        {{#with notes}}{{content}} {{/with}}
-        </div>
-        <button class="btn" id = "comment_btn">
-          <i class="fas fa-comment disc_icon" title="Comment on note"></i>
-        </button>
-        <button class="btn" id = "main_edit_btn">
-            <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
-        </button>
-        <form action = "/classes/{{classID}}/notebook/{{#with notes}}{{notesID}}{{/with}}/delete" 
-              method = "post">
-            <button class="btn" id = "main_delete_btn" title = "Delete discussion">
-              <i class="fas fa-eraser disc_icon"></i>
-            </button>
-        </form>
-        <br>
-        <hr>
-        
+  <h1>{{#with notes}} {{title}} {{/with}}</h1>
+  <a href="../../users/{{notes.username}}.html" class="link"><h5>by: {{notes.fName}} {{notes.lName}}</h5></a>
+  <div id="note">
+    {{#with notes}}{{content}} {{/with}}
+  </div>
+  <button class="btn" id = "comment_btn">
+    <i class="fas fa-comment disc_icon" title="Comment on note"></i>
+  </button>
+  <button class="btn" id = "main_edit_btn">
+    <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
+  </button>
+  <form action = "/classes/{{classID}}/notebook/{{#with notes}}{{notesID}}{{/with}}/delete" method = "post">
+    <button class="btn" id = "main_delete_btn" title = "Delete discussion">
+      <i class="fas fa-eraser disc_icon"></i>
+    </button>
+  </form>
+  <br>
+  <hr>
 
-        <div class = "comment">
-          <h5>Harry Potter</h5>
-          <h6 id = "comment1">Hope this helps!</h6>
-          <button class="btn" id = "commentC_btn">
-            <i class="fas fa-comment disc_icon" title="Comment on comment"></i>
-          </button>
-          <button class="btn" id = "editC_btn">
-            <i class="fa fa-pencil disc_icon" title="Edit comment"></i>
-          </button>
-          <button class="btn" id = "deleteC_btn" title = "Delete comment">
-            <i class="fas fa-eraser disc_icon"></i>
-          </button>
-          <br>
-          <hr>
-        </div>
 
-        
-        <div id="createcontainer">
-          <form style = "width: 100%; height: 80%;">
-              <div class = "container input-group mb-3">
-                <textarea name="paragraph_text" cols="97" rows="10" id="comment_box"></textarea>
-              </div>
-            <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-              <button type = "button" name = "comment_button" id="comment_button" class = "btn">Comment!
-              </button>
-             </div>
-          </form>
-        </div>      
-        <div id="editcontainer">
-          <form style = "width: 100%; height: 80%;">
-              <div class = "container input-group mb-3">
-                <textarea name="paragraph_text" cols="97" rows="10" id = "discussion_txt">
-                </textarea>
-              </div>
-              <div class = "display" style = "padding: 0 40px; margin-top: 10px;">
-                <button type = "button" name = "edit_button" id="edit_button" class = "btn">Edit!
-                </button>
-             </div>
-          </form>
-        </div>      
+  <div class = "comment">
+    <h5>Harry Potter</h5>
+    <h6 id = "comment1">Hope this helps!</h6>
+    <button class="btn" id = "commentC_btn">
+      <i class="fas fa-comment disc_icon" title="Comment on comment"></i>
+    </button>
+    <button class="btn" id = "editC_btn">
+      <i class="fa fa-pencil disc_icon" title="Edit comment"></i>
+    </button>
+    <button class="btn" id = "deleteC_btn" title = "Delete comment">
+      <i class="fas fa-eraser disc_icon"></i>
+    </button>
+    <br>
+    <hr>
+  </div>
+
+
+  <div id="createcontainer">
+    <form style = "width: 100%; height: 80%;">
+      <div class = "container input-group mb-3">
+        <textarea name="paragraph_text" cols="97" rows="10" id="comment_box"></textarea>
       </div>
-    </div>
+      <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
+        <button type = "button" name = "comment_button" id="comment_button" class = "btn">Comment!
+        </button>
+      </div>
+    </form>
+  </div>      
+  <div id="editcontainer">
+    <form style = "width: 100%; height: 80%;">
+      <div class = "container input-group mb-3">
+        <textarea name="paragraph_text" cols="97" rows="10" id = "discussion_txt">
+        </textarea>
+      </div>
+      <div class = "display" style = "padding: 0 40px; margin-top: 10px;">
+        <button type = "button" name = "edit_button" id="edit_button" class = "btn">Edit!
+        </button>
+      </div>
+    </form>
+  </div>      
+</div>
+</div>
 
-    <script type="text/javascript">
-        function click_fn ()
-        {
-            var searchVal = document.getElementById ("searchBox");
-            location.href = "../../search.html";
-        }
-        
-        function visible_fn ()
-        {
-          document.getElementById ('createcontainer').style.display = "flex";
-        }
+<script type="text/javascript">
+  function click_fn ()
+  {
+    var searchVal = document.getElementById ("searchBox");
+    location.href = "../../search.html";
+  }
 
-        function comment_fn ()
-        {
-            var searchVal = document.getElementById ("comment_box");
-            var reply = document.createElement ("h6");
-            var name = document.createElement ("h5");
-            var hr = document.createElement ("hr");
+  function visible_fn ()
+  {
+    document.getElementById ('createcontainer').style.display = "flex";
+  }
 
-            var nameN = document.createTextNode ("Harry Potter");
-            var node = document.createTextNode (comment_box.value);
-            reply.appendChild (node); 
-            name.appendChild (nameN);
+  function comment_fn ()
+  {
+    var searchVal = document.getElementById ("comment_box");
+    var reply = document.createElement ("h6");
+    var name = document.createElement ("h5");
+    var hr = document.createElement ("hr");
 
-            var elem = document.getElementById ("comment");
-            elem.appendChild (name);
-            elem.appendChild (reply);
-            elem.appendChild (hr);
-        }
+    var nameN = document.createTextNode ("Harry Potter");
+    var node = document.createTextNode (comment_box.value);
+    reply.appendChild (node); 
+    name.appendChild (nameN);
 
-        function delete_fn ()
-        {
-            location.href = "notebook.html";
-        }
+    var elem = document.getElementById ("comment");
+    elem.appendChild (name);
+    elem.appendChild (reply);
+    elem.appendChild (hr);
+  }
 
-        function editvis_fn ()
-        {
-          document.getElementById ('editcontainer').style.display = "flex";
-          var searchVal = document.getElementById ("discussion_txt");
+  function delete_fn ()
+  {
+    location.href = "notebook.html";
+  }
 
-          document.getElementById("discussion_txt").defaultValue = document.getElementById("note").innerHTML;
-        }
+  function editvis_fn ()
+  {
+    document.getElementById ('editcontainer').style.display = "flex";
+    var searchVal = document.getElementById ("discussion_txt");
 
-        function editCvis_fn ()
-        {
-          document.getElementById ('editcontainer').style.display = "flex";
-          var searchVal = document.getElementById ("discussion_txt");
+    document.getElementById("discussion_txt").defaultValue = document.getElementById("note").innerHTML;
+  }
 
-          document.getElementById("discussion_txt").defaultValue = document.getElementById("comment1").innerHTML;
-        }
+  function editCvis_fn ()
+  {
+    document.getElementById ('editcontainer').style.display = "flex";
+    var searchVal = document.getElementById ("discussion_txt");
 
-        function edit_fn ()
-        {
-          location.href = "notes0.html";
-        }
+    document.getElementById("discussion_txt").defaultValue = document.getElementById("comment1").innerHTML;
+  }
 
-        function deleteC_fn ()
-        {
-          location.href = "notes0.html";
-        }
+  function edit_fn ()
+  {
+    location.href = "notes0.html";
+  }
 
-        var button = document.getElementById ("search_btn");
-        button.onclick = click_fn;
+  function deleteC_fn ()
+  {
+    location.href = "notes0.html";
+  }
 
-        var comment = document.getElementById ("comment_btn");
-        comment.onclick = visible_fn;
+  var button = document.getElementById ("search_btn");
+  button.onclick = click_fn;
 
-        var commentB = document.getElementById ("comment_button");
-        commentB.onclick = comment_fn;
+  var comment = document.getElementById ("comment_btn");
+  comment.onclick = visible_fn;
 
-        var _delete = document.getElementById ("delete_btn");
-        _delete.onclick = delete_fn;
+  var commentB = document.getElementById ("comment_button");
+  commentB.onclick = comment_fn;
 
-        var edit = document.getElementById ("edit_btn");
-        edit.onclick = editvis_fn;
+  var _delete = document.getElementById ("delete_btn");
+  _delete.onclick = delete_fn;
 
-        var editB = document.getElementById ("edit_button");
-        editB.onclick = edit_fn;
+  var edit = document.getElementById ("edit_btn");
+  edit.onclick = editvis_fn;
 
-        var commentCB = document.getElementById ("commentC_btn");
-        commentCB.onclick = visible_fn;
+  var editB = document.getElementById ("edit_button");
+  editB.onclick = edit_fn;
 
-        var editCB = document.getElementById ("editC_btn");
-        editCB.onclick = editCvis_fn;
+  var commentCB = document.getElementById ("commentC_btn");
+  commentCB.onclick = visible_fn;
 
-        var deleteCB = document.getElementById ("deleteC_btn");
-        deleteCB.onclick = deleteC_fn;
-    </script>
+  var editCB = document.getElementById ("editC_btn");
+  editCB.onclick = editCvis_fn;
+
+  var deleteCB = document.getElementById ("deleteC_btn");
+  deleteCB.onclick = deleteC_fn;
+</script>
 </body>
 </html>
