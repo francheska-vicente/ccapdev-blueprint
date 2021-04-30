@@ -54,39 +54,30 @@
           <li><a href="/classes/{{classID}}/notebook">Notebook</a></li>
           <li>{{#with notes}}{{title}} {{/with}}</li>
         </ul> 
-        <h1>{{#with notes}}{{title}} {{/with}}</h1>
-        <a href="../../users/harry_potter.html" class="link"><h5>by: Hary Potter</h5></a>
+  
+        <h1>{{#with notes}} {{title}} {{/with}}</h1>
+        <a href="../../users/{{notes.username}}.html" class="link"><h5>by: {{notes.fName}} {{notes.lName}}</h5></a>
         <div id="note">
-        JavaScript Document Object Model (DOM)
-          - allows programs and scripts to dynamically access and update the content, structure and style of a document.
-
-        Finding HTML elements
-          - document.getElementById ("id"); -> would only return one element since IDs should be unique.
-          - document.getElementsByClassName ("class"); -> would need to use loop since it might return more than one element; all elements with that classname
-          - document.getElementsByTagName ("tag"); -> would need to use loop since it might return more than one element; all elements with that tag
-
-        Changing Attributes
-          - you can change attributes of tags by directly accessing that attribute
-          - e.g. document.getElementById ("icon").src = "new.jpg";
-
-        Changing Styles
-          - you can change the style by accessing the style attribute
-          - e.g. document.getElementById ("icon").style.color = red;
+        {{#with notes}}{{content}} {{/with}}
         </div>
         <button class="btn" id = "comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on note"></i>
         </button>
+        {{#ifEqual notes.username currentUser}}
         <button class="btn" id = "edit_btn">
           <i class="fa fa-pencil disc_icon" title="Edit note"></i>
         </button>
         <button class="btn" id = "delete_btn" title = "Delete note">
           <i class="fas fa-eraser disc_icon"></i>
         </button>
+        {{/ifEqual}}
         <br>
         <hr>
-        <div class="comment">
+        
+
+        <div class = "comment">
           <h5>Harry Potter</h5>
-          <h6 id="comment1">Hope this helps!</h6>
+          <h6 id = "comment1">Hope this helps!</h6>
           <button class="btn" id = "commentC_btn">
             <i class="fas fa-comment disc_icon" title="Comment on comment"></i>
           </button>
@@ -99,8 +90,8 @@
           <br>
           <hr>
         </div>
-        <div id ="comment">
-        </div>
+
+        
         <div id="createcontainer">
           <form style = "width: 100%; height: 80%;">
               <div class = "container input-group mb-3">

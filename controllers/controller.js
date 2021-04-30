@@ -308,12 +308,12 @@ const controller = {
     },
 
     postAddNotes : function (req, res) {
-
+        var temp = user;
         var c = req.params.classID;
         var content = req.body.paragraph_text;
         var title = req.body.title;
         var notesID = db.getObjectID();
-        var username = user.username;
+        var username = temp.username;
 
         var notes = {
             classID : c,
@@ -331,46 +331,56 @@ const controller = {
 
     getNotesPost : function (req, res) {
         var c = req.params.classID;
-        var n = req.params.notesID;
+        var b = req.params.notesID;
 
         var coursecode;
-        var loggedIn = user.username;
+        var content, title, author, fName, lName;
 
-        var comments;
+        try
+        {
+            var loggedIn = user.username;
+        } catch (error) {}
 
         db.findOne (Course, {classID : c}, null, function (classInfo) {
             coursecode = classInfo.coursecode;
         });
 
-        db.findOne (Note, {notesID : n}, null, function (notesR) {
-            var notes = {
-                classID : c,
-                username : notesR.username,
-                notesID : notesR.notesID,
-                content : notesR.content,
-                title : notes.title,
-                numOfComments : notesR.numOfComments,
-                fName : "",
-                lName : ""
-            };
+        db.findOne (Note, {notesID : b}, null, function (notesInfo) {
+            if (notesInfo != undefined)
+            {
+                content = notesInfo.content;
+                title = notesInfo.title;
+                author = notesInfo.username;
+                
+                db.findOne (User, {username : author}, null, function (notesUser) {
+                    fName = notesUser.fName;
+                    lName = notesUser.lName;
+                });
 
-            db.findOne (User, {username : notes.username}, null, function (user) {
-                notes.fName = user.fName;
-                notes.lName = user.lName;
-            });
+                db.findMany (Comment, {mainID: b}, null, function (result) {
+                    var notes = {
+                        content: content,
+                        title: title,
+                        username : author,
+                        notesID : b,
+                        lName : lName,
+                        fName : fName
+                    }
 
-            db.findMany (Comment, {mainID : n}, null, function (comments) {
-                var temp = {
-                    currentUser : loggedIn,
-                    comments: comments,
-                    notes: notes,
-                    coursecode: coursecode,
-                    classID : c
-                }
+                    var temp = {
+                        coursecode: coursecode,
+                        notes : notes,
+                        comments : result, 
+                        classID: c,
+                        currentUser : loggedIn,
 
-                res.render ('notes-post', temp);
-            });
+                    }
+                    console.log (fName + " " + lName);
+                    res.render('notes-post', temp);
+                });
+            }
         });
+
     }
 }
 
