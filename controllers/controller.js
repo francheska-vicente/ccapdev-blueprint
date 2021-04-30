@@ -43,7 +43,7 @@ const controller = {
     },
 
     getEditProfile: function (req, res) {
-        res.render('editprofile', user);
+        res.render('profile-edit', user);
     },
 
     postEditProfile: function (req, res) {
@@ -64,7 +64,7 @@ const controller = {
     },
 
     getDelProfile: function (req, res) {
-        res.render('deleteprofile', user);
+        res.render('profile-del', user);
     },
 
     postDelProfile: function (req, res) {
@@ -82,7 +82,7 @@ const controller = {
     },
 
     getAddClass: function (req, res) {
-        res.render('newclass', user);
+        res.render('class-new', user);
     },
 
     postAddClass: function (req, res) {
@@ -115,7 +115,7 @@ const controller = {
     },
 
     getSearchClass: function (req, res) {
-        res.render('searchclass', user);
+        res.render('class-search', user);
     },
 
     getDeleteClass: function (req, res) {
@@ -200,27 +200,27 @@ const controller = {
         var id = db.getObjectID();
 
 
-            var comment = {
-                classID : c,
-                username: username, 
-                fName : fName,
-                lName : lName, 
-                parentID : d, 
-                mainID : d, 
-                content : req.body.main_comment_text,
-                commentID: id
-            };
+        var comment = {
+            classID : c,
+            username: username, 
+            fName : fName,
+            lName : lName, 
+            parentID : d, 
+            mainID : d, 
+            content : req.body.main_comment_text,
+            commentID: id
+        };
 
-            db.findOne (Discussion, {discID: d}, {}, function (result) {
-                result.numOfComments = result.numOfComments + 1;
+        db.findOne (Discussion, {discID: d}, {}, function (result) {
+            result.numOfComments = result.numOfComments + 1;
 
-                db.updateOne (Discussion, {}, result, function (result) {
-                });
+            db.updateOne (Discussion, {}, result, function (result) {
             });
+        });
 
-            db.insertOne (Comment, comment, function (discInfo) {
-                res.redirect ('/classes/' + c + '/discussions/' + d);
-            });
+        db.insertOne (Comment, comment, function (discInfo) {
+            res.redirect ('/classes/' + c + '/discussions/' + d);
+        });
 
     },
 
@@ -232,11 +232,9 @@ const controller = {
         var fName = user.fName;
         var lName = user.lName;
         var username = user.username;
+        var id = db.getObjectID();
         console.log (req.body.comment_text);
         
-        db.count (Comment, {}, function (result) {
-            if (result < 10)
-                result = "0" + (result + 1);
             
             var comment = {
                 classID : c,
@@ -245,7 +243,7 @@ const controller = {
                 lName : lName,
                 parentID : p,
                 mainID : d,
-                commentID : ("com" + result),
+                commentID : id,
                 content : req.body.comment_text
             };
             
@@ -259,36 +257,31 @@ const controller = {
             db.insertOne (Comment, comment, function (discInfo) {
                 res.redirect ('/classes/' + c + '/discussions/' + d);
             });
-        });
     },
 
     postAddDiscussion : function (req, res) {
         console.log ('heheheheh');
         var c = req.params.classID;
-        
-        db.count (Discussion, {}, function (result) {
-            if (result < 10)
-                result = "0" + (result + 1);
+        var id = db.getObjectID();
+        var fName = user.fName;
+        var lName = user.lName;
+        var username = user.username;
 
-            var fName = user.fName;
-            var lName = user.lName;
-            var username = user.username;
+        var discussion = {
+            classID : c,
+            username : username,
+            fName : fName,
+            lName : lName,
+            discID : id,
+            title : req.body.title,
+            content: req.body.new_paragraph_text,
+            numOfComments : 0, 
+        };
 
-            var discussion = {
-                classID : c,
-                username : username,
-                fName : fName,
-                lName : lName,
-                discID : ("disc" + result),
-                title : req.body.title,
-                content: req.body.new_paragraph_text,
-                numOfComments : 0, 
-            };
-
-            db.insertOne (Discussion, discussion, function (result) {
-                res.redirect ('/classes/' + c + '/discussions');
-            });
+        db.insertOne (Discussion, discussion, function (result) {
+            res.redirect ('/classes/' + c + '/discussions');
         });
+
     }
 }
 
