@@ -284,6 +284,7 @@ const controller = {
     },
 
     postAddNotes : function (req, res) {
+
         var c = req.params.classID;
         var content = req.body.paragraph_text;
         var title = req.body.title;
@@ -298,7 +299,7 @@ const controller = {
         };
 
         db.insertOne (Note, notes, function (result) {
-            res.redirect ('/classes' + c + 'notebook');
+            res.redirect ('/classes/' + c + '/notebook');
         });
     }
 }
