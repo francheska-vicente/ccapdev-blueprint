@@ -50,7 +50,6 @@ app.get('/classes/:classID/notebook/add', classController.getAddNotes);
 app.post('/classes/:classID/notebook/add', controller.postAddNotes);
 
 app.get('/classes/:classID/notebook/:notesID', controller.getNotesPost);
-<<<<<<< HEAD
 app.post('/classes/:classID/notebook/:notesID/edit', classController.editNotesPost);
 app.post('/classes/:classID/notebook/:notesID/delete', classController.deleteNotesPost);
 
@@ -59,10 +58,6 @@ app.post('/classes/:classID/notebook/:notesID/:commentID/edit', classController.
 
 app.post('/classes/:classID/notebook/:notesID/:commentID/comment', controller.addCommentToComment);
 app.post('/classes/:classID/notebook/:notesID/:commentID/delete', classController.deleteCommentOfComment);
-=======
-// app.post('/classes/:classID/notebook/:notesID/edit', classController.editNotesPost);
-app.post('/classes/:classID/notebook/:notesID/delete', classController.deleteNotesPost);
->>>>>>> d29c6b86cd6d9080da8e6ab3ca35881130180510
 
 app.get('/classes/:classID/discussions', classController.getDiscussions);
 app.get('/classes/:classID/discussions/add', classController.getAddDiscussion);
