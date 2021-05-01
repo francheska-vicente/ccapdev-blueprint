@@ -34,8 +34,21 @@ app.use(express.static('public'));
 app.use('/', routes);
 
 app.use(function (req, res) {
-    res.render('error');
+    res.render('error', { 
+        error: "Error: Page not found.",
+        code: "404"
+    });
 });
+
+app.use(function(err, req, res, next){
+    res.status(err.status);
+    res.render('error', { 
+        error: err,
+        code: err.status
+    });
+});
+
+
 
 db.connect();
 

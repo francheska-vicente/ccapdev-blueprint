@@ -7,6 +7,7 @@ const scheduleController = require('../controllers/scheduleController.js');
 const classController = require('../controllers/classController.js');
 const profileController = require('../controllers/profileController.js');
 const successController = require('../controllers/successController.js');
+const errorController = require('../controllers/errorController.js');
 
 const app = express();
 
@@ -83,4 +84,6 @@ app.post('/classes/:classID/discussions/:discID/:commentID/edit', classControlle
 app.post('/classes/:classID/discussions/:discID/:commentID/comment', controller.addCommentToComment);
 app.post('/classes/:classID/discussions/:discID/:commentID/delete', classController.deleteCommentOfComment);
 
+
+app.get('/error-401', errorController.get401);
 module.exports = app;
