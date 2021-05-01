@@ -11,7 +11,8 @@ var user;
 
 const controller = {
     getLoggedInUser : function () {
-        return user;
+        if (user != null)
+            return user;
     },
 
     getSplash: function (req, res) {

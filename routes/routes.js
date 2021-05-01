@@ -17,7 +17,7 @@ app.get('/', controller.getSplash);
 
 app.get('/login', controller.getLogin);
 app.post('/login', controller.postLogin);
-app.get('/register', controller.getSignUp);
+app.get('/register', signupController.getSignUp);
 app.post('/register', signupController.postSignUp);
 app.get('/register-success', successController.getSuccessReg);
 
