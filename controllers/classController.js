@@ -92,13 +92,18 @@ const classController = {
 			reqs.desc = req.body.paragraph_text;
 
 			db.updateOne (Reqs, {reqID : d}, reqs, function (result) {
-				res.redirect ('/classes/' + a + '/requirements/')
+				res.redirect ('/classes/' + a + '/requirements/');
 			})
 		});
 	}, 
 
 	deleteReqsPost : function (req, res) {
+		var d = req.params.reqID;
+		var a = req.params.classID;
 
+		db.deleteOne (Reqs, {reqID : d}, function (reqs) {
+			res.redirect ('/classes/' + a + '/requirements/');
+		});
 	},
 
 	getNotes : function (req, res) {
