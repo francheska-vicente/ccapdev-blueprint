@@ -53,21 +53,25 @@ const controller = {
             arr [i] = arr [i].charAt (0).toUpperCase () + arr [i].substring (1, arr [i].length);
 
             if (i > 0)
-                arr [i] = arr [i - 1] + arr [i];
+                arr [i] = arr [i - 1] + " " + arr [i];
         }
-
+        
         db.findMany (User, {$or: [
                 {username: search.toLowerCase ()},
                 {fName: arr [arr.length - 1]},
-                {lName: arr [arr.length - 1]},
-                {$eq: [arr [arr.length - 1], {$concat: [$fName, $lName]}]}
-            ]}, null, function (result) {
+                {lName: arr [arr.length - 1]}
+        ]}, null, function (result) {
+
+            // db.findMany (User, {$eq: [arr [arr.length - 1], {$concat: ["$fName", "$lName"]}]},
+            //     null, function (res2) {
                 var temp = {
                     result : result,
-                    search_val : search
+                    search_val : search,
+                    // result2 : res2
                 }
 
                 res.render ('search-users', temp);
+            // });
         });
     },
 
