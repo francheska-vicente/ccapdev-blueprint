@@ -80,6 +80,14 @@ const classController = {
 		});
 	},
 
+	editReqsPost : function (req, res) {
+
+	}, 
+
+	editReqsPost : function (req, res) {
+
+	},
+
 	getNotes : function (req, res) {
 		var c = req.params.classID;
 		var query = {
