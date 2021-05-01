@@ -62,14 +62,14 @@ const scheduleController = {
     getSearchClassResults: function (req, res) {
         var user = controller.getLoggedInUser();
         if(user == null) res.redirect('/error-401');
-        var query = req.params.class;
+        var query = req.query.search;
 
         db.findMany (Course, {$or:[{classname: query},{coursecode:query}]}, '', function (result) {
             var temp = {
                 results : result,
                 user : user
             }
-            res.render('class-search', temp);
+            res.render('class-search-results', temp);
         });
 
     },
