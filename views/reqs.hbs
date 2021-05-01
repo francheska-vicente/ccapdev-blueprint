@@ -10,7 +10,7 @@
   <style>
     h6
     {
-      margin:  20px;
+      margin:  5px;
       text-indent: 20px;
       text-align: justify;
     }
@@ -57,15 +57,19 @@
         </ul> 
         <h1>Requirements</h1>
         <h5>Don't forget to do your tasks!</h5>
-        <a href ="/classes/{{classID}}/requirements/add" title="Add a new requirement"><i class="fa fa-plus" style="font-size: 25px; margin-top: -3%; float: right; color: #457B9D"></i></a><hr>
+        <a href ="/classes/{{classID}}/requirements/add" title="Add a new requirement">
+          <i class="fa fa-plus" style="font-size: 25px; margin-top: -3%; float: right; color: #457B9D"></i>
+        </a>
+        <hr>
+        
         {{#each result}}
         <div class="req-list" 
              name = "/classes/{{../classID}}/requirements/{{reqID}}/edit">
           <div class="task-container" id = "{{reqID}}">
-            <h3 id="{{reqID}}req-title">{{title}}</h3>
-            <h6 id="{{reqID}}req-type">{{typeOfReq}} | Due {{deadline}}</h6><hr>
-            <h6 id="{{reqID}}req-details">{{desc}}</h6>
-            <div style="display: flex; flex-direction: row; margin-top: 10px; margin-bottom: 0px; width: max-content; margin: auto 0 auto auto">
+            <h3 id="{{reqID}}req-title" class = "req-title">{{title}}</h3>
+            <h6 id="{{reqID}}req-type" class = "req-type">{{typeOfReq}} | Due {{deadline}}</h6><hr>
+            <h6 id="{{reqID}}req-details" class = "req-details">{{desc}}</h6>
+            <div style="display: flex; flex-direction: row; margin-top: 0px; margin-bottom: 0px; width: max-content; margin: auto 0 auto auto">
               <button class="btn edt_btn" id = "ebtn_{{reqID}}">
                 <i class="fa fa-pencil disc_icon" title="Edit requirement"></i>
               </button>
