@@ -3,6 +3,10 @@ const User = require('../models/UserModel.js');
 
 const signupController = {
 
+    getSignUp: function (req, res) {
+        res.render('register');
+    },
+    
     postSignUp: function (req, res) {
         var user = {
             fName: req.body.fName,

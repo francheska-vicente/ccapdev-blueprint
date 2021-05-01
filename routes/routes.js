@@ -3,8 +3,10 @@ const bodyParser = require (`body-parser`);
 
 const controller = require('../controllers/controller.js');
 const signupController = require('../controllers/signupController.js');
-const successController = require('../controllers/successController.js');
+const scheduleController = require('../controllers/scheduleController.js');
 const classController = require('../controllers/classController.js');
+const profileController = require('../controllers/profileController.js');
+const successController = require('../controllers/successController.js');
 
 const app = express();
 
@@ -21,21 +23,22 @@ app.get('/register-success', successController.getSuccessReg);
 
 app.get('/home', controller.getHome);
 
-app.get('/profile', controller.getYourProfile);
-app.get('/profile/edit', controller.getEditProfile);
-app.post('/profile/edit', controller.postEditProfile);
-app.get('/profile/delete', controller.getDelProfile);
-app.post('/profile/delete', controller.postDelProfile);
+app.get('/profile', profileController.getYourProfile);
+app.get('/profile/edit', profileController.getEditProfile);
+app.post('/profile/edit', profileController.postEditProfile);
+app.get('/profile/delete', profileController.getDelProfile);
+app.post('/profile/delete', profileController.postDelProfile);
 app.get('/profile-deletion-success', successController.getSuccessReg);
 
-app.get('/schedule', controller.getYourSchedule);
-app.get('/schedule/create', controller.getAddClass);
-app.post('/schedule/create', controller.postAddClass);
-app.get('/schedule/search', controller.getSearchClass);
-app.post('/schedule/search', controller.postSearchClass);
-app.get('/schedule/search/results', controller.getSearchClassResults);
-app.get('/schedule/drop', controller.getDeleteClass);
-app.post('/schedule/drop', controller.postDeleteClass);
+app.get('/schedule', scheduleController.getYourSchedule);
+app.get('/schedule/create', scheduleController.getCreateClass);
+app.post('/schedule/create', scheduleController.postCreateClass);
+app.get('/schedule/search', scheduleController.getSearchClass);
+app.post('/schedule/search', scheduleController.postSearchClass);
+app.get('/schedule/search/results', scheduleController.getSearchClassResults);
+app.post('/schedule/search/:classID/add', scheduleController.postAddClass);
+app.get('/schedule/drop', scheduleController.getDeleteClass);
+app.post('/schedule/drop', scheduleController.postDeleteClass);
 
 app.get('/:username/profile', controller.getUserProfile);
 app.get('/:username/schedule', controller.getUserSchedule);
