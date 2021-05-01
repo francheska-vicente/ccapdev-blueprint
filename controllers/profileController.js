@@ -6,7 +6,8 @@ const profileController = {
 
     getYourProfile: function (req, res) {
         var user = controller.getLoggedInUser();
-        res.render('profile-view', user);
+        if(user != null) res.render('profile-view', user);
+        else res.render('error');
     },
 
     getEditProfile: function (req, res) {
