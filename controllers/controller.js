@@ -56,11 +56,11 @@ const controller = {
                 arr [i] = arr [i - 1] + arr [i];
         }
 
-        console.log (search + " " + arr [arr.length - 1]);
         db.findMany (User, {$or: [
                 {username: search.toLowerCase ()},
                 {fName: arr [arr.length - 1]},
-                {lName: arr [arr.length - 1]}
+                {lName: arr [arr.length - 1]},
+                {$eq: [arr [arr.length - 1], {$concat: [$fName, $lName]}]}
             ]}, null, function (result) {
                 var temp = {
                     result : result,
