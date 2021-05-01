@@ -41,7 +41,13 @@ app.get('/:username/schedule', controller.getUserSchedule);
 app.get('/classes/dashboard', controller.getDashboard);
 app.get('/classes/:classID/home', classController.getClass);
 app.get('/classes/:classID/classlist', classController.getClassList);
+
 app.get('/classes/:classID/requirements', classController.getReqs);
+app.get('/classes/:classID/requirements/add', classController.getAddReqs);
+// app.post('/classes/:classID/requirements/add', controller.postAddReqs);
+
+// app.post('/classes/:classID/requirements/:reqID/edit', classController.editReqsPost);
+// app.post('/classes/:classID/requirements/:reqID/delete', classController.deleteReqsPost);
 
 app.get('/classes/:classID/notebook', classController.getNotes);
 app.get('/classes/:classID/notebook/add', classController.getAddNotes);
@@ -54,13 +60,8 @@ app.post('/classes/:classID/notebook/:notesID/delete', classController.deleteNot
 app.post('/classes/:classID/notebook/:notesID/comment', controller.addCommentToNotes);
 app.post('/classes/:classID/notebook/:notesID/:commentID/edit', classController.editCommentOfNotes);
 
-<<<<<<< HEAD
 app.post('/classes/:classID/notebook/:notesID/:commentID/comment', controller.addCommentToCommentNotes);
 app.post('/classes/:classID/notebook/:notesID/:commentID/delete', classController.deleteCommentOfCommentNotes);
-=======
-app.post('/classes/:classID/notebook/:notesID/:commentID/comment', controller.addCommentToComment);
-app.post('/classes/:classID/notebook/:notesID/:commentID/delete', classController.deleteCommentOfComment);
->>>>>>> a91ea5e6f7166ff7ee2e9d896a367b219c3dba88
 
 app.get('/classes/:classID/discussions', classController.getDiscussions);
 app.get('/classes/:classID/discussions/add', classController.getAddDiscussion);
