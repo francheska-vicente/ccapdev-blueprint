@@ -119,6 +119,25 @@ const controller = {
         res.render('class-search', user);
     },
 
+    postSearchClass: function (req, res) {
+        res.redirect('/class/search/results?class=' + fName);
+    },
+
+    getSearchClassResults: function (req, res) {
+        var queryName = {classname: req.params.class};
+        var queryCode = {coursecode: req.params.class};
+
+        db.findMany (Course, {classID : queryName}, '', function (result) {
+            var temp = {
+                results : result,
+                user : user
+            }
+            res.render('class-drop', temp);
+        });
+
+        res.render('class-search', user);
+    },
+
     getDeleteClass: function (req, res) {
         var classes = user.classes;
         db.findMany (Course, {classID : {$in : classes}}, '', function (result) {

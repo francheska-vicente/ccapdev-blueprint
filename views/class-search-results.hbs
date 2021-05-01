@@ -46,7 +46,33 @@
           </button>
         </div>
       </form>
+      <div id="search-class-results">
+        {{#each results}}
+        <a href="/classes/{{classID}}/home" class="link">
+          <div class="class-container">
+            <div class="img-container"><img src="/images/book.png" class="img" alt="{{classname}}"></div>
+            <div class="text-container">
+              <h2>{{classname}}</h2>
+              <h3>{{coursecode}}</h3>
+            </div>
+          </div>  
+        </a>
+
+        <div class="class-container">
+          <div class="img-container"><img src = "/images/book.png" class = "img" alt = "{{classname}}"></div>
+          <div class="text-container">
+            <h2>{{coursecode}}</h2>
+            <h3>{{classname}}</h3><hr>
+            <h6>{{classDayA}} {{classTimeA}}</h6> 
+          </div>
+          <button class="btn" id = "add_btn0" style="margin-right: -30px">
+            <i class="fa fa-plus disc_icon" title="Add to Schedule!"></i>
+          </button>
+        </div>
+        {{else}}
+        <h3 style="text-align: center; padding: 40px">No results.</h3>
+        {{/each}}
+      </div>
     </div>
-  </div>
-</body>
-</html>
+  </body>
+  </html>

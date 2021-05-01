@@ -32,6 +32,8 @@ app.get('/schedule', controller.getYourSchedule);
 app.get('/schedule/create', controller.getAddClass);
 app.post('/schedule/create', controller.postAddClass);
 app.get('/schedule/search', controller.getSearchClass);
+app.post('/schedule/search', controller.postSearchClass);
+app.get('/schedule/search/results', controller.getSearchClassResults);
 app.get('/schedule/drop', controller.getDeleteClass);
 app.post('/schedule/drop', controller.postDeleteClass);
 
