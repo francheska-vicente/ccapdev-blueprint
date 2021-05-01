@@ -49,6 +49,7 @@ const database = {
 
     findMany: function(model, query, projection, callback) {
         model.find(query, projection, function(error, result) {
+            console.log (result);
             if(error) return callback(false);
             return callback(result);
         }).lean();

@@ -22,6 +22,7 @@ app.post('/register', signupController.postSignUp);
 app.get('/register-success', successController.getSuccessReg);
 
 app.get('/home', controller.getHome);
+app.get('/search', controller.getSearch);
 
 app.get('/profile', profileController.getYourProfile);
 app.get('/profile/edit', profileController.getEditProfile);

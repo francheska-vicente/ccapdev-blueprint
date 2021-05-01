@@ -41,7 +41,22 @@ const controller = {
         res.render('home', user);
     },
 
-    
+    getSearch : function (req, res) {
+        var search = req.query.search_val;
+        console.log (search);
+        db.findMany (User, {$or: [
+                {username: search.toLowerCase ()},
+                {fName: search.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' ')},
+                {lName: search.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' ')}
+            ]}, null, function (result) {
+                var temp = {
+                    result : result,
+                    search_val : search
+                }
+
+                res.render ('search-users', temp);
+        });
+    },
 
     getUserProfile: function (req, res) {
         db.findOne(User, {username: req.params.username}, '', function (result) {

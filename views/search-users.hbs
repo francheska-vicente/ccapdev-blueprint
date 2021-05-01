@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="../external/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/css.css" rel="stylesheet">
+  <link href="../css/search.css" rel="stylesheet">
+  <link rel="icon" href="../images/logo-nt.png">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <title>Search | blueprint</title>
+</head>
+<body>
+	{{>topnav}}
+    <div class="main-content">
+      <ul class="breadcrumb">
+        <li><a href="home.html">blueprint</a></li>
+        <li>User Search</li>
+      </ul> 
+      <div id="search-user-results">
+        <h1>User Search Results</h1><hr>
+        
+        <form action = "/search" method = "get" >
+          <div class = "input-group" 
+               style = "justify-content: center; margin-right: 25px; margin-bottom: 10px">
+            <div class="form-outline">
+              <input type="search" class="form-control" placeholder = "Search for users" name = "search_val" id="search_box"/ style = "height : 40px" value = "{{search_val}}">
+            </div>
+            <button type="submit" class="btn btn-primary" id="search_btn">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+        {{#each result}}
+        <a href="/{{username}}/profile" class="link">
+          <div class="person-container">
+            <div class="img-container"><img src = "../images/user.png" class = "img" alt = "Blueprint Logo"></div>
+            <div class="text-container">
+              <h2>{{fName}} {{lName}}</h2>
+              <h3>{{uni}}</h3><hr>
+              <h6>{{bio}}</h6>
+            </div>
+          </div>
+        </a>
+        {{/each}}
+    </div>
+  </div>
+  
+</body>
+</html>
