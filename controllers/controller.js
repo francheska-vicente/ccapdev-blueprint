@@ -41,13 +41,26 @@ const controller = {
         res.render('home', user);
     },
 
+
+
     getSearch : function (req, res) {
         var search = req.query.search_val;
-        console.log (search);
+        var arr = search.split (' ');
+
+        for (var i = 0; i < arr.length; i++)
+        {
+            arr [i] = arr [i].toLowerCase ();
+            arr [i] = arr [i].charAt (0).toUpperCase () + arr [i].substring (1, arr [i].length);
+
+            if (i > 0)
+                arr [i] = arr [i - 1] + arr [i];
+        }
+
+        console.log (search + " " + arr [arr.length - 1]);
         db.findMany (User, {$or: [
                 {username: search.toLowerCase ()},
-                {fName: search.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' ')},
-                {lName: search.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' ')}
+                {fName: arr [arr.length - 1]},
+                {lName: arr [arr.length - 1]}
             ]}, null, function (result) {
                 var temp = {
                     result : result,
