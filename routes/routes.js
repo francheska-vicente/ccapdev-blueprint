@@ -51,8 +51,8 @@ app.get('/classes/:classID/requirements', classController.getReqs);
 app.get('/classes/:classID/requirements/add', classController.getAddReqs);
 app.post('/classes/:classID/requirements/add', controller.postAddReqs);
 
-// app.post('/classes/:classID/requirements/:reqID/edit', classController.editReqsPost);
-// app.post('/classes/:classID/requirements/:reqID/delete', classController.deleteReqsPost);
+app.post('/classes/:classID/requirements/:reqID/edit', classController.editReqsPost);
+app.post('/classes/:classID/requirements/:reqID/delete', classController.deleteReqsPost);
 
 app.get('/classes/:classID/notebook', classController.getNotes);
 app.get('/classes/:classID/notebook/add', classController.getAddNotes);
