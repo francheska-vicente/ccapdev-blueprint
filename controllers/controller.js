@@ -470,6 +470,7 @@ const controller = {
         };
 
         db.insertOne (Reqs, reqs, function (result) {
+            
             res.redirect ('/classes/' + c + '/requirements');
         });
     }

@@ -42,8 +42,8 @@
         <h1>Requirements</h1>
         <h5>Don't forget to do your tasks!</h5>
         <a href ="/classes/{{classID}}/requirements/add" title="Add a new requirement"><i class="fa fa-plus" style="font-size: 25px; margin-top: -3%; float: right; color: #457B9D"></i></a><hr>
+        {{#each result}}
         <div id="req-list">
-          {{#each result}}
           <div class="task-container">
             <h3 class="req-title">{{title}}</h3>
             <h6 class="req-type">{{typeOfReq}} | Due {{deadline}}</h6><hr>
@@ -55,12 +55,11 @@
               <button class="btn" id = "delete_btn" title = "Delete requirement">
                 <i class="fas fa-eraser disc_icon"></i>
               </button>
-            </div>
-            {{else}}
-              <h3 style="text-align: center; padding: 40px">There are no requirements yet.</h3>
-            {{/each}}
+            </div>   
           </div>
-
+          {{else}}
+              <h3 style="text-align: center; padding: 40px">There are no requirements yet.</h3> 
+          {{/each}} 
           <div id="editcontainer">
             <form style = "width: 100%; height: 80%;">
                 <div class = "container input-group mb-3">
