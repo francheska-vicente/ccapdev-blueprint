@@ -31,28 +31,6 @@ const classController = {
 		});
 	},
 
-	getDiscussions: function (req, res) {
-		var c = req.params.classID;
-
-		var coursecode;
-		var classID;
-
-		db.findOne (Course, {classID: c}, null, function (result) {
-			coursecode = result.coursecode;
-			classID = result.classID;
-		}); 
-
-		db.findMany (Discussion, {classID: c}, null, function (result) {
-			var temp = {
-				coursecode: coursecode, 
-				classID: classID, 
-				results: result
-			}
-			
-			res.render('discussions-list', temp);
-		});  
-	},
-
 	getReqs: function (req, res) {
 		var c = req.params.classID;
 		var query = {
@@ -205,17 +183,7 @@ const classController = {
 		});
 	},
 
-	editDiscussionPost: function (req, res) {
-		var d = req.params.discID;
-		
-		db.findOne (Discussion, {discID : d}, null, function (discInfo) {
-			discInfo.content = req.body.main_discussion_text;
-
-			db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
-				res.redirect ('/classes/' + discInfo.classID + '/discussions/' + d);
-			});
-		});
-	},
+	
 
 	deleteCommentOfComment : function (req, res) {
 		var c = req.params.commentID;
@@ -243,12 +211,256 @@ const classController = {
 		})
 	}, 
 
-	getAddDiscussion : function (req, res) {
-		var a = req.params.classID;
-		db.findOne(Course, {classID : a}, null, function (result) {
-			res.render ('discussions-add', result);
-		});
-	}
+	
+
+	getDashboard: function (req, res) {
+        var classes = user.classes;
+        db.findMany (Course, {classID : {$in : classes}}, '', function (result) {
+            var temp = {
+                results : result
+            }
+            res.render('dashboard', temp);
+        });
+    },
+
+
+    addCommentToDiscussion: function (req, res) {
+        var d = req.params.discID;
+        var c = req.params.classID;
+
+        var fName = user.fName;
+        var lName = user.lName;
+        var username = user.username;
+        var id = db.getObjectID();
+
+
+        var comment = {
+            classID : c,
+            username: username, 
+            fName : fName,
+            lName : lName, 
+            parentID : d, 
+            mainID : d, 
+            content : req.body.main_comment_text,
+            commentID: id
+        };
+
+        db.findOne (Discussion, {discID: d}, {}, function (result) {
+            result.numOfComments = result.numOfComments + 1;
+
+            db.updateOne (Discussion, {}, result, function (result) {
+            });
+        });
+
+        db.insertOne (Comment, comment, function (discInfo) {
+            res.redirect ('/classes/' + c + '/discussions/' + d);
+        });
+
+    },
+
+    addCommentToComment : function (req, res) {
+        var d = req.params.discID;
+        var c = req.params.classID;
+        var p = req.params.commentID;
+
+        var fName = user.fName;
+        var lName = user.lName;
+        var username = user.username;
+        var id = db.getObjectID();
+        console.log (req.body.comment_text);
+        
+
+        var comment = {
+            classID : c,
+            username : username,
+            fName : fName,
+            lName : lName,
+            parentID : p,
+            mainID : d,
+            commentID : id,
+            content : req.body.comment_text
+        };
+
+        db.findOne (Discussion, {discID: d}, {}, function (result) {
+            result.numOfComments = result.numOfComments + 1;
+
+            db.updateOne (Discussion, {}, result, function (result) {
+            });
+        });
+
+        db.insertOne (Comment, comment, function (discInfo) {
+            res.redirect ('/classes/' + c + '/discussions/' + d);
+        });
+    },
+
+    
+
+    postAddNotes : function (req, res) {
+        var temp = user;
+        var c = req.params.classID;
+        var content = req.body.paragraph_text;
+        var title = req.body.title;
+        var notesID = db.getObjectID();
+        var username = temp.username;
+        var fName = temp.fName;
+        var lName = temp.lName;
+
+        var notes = {
+            classID : c,
+            username : username,
+            notesID : notesID,
+            content : content,
+            title : title,
+            numOfComments : 0,
+            fName : fName,
+            lName : lName
+        };
+
+        db.insertOne (Note, notes, function (result) {
+            res.redirect ('/classes/' + c + '/notebook');
+        });
+    },
+
+    getNotesPost : function (req, res) {
+        var c = req.params.classID;
+        var b = req.params.notesID;
+
+        var coursecode;
+        var content, title, author, fName, lName;
+
+        try
+        {
+            var loggedIn = user.username;
+        } catch (error) {}
+
+        db.findOne (Course, {classID : c}, null, function (classInfo) {
+            coursecode = classInfo.coursecode;
+        });
+
+        db.findOne (Note, {notesID : b}, null, function (notesInfo) {
+            if (notesInfo != undefined)
+            {
+                content = notesInfo.content;
+                title = notesInfo.title;
+                author = notesInfo.username;
+                fName = notesInfo.fName;
+                lName = notesInfo.lName;
+            }
+        });
+
+        db.findMany (Comment, {mainID: b}, null, function (result) {
+            var notes = {
+                content: content,
+                title: title,
+                username : author,
+                notesID : b,
+                lName : lName,
+                fName : fName
+            }
+
+            var temp = {
+                coursecode: coursecode,
+                notes : notes,
+                comments : result, 
+                classID: c,
+                currentUser : loggedIn,
+            }
+
+            res.render('notes-post', temp);
+        });
+    },
+
+    addCommentToNotes: function (req, res) {
+        var d = req.params.notesID;
+        var c = req.params.classID;
+
+        var fName = user.fName;
+        var lName = user.lName;
+        var username = user.username;
+        var id = db.getObjectID();
+
+
+        var comment = {
+            classID : c,
+            username: username, 
+            fName : fName,
+            lName : lName, 
+            parentID : d, 
+            mainID : d, 
+            content : req.body.main_comment_text,
+            commentID: id
+        };
+
+        db.findOne (Note, {notesID: d}, {}, function (result) {
+            result.numOfComments = result.numOfComments + 1;
+
+            db.updateOne (Note, {}, result, function (result) {
+            });
+        });
+
+        db.insertOne (Comment, comment, function (discInfo) {
+            res.redirect ('/classes/' + c + '/notebook/' + d);
+        });
+    },
+
+    addCommentToCommentNotes: function (req, res) {
+        var d = req.params.notesID;
+        var c = req.params.classID;
+        var p = req.params.commentID;
+
+        var fName = user.fName;
+        var lName = user.lName;
+        var username = user.username;
+        var id = db.getObjectID();
+        console.log (req.body.comment_text);
+        console.log ("hello");
+        var comment = {
+            classID : c,
+            username : username,
+            fName : fName,
+            lName : lName,
+            parentID : p,
+            mainID : d,
+            commentID : id,
+            content : req.body.comment_text
+        };
+
+        db.findOne (Note, {notesID: d}, {}, function (result) {
+            result.numOfComments = result.numOfComments + 1;
+
+            db.updateOne (Note, {}, result, function (result) {
+            });
+        });
+
+        db.insertOne (Comment, comment, function (notesInfo) {
+            res.redirect ('/classes/' + c + '/notebook/' + d);
+        });
+    },
+
+    postAddReqs : function (req, res) {
+        var c = req.params.classID;
+        var id = db.getObjectID();
+        var fName = user.fName;
+        var lName = user.lName;
+        var username = user.username;
+
+        var reqs = {
+            classID : c,
+            username : username,
+            fName : fName,
+            lName : lName,
+            reqID : id,
+            title : req.body.title,
+            desc: req.body.paragraph_text,
+            deadline: req.body.deadline,
+            typeOfReq: req.body.type, 
+        };
+
+        db.insertOne (Reqs, reqs, function (result) {
+            
+            res.redirect ('/classes/' + c + '/requirements');
+        });
+    }
 }
 
 module.exports = classController;

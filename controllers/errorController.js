@@ -9,7 +9,7 @@ const errorController = {
     },
 
     get403: function (req, res, next) {
-        var err = new Error('You are not allowed to access this!');
+        var err = new Error('You are not allowed to access this page!');
         err.status = 403;
         next(err);
     }
