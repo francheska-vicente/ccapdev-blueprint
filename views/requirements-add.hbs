@@ -58,19 +58,19 @@
                 action = "/classes/{{classID}}/requirements/add">
             <div class = "container input-group mb-3">
               <label for="title" class="input_field">Title</label>
-                <input type = "text" name = "title" id = "title" class = "form-control input_user" value = "" style="border-radius: 0px; color: black">
+                <input type = "text" name = "title" id = "title" class = "form-control input_user" value = "" style="border-radius: 0px; color: black" required>
             </div>
             <div class = "container input-group mb-3">
               <label for="type" class="input_field">Type</label>
-                <input type = "text" name = "type" id = "type" class = "form-control input_user" value = "" style="border-radius: 0px; color: black">
+                <input type = "text" name = "type" id = "type" class = "form-control input_user" value = "" style="border-radius: 0px; color: black" required>
             </div>
             <div class = "container input-group mb-3">
               <label for="deadline" class="input_field">Deadline</label>
-                <input type = "datetime-local" name = "deadline" id = "deadline" class = "form-control input_user" value = "" style="border-radius: 0px; color: black">
+                <input type = "datetime-local" name = "deadline" id = "deadline" class = "form-control input_user" value = "" style="border-radius: 0px; color: black" required>
             </div>
               <div class = "container input-group mb-3">
                 <label for="desc" class="input_field">Description</label>
-                <textarea name="paragraph_text" cols="97" rows="10" id="desc"></textarea>
+                <textarea name="paragraph_text" cols="97" rows="10" id="desc" required></textarea>
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
               <input type = "submit" name = "create_button" id="create_button" class = "btn" value = "Create!">
