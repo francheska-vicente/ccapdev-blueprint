@@ -7,19 +7,19 @@ const scheduleController = {
 
     getYourSchedule: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
         res.render('schedule', user);
     },
 
     getCreateClass: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
         res.render('class-new', user);
     },
 
     postCreateClass: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
         var u = user.username;
         var course = {
             classname : req.body.classname,
@@ -50,7 +50,7 @@ const scheduleController = {
 
     getSearchClass: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
         res.render('class-search', user);
     },
 
@@ -61,7 +61,7 @@ const scheduleController = {
 
     getSearchClassResults: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
         var query = req.params.class;
 
         db.findMany (Course, {$or:[{classname: query},{coursecode:query}]}, '', function (result) {
@@ -76,14 +76,14 @@ const scheduleController = {
 
     postAddClass: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
         var search = req.body.search;
         res.redirect('/class/search/results?class=' + search);
     },
 
     getDeleteClass: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
         var classes = user.classes;
         db.findMany (Course, {classID : {$in : classes}}, '', function (result) {
             var temp = {
@@ -96,7 +96,7 @@ const scheduleController = {
 
     postDeleteClass: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
         var coursecode = req.body.drop;
         var classes = user.classes;
         var index = classes.indexOf(coursecode);

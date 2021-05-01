@@ -12,6 +12,12 @@ const errorController = {
         var err = new Error('You are not allowed to access this page!');
         err.status = 403;
         next(err);
+    },
+
+    get404: function (req, res, next) {
+        var err = new Error('Page not found.');
+        err.status = 404;
+        next(err);
     }
 }
 

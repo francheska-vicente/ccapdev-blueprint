@@ -88,4 +88,5 @@ app.post('/classes/:classID/discussions/:discID/:commentID/delete', discControll
 
 app.get('/error/401', errorController.get401);
 app.get('/error/403', errorController.get403);
+app.get('/error/404', errorController.get404);
 module.exports = app;

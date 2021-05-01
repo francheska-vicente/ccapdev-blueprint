@@ -2,11 +2,9 @@ const mongoose = require('mongoose');
 const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
-
 const Course = require ('../models/ClassModel.js');
 const Note = require ('../models/NotesModel.js');
-const Comment = require ('../models/CommentModel.js');
-const Reqs = require ('../models/ReqsModel.js');
+
 var user;
 
 const controller = {
@@ -40,8 +38,6 @@ const controller = {
     getHome: function (req, res) {
         res.render('home', user);
     },
-
-
 
     getSearch : function (req, res) {
         var search = req.query.search_val;
