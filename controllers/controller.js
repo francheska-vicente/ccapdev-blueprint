@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const db = require('../models/db.js');
+
 const User = require('../models/UserModel.js');
 const Discussion = require('../models/DiscModel.js');
 const Course = require ('../models/ClassModel.js');
@@ -9,12 +10,12 @@ const Reqs = require ('../models/ReqsModel.js');
 var user;
 
 const controller = {
-    getSplash: function (req, res) {
-        res.render('splash');
+    getLoggedInUser : function () {
+        return user;
     },
 
-    getSignUp: function (req, res) {
-        res.render('register');
+    getSplash: function (req, res) {
+        res.render('splash');
     },
 
     getLogin: function (req, res) {
@@ -39,132 +40,7 @@ const controller = {
         res.render('home', user);
     },
 
-    getYourProfile: function (req, res) {
-        res.render('profile-view', user);
-    },
-
-    getEditProfile: function (req, res) {
-        res.render('profile-edit', user);
-    },
-
-    postEditProfile: function (req, res) {
-        var update = user;
-
-        if (req.body.username != '') update.username = req.body.username;
-        if (req.body.contact_no != '') update.phone = req.body.contact_no;
-        if (req.body.bday != '') update.bday = req.body.bday;
-        if (req.body.degree != '') update.degree = req.body.degree;
-        if (req.body.bio != '') update.bio = req.body.bio;
-        if (req.body.n_password != '') update.password = req.body.n_password;
-
-        if (req.body.o_password == user.password) {
-            db.updateOne(User, {username: user.username}, update, function(result) {
-                res.redirect('/profile');
-            });
-        }
-    },
-
-    getDelProfile: function (req, res) {
-        res.render('profile-del', user);
-    },
-
-    postDelProfile: function (req, res) {
-        if (user.password == req.body.password && user.password == req.body.c_password) {
-            db.deleteOne(User, {username: user.username}, function(flag) {
-                if(flag) {
-                    res.redirect('/profile-deletion-success');
-                }
-            });
-        }
-    },
-
-    getYourSchedule: function (req, res) {
-        res.render('schedule', user);
-    },
-
-    getAddClass: function (req, res) {
-        res.render('class-new', user);
-    },
-
-    postAddClass: function (req, res) {
-        var u = user.username;
-        var course = {
-            classname : req.body.classname,
-            coursecode : req.body.coursecode,
-            professor : req.body.professor,
-            classtimeA : req.body.classtimeA,
-            classdayA : req.body.classdayA,
-            classtimeB : req.body.classtimeB,
-            classdayB : req.body.classdayB
-        }
-
-        db.findOne(Course, course, '', function(flag) {
-            if(!flag) {
-                db.count (Course, {}, function (result) {
-                    course.classID = db.getObjectID();
-                    course.classlist = [u];
-                    db.insertOne(Course, course, function(flag) {
-                        var classes = user.classes;
-                        classes.push(course.classID);
-                        db.updateOne(User, {username: user.username}, classes, function(result) {
-                            res.redirect('/classes/' + course.classID + '/home');
-                        });
-                    });
-                });
-            }
-        });
-    },
-
-    getSearchClass: function (req, res) {
-        res.render('class-search', user);
-    },
-
-    postSearchClass: function (req, res) {
-        res.redirect('/class/search/results?class=' + fName);
-    },
-
-    getSearchClassResults: function (req, res) {
-        var queryName = {classname: req.params.class};
-        var queryCode = {coursecode: req.params.class};
-
-        db.findMany (Course, {classID : queryName}, '', function (result) {
-            var temp = {
-                results : result,
-                user : user
-            }
-            res.render('class-drop', temp);
-        });
-
-        res.render('class-search', user);
-    },
-
-    getDeleteClass: function (req, res) {
-        var classes = user.classes;
-        db.findMany (Course, {classID : {$in : classes}}, '', function (result) {
-            var temp = {
-                results : result,
-                user : user
-            }
-            res.render('class-drop', temp);
-        });
-    },
-
-    postDeleteClass: function (req, res) {
-        var coursecode = req.body.drop;
-        var classes = user.classes;
-        var index = classes.indexOf(coursecode);
-        if (index > -1) {
-            classes.splice(index, 1);
-        }
-
-        var update = {
-            classes : classes
-        }
-
-        db.updateOne(User, {username: user.username}, update, function(result) {
-                res.redirect('/classes/dashboard');
-            });
-    },
+    
 
     getUserProfile: function (req, res) {
         db.findOne(User, {username: req.params.username}, '', function (result) {

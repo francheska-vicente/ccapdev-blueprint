@@ -39,7 +39,7 @@
       <form method="post" action="/schedule/search/results">
         <div class="input-group" style="justify-content: center; margin-top: 20px; height: 90px;">
           <div class="form-outline" style="width: 40%">
-            <input type="search" class="form-control" placeholder = "i.e. 'CCAPDEV' or 'Web Application Development'" id="class_box"/>
+            <input type="search" class="form-control" placeholder = "i.e. 'CCAPDEV' or 'Web Application Development'" id="class_box" name="search"/>
           </div>
           <button type="submit" class="btn btn-primary button" id="class_btn">
             <i class="fas fa-search"></i>
@@ -65,9 +65,11 @@
             <h3>{{classname}}</h3><hr>
             <h6>{{classDayA}} {{classTimeA}}</h6> 
           </div>
-          <button class="btn" id = "add_btn0" style="margin-right: -30px">
-            <i class="fa fa-plus disc_icon" title="Add to Schedule!"></i>
-          </button>
+          <form action = "/schedule/search/{{classID}}/add" method = "post">
+            <button class="btn" id = "add_btn0" style="margin-right: -30px">
+              <i class="fa fa-plus disc_icon" title="Add to Schedule!"></i>
+            </button>
+          </form>
         </div>
         {{else}}
         <h3 style="text-align: center; padding: 40px">No results.</h3>
