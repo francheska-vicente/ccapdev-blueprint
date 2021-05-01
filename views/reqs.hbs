@@ -62,9 +62,9 @@
         <div class="req-list" 
              name = "/classes/{{../classID}}/requirements/{{reqID}}/edit">
           <div class="task-container" id = "{{reqID}}">
-            <h3 class="{{reqID}}req-title">{{title}}</h3>
-            <h6 class="{{reqID}}req-type">{{typeOfReq}} | Due {{deadline}}</h6><hr>
-            <h6 class="{{reqID}}req-details">{{desc}}</h6>
+            <h3 id="{{reqID}}req-title">{{title}}</h3>
+            <h6 id="{{reqID}}req-type">{{typeOfReq}} | Due {{deadline}}</h6><hr>
+            <h6 id="{{reqID}}req-details">{{desc}}</h6>
             <div style="display: flex; flex-direction: row; margin-top: 10px; margin-bottom: 0px; width: max-content; margin: auto 0 auto auto">
               <button class="btn edt_btn" id = "ebtn_{{reqID}}">
                 <i class="fa fa-pencil disc_icon" title="Edit requirement"></i>
@@ -94,7 +94,7 @@
                 </div>
                 <div class = "container input-group mb-3">
                   <label for="paragraph_text" class="input_field">Description</label>
-                  <textarea name="paragraph_text" cols="97" rows="10" id = "discussion_txt">
+                  <textarea name="paragraph_text" cols="97" rows="10" id = "desc_txt">
                   </textarea>
                 </div>
                 <div class = "display" style = "padding: 0 40px; margin-top: 10px;">
@@ -112,11 +112,17 @@
           $(".edt_btn").click (function ()
           {
             var btn_id = $(this).attr ("id");
-            var commentID = btn_id.substring (5, btn_id.length);
+            var reqID = btn_id.substring (5, btn_id.length);
             
             $(".editcontainer").css ("display", "block");
 
             $(".form").attr ("action", $(this).closest (".req-list").attr ("name"));
+            var temp = $("#" + reqID + "req-type").html ();
+            temp = temp.split ("|");
+            var type = temp  [0];
+            
+            $("#type").val (type);
+            $("#desc_txt").val ($("#" + reqID + "req-details").html ());
           });
 
         });
