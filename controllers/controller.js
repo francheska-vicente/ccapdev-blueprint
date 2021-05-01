@@ -5,6 +5,7 @@ const Discussion = require('../models/DiscModel.js');
 const Course = require ('../models/ClassModel.js');
 const Note = require ('../models/NotesModel.js');
 const Comment = require ('../models/CommentModel.js');
+const Reqs = require ('../models/ReqsModel.js');
 var user;
 
 const controller = {
@@ -446,6 +447,30 @@ const controller = {
 
         db.insertOne (Comment, comment, function (notesInfo) {
             res.redirect ('/classes/' + c + '/notebook/' + d);
+        });
+    },
+
+    postAddReqs : function (req, res) {
+        var c = req.params.classID;
+        var id = db.getObjectID();
+        var fName = user.fName;
+        var lName = user.lName;
+        var username = user.username;
+
+        var reqs = {
+            classID : c,
+            username : username,
+            fName : fName,
+            lName : lName,
+            reqID : id,
+            title : req.body.title,
+            desc: req.body.paragraph_text,
+            deadline: req.body.deadline,
+            typeOfReq: req.body.type, 
+        };
+
+        db.insertOne (Reqs, reqs, function (result) {
+            res.redirect ('/classes/' + c + '/requirements');
         });
     }
 }

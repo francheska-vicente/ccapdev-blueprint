@@ -54,7 +54,8 @@
         <h5>Don't forget to do your tasks!</h5>
         <hr>
         <div class="create-container" style="margin-right: auto; margin-left: auto">
-          <form style = "width: 100%; height: 80%">
+          <form style = "width: 100%; height: 80%" method = "post" 
+                action = "/classes/{{classID}}/requirements/add">
             <div class = "container input-group mb-3">
               <label for="title" class="input_field">Title</label>
                 <input type = "text" name = "title" id = "title" class = "form-control input_user" value = "" style="border-radius: 0px; color: black">
@@ -65,15 +66,15 @@
             </div>
             <div class = "container input-group mb-3">
               <label for="deadline" class="input_field">Deadline</label>
-                <input type = "date" name = "deadline" id = "deadline" class = "form-control input_user" value = "" style="border-radius: 0px; color: black">
+                <input type = "datetime-local" name = "deadline" id = "deadline" class = "form-control input_user" value = "" style="border-radius: 0px; color: black">
             </div>
               <div class = "container input-group mb-3">
                 <label for="desc" class="input_field">Description</label>
                 <textarea name="paragraph_text" cols="97" rows="10" id="desc"></textarea>
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
-              <button type = "button" name = "create_button" id="create_button" class = "btn">Create!
-              </button>
+              <input type = "submit" name = "create_button" id="create_button" class = "btn" value = "Create!">
+              </input>
              </div>
           </form>
         </div>
