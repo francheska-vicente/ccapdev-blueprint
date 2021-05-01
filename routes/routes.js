@@ -82,7 +82,7 @@ app.post('/classes/:classID/discussions/:discID/delete', discController.deleteDi
 app.post('/classes/:classID/discussions/:discID/comment', discController.addCommentToDiscussion);
 app.post('/classes/:classID/discussions/:discID/:commentID/edit', discController.editCommentOfDiscussion);
 
-app.post('/classes/:classID/discussions/:discID/:commentID/comment', controller.addCommentToComment);
+app.post('/classes/:classID/discussions/:discID/:commentID/comment', discController.addCommentToComment);
 app.post('/classes/:classID/discussions/:discID/:commentID/delete', discController.deleteCommentOfComment);
 
 

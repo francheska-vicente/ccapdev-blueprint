@@ -127,20 +127,6 @@ const classController = {
 		})
 	},
 
-	editCommentOfDiscussion : function (req, res) {
-        var commentID = req.params.commentID;
-        var classID = req.params.classID;
-        var discID = req.params.discID;
-
-        db.findOne (Comment, {commentID : commentID}, null, function (comment) {
-            comment.content = req.body.edit_text;
-
-            db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
-                res.redirect ('/classes/' + classID + '/discussions/' + discID);
-            });
-        });
-	},
-
 	editNotesPost : function (req, res) {
 		var d = req.params.notesID;
 		var a = req.params.classID;
@@ -183,36 +169,6 @@ const classController = {
 		});
 	},
 
-	
-
-	deleteCommentOfComment : function (req, res) {
-		var c = req.params.commentID;
-		var a = req.params.classID;
-		var d = req.params.discID;
-
-		db.findOne (Discussion, {discID : d}, null, function (discInfo) {
-			db.deleteOne (Comment, {commentID : c}, function (result) {
-				discInfo.numOfComments = discInfo.numOfComments - 1;
-				db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
-					res.redirect ('/classes/' + a + '/discussions/' + d);
-				});
-			});
-		});
-	},
-
-	deleteDiscussionPost : function (req, res) {
-		var d = req.params.discID;
-		var a = req.params.classID;
-
-		db.deleteOne (Discussion, {discID : d}, function (result) {
-            db.deleteMany (Comment, {mainID: d}, function (result) {
-                res.redirect ('/classes/' + a + '/discussions/');
-            });
-		})
-	}, 
-
-	
-
 	getDashboard: function (req, res) {
         var classes = user.classes;
         db.findMany (Course, {classID : {$in : classes}}, '', function (result) {
@@ -222,79 +178,7 @@ const classController = {
             res.render('dashboard', temp);
         });
     },
-
-
-    addCommentToDiscussion: function (req, res) {
-        var d = req.params.discID;
-        var c = req.params.classID;
-
-        var fName = user.fName;
-        var lName = user.lName;
-        var username = user.username;
-        var id = db.getObjectID();
-
-
-        var comment = {
-            classID : c,
-            username: username, 
-            fName : fName,
-            lName : lName, 
-            parentID : d, 
-            mainID : d, 
-            content : req.body.main_comment_text,
-            commentID: id
-        };
-
-        db.findOne (Discussion, {discID: d}, {}, function (result) {
-            result.numOfComments = result.numOfComments + 1;
-
-            db.updateOne (Discussion, {}, result, function (result) {
-            });
-        });
-
-        db.insertOne (Comment, comment, function (discInfo) {
-            res.redirect ('/classes/' + c + '/discussions/' + d);
-        });
-
-    },
-
-    addCommentToComment : function (req, res) {
-        var d = req.params.discID;
-        var c = req.params.classID;
-        var p = req.params.commentID;
-
-        var fName = user.fName;
-        var lName = user.lName;
-        var username = user.username;
-        var id = db.getObjectID();
-        console.log (req.body.comment_text);
-        
-
-        var comment = {
-            classID : c,
-            username : username,
-            fName : fName,
-            lName : lName,
-            parentID : p,
-            mainID : d,
-            commentID : id,
-            content : req.body.comment_text
-        };
-
-        db.findOne (Discussion, {discID: d}, {}, function (result) {
-            result.numOfComments = result.numOfComments + 1;
-
-            db.updateOne (Discussion, {}, result, function (result) {
-            });
-        });
-
-        db.insertOne (Comment, comment, function (discInfo) {
-            res.redirect ('/classes/' + c + '/discussions/' + d);
-        });
-    },
-
-    
-
+  	  
     postAddNotes : function (req, res) {
         var temp = user;
         var c = req.params.classID;
