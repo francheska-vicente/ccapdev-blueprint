@@ -92,7 +92,7 @@ const classController = {
 			reqs.desc = req.body.paragraph_text;
 
 			db.updateOne (Reqs, {reqID : d}, reqs, function (result) {
-				res.redirect ('/classes/' + a + '/requirements/' + d)
+				res.redirect ('/classes/' + a + '/requirements/')
 			})
 		});
 	}, 
