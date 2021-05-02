@@ -6,21 +6,21 @@ const profileController = {
 
     getYourProfile: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
         res.render('profile-view', user);
     },
 
     getEditProfile: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
         res.render('profile-edit', user);
     },
 
     postEditProfile: function (req, res) {
         var update = controller.getLoggedInUser();
 
-        if(user == null) res.redirect('/error-401');
-
+        if(user == null) res.redirect('/error/401');
+        
         if (req.body.username != '') update.username = req.body.username;
         if (req.body.contact_no != '') update.phone = req.body.contact_no;
         if (req.body.bday != '') update.bday = req.body.bday;
@@ -36,13 +36,13 @@ const profileController = {
 
     getDelProfile: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
         res.render('profile-del', user);
     },
 
     postDelProfile: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
+        if(user == null) res.redirect('/error/401');
 
         if(user.password == req.body.password && user.password == req.body.c_password) {
             db.deleteOne(User, {username: user.username}, function(flag) {

@@ -1,4 +1,6 @@
 const db = require('../models/db.js');
+const controller = require('../controllers/controller.js');
+
 const User = require('../models/UserModel.js');
 const Discussion = require('../models/DiscModel.js');
 const Course = require ('../models/ClassModel.js');
@@ -14,7 +16,8 @@ const classController = {
 		};
 
 		db.findOne(Course, query, null, function (result) {
-			res.render('class', result);
+			if(result != null) res.render('class', result);
+			else res.redirect('/error/404');
 		});
 	},
 
@@ -170,6 +173,8 @@ const classController = {
 	},
 
 	getDashboard: function (req, res) {
+		var user = controller.getLoggedInUser();
+        if(user == null) res.redirect('/error/401');
         var classes = user.classes;
         db.findMany (Course, {classID : {$in : classes}}, '', function (result) {
             var temp = {

@@ -1,8 +1,17 @@
 const db = require('../models/db.js');
+const User = require('../models/UserModel.js');
+const Course = require ('../models/ClassModel.js');
 const Discussion = require('../models/DiscModel.js');
+const Comment = require ('../models/CommentModel.js');
 
 const discController = {
     getDiscussions: function (req, res) {
+        var user = controller.getLoggedInUser();
+        if(user == null) res.redirect('/error/401');
+        db.findOne (User, {username: user.username}, null, function (result) {
+            if(!user.classes.includes(req.params.classID)) res.redirect('/error/403');
+        }); 
+
         var c = req.params.classID;
         var coursecode;
         var classID;
