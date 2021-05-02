@@ -38,6 +38,8 @@ const controller = {
     },
 
     getHome: function (req, res) {
+        db.
+
         res.render('home', user);
     },
 
@@ -59,19 +61,16 @@ const controller = {
         db.findMany (User, {$or: [
                 {username: search.toLowerCase ()},
                 {fName: arr [arr.length - 1]},
-                {lName: arr [arr.length - 1]}
+                {lName: arr [arr.length - 1]},
+                {fName : {"$in": arr}},
+                {lName : {"$in": arr}}
         ]}, null, function (result) {
-
-            // db.findMany (User, {$eq: [arr [arr.length - 1], {$concat: ["$fName", "$lName"]}]},
-            //     null, function (res2) {
                 var temp = {
                     result : result,
-                    search_val : search,
-                    // result2 : res2
+                    search_val : search
                 }
 
                 res.render ('search-users', temp);
-            // });
         });
     },
 
