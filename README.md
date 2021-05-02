@@ -17,6 +17,7 @@
 npm install express --save
 npm install body-parser
 npm install mongodb --save
+npm install mongoose
 ```
 5. We may now run the server by typing ```node app.js```
 6. Since the web application is running on localhost:3000, type ```http://localhost:3000``` on your browser of choice.
