@@ -61,24 +61,28 @@ const scheduleController = {
 
     getSearchClassResults: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error/401');
-        var query = req.params.class;
+        if(user == null) res.redirect('/error-401');
+        var query = req.query.search;
 
         db.findMany (Course, {$or:[{classname: query},{coursecode:query}]}, '', function (result) {
             var temp = {
                 results : result,
                 user : user
             }
-            res.render('class-search', temp);
+            res.render('class-search-results', temp);
         });
 
     },
 
     postAddClass: function (req, res) {
         var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error/401');
-        var search = req.body.search;
-        res.redirect('/class/search/results?class=' + search);
+        if(user == null) res.redirect('/error-401');
+        var c = req.params.classID;
+        user.classes.push (c);
+        db.updateOne (User, {username : user.username}, user, function (result) {
+            console.log (result);
+            res.redirect('/schedule/search');
+        });
     },
 
     getDeleteClass: function (req, res) {

@@ -36,7 +36,28 @@ const controller = {
     },
 
     getHome: function (req, res) {
-        res.render('home', user);
+        var start = Date.now;
+        var month = Date.now.getMonth ();
+
+        console.log (month);
+
+        var lastday = function (y,m) {
+            return  new Date (y, m +1, 0).getDate();
+        }
+
+        var day = lastday (Date.now.getYear (), month);
+
+        var date = new Date (Date.now.getYear ());
+
+        db.findOne (Reqs, {$and : [
+                {classID : {"$in" : user.classes}},
+                {deadline : { $gte : Date.now,
+                              $lt  : "Sun May 30 20:40:36 +0000 2010"}}
+                ]},
+            null, function (results) {
+                res.render('home', user);
+            });
+
     },
 
     getSearch : function (req, res) {
@@ -49,15 +70,16 @@ const controller = {
             arr [i] = arr [i].charAt (0).toUpperCase () + arr [i].substring (1, arr [i].length);
 
             if (i > 0)
-                arr [i] = arr [i - 1] + arr [i];
+                arr [i] = arr [i - 1] + " " + arr [i];
         }
-
+        
         db.findMany (User, {$or: [
                 {username: search.toLowerCase ()},
                 {fName: arr [arr.length - 1]},
                 {lName: arr [arr.length - 1]},
-                {$eq: [arr [arr.length - 1], {$concat: [$fName, $lName]}]}
-            ]}, null, function (result) {
+                {fName : {"$in": arr}},
+                {lName : {"$in": arr}}
+        ]}, null, function (result) {
                 var temp = {
                     result : result,
                     search_val : search
