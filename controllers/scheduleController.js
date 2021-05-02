@@ -77,8 +77,12 @@ const scheduleController = {
     postAddClass: function (req, res) {
         var user = controller.getLoggedInUser();
         if(user == null) res.redirect('/error-401');
-        var search = req.body.search;
-        res.redirect('/class/search/results?class=' + search);
+        var c = req.params.classID;
+        user.classes.push (c);
+        db.updateOne (User, {username : user.username}, user, function (result) {
+            console.log (result);
+            res.redirect('/schedule/search');
+        });
     },
 
     getDeleteClass: function (req, res) {
