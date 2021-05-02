@@ -38,31 +38,10 @@ const controller = {
     },
 
     getHome: function (req, res) {
-        var start = Date.now;
-        var month = Date.now.getMonth ();
+        
 
-        console.log (month);
-
-        var lastday = function (y,m) {
-            return  new Date (y, m +1, 0).getDate();
-        }
-
-        var day = lastday (Date.now.getYear (), month);
-
-        var date = new Date (Date.now.getYear ());
-
-        db.findOne (Reqs, {$and : [
-                {classID : {"$in" : user.classes}},
-                {deadline : { $gte : Date.now,
-                              $lt  : "Sun May 30 20:40:36 +0000 2010"}}
-                ]},
-            null, function (results) {
-                res.render('home', user);
-            });
-
+        res.render ('/home', user);
     },
-
-
 
     getSearch : function (req, res) {
         var search = req.query.search_val;
