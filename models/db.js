@@ -23,7 +23,6 @@ const database = {
 
     insertOne: function(model, doc, callback) {
         model.create(doc, function(error, result) {
-            console.log (error);
             if(error) return callback(false);
             console.log('Added ' + result);
             return callback(true);
@@ -41,7 +40,6 @@ const database = {
 
     findOne: function(model, query, projection, callback) {
         model.findOne(query, projection, function(error, result) {
-            
             if(error) return callback(false);
             return callback(result);
         }).lean();
@@ -49,7 +47,6 @@ const database = {
 
     findMany: function(model, query, projection, callback) {
         model.find(query, projection, function(error, result) {
-            console.log (result);
             if(error) return callback(false);
             return callback(result);
         }).lean();

@@ -20,7 +20,9 @@ const scheduleController = {
     postCreateClass: function (req, res) {
         var user = controller.getLoggedInUser();
         if(user == null) res.redirect('/error/401');
+
         var u = user.username;
+        console.log(u);
         var course = {
             classname : req.body.classname,
             coursecode : req.body.coursecode,
@@ -37,9 +39,12 @@ const scheduleController = {
                     course.classID = db.getObjectID();
                     course.classlist = [u];
                     db.insertOne(Course, course, function(flag) {
+                        
                         var classes = user.classes;
                         classes.push(course.classID);
-                        db.updateOne(User, {username: user.username}, classes, function(result) {
+
+                        db.updateOne(User, {username: u}, classes, function(result) {
+                            controller.updateLoggedInUser(result);
                             res.redirect('/classes/' + course.classID + '/home');
                         });
                     });
@@ -80,6 +85,7 @@ const scheduleController = {
         var c = req.params.classID;
         user.classes.push (c);
         db.updateOne (User, {username : user.username}, user, function (result) {
+            controller.updateLoggedInUser(result);
             console.log (result);
             res.redirect('/schedule/search');
         });
