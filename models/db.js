@@ -7,7 +7,7 @@ const Note = require ('./NotesModel.js');
 const Comment = require ('./CommentModel.js');
 const Reqs = require ('./ReqsModel.js');
 
-const url = 'mongodb://localhost:27017/blueprint';
+const url = 'mongodb+srv://admin:blueprint@blueprint.gykvx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 const options = {
     useUnifiedTopology: true,
@@ -17,7 +17,7 @@ const options = {
 const database = {
     connect: function () {
         mongoose.connect(url, options, function(error) {
-            if(error) throw error;
+            if(error) console.log (error);
             console.log('Connected to: ' + url);
         });
     },

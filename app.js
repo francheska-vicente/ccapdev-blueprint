@@ -15,7 +15,8 @@ app.use(session({
     secret: 'blueprint',
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/blueprint' })
+    store: MongoStore.create({ mongoUrl: 
+        'mongodb+srv://admin:blueprint@blueprint.gykvx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' })
 }));
 
 app.engine('hbs', exphbs({
