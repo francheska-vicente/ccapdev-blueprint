@@ -10,7 +10,8 @@ const Reqs = require ('./ReqsModel.js');
 const url = 'mongodb://localhost:27017/blueprint';
 
 const options = {
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useNewUrlParser: true
 };
 
 const database = {

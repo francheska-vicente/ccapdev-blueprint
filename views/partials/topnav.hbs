@@ -1,28 +1,39 @@
-<nav class="navbar navbar-expand-sm navbar-custom">
+<nav class="navbar navbar-expand-md navbar-custom">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/home"><img src="/images/logo.png" id="logo" height ="30px"></a>
-		<div class="collapse navbar-collapse" id="navibar">
-			<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-				<li class="nav-item">
-					<a class="nav-link" href="/schedule">Schedule</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/classes/dashboard">Classes</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/profile">Profile</a>
-				</li>
-			</ul>
-			<form action = "/search" method = "get" >
-				<div class="input-group" style="justify-content: flex-end; margin-right: 25px">
-					<div class="form-outline">
-						<input type="search" class="form-control" placeholder = "Search for users" name = "search_val" value = "" id="searchBox"/>
+
+		<a class="navbar-brand" href="/home">
+			<img src="/images/logo.png" id="logo" alt="Home" height ="30">
+		</a>
+
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" 
+							aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+	    	<span class="navbar-toggler-icon"></span>
+	  	</button>
+
+	  	<div class="collapse navbar-collapse" id="navbarContent">
+				<ul class="navbar-nav" style="margin-right: auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/schedule">Schedule</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/classes/dashboard">Classes</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/profile">Profile</a>
+					</li>
+				</ul>
+				<form action="/search" method="get"class="form-inline my-2 my-md-0">
+					<div class="input-group">
+						<div class="form-outline">
+							<input type="search" class="form-control" placeholder = "Search for users" name = "search_val" value = "" id="searchBox"/>
+						</div>
+						<button type="submit" class="btn btn-primary" id="search_btn">
+							<i class="fas fa-search"></i>
+						</button>
 					</div>
-					<button type="submit" class="btn btn-primary" id="search_btn">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
-			</form>
-		</div>
+				</form>
+			</div>
+
 	</div>
 </nav>

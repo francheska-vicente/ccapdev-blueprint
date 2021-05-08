@@ -62,7 +62,14 @@
             </div>
             <div class = "container input-group mb-3">
               <label for="type" class="input_field">Type</label>
-                <input type = "text" name = "type" id = "type" class = "form-control input_user" value = "" style="border-radius: 0px; color: black" required>
+                <select name="type" id="type" class="form-control input_user" style="border-radius: 0px; color: black" required>
+                  <option value="Assignment">Assignment</option>
+                  <option value="Project">Project</option>
+                  <option value="Exam">Exam</option>
+                  <option value="Reporting">Reporting</option>
+                  <option value="Incentive">Incentive</option>
+                  <option value="Others">Others</option>
+                </select>
             </div>
             <div class = "container input-group mb-3">
               <label for="deadline" class="input_field">Deadline</label>

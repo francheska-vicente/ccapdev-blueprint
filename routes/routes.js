@@ -3,9 +3,12 @@ const bodyParser = require (`body-parser`);
 
 const controller = require('../controllers/controller.js');
 const signupController = require('../controllers/signupController.js');
+const loginController = require('../controllers/loginController.js');
 const scheduleController = require('../controllers/scheduleController.js');
 const classController = require('../controllers/classController.js');
 const discController = require('../controllers/discController.js');
+const notesController = require('../controllers/notesController.js');
+const reqsController = require('../controllers/reqsController.js');
 const profileController = require('../controllers/profileController.js');
 const successController = require('../controllers/successController.js');
 const errorController = require('../controllers/errorController.js');
@@ -17,8 +20,8 @@ app.use(bodyParser.json());
 
 app.get('/', controller.getSplash);
 
-app.get('/login', controller.getLogin);
-app.post('/login', controller.postLogin);
+app.get('/login', loginController.getLogin);
+app.post('/login', loginController.postLogin);
 app.get('/register', signupController.getSignUp);
 app.post('/register', signupController.postSignUp);
 app.get('/register-success', successController.getSuccessReg);
@@ -50,26 +53,26 @@ app.get('/classes/dashboard', classController.getDashboard);
 app.get('/classes/:classID/home', classController.getClass);
 app.get('/classes/:classID/classlist', classController.getClassList);
 
-app.get('/classes/:classID/requirements', classController.getReqs);
-app.get('/classes/:classID/requirements/add', classController.getAddReqs);
-app.post('/classes/:classID/requirements/add', classController.postAddReqs);
+app.get('/classes/:classID/requirements', reqsController.getReqs);
+app.get('/classes/:classID/requirements/add', reqsController.getAddReqs);
+app.post('/classes/:classID/requirements/add', reqsController.postAddReqs);
 
-app.post('/classes/:classID/requirements/:reqID/edit', classController.editReqsPost);
-app.post('/classes/:classID/requirements/:reqID/delete', classController.deleteReqsPost);
+app.post('/classes/:classID/requirements/:reqID/edit', reqsController.editReqsPost);
+app.post('/classes/:classID/requirements/:reqID/delete', reqsController.deleteReqsPost);
 
-app.get('/classes/:classID/notebook', classController.getNotes);
-app.get('/classes/:classID/notebook/add', classController.getAddNotes);
-app.post('/classes/:classID/notebook/add', classController.postAddNotes);
+app.get('/classes/:classID/notebook', notesController.getNotes);
+app.get('/classes/:classID/notebook/add', notesController.getAddNotes);
+app.post('/classes/:classID/notebook/add', notesController.postAddNotes);
 
-app.get('/classes/:classID/notebook/:notesID', classController.getNotesPost);
-app.post('/classes/:classID/notebook/:notesID/edit', classController.editNotesPost);
-app.post('/classes/:classID/notebook/:notesID/delete', classController.deleteNotesPost);
+app.get('/classes/:classID/notebook/:notesID', notesController.getNotesPost);
+app.post('/classes/:classID/notebook/:notesID/edit', notesController.editNotesPost);
+app.post('/classes/:classID/notebook/:notesID/delete', notesController.deleteNotesPost);
 
-app.post('/classes/:classID/notebook/:notesID/comment', classController.addCommentToNotes);
-app.post('/classes/:classID/notebook/:notesID/:commentID/edit', classController.editCommentOfNotes);
+app.post('/classes/:classID/notebook/:notesID/comment', notesController.addCommentToNotes);
+app.post('/classes/:classID/notebook/:notesID/:commentID/edit', notesController.editCommentOfNotes);
 
-app.post('/classes/:classID/notebook/:notesID/:commentID/comment', classController.addCommentToCommentNotes);
-app.post('/classes/:classID/notebook/:notesID/:commentID/delete', classController.deleteCommentOfCommentNotes);
+app.post('/classes/:classID/notebook/:notesID/:commentID/comment', notesController.addCommentToComment);
+app.post('/classes/:classID/notebook/:notesID/:commentID/delete', notesController.deleteCommentOfComment);
 
 app.get('/classes/:classID/discussions', discController.getDiscussions);
 app.get('/classes/:classID/discussions/add', discController.getAddDiscussion);
@@ -85,8 +88,8 @@ app.post('/classes/:classID/discussions/:discID/:commentID/edit', discController
 app.post('/classes/:classID/discussions/:discID/:commentID/comment', discController.addCommentToComment);
 app.post('/classes/:classID/discussions/:discID/:commentID/delete', discController.deleteCommentOfComment);
 
-
 app.get('/error/401', errorController.get401);
 app.get('/error/403', errorController.get403);
 app.get('/error/404', errorController.get404);
+
 module.exports = app;

@@ -5,16 +5,16 @@
 	<title>Home | blueprint</title>
 </head>
 <body>
-	{{>topnav}}
+  {{>topnav flag=flag}}
 	<div class="main-content">
     <div id="title">
       <ul class="breadcrumb">
-        <li><a href="home.html">blueprint</a></li>
+        <li><a href="/home">blueprint</a></li>
         <li>Home</li>
       </ul> 
     </div>
-    {{>calendar}}
-    {{>tasks}}
+    {{>calendar this}}
+    {{>tasks this}}
   </div>
 </body>
 </html>

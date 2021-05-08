@@ -1,12 +1,22 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo');
+const bodyParser = require('body-parser');
 
 const routes = require('./routes/routes.js');
 const db = require('./models/db.js');
 
 const app = express();
 const port = 3000;
+
+app.use(session({
+    secret: 'blueprint',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/blueprint' })
+}));
 
 app.engine('hbs', exphbs({
     defaultLayout: 'main',
@@ -24,8 +34,7 @@ app.engine('hbs', exphbs({
     }
 }));
 
-
-app.use(bodyParser.urlencoded ({ extended : false}));
+app.use(bodyParser.urlencoded ({extended:true}));
 app.use(bodyParser.json());
 app.set('view engine', 'hbs');
 
@@ -33,24 +42,26 @@ app.use(express.static('public'));
 
 app.use('/', routes);
 
+// app.use(function(err, req, res, next){
+//     res.status(err.status);
+//     res.render('error', { 
+//         error: err,
+//         code: err.status
+//     });
+// });
+
 app.use(function (req, res) {
-    res.render('error', { 
+    var details = {
         error: "Error: Page not found.",
         code: "404"
-    });
+    };
+    res.render('error', details);
 });
-
-app.use(function(err, req, res, next){
-    res.status(err.status);
-    res.render('error', { 
-        error: err,
-        code: err.status
-    });
-});
-
 
 
 db.connect();
+
+
 
 app.listen(port, () => {
     console.log('The web server has started on port ' + port);

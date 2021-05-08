@@ -1,42 +1,28 @@
-const mongoose = require('mongoose');
 const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
 const Course = require ('../models/ClassModel.js');
 const Note = require ('../models/NotesModel.js');
 
-var user;
-
 const controller = {
-    getLoggedInUser : function () {
-        if (user != null)
-            return user;
-    },
-
     getSplash: function (req, res) {
-        res.render('splash');
-    },
-
-    getLogin: function (req, res) {
-        res.render('login');
-    },
-
-    postLogin: function (req, res) {
-        var query = {
-            username: req.body.username,
-            password: req.body.password
-        };
-
-        db.findOne(User, query, '', function(flag) {
-            if(flag){
-                user = flag;
-                res.redirect('/home');
-            }
-        });
+        if(req.session.username) 
+            res.redirect('/home');
+        else {
+            var details = {flag: false};
+            res.render('splash');
+        }
     },
 
     getHome: function (req, res) {
-        res.render ('/home', user);
+        if(!req.session.username)
+            res.redirect('/splash');
+        else {
+            db.findOne(User, {username: req.session.username}, '', function (result) {
+                var details = {flag: false, result: result};
+                res.render('home', result);
+            });
+        }
     },
 
     getSearch : function (req, res) {
@@ -70,13 +56,15 @@ const controller = {
 
     getUserProfile: function (req, res) {
         db.findOne(User, {username: req.params.username}, '', function (result) {
-            res.render('userprofile', result);
+            if(result) res.render('userprofile', result);
+            else res.redirect('/error/404');
         });
     },
 
     getUserSchedule: function (req, res) {
         db.findOne(User, {username: req.params.username}, '', function (result) {
-            res.render('userschedule', result);
+            if(result) res.render('userschedule', result);
+            else res.redirect('/error/404');
         });
     },
 }

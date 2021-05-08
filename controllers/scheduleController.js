@@ -39,10 +39,8 @@ const scheduleController = {
                     course.classID = db.getObjectID();
                     course.classlist = [u];
                     db.insertOne(Course, course, function(flag) {
-                        
                         var classes = user.classes;
                         classes.push(course.classID);
-
                         db.updateOne(User, {username: u}, classes, function(result) {
                             controller.updateLoggedInUser(result);
                             res.redirect('/classes/' + course.classID + '/home');
@@ -107,6 +105,7 @@ const scheduleController = {
     postDeleteClass: function (req, res) {
         var user = controller.getLoggedInUser();
         if(user == null) res.redirect('/error/401');
+
         var coursecode = req.body.drop;
         var classes = user.classes;
         var index = classes.indexOf(coursecode);

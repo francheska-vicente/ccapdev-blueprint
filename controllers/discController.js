@@ -1,4 +1,6 @@
 const db = require('../models/db.js');
+const controller = require('../controllers/controller.js');
+
 const User = require('../models/UserModel.js');
 const Course = require ('../models/ClassModel.js');
 const Discussion = require('../models/DiscModel.js');
@@ -8,6 +10,7 @@ const discController = {
     getDiscussions: function (req, res) {
         var user = controller.getLoggedInUser();
         if(user == null) res.redirect('/error/401');
+        
         db.findOne (User, {username: user.username}, null, function (result) {
             if(!user.classes.includes(req.params.classID)) res.redirect('/error/403');
         }); 
@@ -17,6 +20,7 @@ const discController = {
         var classID;
 
         db.findOne (Course, {classID: c}, null, function (result) {
+            if(result == null) res.redirect('/error/404');
             coursecode = result.coursecode;
             classID = result.classID;
         }); 
@@ -64,6 +68,9 @@ const discController = {
     },
 
     getDiscussionPost: function (req, res) {
+        var user = controller.getLoggedInUser();
+        if(user == null) res.redirect('/error/401');
+
         var c = req.params.classID;
         var b = req.params.discID;
 
