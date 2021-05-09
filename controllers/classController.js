@@ -11,7 +11,7 @@ const classController = {
         if(!req.session.username) res.redirect('/error/401');
         else {
 
-            // get user from db
+            // gest user from db
             db.findOne(User, {username: req.session.username}, '', function (user) {
                 var classes = user.classes;
 
@@ -30,14 +30,14 @@ const classController = {
         if(!req.session.username) res.redirect('/error/401');
         else {
 
-            // get class from db
+            // gets class from db
     		db.findOne(Course, {classID: req.params.classID}, null, function (course) {
 
                 // error 404 if class does not exist
     			if(!course) res.redirect('/error/404');
                 else {
 
-                    // get user from db
+                    // gets user from db
                     db.findOne(User, {username: req.session.username}, '', function (user) {
 
                         // error 403 if user not part of class
@@ -55,21 +55,21 @@ const classController = {
         if(!req.session.username) res.redirect('/error/401');
         else {
 
-            // get class from db
+            // gets class from db
             db.findOne(Course, {classID: req.params.classID}, null, function (course) {
 
                 // error 404 if class does not exist
                 if(!course) res.redirect('/error/404');
                 else {
 
-                    // get user from db
+                    // get users from db
                     db.findOne(User, {username: req.session.username}, '', function (user) {
 
                         // error 403 if user not part of class
                         if(course.classlist.indexOf(user.username) == -1) res.redirect('/error/403');
                         else {
 
-                            // get students enrolled in course from db
+                            // gets students enrolled in course from db
                             db.findMany(User, {username : {$in : course.classlist}}, '', function (users) {
                                 var result = {
                                     users : users,
