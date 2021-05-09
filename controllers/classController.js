@@ -44,9 +44,9 @@ const classController = {
                 if(!course) res.redirect('/error/404');
                 else {
                     db.findOne(User, {username: req.session.username}, '', function (user) {
-                        if(course.classlist.indexOf("user.username") == -1) res.redirect('/error/403');
+                        if(course.classlist.indexOf(user.username) == -1) res.redirect('/error/403');
                         else {
-                            db.findMany(User, {username : {$in : resultC.classlist}}, '', function (users) {
+                            db.findMany(User, {username : {$in : course.classlist}}, '', function (users) {
                                 var result = {
                                     users : users,
                                     coursecode : course.coursecode,

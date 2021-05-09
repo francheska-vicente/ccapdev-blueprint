@@ -92,7 +92,7 @@ const scheduleController = {
                 var c = req.params.classID;
                 user.classes.push (c);
                 db.updateOne (User, {username : user.username}, user, function (result) {
-                    res.redirect('/schedule/search');
+                    res.redirect('/classes/dashboard');
                 });
             });
         }  
@@ -119,8 +119,8 @@ const scheduleController = {
         else {
             db.findOne(User, {username: req.session.username}, '', function (user) {
                 var coursecode = req.body.drop;
-                var index = classes.indexOf(coursecode);
-                if (index > -1) classes.splice(index, 1);
+                var index = user.classes.indexOf(coursecode);
+                if (index > -1) user.classes.splice(index, 1);
 
                 db.updateOne(User, {username: user.username}, {classes : user.classes}, function(result) {
                     res.redirect('/classes/dashboard');
