@@ -1,60 +1,67 @@
 const db = require('../models/db.js');
-const controller = require('../controllers/controller.js');
+
 const User = require('../models/UserModel.js');
 const Course = require ('../models/ClassModel.js');
 
 const scheduleController = {
 
     getYourSchedule: function (req, res) {
-        var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error/401');
-        res.render('schedule', user);
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne(User, {username: req.session.username}, '', function (user) {
+                res.render('schedule', user);
+            });
+        }  
     },
 
     getCreateClass: function (req, res) {
-        var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error/401');
-        res.render('class-new', user);
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne(User, {username: req.session.username}, '', function (user) {
+                res.render('class-new', user);
+            });
+        }  
     },
 
     postCreateClass: function (req, res) {
-        var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error/401');
-
-        var u = user.username;
-        console.log(u);
-        var course = {
-            classname : req.body.classname,
-            coursecode : req.body.coursecode,
-            professor : req.body.professor,
-            classtimeA : req.body.classtimeA,
-            classdayA : req.body.classdayA,
-            classtimeB : req.body.classtimeB,
-            classdayB : req.body.classdayB
-        }
-
-        db.findOne(Course, course, '', function(flag) {
-            if(!flag) {
-                db.count (Course, {}, function (result) {
-                    course.classID = db.getObjectID();
-                    course.classlist = [u];
-                    db.insertOne(Course, course, function(flag) {
-                        var classes = user.classes;
-                        classes.push(course.classID);
-                        db.updateOne(User, {username: u}, classes, function(result) {
-                            controller.updateLoggedInUser(result);
-                            res.redirect('/classes/' + course.classID + '/home');
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne(User, {username: req.session.username}, '', function (user) {
+                var classes = user.classes;
+                console.log(classes)
+                var course = {
+                    classname : req.body.classname,
+                    coursecode : req.body.coursecode,
+                    professor : req.body.professor,
+                    classtimeA : req.body.classtimeA,
+                    classdayA : req.body.classdayA,
+                    classtimeB : req.body.classtimeB,
+                    classdayB : req.body.classdayB
+                }
+                
+                db.findOne(Course, course, '', function(flag) {
+                    if(!flag) {
+                        course.classID = db.getObjectID();
+                        course.classlist = [req.session.username];
+                        db.insertOne(Course, course, function(flag) {
+                            classes.push(course.classID);
+                            db.updateOne(User, {username: req.session.username}, {classes: classes}, function(result) {
+                                res.redirect('/classes/' + course.classID + '/home');
+                            });
                         });
-                    });
+                    }
                 });
-            }
-        });
+            });
+        }    
     },
 
     getSearchClass: function (req, res) {
-        var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error/401');
-        res.render('class-search', user);
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne(User, {username: req.session.username}, '', function (user) {
+                res.render('class-search', user);
+            });
+        }  
     },
 
     postSearchClass: function (req, res) {
@@ -63,63 +70,63 @@ const scheduleController = {
     },
 
     getSearchClassResults: function (req, res) {
-        var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
-        var query = req.query.search;
-
-        db.findMany (Course, {$or:[{classname: query},{coursecode:query}]}, '', function (result) {
-            var temp = {
-                results : result,
-                user : user
-            }
-            res.render('class-search-results', temp);
-        });
-
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne(User, {username: req.session.username}, '', function (user) {
+                var query = req.query.search;
+                db.findMany (Course, {$or:[{classname: query},{coursecode:query}]}, '', function (result) {
+                    var temp = {
+                        results : result,
+                        user : user
+                    }
+                    res.render('class-search-results', temp);
+                });
+            });
+        }
     },
 
     postAddClass: function (req, res) {
-        var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error-401');
-        var c = req.params.classID;
-        user.classes.push (c);
-        db.updateOne (User, {username : user.username}, user, function (result) {
-            controller.updateLoggedInUser(result);
-            console.log (result);
-            res.redirect('/schedule/search');
-        });
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne(User, {username: req.session.username}, '', function (user) {
+                var c = req.params.classID;
+                user.classes.push (c);
+                db.updateOne (User, {username : user.username}, user, function (result) {
+                    res.redirect('/schedule/search');
+                });
+            });
+        }  
     },
 
     getDeleteClass: function (req, res) {
-        var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error/401');
-        var classes = user.classes;
-        db.findMany (Course, {classID : {$in : classes}}, '', function (result) {
-            var temp = {
-                results : result,
-                user : user
-            }
-            res.render('class-drop', temp);
-        });
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne(User, {username: req.session.username}, '', function (user) {
+                var classes = user.classes;
+                db.findMany (Course, {classID : {$in : classes}}, '', function (result) {
+                    var temp = {
+                        results : result,
+                        user : user
+                    }
+                    res.render('class-drop', temp);
+                });
+            });
+        }
     },
 
     postDeleteClass: function (req, res) {
-        var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error/401');
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne(User, {username: req.session.username}, '', function (user) {
+                var coursecode = req.body.drop;
+                var index = classes.indexOf(coursecode);
+                if (index > -1) classes.splice(index, 1);
 
-        var coursecode = req.body.drop;
-        var classes = user.classes;
-        var index = classes.indexOf(coursecode);
-        if (index > -1) {
-            classes.splice(index, 1);
+                db.updateOne(User, {username: user.username}, {classes : user.classes}, function(result) {
+                    res.redirect('/classes/dashboard');
+                });
+            });
         }
-
-        var update = {
-            classes : classes
-        }
-
-        db.updateOne(User, {username: user.username}, update, function(result) {
-            res.redirect('/classes/dashboard');
-        });
     }
 }
 

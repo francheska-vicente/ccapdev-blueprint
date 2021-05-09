@@ -16,7 +16,7 @@ const controller = {
 
     getHome: function (req, res) {
         if(!req.session.username)
-            res.redirect('/splash');
+            res.redirect('/');
         else {
             db.findOne(User, {username: req.session.username}, '', function (result) {
                 var details = {flag: false, result: result};
@@ -66,7 +66,7 @@ const controller = {
             if(result) res.render('userschedule', result);
             else res.redirect('/error/404');
         });
-    },
+    }
 }
 
 module.exports = controller;

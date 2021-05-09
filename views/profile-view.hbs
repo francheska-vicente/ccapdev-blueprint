@@ -38,7 +38,9 @@
       {{else}}
       <h6 id="bio">You have no bio yet.</h6><br>
       {{/if}}
-      <button type = "button" name = "logout_button" class = "btn login_button" id = "logout_btn">Log Out</button>
+      <form method="get" action="/logout">
+        <button type="submit" name="logout_button" class="btn login_button" id="logout_btn">Log Out</button>
+      </form>
       <div id="spacer"></div>
     </div>
     <div class="info-bg">
@@ -98,14 +100,5 @@
     </div>
   </div>
 </div>
-	<script type="text/javascript">
-		function logout_fn ()
-		{
-			location.href = "/";
-		}
-
-		var logout = document.getElementById ("logout_btn");
-		logout.onclick = logout_fn;
-	</script>
 </body>
 </html>

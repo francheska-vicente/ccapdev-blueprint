@@ -4,6 +4,7 @@ const bodyParser = require (`body-parser`);
 const controller = require('../controllers/controller.js');
 const signupController = require('../controllers/signupController.js');
 const loginController = require('../controllers/loginController.js');
+const logoutController = require('../controllers/logoutController.js');
 const scheduleController = require('../controllers/scheduleController.js');
 const classController = require('../controllers/classController.js');
 const discController = require('../controllers/discController.js');
@@ -22,6 +23,7 @@ app.get('/', controller.getSplash);
 
 app.get('/login', loginController.getLogin);
 app.post('/login', loginController.postLogin);
+app.get('/logout', logoutController.getLogout);
 app.get('/register', signupController.getSignUp);
 app.post('/register', signupController.postSignUp);
 app.get('/register-success', successController.getSuccessReg);

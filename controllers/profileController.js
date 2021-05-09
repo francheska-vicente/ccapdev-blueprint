@@ -7,9 +7,11 @@ const profileController = {
         if(!req.session.username) res.redirect('/error/401');
         else {
             db.findOne(User, {username: req.session.username}, '', function (user) {
-                var d = new Date(user.bday);
-                var datestring = ("0" + (d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + "-" + d.getFullYear();
-                user.bday = datestring;
+                if(user.bday) {
+                    var d = new Date(user.bday);
+                    var datestring = ("0" + (d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + "-" + d.getFullYear();
+                    user.bday = datestring; 
+                }
                 res.render('profile-view', user);
             });
         }  
@@ -19,9 +21,11 @@ const profileController = {
         if(!req.session.username) res.redirect('/error/401');
         else {
             db.findOne(User, {username: req.session.username}, '', function (user) {
-                var d = new Date(user.bday);
-                var datestring = d.getFullYear() + "-" + ("0" + (d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
-                user.bday = datestring;
+                if(user.bday) {
+                    var d = new Date(user.bday);
+                    var datestring = ("0" + (d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + "-" + d.getFullYear();
+                    user.bday = datestring; 
+                }
                 res.render('profile-edit', user);
             });
         }  

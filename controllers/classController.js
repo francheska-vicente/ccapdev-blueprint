@@ -15,9 +15,7 @@ const classController = {
             db.findOne(User, {username: req.session.username}, '', function (user) {
                 var classes = user.classes;
                 db.findMany (Course, {classID : {$in : classes}}, '', function (result) {
-                    var temp = {
-                        results : result
-                    }
+                    var temp = {results : result}
                     res.render('dashboard', temp);
                 });
             });
@@ -25,24 +23,42 @@ const classController = {
     },
 
 	getClass: function (req, res) {
-		db.findOne(Course, {classID: req.params.classID}, null, function (result) {
-			if(result == null) res.redirect('/error/404');
-			res.render('class', result);
-		});
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+    		db.findOne(Course, {classID: req.params.classID}, null, function (course) {
+    			if(!course) res.redirect('/error/404');
+                else {
+                    db.findOne(User, {username: req.session.username}, '', function (user) {
+                        if(course.classlist.indexOf(user.username) == -1) res.redirect('/error/403');
+                        else res.render('class', course);
+                    });
+                }
+    		});
+        }
 	},
 
 	getClassList: function (req, res) {
-		db.findOne(Course, {classID: req.params.classID}, null, function (resultC) {
-			if(resultC == null) res.redirect('/error/404');
-			db.findMany(User, {username : {$in : resultC.classlist}}, '', function (resultU) {
-				var result = {
-					users : resultU,
-					coursecode : resultC.coursecode,
-					classID : resultC.classID
-				}
-				res.render('classlist', result);
-			});
-		});
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne(Course, {classID: req.params.classID}, null, function (course) {
+                if(!course) res.redirect('/error/404');
+                else {
+                    db.findOne(User, {username: req.session.username}, '', function (user) {
+                        if(course.classlist.indexOf("user.username") == -1) res.redirect('/error/403');
+                        else {
+                            db.findMany(User, {username : {$in : resultC.classlist}}, '', function (users) {
+                                var result = {
+                                    users : users,
+                                    coursecode : course.coursecode,
+                                    classID : course.classID
+                                }
+                                res.render('classlist', result);
+                            });
+                        } 
+                    });
+                }
+            });
+        }
 	}
 }
 
