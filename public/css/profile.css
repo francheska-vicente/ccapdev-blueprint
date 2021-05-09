@@ -111,13 +111,10 @@ input[type="file"] {
 .login_button 
 {
     height: 50px;
-    width: 40%;
     background: #A8DADC !important;
     color: #1D3557 !important;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    margin-left: 30%;
-    margin-right: 30%;
 }
 
 #spacer {
