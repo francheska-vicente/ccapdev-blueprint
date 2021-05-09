@@ -8,25 +8,30 @@ const Reqs = require ('../models/ReqsModel.js');
 const reqsController = {
 
     getReqs: function (req, res) {
-        var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error/401');
+        if(!req.session.username) res.redirect('/error/401');
+        else
+        {
+            var c = req.params.classID;
+            var query = {
+                classID: c
+            };
 
-        var c = req.params.classID;
-        var query = {
-            classID: c
-        };
+            db.findOne(Course, query, null, function (result) {
 
-        db.findOne(Course, query, null, function (result) {
-            if(result == null) res.redirect('/error/404');
-            db.findMany (Reqs, query, null, function (reqs) {
-                var temp = {
-                    result : reqs,
-                    classID : c,
-                    coursecode: result.coursecode
-                };
-                res.render('reqs', temp);
+                if(result == null) res.redirect('/error/404');
+
+                db.findMany (Reqs, query, null, function (reqs) {
+                    var temp = {
+                        result : reqs,
+                        classID : c,
+                        coursecode: result.coursecode
+                    };
+
+                    res.render('reqs', temp);
+                });
+
             });
-        });
+        }
     },
 
     getAddReqs : function (req, res) {
@@ -39,14 +44,17 @@ const reqsController = {
     },
 
     postAddReqs : function (req, res) {
-        var user = controller.getLoggedInUser();
-        if(user == null) res.redirect('/error/401');
+        if(!req.session.username) res.redirect('/error/401');
         
         var c = req.params.classID;
         var id = db.getObjectID();
-        var fName = user.fName;
-        var lName = user.lName;
-        var username = user.username;
+        var username = req.session.username;
+        var fName, lName;
+
+        db.findOne (User, {username: username}, null, function (result) {
+            fName = result.fName;
+            lName = result.lName;
+        });
 
         var reqs = {
             classID : c,
