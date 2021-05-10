@@ -32,9 +32,9 @@
           <input type="file" id="prof-picture">
         </span>
       </div>
-      <h2>{{fName}} {{lName}}</h2>
-      {{#if bio}}
-      <h6 id="bio">{{bio}}</h6><br>
+      <h2>{{user.fName}} {{user.lName}}</h2>
+      {{#if user.bio}}
+      <h6 id="bio">{{user.bio}}</h6><br>
       {{else}}
       <h6 id="bio">You have no bio yet.</h6><br>
       {{/if}}
@@ -44,6 +44,11 @@
       <div id="spacer"></div>
     </div>
     <div class="info-bg">
+      {{#if notif}}
+      <div id="notif">
+        <h6 id="notif-text">{{notif}}</h6>
+      </div>
+      {{/if}}
       <div class="info-box">
         <ul class="breadcrumb">
           <li><a href="home.html">blueprint</a></li>
@@ -56,12 +61,12 @@
         <div class="row">
           <div class="col">
             <h4>Username</h4>
-            <h6>{{username}}</h6>
+            <h6>{{user.username}}</h6>
           </div>
           <div class="col">
             <h4>Birthday</h4>
             {{#if bday}}
-            <h6>{{bday}}</h6>
+            <h6>{{user.bday}}</h6>
             {{else}}
             <h6>You have not set your birthday.</h6>
             {{/if}}
@@ -70,12 +75,12 @@
         <div class="row">
           <div class="col">
             <h4>Email</h4>
-            <h6>{{email}}</h6>
+            <h6>{{user.email}}</h6>
           </div>
           <div class="col">
             <h4>Phone</h4>
-            {{#if phone}}
-            <h6>{{phone}}</h6>
+            {{#if user.phone}}
+            <h6>{{user.phone}}</h6>
             {{else}}
             <h6>You have not set your phone number.</h6>
             {{/if}}
@@ -85,12 +90,12 @@
         <div class="row">
           <div class="col">
             <h4>University</h4>
-            <h6>{{uni}}</h6>
+            <h6>{{user.uni}}</h6>
           </div>
           <div class="col">
             <h4>Degree</h4>
-            {{#if degree}}
-            <h6>{{degree}}</h6>
+            {{#if user.degree}}
+            <h6>{{user.degree}}</h6>
             {{else}}
             <h6>You have not set your degree.</h6>
             {{/if}}

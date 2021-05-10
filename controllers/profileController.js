@@ -18,7 +18,15 @@ const profileController = {
                     var datestring = ("0" + (d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + "-" + d.getFullYear();
                     user.bday = datestring; 
                 }
-                res.render('profile-view', user);
+
+                var notif = null;
+                if (req.query.editsuccess == 'true') var notif = 'You have successfully edited your profile!';
+                else if (req.query.editsuccess == 'false') var notif = 'Editing of profile unsuccessful.';
+                else if (req.query.deletesuccess == 'false') var notif = 'Deletion of profile unsuccessful.';
+
+                var temp = {user : user, notif : notif};
+                    
+                res.render('profile-view', temp);
             });
         }  
     },
@@ -65,8 +73,9 @@ const profileController = {
                 if (req.body.o_password == user.password) {
 
                     // updates user in db
-                    db.updateOne(User, {username: user.username}, update, function(result) {
-                        res.redirect('/profile');
+                    db.updateOne(User, {username: user.username}, update, function(flag) {
+                        if(flag) res.redirect('/profile?editsuccess=true');
+                        else res.redirect('/profile?editsuccess=false');
                     });
                 }
             });
@@ -100,9 +109,8 @@ const profileController = {
 
                     // deletes user from db
                     db.deleteOne(User, {username: user.username}, function(flag) {
-                        if(flag) {
-                            res.redirect('/profile-deletion-success');
-                        }
+                        if(flag) res.redirect('/profile-deletion-success');
+                        else res.redirect('/profile?deletesuccess=false');
                     });
                 }
             });

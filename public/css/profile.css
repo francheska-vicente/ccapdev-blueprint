@@ -72,13 +72,24 @@ input[type="file"] {
     margin-bottom: -1%;
 }
 
+#notif {
+    background-color: white;
+    margin-top: 1%;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 4px 4px 0 rgba(29, 53, 87, 0.2), 0 4px 10px 0 rgba(29, 53, 87, 0.19);
+}
+
+#notif-text {
+    margin: 0;
+    text-align: center;
+}
+
 .info-box {
     padding: 40px; 
     margin-top: 2%;
-    margin-left: 2%;
-    margin-right: 2%;
     background-color: white;
-    height: 91.5%;
+    height: 90%;
     box-shadow: 0 4px 4px 0 rgba(29, 53, 87, 0.2), 0 4px 10px 0 rgba(29, 53, 87, 0.19);
 }
 
@@ -134,6 +145,5 @@ input[type="file"] {
     width: 47%;
     margin-right: 3%;
 }
-
 
 
