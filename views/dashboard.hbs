@@ -10,6 +10,11 @@
         <li><a href="/home">blueprint</a></li>
         <li>Classes</li>
       </ul> 
+      {{#if notif}}
+      <div id="notif">
+        <h6>{{notif}}</h6>
+      </div>
+      {{/if}}
       <div id="class-list">
         <h1>Your Classes</h1>
         <h5>A list of all your classes for the term. Click on any of the classes below!</h5><hr>

@@ -17,7 +17,15 @@ const classController = {
 
                 // get user's classes from db
                 db.findMany (Course, {classID : {$in : classes}}, '', function (result) {
-                    var temp = {results : result}
+
+                    // checks for notifications
+                    var notif = null;
+                    if (req.query.addsuccess == 'true') var notif = 'You have successfully enrolled in the class!';
+                    else if (req.query.addsuccess == 'false') var notif = 'Enrollment unsuccessful.'; 
+                    else if (req.query.removesuccess == 'true') var notif = 'You have successfully dropped the class!';
+                    else if (req.query.removesuccess == 'false') var notif = 'Dropping unsuccessful.'; 
+
+                    var temp = {results : result, notif : notif};
                     res.render('dashboard', temp);
                 });
             });
