@@ -16,7 +16,7 @@ const profileController = {
                 if(user.bday) {
                     var d = new Date(user.bday);
                     var datestring = ("0" + (d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + "-" + d.getFullYear();
-                    user.bday = datestring; 
+                    user.bday = datestring;
                 }
 
                 var notif = null;

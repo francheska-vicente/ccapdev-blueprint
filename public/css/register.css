@@ -11,7 +11,6 @@ label {
 }
 
 .auth-content {
-	height: 550px;
 	width: 600px;
 }
 
@@ -58,4 +57,9 @@ label {
 #button-div {
 	padding: 0 40px; 
 	margin-top: 10px;
+}
+
+#error {
+	text-align: center;
+	font-weight: bold;
 }

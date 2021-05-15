@@ -26,6 +26,8 @@ app.get('/logout', logoutController.getLogout);
 app.get('/register', signupController.getSignUp);
 app.post('/register', signupController.postSignUp);
 app.get('/register-success', successController.getSuccessReg);
+app.get('/getCheckUsername', signupController.getCheckUsername);
+app.get('/getCheckEmail', signupController.getCheckEmail);
 
 // home
 app.get('/home', controller.getHome);

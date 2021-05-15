@@ -6,6 +6,20 @@ const signupController = {
     getSignUp: function (req, res) {
         res.render('register');
     },
+
+    getCheckUsername: function (req, res) {
+        var username = req.query.username;
+        db.findOne(User, {username: username}, 'username', function (result) {
+            res.send(result);
+        });
+    },
+
+    getCheckEmail: function (req, res) {
+        var email = req.query.email;
+        db.findOne(User, {email: email}, 'email', function (result) {
+            res.send(result);
+        });
+    },
     
     postSignUp: function (req, res) {
         var user = {

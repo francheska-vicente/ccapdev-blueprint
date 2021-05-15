@@ -2,6 +2,8 @@
 <html>
 <head>
 	<link href="../css/register.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../js/signup.js"></script>
 	<title>Sign Up | blueprint</title>
 </head>
 <body>
@@ -18,6 +20,7 @@
 						</div>
 						<div class = "form">
 							<form id = "register" method="post">
+								<p id="error"></p>
 								<div class = "form-left">
 									<div class = "container input-group mb-3">
 										<label for="fName" class="input_field">Name</label>
@@ -52,13 +55,13 @@
 								</div>
 							</form>
 						</div>
-						<div>
+						<div><br>
 							<div class = "display">
-								<p style = "margin-bottom: 0px"> Already have an account? </p> 
+								<p style = "margin-bottom: -5px"> Already have an account? </p> 
 							</div>
 							<div class = "display">
 								<a href = "login">Log in now!</a>
-							</div>
+							</div><br>
 						</div>
 					</div>
 				</div>

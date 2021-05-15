@@ -11,28 +11,39 @@ const Reqs = require ('../models/ReqsModel.js');
 const notesController = {
 
 	getNotes : function (req, res) {
-		var c = req.params.classID;
-		var query = {
-			classID: c
-		};
 
-		var classInfo;
-		var results;
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
 
-		db.findOne (Course, query, null, function (classInfo) {
-			classInfo = classInfo;
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) res.redirect('/error/403');
+            }); 
 
-			db.findMany (Note, query, null, function (result) {
+    		var c = req.params.classID;
+    		var query = {
+    			classID: c
+    		};
 
-				var temp = {
-					coursecode : classInfo.coursecode,
-					classID : c,
-					result : result
-				}
-				
-				res.render('notes', temp);
-			});
-		});
+    		var classInfo;
+    		var results;
+
+    		db.findOne (Course, query, null, function (classInfo) {
+                if(classInfo == null) res.redirect('/error/404');
+    			classInfo = classInfo;
+
+    			db.findMany (Note, query, null, function (result) {
+
+    				var temp = {
+    					coursecode : classInfo.coursecode,
+    					classID : c,
+    					result : result
+    				}
+    				
+    				res.render('notes', temp);
+    			});
+    		});
+        }
 	}, 
 
 	getAddNotes : function (req, res) {
