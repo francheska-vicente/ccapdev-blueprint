@@ -10,6 +10,7 @@ const discController = require('../controllers/discController.js');
 const notesController = require('../controllers/notesController.js');
 const reqsController = require('../controllers/reqsController.js');
 const profileController = require('../controllers/profileController.js');
+const userController = require('../controllers/userController.js');
 const successController = require('../controllers/successController.js');
 const errorController = require('../controllers/errorController.js');
 
@@ -50,8 +51,8 @@ app.get('/schedule/drop', scheduleController.getDeleteClass);
 app.post('/schedule/drop', scheduleController.postDeleteClass);
 
 // view other users
-app.get('/:username/profile', controller.getUserProfile);
-app.get('/:username/schedule', controller.getUserSchedule);
+app.get('/:username/profile', userController.getUserProfile);
+app.get('/:username/schedule', userController.getUserSchedule);
 
 // dashboard + class
 app.get('/classes/dashboard', classController.getDashboard);

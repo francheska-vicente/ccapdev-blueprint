@@ -8,7 +8,7 @@ const Note = require ('../models/NotesModel.js');
 const Comment = require ('../models/CommentModel.js');
 const Reqs = require ('../models/ReqsModel.js');
 
-const classController = {
+const notesController = {
 
 	getNotes : function (req, res) {
 		var c = req.params.classID;
@@ -43,29 +43,35 @@ const classController = {
 	},
 
 	postAddNotes : function (req, res) {
-        var temp = user;
-        var c = req.params.classID;
-        var content = req.body.paragraph_text;
-        var title = req.body.title;
-        var notesID = db.getObjectID();
-        var username = temp.username;
-        var fName = temp.fName;
-        var lName = temp.lName;
+        if(!req.session.username) res.redirect('/error/401');
+        else {
 
-        var notes = {
-            classID : c,
-            username : username,
-            notesID : notesID,
-            content : content,
-            title : title,
-            numOfComments : 0,
-            fName : fName,
-            lName : lName
-        };
+            // gets user from db
+            db.findOne(User, {username: req.session.username}, '', function (user) {
+                var c = req.params.classID;
+                var content = req.body.paragraph_text;
+                var title = req.body.title;
+                var notesID = db.getObjectID();
+                var username = user.username;
+                var fName = user.fName;
+                var lName = user.lName;
 
-        db.insertOne (Note, notes, function (result) {
-            res.redirect ('/classes/' + c + '/notebook');
-        });
+                var notes = {
+                    classID : c,
+                    username : username,
+                    notesID : notesID,
+                    content : content,
+                    title : title,
+                    numOfComments : 0,
+                    fName : fName,
+                    lName : lName
+                };
+
+                db.insertOne (Note, notes, function (result) {
+                    res.redirect ('/classes/' + c + '/notebook');
+                });
+            });
+        }
     },
 
     getNotesPost : function (req, res) {
@@ -238,4 +244,4 @@ const classController = {
 	}
 }
 
-module.exports = classController;
+module.exports = notesController;

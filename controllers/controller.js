@@ -2,7 +2,6 @@ const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
 const Course = require ('../models/ClassModel.js');
-const Note = require ('../models/NotesModel.js');
 
 const controller = {
     getSplash: function (req, res) {
@@ -51,20 +50,6 @@ const controller = {
                 }
 
                 res.render ('search-users', temp);
-        });
-    },
-
-    getUserProfile: function (req, res) {
-        db.findOne(User, {username: req.params.username}, '', function (result) {
-            if(result) res.render('userprofile', result);
-            else res.redirect('/error/404');
-        });
-    },
-
-    getUserSchedule: function (req, res) {
-        db.findOne(User, {username: req.params.username}, '', function (result) {
-            if(result) res.render('userschedule', result);
-            else res.redirect('/error/404');
         });
     }
 }

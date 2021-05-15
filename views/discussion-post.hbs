@@ -181,12 +181,6 @@
       {
         $("#main_txt").val ($(".main_cmt").html ());
 
-        $("#search_btn").click (function ()
-          {
-            var searchVal = $("#searchBox").val ();
-            location.href = "../../search.html";
-          });
-
         function comment_func ()
         {
           $(this).closest(".commentDiv").find (".createcontainer").css ("display", "block");

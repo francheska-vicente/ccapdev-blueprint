@@ -11,7 +11,7 @@ const classController = {
         if(!req.session.username) res.redirect('/error/401');
         else {
 
-            // gest user from db
+            // gets user from db
             db.findOne(User, {username: req.session.username}, '', function (user) {
                 var classes = user.classes;
 
