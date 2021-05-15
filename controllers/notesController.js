@@ -17,7 +17,8 @@ const notesController = {
             db.findOne (User, {username: req.session.username}, null, function (user) {
 
                 // error 403 if user not part of class
-                if(!user.classes.includes(req.params.classID)) res.redirect('/error/403');
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
             }); 
 
     		var c = req.params.classID;
@@ -99,38 +100,37 @@ const notesController = {
 
         db.findOne (Course, {classID : c}, null, function (classInfo) {
             coursecode = classInfo.coursecode;
-        });
+            db.findOne (Note, {notesID : b}, null, function (notesInfo) {
+                if (notesInfo != undefined)
+                {
+                    content = notesInfo.content;
+                    title = notesInfo.title;
+                    author = notesInfo.username;
+                    fName = notesInfo.fName;
+                    lName = notesInfo.lName;
+                }
 
-        db.findOne (Note, {notesID : b}, null, function (notesInfo) {
-            if (notesInfo != undefined)
-            {
-                content = notesInfo.content;
-                title = notesInfo.title;
-                author = notesInfo.username;
-                fName = notesInfo.fName;
-                lName = notesInfo.lName;
-            }
-        });
+                db.findMany (Comment, {mainID: b}, null, function (result) {
+                    var notes = {
+                        content: content,
+                        title: title,
+                        username : author,
+                        notesID : b,
+                        lName : lName,
+                        fName : fName
+                    }
 
-        db.findMany (Comment, {mainID: b}, null, function (result) {
-            var notes = {
-                content: content,
-                title: title,
-                username : author,
-                notesID : b,
-                lName : lName,
-                fName : fName
-            }
+                    var temp = {
+                        coursecode: coursecode,
+                        notes : notes,
+                        comments : result, 
+                        classID: c,
+                        currentUser : loggedIn,
+                    }
 
-            var temp = {
-                coursecode: coursecode,
-                notes : notes,
-                comments : result, 
-                classID: c,
-                currentUser : loggedIn,
-            }
-
-            res.render('notes-post', temp);
+                    res.render('notes-post', temp);
+                });
+            });
         });
     },
 
