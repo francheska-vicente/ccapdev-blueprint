@@ -120,15 +120,22 @@ const scheduleController = {
 
             // gets user from db
             db.findOne(User, {username: req.session.username}, '', function (user) {
+                db.findOne(Course, {classID: req.params.classID}, '', function (course) {
 
-                // adds class to user's classes
-                var c = req.params.classID;
-                user.classes.push (c);
+                    // adds class to user's classes
+                    user.classes.push (course.classID);
+                    // adds user to class's classlist
+                    course.classlist.push (user.username);
 
-                // updates user in db
-                db.updateOne (User, {username : user.username}, user, function (flag) {
-                    if(flag) res.redirect('/classes/dashboard?addsuccess=true');
-                    else res.redirect('/classes/dashboard?addsuccess=false');
+                    db.updateOne (Course, {course : course.classID}, course, function (flag) {
+                        if(flag) {
+                            db.updateOne (User, {username : user.username}, user, function (flag) {
+                                if(flag) res.redirect('/classes/dashboard?addsuccess=true');
+                                else res.redirect('/classes/dashboard?addsuccess=false');
+                            });
+                        }
+                        else res.redirect('/classes/dashboard?addsuccess=false');
+                    });
                 });
             });
         }  
