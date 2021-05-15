@@ -29,18 +29,18 @@ const discController = {
                 if(result == null) res.redirect('/error/404');
                 coursecode = result.coursecode;
                 classID = result.classID;
-            }); 
 
-            // gets class's discussions from db
-            db.findMany (Discussion, {classID: c}, null, function (result) {
-                var temp = {
-                    coursecode: coursecode, 
-                    classID: classID, 
-                    results: result
-                }
-                
-                res.render('discussions-list', temp);
-            });  
+                // gets class's discussions from db
+                db.findMany (Discussion, {classID: c}, null, function (result) {
+                    var temp = {
+                        coursecode: coursecode, 
+                        classID: classID, 
+                        results: result
+                    }
+                    
+                    res.render('discussions-list', temp);
+                });  
+            }); 
         }
     },
 
@@ -98,39 +98,40 @@ const discController = {
                 var comments;
                 db.findOne (Course, {classID : c}, null, function (classInfo) {
                     coursecode = classInfo.coursecode;
+
+                    db.findOne (Discussion, {discID : b}, null, function (discInfo) {
+                        if (discInfo != undefined)
+                        {
+                            content = discInfo.content;
+                            title = discInfo.title;
+                            author = discInfo.username;
+                            fName = discInfo.fName;
+                            lName = discInfo.lName;
+                        }
+
+                        db.findMany (Comment, {mainID: b}, null, function (result) {
+                            var disc = {
+                                content: content,
+                                title: title,
+                                username : author,
+                                discID : b,
+                                lName : lName,
+                                fName : fName,
+                            }
+
+                            var temp = {
+                                coursecode: coursecode,
+                                disc : disc,
+                                comments : result, 
+                                classID: c,
+                                currentUser : loggedIn
+                            }
+
+                            res.render('discussion-post', temp);
+                        });
+                    });
                 });
 
-                db.findOne (Discussion, {discID : b}, null, function (discInfo) {
-                    if (discInfo != undefined)
-                    {
-                        content = discInfo.content;
-                        title = discInfo.title;
-                        author = discInfo.username;
-                        fName = discInfo.fName;
-                        lName = discInfo.lName;
-                    }
-                });
-
-                db.findMany (Comment, {mainID: b}, null, function (result) {
-                    var disc = {
-                        content: content,
-                        title: title,
-                        username : author,
-                        discID : b,
-                        lName : lName,
-                        fName : fName,
-                    }
-
-                    var temp = {
-                        coursecode: coursecode,
-                        disc : disc,
-                        comments : result, 
-                        classID: c,
-                        currentUser : loggedIn
-                    }
-
-                    res.render('discussion-post', temp);
-                });
             });
         }
     },
