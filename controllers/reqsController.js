@@ -49,11 +49,15 @@ const reqsController = {
         var c = req.params.classID;
         var id = db.getObjectID();
         var username = req.session.username;
-        var fName, lName;
+        var fName, lName, coursecode;
 
         db.findOne (User, {username: username}, null, function (result) {
             fName = result.fName;
             lName = result.lName;
+        });
+
+        db.findOne (Course, {classID : c}, null, function (result) {
+            coursecode = result.coursecode;
         });
 
         var reqs = {
@@ -66,6 +70,7 @@ const reqsController = {
             desc: req.body.paragraph_text,
             deadline: req.body.deadline,
             typeOfReq: req.body.type, 
+            coursecode : coursecode
         };
 
         db.insertOne (Reqs, reqs, function (result) {
