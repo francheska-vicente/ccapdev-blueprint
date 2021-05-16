@@ -29,7 +29,6 @@ const controller = {
 
                 var start = today.toISOString();
 
-
                 if (month == 4 || month == 6 || month == 9 || month == 11)
                     day = 30;
                 else if (month == 2)
@@ -40,10 +39,10 @@ const controller = {
                         day = 28;
                 }
 
-                var end =  new Date (year, month - 1, day, 23, 59, 59);
+                var end =  new Date (year - 3, month - 1, day);
 
                 var end = end.toISOString();
-
+               
                 db.findMany (Reqs, {$and: [{classID  : {$in : classes}},
                                            {deadline : {$gte : start, 
                                                         $lt  : end}}
