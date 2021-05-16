@@ -49,29 +49,33 @@ const reqsController = {
         var c = req.params.classID;
         var id = db.getObjectID();
         var username = req.session.username;
-        var fName, lName;
+        var fName, lName, coursecode;
 
         db.findOne (User, {username: username}, null, function (result) {
             fName = result.fName;
             lName = result.lName;
         });
 
-        var reqs = {
-            classID : c,
-            username : username,
-            fName : fName,
-            lName : lName,
-            reqID : id,
-            title : req.body.title,
-            desc: req.body.paragraph_text,
-            deadline: req.body.deadline,
-            typeOfReq: req.body.type, 
-        };
+        db.findOne (Course, {classID : c}, null, function (result) {
+            var reqs = {
+                classID : c,
+                username : username,
+                fName : fName,
+                lName : lName,
+                reqID : id,
+                title : req.body.title,
+                desc: req.body.paragraph_text,
+                deadline: req.body.deadline,
+                typeOfReq: req.body.type, 
+                coursecode : result.coursecode
+            };
 
-        db.insertOne (Reqs, reqs, function (result) {
-            
-            res.redirect ('/classes/' + c + '/requirements');
+            db.insertOne (Reqs, reqs, function (result1) {
+                res.redirect ('/classes/' + c + '/requirements');
+            });
         });
+
+        
     },
 
     editReqsPost : function (req, res) {

@@ -25,16 +25,25 @@ app.engine('hbs', exphbs({
     extname: '.hbs',
     helpers: {
     	ifEqual : function (user1, user2, opts) {
-        try
-        {
-          if (user1.toLowerCase () == user2.toLowerCase ())
-            return opts.fn (this);
-          else
-            return opts.inverse(this);
-        } catch (error) { }
-      }
+            try
+            {
+              if (user1.toLowerCase () == user2.toLowerCase ())
+                return opts.fn (this);
+              else
+                return opts.inverse(this);
+            } catch (error) { }
+        },
+        dateFormat : function (date) {
+            var date = date.toString ().split (" ");
+            var year = date [3];
+            var month = date [1];
+            var day = date [2];
+
+            return (month + " " + day + ", " + year);
+        }
     }
 }));
+
 
 app.use(bodyParser.urlencoded ({extended:true}));
 app.use(bodyParser.json());

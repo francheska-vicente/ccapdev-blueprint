@@ -49,15 +49,25 @@ const notesController = {
 
 	getAddNotes : function (req, res) {
 		var c = req.params.classID;
-		db.findOne (Course, {classID : c}, null, function (classInfo) {
-			res.render ('add_notes', classInfo);
-		});
+
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
+
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
+            }); 
+
+            db.findOne (Course, {classID : c}, null, function (classInfo) {
+                res.render ('add_notes', classInfo);
+            });
+        }
 	},
 
 	postAddNotes : function (req, res) {
         if(!req.session.username) res.redirect('/error/401');
         else {
-
             // gets user from db
             db.findOne(User, {username: req.session.username}, '', function (user) {
                 var c = req.params.classID;
@@ -93,45 +103,50 @@ const notesController = {
         var coursecode;
         var content, title, author, fName, lName;
 
-        try
-        {
-            var loggedIn = user.username;
-        } catch (error) {}
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
 
-        db.findOne (Course, {classID : c}, null, function (classInfo) {
-            coursecode = classInfo.coursecode;
-            db.findOne (Note, {notesID : b}, null, function (notesInfo) {
-                if (notesInfo != undefined)
-                {
-                    content = notesInfo.content;
-                    title = notesInfo.title;
-                    author = notesInfo.username;
-                    fName = notesInfo.fName;
-                    lName = notesInfo.lName;
-                }
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
+            }); 
 
-                db.findMany (Comment, {mainID: b}, null, function (result) {
-                    var notes = {
-                        content: content,
-                        title: title,
-                        username : author,
-                        notesID : b,
-                        lName : lName,
-                        fName : fName
+            db.findOne (Course, {classID : c}, null, function (classInfo) {
+                coursecode = classInfo.coursecode;
+                db.findOne (Note, {notesID : b}, null, function (notesInfo) {
+                    if (notesInfo != undefined)
+                    {
+                        content = notesInfo.content;
+                        title = notesInfo.title;
+                        author = notesInfo.username;
+                        fName = notesInfo.fName;
+                        lName = notesInfo.lName;
                     }
 
-                    var temp = {
-                        coursecode: coursecode,
-                        notes : notes,
-                        comments : result, 
-                        classID: c,
-                        currentUser : loggedIn,
-                    }
+                    db.findMany (Comment, {mainID: b}, null, function (result) {
+                        var notes = {
+                            content: content,
+                            title: title,
+                            username : author,
+                            notesID : b,
+                            lName : lName,
+                            fName : fName
+                        }
 
-                    res.render('notes-post', temp);
+                        var temp = {
+                            coursecode: coursecode,
+                            notes : notes,
+                            comments : result, 
+                            classID: c,
+                            currentUser : req.session.username,
+                        }
+
+                        res.render('notes-post', temp);
+                    });
                 });
             });
-        });
+        }
     },
 
     editNotesPost : function (req, res) {
@@ -151,11 +166,21 @@ const notesController = {
 		var d = req.params.notesID;
 		var a = req.params.classID;
 
-		db.deleteOne (Note, {notesID : d}, function (result) {
-            db.deleteMany (Comment, {mainID: d}, function (result) {
-                res.redirect ('/classes/' + a + '/notebook/');
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
+
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
             });
-		})
+
+            db.deleteOne (Note, {notesID : d}, function (result) {
+                db.deleteMany (Comment, {mainID: d}, function (result) {
+                    res.redirect ('/classes/' + a + '/notebook/');
+                });
+            })
+        }
 	},
 
 	editCommentOfNotes : function (req, res) {
@@ -163,46 +188,63 @@ const notesController = {
         var classID = req.params.classID;
         var notesID = req.params.notesID;
 
-        db.findOne (Comment, {commentID : commentID}, null, function (comment) {
-            comment.content = req.body.edit_text;
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
 
-            db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
-                res.redirect ('/classes/' + classID + '/notebook/' + notesID);
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
             });
-        });
+            db.findOne (Comment, {commentID : commentID}, null, function (comment) {
+                comment.content = req.body.edit_text;
+
+                db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
+                    res.redirect ('/classes/' + classID + '/notebook/' + notesID);
+                });
+            });
+        }
 	},
 
 	addCommentToNotes: function (req, res) {
         var d = req.params.notesID;
         var c = req.params.classID;
 
-        var fName = user.fName;
-        var lName = user.lName;
-        var username = user.username;
-        var id = db.getObjectID();
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
 
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
+                else
+                {
+                    var id = db.getObjectID();
 
-        var comment = {
-            classID : c,
-            username: username, 
-            fName : fName,
-            lName : lName, 
-            parentID : d, 
-            mainID : d, 
-            content : req.body.main_comment_text,
-            commentID: id
-        };
+                    var comment = {
+                        classID : c,
+                        username: user.username, 
+                        fName : user.fName,
+                        lName : user.lName, 
+                        parentID : d, 
+                        mainID : d, 
+                        content : req.body.main_comment_text,
+                        commentID: id
+                    };
 
-        db.findOne (Note, {notesID: d}, {}, function (result) {
-            result.numOfComments = result.numOfComments + 1;
+                    db.findOne (Note, {notesID: d}, {}, function (result) {
+                        result.numOfComments = result.numOfComments + 1;
 
-            db.updateOne (Note, {}, result, function (result) {
-            });
-        });
+                        db.updateOne (Note, {}, result, function (result) {
+                        });
+                    });
 
-        db.insertOne (Comment, comment, function (discInfo) {
-            res.redirect ('/classes/' + c + '/notebook/' + d);
-        });
+                    db.insertOne (Comment, comment, function (discInfo) {
+                        res.redirect ('/classes/' + c + '/notebook/' + d);
+                    });
+                }
+            }); 
+        }  
     },
 
     addCommentToComment: function (req, res) {
@@ -210,33 +252,44 @@ const notesController = {
         var c = req.params.classID;
         var p = req.params.commentID;
 
-        var fName = user.fName;
-        var lName = user.lName;
-        var username = user.username;
-        var id = db.getObjectID();
-        console.log (req.body.comment_text);
-        console.log ("hello");
-        var comment = {
-            classID : c,
-            username : username,
-            fName : fName,
-            lName : lName,
-            parentID : p,
-            mainID : d,
-            commentID : id,
-            content : req.body.comment_text
-        };
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
 
-        db.findOne (Note, {notesID: d}, {}, function (result) {
-            result.numOfComments = result.numOfComments + 1;
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
 
-            db.updateOne (Note, {}, result, function (result) {
-            });
-        });
+                var fName = user.fName;
+                var lName = user.lName;
+                var username = user.username;
+                var id = db.getObjectID();
+                
+                var comment = {
+                    classID : c,
+                    username : username,
+                    fName : fName,
+                    lName : lName,
+                    parentID : p,
+                    mainID : d,
+                    commentID : id,
+                    content : req.body.comment_text
+                };
 
-        db.insertOne (Comment, comment, function (notesInfo) {
-            res.redirect ('/classes/' + c + '/notebook/' + d);
-        });
+                db.findOne (Note, {notesID: d}, {}, function (result) {
+                    result.numOfComments = result.numOfComments + 1;
+
+                    db.updateOne (Note, {}, result, function (result) {
+                    });
+                });
+
+                db.insertOne (Comment, comment, function (notesInfo) {
+                    res.redirect ('/classes/' + c + '/notebook/' + d);
+                });
+            }); 
+
+            
+        }
     },
 
 	deleteCommentOfComment : function (req, res) {
@@ -244,14 +297,24 @@ const notesController = {
 		var a = req.params.classID;
 		var d = req.params.notesID;
 
-		db.findOne (Note, {notesID : d}, null, function (notesInfo) {
-			db.deleteOne (Comment, {commentID : c}, function (result) {
-				notesInfo.numOfComments = notesInfo.numOfComments - 1;
-				db.updateOne (Note, {notesID : d}, notesInfo, function (result) {
-					res.redirect ('/classes/' + a + '/notebook/' + d);
-				});
-			});
-		});
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
+
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
+            }); 
+
+            db.findOne (Note, {notesID : d}, null, function (notesInfo) {
+                db.deleteOne (Comment, {commentID : c}, function (result) {
+                    notesInfo.numOfComments = notesInfo.numOfComments - 1;
+                    db.updateOne (Note, {notesID : d}, notesInfo, function (result) {
+                        res.redirect ('/classes/' + a + '/notebook/' + d);
+                    });
+                });
+            });
+        }
 	}
 }
 

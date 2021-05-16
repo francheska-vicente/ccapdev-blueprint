@@ -13,6 +13,11 @@ var ReqsSchema = new mongoose.Schema({
 
     desc: {
         type: String,
+        required: false
+    },
+
+    coursecode: {
+        type: String,
         required: true
     },
 
