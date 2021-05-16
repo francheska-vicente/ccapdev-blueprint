@@ -127,7 +127,7 @@ const scheduleController = {
                     // adds user to class's classlist
                     course.classlist.push (user.username);
 
-                    db.updateOne (Course, {course : course.classID}, course, function (flag) {
+                    db.updateOne (Course, {classID : course.classID}, course, function (flag) {
                         if(flag) {
                             db.updateOne (User, {username : user.username}, user, function (flag) {
                                 if(flag) res.redirect('/classes/dashboard?addsuccess=true');
