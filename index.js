@@ -4,6 +4,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
 const bodyParser = require('body-parser');
+const validator = require('validator');
 
 const routes = require('./routes/routes.js');
 const db = require('./models/db.js');
