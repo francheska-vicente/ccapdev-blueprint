@@ -48,7 +48,7 @@ label {
 }
 
 #fName, #lName,
-#email, #username,
+#email, #username, #c_password,
 #password, #school {
 	border-radius: 0px; 
 	color: black;
