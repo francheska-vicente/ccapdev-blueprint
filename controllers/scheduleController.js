@@ -46,9 +46,11 @@ const scheduleController = {
                     classname : req.body.classname,
                     coursecode : req.body.coursecode,
                     professor : req.body.professor,
-                    classtimeA : req.body.classtimeA,
+                    start_classtimeA : req.body.start_classtimeA,
+                    end_classtimeA : req.body.end_classtimeA,
                     classdayA : req.body.classdayA,
-                    classtimeB : req.body.classtimeB,
+                    start_classtimeB : req.body.start_classtimeB,
+                    end_classtimeB : req.body.end_classtimeB,
                     classdayB : req.body.classdayB
                 }
                 
