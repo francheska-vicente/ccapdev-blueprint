@@ -139,24 +139,44 @@ const discController = {
     editDiscussionPost: function (req, res) {
         var d = req.params.discID;
         
-        db.findOne (Discussion, {discID : d}, null, function (discInfo) {
-            discInfo.content = req.body.main_discussion_text;
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
 
-            db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
-                res.redirect ('/classes/' + discInfo.classID + '/discussions/' + d);
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
+            }); 
+
+            db.findOne (Discussion, {discID : d}, null, function (discInfo) {
+                discInfo.content = req.body.main_discussion_text;
+
+                db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
+                    res.redirect ('/classes/' + discInfo.classID + '/discussions/' + d);
+                });
             });
-        });
+        }
     },
 
     deleteDiscussionPost : function (req, res) {
         var d = req.params.discID;
         var a = req.params.classID;
 
-        db.deleteOne (Discussion, {discID : d}, function (result) {
-            db.deleteMany (Comment, {mainID: d}, function (result) {
-                res.redirect ('/classes/' + a + '/discussions/');
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
+
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
+            }); 
+            
+            db.deleteOne (Discussion, {discID : d}, function (result) {
+                db.deleteMany (Comment, {mainID: d}, function (result) {
+                    res.redirect ('/classes/' + a + '/discussions/');
+                });
             });
-        })
+        }
     }, 
 
     addCommentToDiscussion: function (req, res) {
@@ -202,13 +222,23 @@ const discController = {
         var classID = req.params.classID;
         var discID = req.params.discID;
 
-        db.findOne (Comment, {commentID : commentID}, null, function (comment) {
-            comment.content = req.body.edit_text;
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
 
-            db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
-                res.redirect ('/classes/' + classID + '/discussions/' + discID);
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
+            }); 
+
+            db.findOne (Comment, {commentID : commentID}, null, function (comment) {
+                comment.content = req.body.edit_text;
+
+                db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
+                    res.redirect ('/classes/' + classID + '/discussions/' + discID);
+                });
             });
-        });
+        } 
     },
 
     addCommentToComment : function (req, res) {
@@ -256,14 +286,24 @@ const discController = {
         var a = req.params.classID;
         var d = req.params.discID;
 
-        db.findOne (Discussion, {discID : d}, null, function (discInfo) {
-            db.deleteOne (Comment, {commentID : c}, function (result) {
-                discInfo.numOfComments = discInfo.numOfComments - 1;
-                db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
-                    res.redirect ('/classes/' + a + '/discussions/' + d);
+        if(!req.session.username) res.redirect('/error/401');
+        else {
+            db.findOne (User, {username: req.session.username}, null, function (user) {
+
+                // error 403 if user not part of class
+                if(!user.classes.includes(req.params.classID)) 
+                    res.redirect('/error/403');
+            }); 
+
+            db.findOne (Discussion, {discID : d}, null, function (discInfo) {
+                db.deleteOne (Comment, {commentID : c}, function (result) {
+                    discInfo.numOfComments = discInfo.numOfComments - 1;
+                    db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
+                        res.redirect ('/classes/' + a + '/discussions/' + d);
+                    });
                 });
             });
-        });
+        }
     }
 }
 
