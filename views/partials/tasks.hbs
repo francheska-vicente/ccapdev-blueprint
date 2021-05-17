@@ -1,5 +1,5 @@
 <a href = "/classes/{{classID}}/requirements" class="links">
-    <div class="task-container">
+    <div class="task-container {{#getDay deadline}}{{/getDay}}">
       <h3>{{title}}</h3>
       <h6 class="task-details">{{coursecode}} | Due {{#dateFormat deadline}}{{/dateFormat}}</h6>
     </div>

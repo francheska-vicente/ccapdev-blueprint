@@ -40,6 +40,12 @@ app.engine('hbs', exphbs({
             var day = date [2];
 
             return (month + " " + day + ", " + year);
+        },
+        getDay : function (date) {
+            var date = date.toString ().split (" ");
+            var day = date [2];
+
+            return day;
         }
     }
 }));
