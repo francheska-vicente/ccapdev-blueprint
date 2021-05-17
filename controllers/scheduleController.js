@@ -44,7 +44,7 @@ const scheduleController = {
                 var classes = user.classes;
                 var course = {
                     classname : req.body.classname,
-                    coursecode : req.body.coursecode,
+                    coursecode : req.body.coursecode.toUpperCase (),
                     professor : req.body.professor,
                     start_classtimeA : req.body.start_classtimeA,
                     end_classtimeA : req.body.end_classtimeA,
@@ -87,6 +87,7 @@ const scheduleController = {
 
         // gets user input from search bar
         var search = req.body.search;
+        
         res.redirect('/class/search/results?class=' + search);
     },
 
@@ -100,7 +101,7 @@ const scheduleController = {
             db.findOne(User, {username: req.session.username}, '', function (user) {
 
                 // gets query from url
-                var query = req.query.search;
+                var query = req.query.search.toUpperCase ();
 
                 // gets classes that meet the given parameters
                 db.findMany (Course, {$or:[{classname: query},{coursecode:query}]}, '', function (result) {
