@@ -106,6 +106,7 @@ const scheduleController = {
                         results : result,
                         user : user
                     }
+                    console.log (result);
                     res.render('class-search-results', temp);
                 });
             });

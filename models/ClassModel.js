@@ -17,7 +17,11 @@ var CourseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    classtimeA: {
+    start_classtimeA: {
+        type: String,
+        required: true
+    },
+    end_classtimeA: {
         type: String,
         required: true
     },
@@ -25,9 +29,13 @@ var CourseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    classtimeB: {
+    start_classtimeB: {
         type: String,
-        required: false
+        required: true
+    },
+    end_classtimeB: {
+        type: String,
+        required: true
     },
     classdayB: {
         type: String,
