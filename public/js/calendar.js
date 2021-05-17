@@ -27,5 +27,17 @@ $(document).ready(function () {
                 }
             }
         });
+        $(".with-task").hover(
+            function() {
+                $("a").find('.' + $(this).children('p').text()).css("background-color", "#457b9d");
+                $(this).css("background-color", "#7FACC7");
+            }, 
+            function() {
+                $("a").find('.' + $(this).children('p').text()).css("background-color", "#a8dadc");
+                $(this).css("background-color", "#ECF7F8");
+            }
+        );
     });
+
+    
 });

@@ -66,8 +66,7 @@ table {
 }
 
 .with-task {
-	background-color: #fcfcfc;
-	border: 0.5px solid #a8dadc;
+	background-color: #ECF7F8;
 	text-decoration: underline #a8dadc;
 	text-decoration-thickness: 5px;
 }
