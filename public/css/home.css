@@ -66,11 +66,15 @@ table {
 }
 
 .with-task {
-	font-weight: bold;
 	background-color: #fcfcfc;
 	border: 0.5px solid #a8dadc;
 	text-decoration: underline #a8dadc;
 	text-decoration-thickness: 5px;
+}
+
+.with-task p {
+	color: black;
+	font-weight: bold;
 }
 
 .not-month {
@@ -83,8 +87,17 @@ table {
 	background-color: #fcfcfc;
 }
 
-.today {
-	background-color: #dbf0f0;
+.in-month p {
+	color: black;
+}
+
+.today p {
+	background-color: #ffb0b0;
+	text-align: center;
+	border-radius: 50%;
+	width: 30px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .task-details {

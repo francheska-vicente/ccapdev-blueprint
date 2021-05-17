@@ -22,8 +22,8 @@ $(document).ready(function () {
             $('#error').text('Invalid name. Use valid characters only.');
         }
         else {
-            field.css('background-color', '#FFB0B0');
-            $('#error').text('Invalid name. Use valid characters only.');
+            field.css('background-color', '#FFFFFF');
+            $('#error').text('');
         }
     }
 
