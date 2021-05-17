@@ -2,10 +2,12 @@
 <html>
 <head>
 	<link href="/css/home.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+  <script src="/js/calendar.js" type="text/javascript"></script>
 	<title>Home | blueprint</title>
 </head>
 <body>
-  {{>topnav flag=flag}}
+  {{>topnav}}
 	<div class="main-content">
     <div id="title">
       <ul class="breadcrumb">
@@ -13,8 +15,7 @@
         <li>Home</li>
       </ul> 
     </div>
-    {{>calendar this}}
-  
+    {{>calendar days=days}}
     <div id="task">
       <h1>Your Tasks</h1>
       <h5>Your list of upcoming deadlines!</h5><hr>

@@ -4,6 +4,7 @@ const controller = require('../controllers/controller.js');
 const signupController = require('../controllers/signupController.js');
 const loginController = require('../controllers/loginController.js');
 const logoutController = require('../controllers/logoutController.js');
+const homeController = require('../controllers/homeController.js');
 const scheduleController = require('../controllers/scheduleController.js');
 const classController = require('../controllers/classController.js');
 const discController = require('../controllers/discController.js');
@@ -30,7 +31,10 @@ app.get('/getCheckUsername', signupController.getCheckUsername);
 app.get('/getCheckEmail', signupController.getCheckEmail);
 
 // home
-app.get('/home', controller.getHome);
+app.get('/home', homeController.getHome);
+app.get('/getReqsDates', homeController.getReqsDates);
+
+//search
 app.get('/search', controller.getSearch);
 
 // profile

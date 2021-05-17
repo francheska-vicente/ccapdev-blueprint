@@ -16,11 +16,21 @@ $(document).ready(function () {
         return true;
     }
 
-    function checkIfValidUsername(username) {
+    function checkIfValidName(field, name) {
+        if (!validator.isAlpha(name.replace(" ", '').replace(".", '').replace("-", '').replace("ñ", ''))) {
+            field.css('background-color', '#FFB0B0');
+            $('#error').text('Invalid name. Use valid characters only.');
+        }
+        else {
+            field.css('background-color', '#FFB0B0');
+            $('#error').text('Invalid name. Use valid characters only.');
+        }
+    }
 
-        if (!validator.isAlphanumeric(username.replace("-", '').replace("_", ''))) {
+    function checkIfValidUsername(username) {
+        if (!validator.isAlphanumeric(username.replace("-", '').replace("_", '').replace(".", ''))) {
             $('#username').css('background-color', '#FFB0B0');
-            $('#error').text('Invalid username. Use Alphanumeric characters (A-Z, 0-9), dash (-), and underscore (_) only.');
+            $('#error').text('Invalid username. Use Alphanumeric characters (A-Z, 0-9), dash (-), period, and underscore (_) only.');
         }
 
         else {
@@ -44,25 +54,82 @@ $(document).ready(function () {
         }
     }
 
-    $('#username').keyup(function () {
+    function checkIfValidEmail(email) {
 
+        if (!validator.isEmail(email)) {
+            $('#email').css('background-color', '#FFB0B0');
+            $('#error').text('Invalid email. Please use a valid format.');
+        }
+
+        else {
+            validator.normalizeEmail(email);
+            $.get('/getCheckEmail', {email: email}, function (result) {
+
+                if(result.email == email) {
+                    $('#email').css('background-color', '#FFB0B0');
+                    $('#error').text('Email is taken!');
+                }
+                else {
+                    $('#email').css('background-color', '#FFFFFF');
+                    $('#error').text('');
+                }
+            });
+        }
+    }
+
+    function checkIfValidPassword(password) {
+
+        if (!validator.isAscii(password)) {
+            $('#password').css('background-color', '#FFB0B0');
+            $('#error').text('Invalid password. Use ASCII characters only.');
+        }
+
+        else {
+            if (!validator.isLength(password, {min: 12, max: 20})) {
+                $('#password').css('background-color', '#FFB0B0');
+                $('#error').text('Invalid password. Password should have at least one uppercase letter, one lowercase letter, and one number.');
+            }
+
+            else {
+                if (!validator.isStrongPassword(password)) {
+                    $('#password').css('background-color', '#FFB0B0');
+                    $('#error').text('Weak password. Password should have at least one uppercase letter, one lowercase letter, and one number.');
+                }
+
+                else {
+                    $.get('/getCheckEmail', {email: email}, function (result) {
+
+                        if(result.email == email) {
+                            $('#email').css('background-color', '#FFB0B0');
+                            $('#error').text('Email is taken!');
+                        }
+                        else {
+                            $('#email').css('background-color', '#FFFFFF');
+                            $('#error').text('');
+                        }
+                    });
+                }
+            }
+        }
+    }
+
+    $('#fName').keyup(function () {
+        var fName = validator.trim($('#fName').val());
+        checkIfValidName($('#fName'), fName);
+    });
+
+    $('#lName').keyup(function () {
+        var lName = validator.trim($('#lName').val());
+        checkIfValidName($('#lName'), lName);
+    });
+
+    $('#username').keyup(function () {
         var username = validator.trim($('#username').val());
         checkIfValidUsername(username);
     });
 
     $('#email').keyup(function () {
-
-        var email = $('#email').val();
-        $.get('/getCheckEmail', {email: email}, function (result) {
-
-            if(result.email == email) {
-                $('#email').css('background-color', '#FFB0B0');
-                $('#error').text('Email is taken!');
-            }
-            else {
-                $('#email').css('background-color', '#FFFFFF');
-                $('#error').text('');
-            }
-        });
+        var email = validator.trim($('#email').val());
+        checkIfValidEmail(email);
     });
 });

@@ -34,8 +34,7 @@ table {
 	height: 60vh;
 }
 
-.tg-wrap td {
-	border-width:0px;
+.cal-table td {
 	font-family: 'Rubik', sans-serif;
 	font-size:2vh;
 	text-align: center;
@@ -45,8 +44,9 @@ table {
   	width:14%;
  }
 
-.tg-wrap th {
+.cal-table th {
 	background-color: #1d3557; 
+	border-width:0px;
 	color: white;
 	border-width:0px;
 	font-family: 'Rubik', sans-serif;
@@ -58,8 +58,9 @@ table {
   	word-break:normal;
  }
 
-.tg-wrap tr:nth-child(1) {
-	background-color: #457b9d; 
+.cal-table tr:nth-child(1) {
+	background-color: #457b9d;
+	border-width:0px;
 	color: white;
 	height: 20px;
 }
@@ -70,9 +71,14 @@ table {
 }
 
 .not-month {
-	background-color: #dddddd;
+	background-color: #eeeeee;
+	border: 0.5px solid #eeeeee;
 	color: #616161;
 	font-weight: italic;
+}
+
+.in-month {
+	border: 0.5px solid #eeeeee;
 }
 
 .task-details {
