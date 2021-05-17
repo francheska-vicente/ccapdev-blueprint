@@ -20,7 +20,7 @@ const reqsController = {
 
                 if(result == null) res.redirect('/error/404');
 
-                db.findMany (Reqs, query, null, function (reqs) {
+                db.findManyReqs (Reqs, query, null, function (reqs) {
                     var temp = {
                         result : reqs,
                         classID : c,

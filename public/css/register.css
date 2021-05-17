@@ -1,5 +1,5 @@
 body, html {
-	height: 100%;
+	height: 800px;
 	width: 100%;
 	background: #457B9D !important;
 	margin: 0;
@@ -17,7 +17,7 @@ label {
 .form {
 	display: flex; 
 	justify-content: center; 
-	margin-top: 120px; 
+	margin-top: 90px; 
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
@@ -40,7 +40,7 @@ label {
 
 .input_field {
 	line-height: 40px; 
-	width: 80px;
+	width: 140px;
 }
 
 .form-left .form-right {

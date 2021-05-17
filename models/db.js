@@ -53,6 +53,13 @@ const database = {
         }).lean();
     },
 
+    findManyReqs : function(model, query, projection, callback) {
+        model.find(query, projection, function(error, result) {
+            if(error) return callback(false);
+            return callback(result);
+        }).sort ({deadline: 1}).lean();
+    },
+
     updateOne: function(model, filter, update, callback) {
         model.findOneAndUpdate(filter, update, function(error, result) {
             if(error) return callback(false);
