@@ -12,18 +12,6 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 
 const homeController = {
 
-    getLastDay: function(month, year) {
-        if (month == 4 || month == 6 || month == 9 || month == 11)
-            return 30;
-        else if (month == 2) {
-            if (year % 100 == 0 && year % 400 == 0)
-                return 29;
-            else 
-                return 28;
-        }
-        else return 31;
-    },
-
     getHome: function (req, res) {
         if(!req.session.username)
             res.redirect('/');
@@ -34,7 +22,7 @@ const homeController = {
                 var today = new Date();
                 var year = "" + today.getFullYear();
                 var month = "" + today.getMonth() + 1;
-                var day = homeController.getLastDay(month, year);
+                var day = (new Date(today.getFullYear(), today.getMonth() + 1, 0)).getDate();
 
                 var start = today.toISOString();
                 var end =  new Date (year - 3, month - 1, day);
@@ -71,7 +59,7 @@ const homeController = {
                 var today = new Date();
                 var year = "" + today.getFullYear();
                 var month = "" + today.getMonth() + 1;
-                var day = homeController.getLastDay(month, year);
+                var day = (new Date(today.getFullYear(), today.getMonth() + 1, 0)).getDate();
 
                 var start = today.toISOString();
                 var end =  new Date (year - 3, month - 1, day);

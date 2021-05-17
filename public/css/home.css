@@ -23,7 +23,7 @@ body {
 }
 
 #task {
-	flex-grow: 1;
+	flex-grow: 2;
 	background-color: white;
 	padding: 40px;
 	box-shadow: 0 4px 4px 0 rgba(29, 53, 87, 0.2), 0 4px 10px 0 rgba(29, 53, 87, 0.19);
@@ -66,19 +66,25 @@ table {
 }
 
 .with-task {
-	background-color: #a8dadc; 
 	font-weight: bold;
+	background-color: #fcfcfc;
+	border: 0.5px solid #a8dadc;
+	text-decoration: underline #a8dadc;
+	text-decoration-thickness: 5px;
 }
 
 .not-month {
 	background-color: #eeeeee;
-	border: 0.5px solid #eeeeee;
 	color: #616161;
 	font-weight: italic;
 }
 
 .in-month {
-	border: 0.5px solid #eeeeee;
+	background-color: #fcfcfc;
+}
+
+.today {
+	background-color: #dbf0f0;
 }
 
 .task-details {
