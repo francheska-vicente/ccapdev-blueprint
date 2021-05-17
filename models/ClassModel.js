@@ -31,11 +31,11 @@ var CourseSchema = new mongoose.Schema({
     },
     start_classtimeB: {
         type: String,
-        required: true
+        required: false
     },
     end_classtimeB: {
         type: String,
-        required: true
+        required: false
     },
     classdayB: {
         type: String,
