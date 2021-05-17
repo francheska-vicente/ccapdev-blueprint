@@ -88,6 +88,7 @@ table {
 }
 
 #create_button, #drop_button, #edit_button, #comment_button,
+.Addcmt_btn, .Editcmt_btn
 #confirm_button, .Editcmt_btn, .Addcmt_, #create_discussion
 {
 	display:inline-block;
