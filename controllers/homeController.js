@@ -31,7 +31,7 @@ const homeController = {
                 var cal = new Calendar();
                 var days = cal.monthDays(today.getFullYear(), today.getMonth());
                
-                db.findMany (Reqs, {$and: [{classID  : {$in : classes}},
+                db.findManyReqs (Reqs, {$and: [{classID  : {$in : classes}},
                                            {deadline : {$gte : start, 
                                                         $lt  : end}}
                                            ]}, null, function (result1) {
