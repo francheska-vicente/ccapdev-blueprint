@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    checkIfFilled();
     function setInvalid(field, errormsg) {
         field.css('background-color', '#FFB0B0');
         $('#error').text(errormsg);
@@ -13,29 +13,36 @@ $(document).ready(function () {
     }
 
     function checkIfFilled() {
-
         var fName = validator.trim($('#fName').val());
         var lName = validator.trim($('#lName').val());
-        var email = validator.trim($('#email').val());
         var username = validator.trim($('#username').val());
+        var email = validator.trim($('#email').val());
         var password = validator.trim($('#password').val());
+        var passwordc = validator.trim($('#c_password').val());
         var school = validator.trim($('#school').val());
 
-        if (validator.isEmpty(fName) || validator.isEmpty(lName) || 
-            validator.isEmpty(email) || validator.isEmpty(username) ||
-            validator.isEmpty(password) || validator.isEmpty(school))
-            return false;
-        return true;
+        if (validator.isEmpty(fName) || validator.isEmpty(lName) ||
+            validator.isEmpty(username) || validator.isEmpty(email) ||
+            validator.isEmpty(password) || validator.isEmpty(passwordc) ||
+            validator.isEmpty(school)) {
+            $('#error').text('All fields must be filled.');
+            $('#signup_button').attr("disabled", true);
+        }
+            
+        else { 
+            $('#error').text('');
+            $('#signup_button').attr("disabled", false);
+        }
     }
 
     function checkIfValidName(field, name) {
-        if (!validator.isAlpha(name.replace(" ", '').replace(".", '').replace("-", '').replace("ñ", '')))
+        if (!validator.isAlpha(name.replaceAll(" ", '').replaceAll(".", '').replaceAll("-", '').replaceAll("ñ", '')))
             setInvalid(field, 'Invalid input. Use valid characters only.');
         else setValid(field);
     }
 
     function checkIfValidUsername(username) {
-        if (!validator.isAlphanumeric(username.replace("-", '').replace("_", '').replace(".", '')))
+        if (!validator.isAlphanumeric(username.replaceAll("-", '').replaceAll("_", '').replaceAll(".", '')))
             setInvalid($('#username'), 'Invalid username. Use Alphanumeric characters (A-Z, 0-9), dash (-), period, and underscore (_) only.');
         else if (!validator.isLength(username, {min: 12, max: 20})) 
             setInvalid($('#username'), 'Invalid username. Minimum of 12 characters and maximum of 20 characters.');
@@ -61,6 +68,7 @@ $(document).ready(function () {
     }
 
     function checkIfValidPassword(password) {
+        console.log(validator.isStrongPassword(password))
         if (!validator.isAscii(password))
             setInvalid($('#password'), 'Invalid password. Use ASCII characters only.');
         else if (!validator.isLength(password, {min: 12, max: 20}))
@@ -79,61 +87,43 @@ $(document).ready(function () {
     $('#fName').keyup(function () {
         var fName = validator.trim($('#fName').val());
         checkIfValidName($('#fName'), fName);
+        checkIfFilled();
     });
 
     $('#lName').keyup(function () {
         var lName = validator.trim($('#lName').val());
         checkIfValidName($('#lName'), lName);
+        checkIfFilled();
     });
 
     $('#username').keyup(function () {
         var username = validator.trim($('#username').val());
         checkIfValidUsername(username);
+        checkIfFilled();
     });
 
     $('#email').keyup(function () {
         var email = validator.trim($('#email').val());
         checkIfValidEmail(email);
+        checkIfFilled();
     });
 
     $('#password').keyup(function () {
         var password = validator.trim($('#password').val());
         checkIfValidPassword(password);
+        checkIfFilled();
     });
 
     $('#c_password').keyup(function () {
         var password = validator.trim($('#password').val());
         var passwordc = validator.trim($('#c_password').val());
         checkIfValidPassword(password, passwordc);
+        checkIfFilled();
     });
 
     $('#school').keyup(function () {
         var school = validator.trim($('#school').val());
         checkIfValidName($('#school'), school);
-    });
-    
-    $('#signup_button').click(function () {
-        var name = $('#name').val();
-        var refno = $('#refno').val();
-        var amount = $('#amount').val();
-
-        if (!$('#name').val() || !$('#refno').val() || !$('#amount').val()) {
-            $('#error').text('Fill up all fields');
-        }
-        else {
-            var temp = {
-                name: name,
-                refno: refno,
-                amount: amount
-            };
-            $.get('/add', temp, function (result) {
-                $('#cards').load('/ #cards');
-                $('#name').val("");
-                $('#refno').val("");
-                $('#amount').val("");
-                $('#error').text("");
-            });
-        }
-
+        checkIfFilled();
     });
 });
