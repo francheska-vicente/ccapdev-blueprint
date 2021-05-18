@@ -4,7 +4,7 @@
 	<link href="../css/register.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-	<script type="text/javascript" src="/js/signup.js"></script>
+	<script type="text/javascript" src="../js/signup.js"></script>
 	<title>Sign Up | blueprint</title>
 </head>
 <body>
@@ -22,6 +22,12 @@
 						<div class = "form">
 							<form id = "register" method="post">
 								<p id="error"></p>
+								<p id="fNameError" class="error">{{fNameError}}</p>
+								<p id="lNameError" class="error">{{lNameError}}</p>
+								<p id="emailError" class="error">{{emailError}}</p>
+								<p id="usernameError" class="error">{{usernameError}}</p>
+								<p id="passwordError" class="error">{{passwordError}}</p>
+								<p id="schoolError" class="error">{{schoolError}}</p>
 								<div class = "form-left">
 									<div class = "container input-group mb-3">
 										<label for="fName" class="input_field">Name</label>

@@ -14,6 +14,7 @@ const profileController = require('../controllers/profileController.js');
 const userController = require('../controllers/userController.js');
 const successController = require('../controllers/successController.js');
 const errorController = require('../controllers/errorController.js');
+const validation = require('../helpers/validation.js');
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.get('/login', loginController.getLogin);
 app.post('/login', loginController.postLogin);
 app.get('/logout', logoutController.getLogout);
 app.get('/register', signupController.getSignUp);
-app.post('/register', signupController.postSignUp);
+app.post('/register', validation.signUpValidation (), signupController.postSignUp);
 app.get('/register-success', successController.getSuccessReg);
 app.get('/getCheckUsername', signupController.getCheckUsername);
 app.get('/getCheckEmail', signupController.getCheckEmail);
