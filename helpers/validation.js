@@ -11,7 +11,6 @@ const validation = {
 			check ('password', 'Invalid password. Minimum of 12 characters and maximum of 20 characters.')
 			.isLength ({min: 12, max: 20}).custom((value,{req, loc, path}) => {
             if (value !== req.body.c_Password) {
-                // trow error if passwords do not match
                 throw new Error("Passwords don't match");
             } else {
                 return value;
