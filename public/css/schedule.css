@@ -32,7 +32,7 @@ table {
 	width: 100%;
 }
 
-.tg-wrap td {
+.sched-table td {
 	border-bottom: 1px solid #dddddd;
 	font-family: 'Rubik', sans-serif;
 	font-size:2vh;
@@ -43,7 +43,7 @@ table {
   	height: 20px;
  }
 
-.tg-wrap th {
+.sched-table th {
 	background-color: #1d3557; 
 	color: white;
 	border-bottom: 1px solid #dddddd;

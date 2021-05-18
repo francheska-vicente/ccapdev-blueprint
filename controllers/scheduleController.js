@@ -18,6 +18,18 @@ const scheduleController = {
         }  
     },
 
+    getClasses: function(req, res) {
+        if(!req.session.username)
+            res.redirect('/');
+        else {
+            db.findOne(User, {username: req.session.username}, '', function (user) {
+                db.findMany (Course, {classID : {$in : user.classes}}, '', function (result) {
+                    res.send(result);
+                });
+            });
+        }
+    },
+
     getCreateClass: function (req, res) {
 
         // error 401 if not logged in
