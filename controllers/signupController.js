@@ -24,7 +24,7 @@ const signupController = {
     },
     
     postSignUp: function (req, res) {
-        console.log ('hello');
+        
         var errors = validationResult(req);
 
         if (!errors.isEmpty()) 
@@ -34,7 +34,7 @@ const signupController = {
             
             for(i = 0; i < errors.length; i++)
                 details[errors[i].param + 'Error'] = errors[i].msg;
-            console.log ("Mali repa bro");
+            
             res.render('register', details);
         }
         else 

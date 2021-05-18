@@ -6,6 +6,8 @@ const Course = require ('../models/ClassModel.js');
 const Discussion = require('../models/DiscModel.js');
 const Comment = require ('../models/CommentModel.js');
 
+const { validationResult } = require('express-validator');
+
 const discController = {
     getDiscussions: function (req, res) {
 
@@ -61,7 +63,21 @@ const discController = {
         // error 401 if not logged in
         if(!req.session.username) res.redirect('/error/401');
         else {
-            db.findOne (User, {username: req.session.username}, null, function (user) {
+            var errors = validationResult(req);
+
+            if (!errors.isEmpty()) 
+            {
+                errors = errors.errors;
+                var details = {};
+                
+                for(i = 0; i < errors.length; i++)
+                    details[errors[i].param + 'Error'] = errors[i].msg;
+                
+                res.render('discussions-add', details);
+            }
+            else
+            {
+                db.findOne (User, {username: req.session.username}, null, function (user) {
                 var c = req.params.classID;
                 var id = db.getObjectID();
                 var fName = user.fName;
@@ -83,6 +99,7 @@ const discController = {
                     res.redirect ('/classes/' + c + '/discussions');
                 });
             }); 
+            }   
         }
     },
 
@@ -204,9 +221,10 @@ const discController = {
                 };
 
                 db.findOne (Discussion, {discID: d}, {}, function (result) {
-                    result.numOfComments = result.numOfComments + 1;
-
-                    db.updateOne (Discussion, {}, result, function (result) {
+                    var num = result.numOfComments;
+                    num++;
+                    result.numOfComments = num;
+                    db.updateOne (Discussion, {discID : d}, result, function (result) {
                     });
                 });
 
@@ -268,9 +286,11 @@ const discController = {
                 };
 
                 db.findOne (Discussion, {discID: d}, {}, function (result) {
-                    result.numOfComments = result.numOfComments + 1;
+                    var num = result.numOfComments;
+                    num++;
+                    result.numOfComments = num;
+                    db.updateOne (Discussion, {discID: d}, result, function (result) {
 
-                    db.updateOne (Discussion, {}, result, function (result) {
                     });
                 });
 
@@ -297,8 +317,11 @@ const discController = {
 
             db.findOne (Discussion, {discID : d}, null, function (discInfo) {
                 db.deleteOne (Comment, {commentID : c}, function (result) {
-                    discInfo.numOfComments = discInfo.numOfComments - 1;
+                    var num = discInfo.numOfComments;
+                    num--; 
+                    discInfo.numOfComments = num;
                     db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
+                        console.log (result);
                         res.redirect ('/classes/' + a + '/discussions/' + d);
                     });
                 });
