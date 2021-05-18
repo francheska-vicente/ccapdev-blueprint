@@ -59,7 +59,7 @@ label {
 	margin-top: 10px;
 }
 
-#error {
+.error {
 	text-align: center;
 	font-weight: bold;
 }
