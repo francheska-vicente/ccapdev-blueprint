@@ -53,7 +53,7 @@
           <div class="text-container">
             <h2>{{coursecode}}</h2>
             <h3>{{classname}}</h3><hr>
-            <h6>{{classDayA}} {{classTimeA}}</h6> 
+            <h6>{{#if start_classtimeA}} {{classdayA}} {{start_classtimeA}} - {{end_classtimeA}} {{/if}} {{#if start_classtimeB}} | {{classdayB}} {{start_classtimeB}} - {{end_classtimeB}} {{/if}}</h6> 
           </div>
           <form action = "/schedule/search/{{classID}}/add" method = "post">
             <button type = "submit" class="btn" id = "add_btn0" style="margin-right: -30px; margin-top: 90px">

@@ -60,11 +60,13 @@
         <div class="row">
           <div class="col">
             <h4>{{classdayA}}</h4>
-            <h6>{{classtimeA}}</h6>
+            <h6>{{start_classtimeA}} - {{end_classtimeA}}</h6>
           </div>
           <div class="col">
+            {{#if start_classtimeB}}
             <h4>{{classdayB}}</h4>
-            <h6>{{classtimeB}}</h6>
+            <h6>{{start_classtimeB}} - {{end_classtimeB}}</h6>
+            {{/if}}
           </div>
         </div>
       </div>

@@ -42,13 +42,28 @@ const scheduleController = {
 
                 // creates class object
                 var classes = user.classes;
+
+                var search = req.body.classname;
+                var arr = search.split (' ');
+
+                for (var i = 0; i < arr.length; i++)
+                {
+                    arr [i] = arr [i].toLowerCase ();
+                    arr [i] = arr [i].charAt (0).toUpperCase () + arr [i].substring (1, arr [i].length);
+
+                    if (i > 0)
+                        arr [i] = arr [i - 1] + " " + arr [i];
+                }
+
                 var course = {
-                    classname : req.body.classname,
-                    coursecode : req.body.coursecode,
+                    classname : arr[arr.length - 1],
+                    coursecode : req.body.coursecode.toUpperCase (),
                     professor : req.body.professor,
-                    classtimeA : req.body.classtimeA,
+                    start_classtimeA : req.body.start_classtimeA,
+                    end_classtimeA : req.body.end_classtimeA,
                     classdayA : req.body.classdayA,
-                    classtimeB : req.body.classtimeB,
+                    start_classtimeB : req.body.start_classtimeB,
+                    end_classtimeB : req.body.end_classtimeB,
                     classdayB : req.body.classdayB
                 }
                 
@@ -85,6 +100,7 @@ const scheduleController = {
 
         // gets user input from search bar
         var search = req.body.search;
+        
         res.redirect('/class/search/results?class=' + search);
     },
 
@@ -98,14 +114,27 @@ const scheduleController = {
             db.findOne(User, {username: req.session.username}, '', function (user) {
 
                 // gets query from url
-                var query = req.query.search;
+                var queryCode = req.query.search.toUpperCase ();
+
+                var queryName = req.query.search;
+                var arr = queryName.split (' ');
+
+                for (var i = 0; i < arr.length; i++)
+                {
+                    arr [i] = arr [i].toLowerCase ();
+                    arr [i] = arr [i].charAt (0).toUpperCase () + arr [i].substring (1, arr [i].length);
+
+                    if (i > 0)
+                        arr [i] = arr [i - 1] + " " + arr [i];
+                }
 
                 // gets classes that meet the given parameters
-                db.findMany (Course, {$or:[{classname: query},{coursecode:query}]}, '', function (result) {
+                db.findMany (Course, {$or:[{classname: arr [arr.length - 1]},{coursecode:queryCode}]}, '', function (result) {
                     var temp = {
                         results : result,
                         user : user
                     }
+                    console.log (result);
                     res.render('class-search-results', temp);
                 });
             });
