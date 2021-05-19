@@ -123,12 +123,12 @@
 
         <!-- Creating and Editing comments -->
         <div class ="createcontainer containers" id = "createDiv">
-            <form style = "width: 100%; height: 80%;" method = "post"> 
+            <form style = "width: 100%; height: 80%;" method = "post" id = "new_com"> 
                 <div class = "container input-group mb-3">
-                  <textarea name = "comment_text" cols="97" rows="10" class = ".comment_box">
+                  <textarea name = "comment_text" cols="97" rows="10" class = ".comment_box" id = "new_comment">
                   </textarea>
                 </div>
-                 <input type="hidden" id = "commentID" name="commentID">
+                 <input type="hidden" id = "c_commentID" name="c_commentID">
               <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
                 <input type = "submit" name = "comment_button" id = "{{commentID}}comment_button" class = "btn Addcmt_btn" value = "Comment!">
                 </input>
@@ -142,6 +142,7 @@
               <div class = "container input-group mb-3">
                 <textarea name = "edit_text" cols = "97" rows = "10" class = "edit_txt" id = "edit_text"></textarea>
               </div>
+              <input type="hidden" id = "commentID" name="commentID">
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
               <input type = "submit" name = "edit_button" id = "edit_button" class = "btn Editcmt_btn" value = "Edit!">
               </input>
