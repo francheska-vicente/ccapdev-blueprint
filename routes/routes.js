@@ -93,7 +93,7 @@ app.post('/classes/:classID/notebook/:notesID/:commentID/delete', notesControlle
 // discussions hub
 app.get('/classes/:classID/discussions', discController.getDiscussions);
 app.get('/classes/:classID/discussions/add', discController.getAddDiscussion);
-app.post('/classes/:classID/discussions/add', validation.discussionValidation (), discController.postAddDiscussion);
+app.post('/classes/:classID/discussions/add', discController.postAddDiscussion);
 
 // discussion post
 app.get('/classes/:classID/discussions/:discID', discController.getDiscussionPost);

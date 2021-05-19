@@ -76,31 +76,34 @@
         <hr>
         
         <!-- Showing comments from DB. -->
-        {{#each comments}}
-        <div class = "commentDiv" id = "div_{{commentID}}" 
-             name = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/">
-          <a href="../../../../{{../../disc}}{{username}}/profile" class="link">
-          <h5>{{fName}} {{lName}}</h5>
-          </a>
-          <h6 id = "{{commentID}}">{{content}}</h6>
-          <button class="btn cmt_btn" id = "cbtn_{{commentID}}">
-            <i class="fas fa-comment disc_icon" title = "Reply to this comment"></i>
-          </button>
-          {{#ifEqual ../currentUser username}}
-          <button class="btn edt_btn" id = "ebtn_{{commentID}}">
-            <i class="fa fa-pencil disc_icon" title = "Edit comment"></i>
-          </button>
-          <form action = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/delete"
-                method = "post">
-            <button class = "btn dlt_btn" id = "delete_btn" title = "Delete comment">
-              <i class = "fas fa-eraser disc_icon"></i>
+        <div id = "comment">
+          {{#each comments}}
+          <div class = "commentDiv" id = "div_{{commentID}}" 
+               name = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/">
+            <a href="../../../../{{../../disc}}{{username}}/profile" class="link">
+            <h5>{{fName}} {{lName}}</h5>
+            </a>
+            <h6 id = "{{commentID}}">{{content}}</h6>
+            <button class="btn cmt_btn" id = "cbtn_{{commentID}}">
+              <i class="fas fa-comment disc_icon" title = "Reply to this comment"></i>
             </button>
-          </form>
-          {{/ifEqual}}
-          <br>
-          <hr>
+            {{#ifEqual ../currentUser username}}
+            <button class="btn edt_btn" id = "ebtn_{{commentID}}" onclick = "console.log ('hello')">
+              <i class="fa fa-pencil disc_icon" title = "Edit comment"></i>
+            </button>
+            <form action = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/delete">
+              <button class = "btn dlt_btn" id = "delete_btn" title = "Delete comment">
+                <i class = "fas fa-eraser disc_icon"></i>
+              </button>
+            </form>
+            {{/ifEqual}}
+
+            <br>
+            <hr>
+          
+          </div>
+          {{/each}}
         </div>
-        {{/each}}
 
         <!-- Showing new comments not in DB. -->
         <div id = "origCommentDiv" class = "commentDiv">
@@ -131,13 +134,13 @@
         
         <div class = "editcontainer containers" id = "origEditDiv"
              style = "margin-right: auto; margin-left: auto">
-          <form style="width:100%; height:80%;" method="post" id = "edit_com">
+          <form style="width:100%; height:80%;" id = "edit_com">
               <div class = "container input-group mb-3">
                 <textarea name = "edit_text" cols = "97" rows = "10" class = "edit_txt"></textarea>
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
               <input type = "submit" name = "edit_button" id = "edit_button" class = "btn Editcmt_btn" value = "Edit!">
-              </button>
+              </input>
              </div>
           </form>
         </div>

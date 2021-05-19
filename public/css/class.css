@@ -132,3 +132,8 @@ textarea
 {
     text-decoration: underline !important;
 }
+
+.error {
+    text-align: center;
+    font-weight: bold;
+}

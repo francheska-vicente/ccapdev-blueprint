@@ -46,16 +46,7 @@ const validation = {
 		]
 
 		return validation;
-	},
-
-    discussionValidation : function () {
-        var validation = [
-            check ('title', 'Title of the discussion should not be empty').notEmpty (),
-            check ('new_paragraph_text', 'Please put the content of the discussion').notEmpty ()
-        ]
-
-        return validation;
-    }
+	}
 }
 
 module.exports = validation;
