@@ -3,20 +3,32 @@ $(document).ready (function ()
         function edit_comment ()
         {
           $(".editcontainer").css ("display", "none");
-          var URL = window.location.href;
+          var URL = window.location.href + (" #div_" + commentID) ;
 
           $.post($("#origEditDiv").attr ("name"), 
             {
               edit_txt : $("#edit_text").val (),
               commentID : $("#commentID").val ()
             }, function (result) {
-              $(".main").load (URL);
-              //$('#div_' + commentID).load (URL + ("#div_" + commentID));
+              $('#div_' + commentID).load (result);
           })
-          
         }
-        $('.Editcmt_btn').click ();
-        $(".editcontainer").on ("click", ".Editcmt_btn", edit_comment);
+        
+        // $(".editcontainer").on ("click", ".Editcmt_btn", edit_comment);
+
+        $("#edit_com").submit (function (e) {
+          e.preventDefault ();
+          $(".editcontainer").css ("display", "none");
+          var URL = window.location.href + (" #div_" + $("#commentID").val ());
+
+          $.post($("#origEditDiv").attr ("name"), 
+            {
+              edit_txt : $("#edit_text").val (),
+              commentID : $("#commentID").val ()
+            }, function (result) {
+              $('#div_' + $("#commentID").val ()).load (URL);
+          })
+        });
 
         $(".edt_btn").click (function ()
         {
