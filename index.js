@@ -67,13 +67,13 @@ app.use('/', routes);
 //     });
 // });
 
-app.use(function (req, res) {
-    var details = {
-        error: "Error: Page not found.",
-        code: "404"
-    };
-    res.render('error', details);
-});
+// app.use(function (req, res) {
+//     var details = {
+//         error: "Error: Page not found.",
+//         code: "404"
+//     };
+//     res.render('error', details);
+// });
 
 
 db.connect();

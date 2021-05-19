@@ -4,15 +4,22 @@ $(document).ready (function ()
         {
           
           $(".editcontainer").css ("display", "none");
-          
+          console.log ('1 little 2 little 3');
+          var URL = window.location.href;
+
+          setTimeout(() => { console.log ($("#origEditDiv").attr ("name"));
+           console.log (URL); }, 10000);
           $.post($("#origEditDiv").attr ("name"), 
             {
               edit_txt : $("#edit_text").val (),
               commentID : $("#commentID").val ()
             }, function (result) {
-                var URL = window.location.href;
-                $("#comment").load (URL);
+              $("#comment").load (URL + " #comment");
           })
+          
+          setTimeout(() => { console.log ($("#origEditDiv").attr ("name"));
+           console.log (URL); }, 10000);
+          
         }
         
         $(".editcontainer").on ("click", ".Editcmt_btn", edit_comment);
