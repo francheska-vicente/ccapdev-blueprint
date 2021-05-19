@@ -207,7 +207,7 @@ const discController = {
                 var lName = user.lName;
                 var username = user.username;
                 var id = db.getObjectID();
-
+                console.log (req.body.main_comment_text);
 
                 var comment = {
                     classID : c,
@@ -229,7 +229,7 @@ const discController = {
                 });
 
                 db.insertOne (Comment, comment, function (discInfo) {
-                    res.redirect ('/classes/' + c + '/discussions/' + d);
+                    res.send (comment);
                 });
             });
         }
@@ -248,7 +248,7 @@ const discController = {
                 if(!user.classes.includes(req.params.classID)) 
                     res.redirect('/error/403');
             }); 
-            console.log ('eula?');
+            
             db.findOne (Comment, {commentID : commentID}, null, function (comment) {
                 comment.content = req.body.edit_txt;
                 
@@ -273,7 +273,6 @@ const discController = {
                 var username = user.username;
                 var id = db.getObjectID();
                 console.log (req.body.comment_text);
-                
 
                 var comment = {
                     classID : c,
@@ -296,7 +295,7 @@ const discController = {
                 });
 
                 db.insertOne (Comment, comment, function (discInfo) {
-                    res.redirect ('/classes/' + c + '/discussions/' + d);
+                    res.send (comment);
                 });
             });
         }
@@ -315,15 +314,14 @@ const discController = {
                 if(!user.classes.includes(req.params.classID)) 
                     res.redirect('/error/403');
             }); 
-
+            console.log ("hellloooooo");
             db.findOne (Discussion, {discID : d}, null, function (discInfo) {
                 db.deleteOne (Comment, {commentID : c}, function (result) {
                     var num = discInfo.numOfComments;
                     num--; 
                     discInfo.numOfComments = num;
                     db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
-                        console.log (result);
-                        res.redirect ('/classes/' + a + '/discussions/' + d);
+                        res.send (result);
                     });
                 });
             });

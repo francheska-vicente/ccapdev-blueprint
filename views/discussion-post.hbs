@@ -94,11 +94,11 @@
             <button class="btn edt_btn" id = "ebtn_{{commentID}}">
               <i class="fa fa-pencil disc_icon" title = "Edit comment"></i>
             </button>
-            <form action = "/classes/{{classID}}/discussions/{{mainID}}/{{commentID}}/delete">
-              <button class = "btn dlt_btn" id = "delete_btn" title = "Delete comment">
+            
+              <button class = "btn dlt_btn" id = "dbtn_{{commentID}}" title = "Delete comment">
                 <i class = "fas fa-eraser disc_icon"></i>
               </button>
-            </form>
+
             {{/ifEqual}}
 
             <br>
@@ -116,9 +116,11 @@
           <button class="btn edt_btn" id = "edit_btn">
             <i class="fa fa-pencil disc_icon" title = "Edit comment"></i>
           </button>
-          <button class="btn dlt_btn" id = "delete_btn" title = "Delete comment">
-            <i class="fas fa-eraser disc_icon"></i>
-          </button>
+
+              <button class = "btn dlt_btn" id = "delete_btn" title = "Delete comment">
+                <i class = "fas fa-eraser disc_icon"></i>
+              </button>
+
         </div>
 
         <!-- Creating and Editing comments -->
@@ -152,10 +154,9 @@
 
         <!-- For the main discussion.  -->
         <div class =".createcontainer containers" id = "main_CreateDiv">
-          <form style = "width: 100%; height: 80%;" method = "post"
-                action = "/classes/{{classID}}/discussions/{{#with disc}}{{discID}}{{/with}}/comment"> 
+          <form style = "width: 100%; height: 80%;" method = "post" id = "comment_disc"> 
               <div class = "container input-group mb-3">
-                <textarea name = "main_comment_text" cols="97" rows="10" class = ".comment_box"></textarea>
+                <textarea name = "commentbox_disc" cols="97" rows="10" class = "commentbox_disc" id ="commentbox_disc"></textarea>
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
               <input type = "submit" name = "main_comment_button" id = "main_comment_button" 
