@@ -2,6 +2,8 @@
 <html>
 <head>
   <link href="/css/schedule.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/js/schedule.js"></script>
   <title>{{fName}} {{lName}} | blueprint</title>
 </head>
 <body>
@@ -30,6 +32,8 @@
       <h5>This is {{fName}}'s current schedule for the term!</h5><hr>
       {{>sched}}
     </div>
+  </div>
+  <div id="{{username}}" class="username">
   </div>
 </div>
 </body>

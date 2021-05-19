@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="/css/schedule.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="/js/schedule.js"></script>
-	<title>Schedule | blueprint</title>
+  <link href="/css/schedule.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/js/schedule.js"></script>
+  <title>Schedule | blueprint</title>
 </head>
 <body>
-	 {{>topnav}}
-    <div id = "content">
-    	<nav id = "sideNav">
-	    	<div class="navigationDiv">
-          <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
-                <li class="nav-item item up">
-                  <div class="active" style="background-color: white">
-                    <a class="nav-link" href="/schedule" style="color: #5161ce; padding-left: 10px"><i class="fa fa-calendar-check-o"></i> Your Schedule </a>
-                  </div>
-                </li>
-                <li class="nav-item item down">
-                    <a class="nav-link  icon_name" href="/schedule/search"><i class="fa fa-plus icon"></i> Search for Classes</a>
-                </li>
-                <li class="nav-item item">
-                    <a class="nav-link icon_name" href="/schedule/create"><i class="fa fa-pencil icon"></i> Create a New Class</a>
-                </li>
-                <li class="nav-item item">
-                    <a class="nav-link icon_name" href="/schedule/drop"><i class="fa fa-minus icon"></i> Drop a Class</a>
-                </li>
-            </ul>
-        </div>
-	    </nav>
-      <div class="main">
-        <ul class="breadcrumb">
-          <li><a href="/home">blueprint</a></li>
-          <li><a href="/schedule">Schedule</a></li>
-          <li>Your Schedule</li>
-        </ul> 
-        <h1>Your Schedule</h1>
-        <h5>This is your current schedule for the term!</h5><hr>
-        {{>sched}}
-      </div>
+  {{>topnav}}
+  <div id = "content">
+   <nav id = "sideNav">
+    <div class="navigationDiv">
+      <ul class="navbar-nav" style="margin-top: 20px; background-color: white">
+        <li class="nav-item item up">
+          <div class="active" style="background-color: white">
+            <a class="nav-link" href="/schedule" style="color: #5161ce; padding-left: 10px"><i class="fa fa-calendar-check-o"></i> Your Schedule </a>
+          </div>
+        </li>
+        <li class="nav-item item down">
+          <a class="nav-link  icon_name" href="/schedule/search"><i class="fa fa-plus icon"></i> Search for Classes</a>
+        </li>
+        <li class="nav-item item">
+          <a class="nav-link icon_name" href="/schedule/create"><i class="fa fa-pencil icon"></i> Create a New Class</a>
+        </li>
+        <li class="nav-item item">
+          <a class="nav-link icon_name" href="/schedule/drop"><i class="fa fa-minus icon"></i> Drop a Class</a>
+        </li>
+      </ul>
     </div>
+  </nav>
+  <div class="main">
+    <ul class="breadcrumb">
+      <li><a href="/home">blueprint</a></li>
+      <li><a href="/schedule">Schedule</a></li>
+      <li>Your Schedule</li>
+    </ul> 
+    <h1>Your Schedule</h1>
+    <h5>This is your current schedule for the term!</h5><hr>
+    {{>sched}}
+  </div>
+</div>
 </body>
 </html>
