@@ -2,17 +2,16 @@ $(document).ready (function ()
 {
         function edit_comment ()
         {
-          var form = $(this).closest(".editcontainer").find (".container");
-          var edit_box = form.children ();
-          var commentVal = edit_box.val ();
           
-          $(this).closest (".commentDiv").children (".comment_content").html (commentVal);
-          console.log ($(this).closest (".commentDiv").children (".comment_content").html ());
           $(".editcontainer").css ("display", "none");
-
-          $.get( $("#edit_com").attr ("name"), transaction, function (result) {
-                if (result != null)
-                    $('#comment').load('/ #comment');
+          
+          $.post($("#origEditDiv").attr ("name"), 
+            {
+              edit_txt : $("#edit_text").val (),
+              commentID : $("#commentID").val ()
+            }, function (result) {
+                var URL = window.location.href;
+                $("#comment").load (URL);
           })
         }
         
@@ -26,7 +25,9 @@ $(document).ready (function ()
           $(".containers").css ("display", "none");
           $(".editcontainer").css ("display", "block");
           $(".edit_txt").val ($("#" + commentID).html ());
-          $("#edit_com").attr ("name", $("#div_" + commentID).attr ("name") + "edit");
+          $("#origEditDiv").attr ("name", $("#div_" + commentID).attr ("name") + "edit");
+          $("#commentID").val (commentID);
+          console.log ($("#origEditDiv").attr ("name"));
         });
 
         $("#main_txt").val ($(".main_cmt").html ());

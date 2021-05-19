@@ -239,7 +239,7 @@ const discController = {
         var commentID = req.params.commentID;
         var classID = req.params.classID;
         var discID = req.params.discID;
-
+        
         if(!req.session.username) res.redirect('/error/401');
         else {
             db.findOne (User, {username: req.session.username}, null, function (user) {
@@ -248,12 +248,14 @@ const discController = {
                 if(!user.classes.includes(req.params.classID)) 
                     res.redirect('/error/403');
             }); 
-
+            
             db.findOne (Comment, {commentID : commentID}, null, function (comment) {
-                comment.content = req.body.edit_text;
-
+                comment.content = req.body.edit_txt;
+                
                 db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
                     res.redirect ('/classes/' + classID + '/discussions/' + discID);
+                    console.log (result);
+                    //res.send (result);
                 });
             });
         } 
