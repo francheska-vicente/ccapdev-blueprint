@@ -2,31 +2,24 @@ $(document).ready (function ()
 {
         function edit_comment ()
         {
-          
           $(".editcontainer").css ("display", "none");
-          console.log ('1 little 2 little 3');
           var URL = window.location.href;
 
-          setTimeout(() => { console.log ($("#origEditDiv").attr ("name"));
-           console.log (URL); }, 10000);
           $.post($("#origEditDiv").attr ("name"), 
             {
               edit_txt : $("#edit_text").val (),
               commentID : $("#commentID").val ()
             }, function (result) {
-              $("#comment").load (URL + " #comment");
+              $(".main").load (URL);
+              //$('#div_' + commentID).load (URL + ("#div_" + commentID));
           })
           
-          setTimeout(() => { console.log ($("#origEditDiv").attr ("name"));
-           console.log (URL); }, 10000);
-          
         }
-        
+        $('.Editcmt_btn').click ();
         $(".editcontainer").on ("click", ".Editcmt_btn", edit_comment);
 
         $(".edt_btn").click (function ()
         {
-          console.log ('mamamammama');
           var btn_id = $(this).attr ("id");
           var commentID = btn_id.substring (5, btn_id.length);
           $(".containers").css ("display", "none");
@@ -34,7 +27,6 @@ $(document).ready (function ()
           $(".edit_txt").val ($("#" + commentID).html ());
           $("#origEditDiv").attr ("name", $("#div_" + commentID).attr ("name") + "edit");
           $("#commentID").val (commentID);
-          console.log ($("#origEditDiv").attr ("name"));
         });
 
         $("#main_txt").val ($(".main_cmt").html ());

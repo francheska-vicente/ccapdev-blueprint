@@ -251,7 +251,7 @@ const discController = {
             
             db.findOne (Comment, {commentID : commentID}, null, function (comment) {
                 comment.content = req.body.edit_txt;
-                console.log ('?????');
+                
                 db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
                     // res.redirect ('/classes/' + classID + '/discussions/' + discID);
                     console.log (result);
