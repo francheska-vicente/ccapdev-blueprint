@@ -1,14 +1,14 @@
 $(document).ready(function () {
     checkIfFilled();
-    function setInvalid(field, errormsg) {
+    function setInvalid(field, errormsg, errorfield) {
         field.css('background-color', '#FFB0B0');
-        $('#error').text(errormsg);
+        errorfield.text(errormsg);
         $('#signup_button').attr("disabled", true);
     }
 
-    function setValid(field) {
+    function setValid(field, errorfield) {
         field.css('background-color', '#FFFFFF');
-        $('#error').text('');
+        errorfield.text('');
         $('#signup_button').attr("disabled", false);
     }
 
@@ -35,95 +35,99 @@ $(document).ready(function () {
         }
     }
 
-    function checkIfValidName(field, name) {
+    function checkIfValidName(field, name, errorfield) {
         if (!validator.isAlpha(name.replaceAll(" ", '').replaceAll(".", '').replaceAll("-", '').replaceAll("ñ", '')))
-            setInvalid(field, 'Invalid input. Use valid characters only.');
-        else setValid(field);
+            setInvalid(field, 'Invalid input. Use valid characters only.', errorfield);
+        else setValid(field, errorfield);
     }
 
-    function checkIfValidUsername(username) {
+    function checkIfValidUsername(username, errorfield) {
         if (!validator.isAlphanumeric(username.replaceAll("-", '').replaceAll("_", '').replaceAll(".", '')))
-            setInvalid($('#username'), 'Invalid username. Use Alphanumeric characters (A-Z, 0-9), dash (-), period, and underscore (_) only.');
+            setInvalid($('#username'), 'Invalid username. Use Alphanumeric characters (A-Z, 0-9), dash (-), period, and underscore (_) only.', errorfield);
         else if (!validator.isLength(username, {min: 12, max: 20})) 
-            setInvalid($('#username'), 'Invalid username. Minimum of 12 characters and maximum of 20 characters.');
+            setInvalid($('#username'), 'Invalid username. Minimum of 12 characters and maximum of 20 characters.', errorfield);
         else $.get('/getCheckUsername', {username: username}, function (result) {
             if(result.username == username) 
-                setInvalid($('#username'), 'Username is taken!');
-            else setValid($('#username'));
+                setInvalid($('#username'), 'Username is taken!', errorfield);
+            else setValid($('#username'), errorfield);
         });
     }
 
-    function checkIfValidEmail(email) {
+    function checkIfValidEmail(email, errorfield) {
         if (!validator.isEmail(email)) 
-            setInvalid($('#email'), 'Invalid email. Please use a valid format.');
+            setInvalid($('#email'), 'Invalid email. Please use a valid format.', errorfield);
         else {
             validator.normalizeEmail(email);
             $.get('/getCheckEmail', {email: email}, function (result) {
 
                 if(result.email == email) 
-                    setInvalid($('#email'), 'Email is taken!');
-                else setValid($('#email'));
+                    setInvalid($('#email'), 'Email is taken!', errorfield);
+                else setValid($('#email'), errorfield);
             });
         }
     }
 
-    function checkIfValidPassword(password) {
+    function checkIfValidPassword(password, passwordc, errorfield) {
         console.log(validator.isStrongPassword(password))
         if (!validator.isAscii(password))
-            setInvalid($('#password'), 'Invalid password. Use ASCII characters only.');
+            setInvalid($('#password'), 'Invalid password. Use ASCII characters only.', errorfield);
         else if (!validator.isLength(password, {min: 12, max: 20}))
-            setInvalid($('#password'), 'Invalid password. Minimum of 12 characters and maximum of 20 characters.');
+            setInvalid($('#password'), 'Invalid password. Minimum of 12 characters and maximum of 20 characters.', errorfield);
         else if (!validator.isStrongPassword(password)) 
-            setInvalid($('#password'), 'Weak password. Password should have at least one uppercase letter, one lowercase letter, and one number.');
-        else setValid($('#password'));
+            setInvalid($('#password'), 'Weak password. Password should have at least one uppercase letter, one lowercase letter, and one number.', errorfield);
+        else if (password != passwordc) {
+            setInvalid($('#c_password'), 'Passwords do not match.', errorfield);
+            setInvalid($('#password'), 'Passwords do not match.', errorfield);
+        }
+        else {
+            setValid($('#password'), errorfield);
+            setValid($('#c_password'), errorfield);
+        }
     }
 
-    function checkIfPasswordMatch(password, passwordc) {
-        if (password != passwordc)
-            setInvalid($('#c_password'), 'Passwords do not match.');
-        else setValid($('#c_password'));
-    }
+    
 
     $('#fName').keyup(function () {
         var fName = validator.trim($('#fName').val());
-        checkIfValidName($('#fName'), fName);
+        checkIfValidName($('#fName'), fName, $('#fNameError'));
         checkIfFilled();
     });
 
     $('#lName').keyup(function () {
         var lName = validator.trim($('#lName').val());
-        checkIfValidName($('#lName'), lName);
+        checkIfValidName($('#lName'), lName, $('#lNameError'));
         checkIfFilled();
     });
 
     $('#username').keyup(function () {
         var username = validator.trim($('#username').val());
-        checkIfValidUsername(username);
+        checkIfValidUsername(username, $('#usernameError'));
         checkIfFilled();
     });
 
     $('#email').keyup(function () {
         var email = validator.trim($('#email').val());
-        checkIfValidEmail(email);
+        checkIfValidEmail(email, $('#emailError'));
         checkIfFilled();
     });
 
     $('#password').keyup(function () {
         var password = validator.trim($('#password').val());
-        checkIfValidPassword(password);
+        var passwordc = validator.trim($('#c_password').val());
+        checkIfValidPassword(password, passwordc, $('#passwordError'));
         checkIfFilled();
     });
 
     $('#c_password').keyup(function () {
         var password = validator.trim($('#password').val());
         var passwordc = validator.trim($('#c_password').val());
-        checkIfValidPassword(password, passwordc);
+        checkIfValidPassword(password, passwordc, $('#passwordError'));
         checkIfFilled();
     });
 
     $('#school').keyup(function () {
         var school = validator.trim($('#school').val());
-        checkIfValidName($('#school'), school);
+        checkIfValidName($('#school'), school,$('#schoolError'));
         checkIfFilled();
     });
 });

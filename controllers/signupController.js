@@ -1,4 +1,6 @@
 const { validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const db = require('../models/db.js');
 const User = require('../models/UserModel.js');
@@ -38,25 +40,27 @@ const signupController = {
             res.render('register', details);
         }
         else 
-        {
-            var user = {
-                fName: req.body.fName.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' '),
-                lName: req.body.lName.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' '),
-                email:  req.body.email,
-                username: req.body.username.toLowerCase (),
-                password: req.body.password,
-                uni:  req.body.school,
-                bday: '',
-                phone: '',
-                degree: '',
-                bio: '',
-                classes: []
-            };
-            
-            db.insertOne(User, user, function(flag) {
-                if(flag) {
-                    res.redirect('/register-success?fName=' + user.fName +'&lName=' + user.lName);
-                }
+        {   
+            bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+                var user = {
+                    fName: req.body.fName.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' '),
+                    lName: req.body.lName.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' '),
+                    email:  req.body.email,
+                    username: req.body.username.toLowerCase(),
+                    password: hash,
+                    uni:  req.body.school,
+                    bday: '',
+                    phone: '',
+                    degree: '',
+                    bio: '',
+                    classes: []
+                };
+                
+                db.insertOne(User, user, function(flag) {
+                    if(flag) {
+                        res.redirect('/register-success?fName=' + user.fName +'&lName=' + user.lName);
+                    }
+                });
             });
         }  
     }
