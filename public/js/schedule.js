@@ -18,13 +18,21 @@ $(document).ready(function () {
         '15:00', '15:15', '15:30', '15:45',
         '16:00', '16:15', '16:30', '16:45',
         '17:00', '17:15', '17:30', '17:45',
-        '18:00'];
+        '18:00', '18:15', '18:30', '18:45',
+        '19:00', '19:15', '19:30', '19:45',
+        '20:00', '20:15', '20:30', '20:45',
+        '21:00', '21:15', '21:30', '21:45',
+        '22:00', '22:15', '22:30', '22:45',
+        '23:00', '23:15', '23:30', '23:45',
+        '00:00'
+    ];
 
     var days = ['Sunday', 'Monday', 'Tuesday', 
         'Wednesday','Thursday', 'Friday', 'Saturday'];
 
-    var numrows = 72;
+    var numrows = 96;
     var numcols = 7;
+    var username = $('.username').attr('id');
 
     function countRowSpan(start, end) {
         var timeStart = new Date("01/01/2021 " + start);
@@ -54,25 +62,22 @@ $(document).ready(function () {
         return false;
     }
 
-    function removeCols(result) {
-        var arr = []
+    function countClasses(result) {
+        var ctr = 0;
         for(let k = 0; k < result.length; k++) {
-            arr.push(result[k].classdayA);
-            arr.push(result[k].classdayB);
+            if (result[k].classdayB != '') ctr+=2;
+            else ctr+=1;
         }
-
-        for(j in days) 
-            if(!arr.includes(days[j])) {
-                console.log('removed ' + days[j])
-                // remove here
-                // $('table tr').find('td:eq('+j+1+'),th:eq('+j+1+')').remove();
-            }
+        return ctr;
     }
 
-    $.get('/getClasses', function (result) {
+    $.get('/getClasses', {username:username}, function (result) {
         if(result) {
-            // loop per row
             var noClassYet = true;
+            var totalclass = countClasses(result);
+            var currclass = 0;
+
+            // loop per row
             for(let i = 0; i < numrows; i++) {
                 var str = '<tr>';
                 str = str + '<td>' + times[i] + " - " + times[i+1] + '</td>';
@@ -91,6 +96,7 @@ $(document).ready(function () {
                                             result[k].end_classtimeA +
                                         '</td>';
                             noClassAdded = false;
+                            currclass++;
                         }
                         if(times[i] === result[k].start_classtimeB && days[j] === result[k].classdayB) {
                             var rowspan = countRowSpan(result[k].start_classtimeB, result[k].end_classtimeB);
@@ -100,6 +106,7 @@ $(document).ready(function () {
                                             result[k].end_classtimeB +
                                         '</td>';
                             noClassAdded = false;
+                            currclass++;
                         }
                     }
 
@@ -109,14 +116,17 @@ $(document).ready(function () {
                 }
 
                 str = str + '</tr>';
+
+                // check if no class in row
                 strcmp = '<tr><td>' + times[i] + " - " + times[i+1] + '</td>' +
                             '<td></td><td></td><td></td><td></td><td></td><td></td><td></td>' + '</tr>';
-                if (!(noClassYet && str == strcmp)) {
+                
+                // removes rows before first class and last class
+                if (!((noClassYet || currclass >= totalclass) && str == strcmp)) {
                     $('#sched').append(str);
                     noClassYet = false;
                 }
             }
-            removeCols(result);
         }
     });
 });
