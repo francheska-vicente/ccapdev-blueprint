@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const db = require('../models/db.js');
 const User = require('../models/UserModel.js');
 
@@ -8,16 +10,26 @@ const loginController = {
     },
 
     postLogin: function (req, res) {
-        var query = {
-            username: req.body.username,
-            password: req.body.password
-        };
-
-        db.findOne(User, query, '', function(result) {
+        db.findOne(User, {username: req.body.username}, '', function(result) {
             if(result){
-                req.session.username = result.username;
-                req.session.password = result.password;
-                res.redirect('/home');
+                bcrypt.compare(req.body.password, result.password, function(err, equal) {
+                    if(equal) {
+                        req.session.username = result.username;
+                        req.session.password = result.password;
+                        res.redirect('/home');
+                    }
+
+                    else {
+                        var details = {error: 'Username and/or password is incorrect.'}
+
+                        res.render('login', details);
+                    }
+                });
+            }
+            else {
+                var details = {error: 'Username and/or password is incorrect.'}
+
+                res.render('login', details);
             }
         });
     }
