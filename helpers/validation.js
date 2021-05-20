@@ -5,7 +5,7 @@ const validation = {
 	signUpValidation : function () {
 		var validation = [
 			check ('fName', 'First name should not be empty').notEmpty ().custom((value,{req, loc, path}) => {
-			value = value.replaceAll("-", '').replaceAll("_", '').replaceAll(".", '').replaceAll("ñ", '').replaceAll(" ", '');
+			value = value.split ("-").join ("").split ("_").join ("").split (".").join ("").split ("ñ").join ("").split (" ").join ("");
             if (!value.match (/^[a-z]+$/i)) {
             	console.log (value);
                 throw new Error("Invalid first name. Use valid characters only.");
@@ -14,7 +14,7 @@ const validation = {
             }
         }),
 			check ('lName', 'Last name should not be empty').notEmpty ().custom((value,{req, loc, path}) => {
-			value = value.replaceAll("-", '').replaceAll("_", '').replaceAll(".", '').replaceAll("ñ", '').replaceAll(" ", '');
+			value = value.split ("-").join ("").split ("_").join ("").split (".").join ("").split ("ñ").join ("").split (" ").join ("");
             if (!value.match (/^[a-z]+$/i)) {
             	console.log (value);
                 throw new Error("Invalid last name. Use valid characters only.");
@@ -24,7 +24,7 @@ const validation = {
         }),
 			check ('username', 'Invalid username. Minimum of 12 characters and maximum of 20 characters.')
 			.isLength ({min: 12, max: 20}).custom((value,{req, loc, path}) => {
-			value = value.replaceAll("-", '').replaceAll("_", '').replaceAll(".", '');
+			value = value.split ("-").join ("").split ("_").join ("").split (".").join ("");
             if (!value.match (/^[a-z0-9]+$/i)) {
             	console.log (value);
                 throw new Error("Invalid username. Use valid characters only.");
