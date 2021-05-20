@@ -13,7 +13,11 @@ const scheduleController = {
 
             // gets user from db
             db.findOne(User, {username: req.session.username}, '', function (user) {
-                res.render('schedule', user);
+                var result = {
+                    classes : user.classes
+                }
+
+                res.render('schedule', result);
             });
         }  
     },

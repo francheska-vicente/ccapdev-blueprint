@@ -33,6 +33,9 @@
     </ul> 
     <h1>Edit Profile</h1>
     <h5>Ensure that your details are up-to-date! If you do not wish to edit a field, leave it blank!</h5><hr>
+    {{#if notif}}
+      <h6 id="notif-text">{{notif}}</h6>
+    {{/if}}
     <div class="create-container" style="margin-right: auto; margin-left: auto">
       <form style = "width: 100%; height: 80%" method="post">
         <div class = "container input-group mb-3">
@@ -45,7 +48,7 @@
         </div>
         <div class = "container input-group mb-3  ">
           <label for="bday" class="input_field">Birthday</label>
-          <input type = "date" name = "bday" id = "bday" class = "form-control input_pass" value = "{{bday}}" style="border-radius: 0px; color: black">
+          <input type = "date" name = "bday" id = "bday" class = "form-control input_user" value = "{{bday}}" style="border-radius: 0px; color: black">
         </div>
         <div class = "container input-group mb-3">
           <label for="degree" class="input_field">Degree</label>
@@ -65,7 +68,7 @@
         </div>
         <div class = "container input-group mb-3">
           <label for="o_password" class="input_field" style="width: 30%">Enter old password for validation: </label>
-          <input type = "password" name = "o_password" id = "o_password" class = "form-control input_user" value = "" style="border-radius: 0px; color: black">
+          <input type = "password" name = "password" id = "o_password" class = "form-control input_user" value = "" style="border-radius: 0px; color: black">
         </div>
         <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
           <input type="submit" id="edit_button" value="Edit!" class = "btn edit_button" name = "edit_button">

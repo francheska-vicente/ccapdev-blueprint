@@ -42,20 +42,7 @@
     <h5>These are your classmates, say hi!</h5><hr>
     <div id="class-list">
       {{#each users}}
-        <a href="/{{username}}/profile" class="link">
-          <div class="person-container">
-            <div class="img-container"><img src = "/images/user.png" class = "img" alt = "Blueprint Logo"></div>
-            <div class="text-container">
-              <h2>{{fName}} {{lName}}</h2>
-              <h3>{{degree}}</h3><hr>
-              {{#if bio}}
-              <h6>{{bio}}</h6>
-              {{else}}
-              <h6>This user has no bio yet.</h6>
-              {{/if}}
-            </div>
-          </div>
-        </a>
+        {{>person}}
       {{/each}}
     </div>
   </div>

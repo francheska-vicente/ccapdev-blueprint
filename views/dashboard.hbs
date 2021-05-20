@@ -18,19 +18,11 @@
       <div id="class-list">
         <h1>Your Classes</h1>
         <h5>A list of all your classes for the term. Click on any of the classes below!</h5><hr>
-            {{#each results}}
-              <a href="/classes/{{classID}}/home" class="link">
-                <div class="class-container">
-                  <div class="img-container"><img src="/images/book.png" class="img" alt="{{classname}}"></div>
-                  <div class="text-container">
-                    <h2>{{classname}}</h2>
-                    <h3>{{coursecode}}</h3>
-                  </div>
-                </div>  
-              </a>
-            {{else}}
-              <h3 style="text-align: center; padding: 40px">You have no classes yet.</h3>
-            {{/each}}
+          {{#each results}}
+            {{>class}}
+          {{else}}
+            <h3 style="text-align: center; padding: 40px">You have no classes yet.</h3>
+          {{/each}}
       </div>
     </div>
   </body>

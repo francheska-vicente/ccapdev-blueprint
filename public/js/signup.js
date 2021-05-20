@@ -74,7 +74,7 @@ $(document).ready(function () {
         else if (!validator.isLength(password, {min: 12, max: 20}))
             setInvalid($('#password'), 'Invalid password. Minimum of 12 characters and maximum of 20 characters.', errorfield);
         else if (!validator.isStrongPassword(password)) 
-            setInvalid($('#password'), 'Weak password. Password should have at least one uppercase letter, one lowercase letter, and one number.', errorfield);
+            setInvalid($('#password'), 'Weak password. Password should have at least one uppercase letter, one lowercase letter, one number, and one symbol.', errorfield);
         else if (password != passwordc) {
             setInvalid($('#c_password'), 'Passwords do not match.', errorfield);
             setInvalid($('#password'), 'Passwords do not match.', errorfield);
