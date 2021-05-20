@@ -58,18 +58,20 @@ const homeController = {
 
                 var today = new Date();
                 var year = "" + today.getFullYear();
-                var month = "" + today.getMonth() + 1;
+                var month = "" + (today.getMonth() + 1);
+                console.log (today.getMonth());
                 var day = (new Date(today.getFullYear(), today.getMonth() + 1, 0)).getDate();
-
+                console.log (year + " " + month + " " + day);
                 var start = today.toISOString();
-                var end =  new Date (year - 3, month - 1, day);
+                var end =  new Date (year, month - 1, day);
+                end.setHours (23, 59, 59, 59);
                 var end = end.toISOString();
-               
+                console.log (start + " " + end);
                 db.findMany (Reqs, {$and: [{classID  : {$in : classes}},
                                            {deadline : {$gte : start, 
                                                         $lt  : end}}
                                            ]}, null, function (result1) {
-
+                    console.l
                     res.send(result1);
                 });
             });
