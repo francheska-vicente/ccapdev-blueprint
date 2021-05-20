@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const db = require('../models/db.js');
 const User = require('../models/UserModel.js');
 
@@ -17,6 +19,7 @@ const profileController = {
                     var d = new Date(user.bday);
                     var datestring = ("0" + (d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + "-" + d.getFullYear();
                     user.bday = datestring;
+                    console.log(datestring)
                 }
 
                 var notif = null;
@@ -43,7 +46,7 @@ const profileController = {
                 // changes mongoose date into javascript date
                 if(user.bday) {
                     var d = new Date(user.bday);
-                    var datestring = ("0" + (d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + "-" + d.getFullYear();
+                    var datestring = d.getFullYear() + "-" + ("0" + (d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
                     user.bday = datestring; 
                 }
                 res.render('profile-edit', user);
@@ -70,14 +73,20 @@ const profileController = {
                 if (req.body.n_password != '') update.password = req.body.n_password;
 
                 // checks if password matches user's password
-                if (req.body.o_password == user.password) {
+                bcrypt.compare(req.body.password, user.password, function(err, equal) {
+                    if(equal) {
 
-                    // updates user in db
-                    db.updateOne(User, {username: user.username}, update, function(flag) {
-                        if(flag) res.redirect('/profile?editsuccess=true');
-                        else res.redirect('/profile?editsuccess=false');
-                    });
-                }
+                        // updates user in db
+                        db.updateOne(User, {username: user.username}, update, function(flag) {
+                            if(flag) res.redirect('/profile?editsuccess=true');
+                            else res.redirect('/profile?editsuccess=false');
+                        });
+                    }
+                    else {
+                        var temp = {user : user, notif : 'Incorrect password. Please try again.'};
+                        res.render('profile-edit', temp);
+                    }
+                });
             });
         }  
     },
