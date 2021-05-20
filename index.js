@@ -59,26 +59,23 @@ app.use(express.static('public'));
 
 app.use('/', routes);
 
-// app.use(function(err, req, res, next){
-//     res.status(err.status);
-//     res.render('error', { 
-//         error: err,
-//         code: err.status
-//     });
-// });
+app.use(function(err, req, res, next){
+    res.status(err.status);
+    res.render('error', { 
+        error: err,
+        code: err.status
+     });
+});
 
-// app.use(function (req, res) {
-//     var details = {
-//         error: "Error: Page not found.",
-//         code: "404"
-//     };
-//     res.render('error', details);
-// });
-
+app.use(function (req, res) {
+    var details = {
+        error: "Error: Page not found.",
+        code: "404"
+    };
+   res.render('error', details);
+});
 
 db.connect();
-
-
 
 app.listen(port, () => {
     console.log('The web server has started on port ' + port);
