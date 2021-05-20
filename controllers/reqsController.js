@@ -81,16 +81,16 @@ const reqsController = {
     editReqsPost : function (req, res) {
         var d = req.params.reqID;
         var a = req.params.classID;
-
+        
         db.findOne (Reqs, {reqID : d}, null, function (reqs) {
             if (req.body.deadline != "")
                 reqs.deadline = req.body.deadline;
 
             reqs.typeOfReq = req.body.type;
             reqs.desc = req.body.paragraph_text;
-
+            
             db.updateOne (Reqs, {reqID : d}, reqs, function (result) {
-                res.redirect ('/classes/' + a + '/requirements/');
+                res.send (result);
             })
         });
     }, 
@@ -100,7 +100,7 @@ const reqsController = {
         var a = req.params.classID;
 
         db.deleteOne (Reqs, {reqID : d}, function (reqs) {
-            res.redirect ('/classes/' + a + '/requirements/');
+            res.send (reqs);
         });
     }
 }
