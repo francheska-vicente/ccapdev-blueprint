@@ -43,6 +43,12 @@
     margin-right: 5%;
     padding: 10px 0;
     border-bottom: 1px solid #dddddd;
+    transition: all 0.5;
+
+}
+
+.post:hover {
+  background-color: #dddddd;
 }
 
 .links
