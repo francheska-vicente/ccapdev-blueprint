@@ -251,6 +251,7 @@ ul.breadcrumb li a:hover {
 	display: flex;
     flex-wrap: wrap;
     border-radius:0.5em;
+    transition: all 0.5s;
 }
 
 .task-container {
