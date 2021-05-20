@@ -37,7 +37,12 @@
     </ul> 
     <h1>Your Schedule</h1>
     <h5>This is your current schedule for the term!</h5><hr>
-    {{>sched}}
+    {{#if classes}}
+      {{>sched}}
+    {{else}}
+      <h2 style="margin-bottom: 0px; text-align: center; margin-top: 10%; ">You have no classes yet!</h2>
+      <h3 style="text-align: center">Add or create a class first!</h3>
+    {{/if}}
   </div>
 </div>
 </body>
