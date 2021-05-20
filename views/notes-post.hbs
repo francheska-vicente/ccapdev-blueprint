@@ -61,10 +61,8 @@
           <li>{{#with notes}}{{title}} {{/with}}</li>
         </ul> 
   
-        <h1>{{#with notes}} {{title}} {{/with}}</h1>
-        <div id="note" class = "main_cmt">
-        {{#with notes}}{{content}} {{/with}}
-        </div>
+        <h1 style="margin-bottom: 0px">{{#with notes}} {{title}} {{/with}}</h1>
+        <div id="note" class = "main_cmt">{{#with notes}}{{content}} {{/with}}</div>
         <button class = "btn" id = "main_comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on note"></i>
         </button>
@@ -122,10 +120,11 @@
 
         <!-- Creating and Editing comments -->
         <div class ="createcontainer containers" id = "createDiv">
-            <form style = "width: 100%; height: 80%;" method = "post"> 
+            <form style = "width: 100%; height: 80%;" method = "post" id = "new_com"> 
                 <div class = "container input-group mb-3">
-                  <textarea name = "comment_text" cols="97" rows="10" class = ".comment_box">
+                  <textarea name = "comment_text" cols="97" rows="10" class = ".comment_box" id= "new_comment">
                   </textarea>
+                  <input type="hidden" id = "c_commentID" name="c_commentID">
                 </div>
               <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
                 <input type = "submit" name = "comment_button" id = "{{commentID}}comment_button" class = "btn Addcmt_btn" value = "Comment!">
@@ -138,7 +137,8 @@
              style = "margin-right: auto; margin-left: auto">
           <form style="width:100%; height:80%;" method="post" id = "edit_com">
               <div class = "container input-group mb-3">
-                <textarea name = "edit_text" cols = "97" rows = "10" class = "edit_txt"></textarea>
+                <textarea name = "edit_text" cols = "97" rows = "10" class = "edit_txt" id = "edit_text"></textarea>
+                <input type="hidden" id = "commentID" name="commentID">
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
               <input type = "submit" name = "edit_button" id = "edit_button" class = "btn Editcmt_btn" value = "Edit!">
@@ -152,6 +152,7 @@
           <form style = "width: 100%; height: 80%;" method = "post" id = "comment_notes"> 
               <div class = "container input-group mb-3">
                 <textarea name = "main_comment_text" cols="97" rows="10" id = "main_comment_text" class = ".comment_box"></textarea>
+
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
               <input type = "submit" name = "main_comment_button" id = "main_comment_button" 
@@ -163,9 +164,7 @@
 
         <div id = "main_edit_container"
              style = "margin-right: auto; margin-left: auto" class = "containers">
-          <form style = "width: 100%; height: 80%;" 
-                action="/classes/{{classID}}/notebook/{{#with notes}}{{notesID}}{{/with}}/edit" 
-                method="post">
+          <form style = "width: 100%; height: 80%;" method="post" id = "edit_notes">
               <div class = "container input-group mb-3">
                 <textarea name = "main_notes_text" cols = "97" rows = "10" class = "main_notes_text" id = "main_notes_text"></textarea>
               </div>

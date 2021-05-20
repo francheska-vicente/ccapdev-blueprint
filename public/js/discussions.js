@@ -1,7 +1,7 @@
 $(document).ready (function ()
 {
   var URL = window.location.href;
-          URL = URL.substring (21, URL.length) + "/comment";
+  URL = URL.substring (21, URL.length) + "/comment";
   /* MODIFYING COMMENTS */
   // deleting comments
   $(".dlt_btn").click (function () {
@@ -23,7 +23,7 @@ $(document).ready (function ()
     e.preventDefault ();
     $(".editcontainer").css ("display", "none");
     var URL = window.location.href + (" #com_div_" + $("#commentID").val ());
-    setTimeout (function(){ console.log (" #com_div_" + $("#commentID").val ()) }, 3000);
+    
     $.post($("#origEditDiv").attr ("name"), 
       {
         edit_txt : $("#edit_text").val (),

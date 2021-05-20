@@ -157,7 +157,7 @@ const notesController = {
 			notes.content = req.body.main_notes_text;
 
 			db.updateOne (Note, {notesID : d}, notes, function (result) {
-				res.redirect ('/classes/' + a + '/notebook/' + d)
+				res.send (result);
 			})
 		});
 	},
@@ -197,10 +197,10 @@ const notesController = {
                     res.redirect('/error/403');
             });
             db.findOne (Comment, {commentID : commentID}, null, function (comment) {
-                comment.content = req.body.edit_text;
+                comment.content = req.body.edit_txt;
 
                 db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
-                    res.redirect ('/classes/' + classID + '/notebook/' + notesID);
+                    res.send (result);
                 });
             });
         }
@@ -209,7 +209,7 @@ const notesController = {
 	addCommentToNotes: function (req, res) {
         var d = req.params.notesID;
         var c = req.params.classID;
-        console.log (main_notes_text);
+        console.log (req.body.main_notes_text);
         if(!req.session.username) res.redirect('/error/401');
         else {
             db.findOne (User, {username: req.session.username}, null, function (user) {
@@ -284,7 +284,7 @@ const notesController = {
                 });
 
                 db.insertOne (Comment, comment, function (notesInfo) {
-                    res.redirect ('/classes/' + c + '/notebook/' + d);
+                    res.send (comment);
                 });
             }); 
 
@@ -310,7 +310,7 @@ const notesController = {
                 db.deleteOne (Comment, {commentID : c}, function (result) {
                     notesInfo.numOfComments = notesInfo.numOfComments - 1;
                     db.updateOne (Note, {notesID : d}, notesInfo, function (result) {
-                        res.redirect ('/classes/' + a + '/notebook/' + d);
+                        res.send (result);
                     });
                 });
             });
