@@ -21,14 +21,12 @@ const loginController = {
 
                     else {
                         var details = {error: 'Username and/or password is incorrect.'}
-
                         res.render('login', details);
                     }
                 });
             }
             else {
                 var details = {error: 'Username and/or password is incorrect.'}
-
                 res.render('login', details);
             }
         });
