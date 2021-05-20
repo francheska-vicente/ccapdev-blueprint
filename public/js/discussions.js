@@ -1,8 +1,7 @@
 $(document).ready (function ()
 {
   var URL = window.location.href;
-          URL = URL.substring (21, URL.length) + "/comment";
-          console.log (URL);
+  URL = URL.substring (21, URL.length) + "/comment";
   /* MODIFYING COMMENTS */
   // deleting comments
   $(".dlt_btn").click (function () {
@@ -23,13 +22,14 @@ $(document).ready (function ()
   $("#edit_com").submit (function (e) {
     e.preventDefault ();
     $(".editcontainer").css ("display", "none");
-    var URL = window.location.href + (" #div_" + $("#commentID").val ());
+    var URL = window.location.href + (" #com_div_" + $("#commentID").val ());
+    
     $.post($("#origEditDiv").attr ("name"), 
       {
         edit_txt : $("#edit_text").val (),
         commentID : $("#commentID").val ()
       }, function (result) {
-          $('#div_' + $("#commentID").val ()).load (URL);
+          $('#com_div_' + $("#commentID").val ()).load (URL);
     })
   });
   
@@ -82,11 +82,14 @@ $(document).ready (function ()
           var commentNode = $("<h6/>").html (commentVal);
           commentNode.attr ("class", "comment_content");
           commentNode.attr ("id", comment.commentID);
-          
+          var innerDiv = $("<div/>");
+          innerDiv.attr ("id", "com_div_" + comment.commentID);
+          innerDiv.append (commentNode);
+
           var nameNode = $("<h5/>").html (fName + " " + lName);
           var commentDiv = $("#origCommentDiv").clone ();
 
-          commentDiv.prepend (commentNode);
+          commentDiv.prepend (innerDiv);
           commentDiv.prepend (nameNode);
           commentDiv.append ($("<br/><hr/>"));
           commentDiv.attr ("id", "div_" + comment.commentID);
@@ -150,7 +153,7 @@ $(document).ready (function ()
 
   /* MODIFYING DISCUSSION */
   // setting the value of the edit container of the discussion to the discussion value
-  $("#main_txt").val ($(".main_cmt").html ());
+  $("#main_edit_text").val ($("#main_content").html ());
 
   // showing the containers
   $("#main_edit_button").click (function () {
@@ -187,11 +190,14 @@ $(document).ready (function ()
           var commentNode = $("<h6/>").html (commentVal);
           commentNode.attr ("class", "comment_content");
           commentNode.attr ("id", comment.commentID);
-          
+          var innerDiv = $("<div/>");
+          innerDiv.attr ("name", "com_div_" + comment.commentID);
+          innerDiv.append (commentNode);
+
           var nameNode = $("<h5/>").html (fName + " " + lName);
           var commentDiv = $("#origCommentDiv").clone ();
 
-          commentDiv.prepend (commentNode);
+          commentDiv.prepend (innerDiv);
           commentDiv.prepend (nameNode);
           commentDiv.append ($("<br/><hr/>"));
           commentDiv.attr ("id", "div_" + comment.commentID);
@@ -217,6 +223,17 @@ $(document).ready (function ()
           $("#main_CreateDiv").css ("display", "none");
           $("#commentbox_disc").val ("")
         }
+      });
+  });
+
+  $("#edit_disc").submit (function (e) {
+    e.preventDefault ();
+      var URL = window.location.href;
+      var route = URL;
+          URL = URL.substring (21, URL.length) + "/edit";
+
+      $.post (URL, {main_edit_text : $("#main_edit_text").val ()}, function (result) {
+        $("#main_content").load (route + " #main_content");
       });
   });
 });

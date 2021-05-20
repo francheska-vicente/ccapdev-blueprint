@@ -1,123 +1,234 @@
 $(document).ready (function ()
 {
-        $("#main_txt").val ($(".main_cmt").html ());
+  // making the edit container  visible
+  $(".edt_btn").click (function ()
+  {
+   var btn_id = $(this).attr ("id");
+   var commentID = btn_id.substring (5, btn_id.length);
+   
+   $(".containers").css ("display", "none");
+   $(".editcontainer").css ("display", "block");
+   $(".edit_txt").val ($("#" + commentID).html ());
+   $("#origEditDiv").attr ("name", $("#div_" + commentID).attr ("name") + "edit");
+   $("#commentID").val (commentID);
+  });
 
-        $("#search_btn").click (function ()
-          {
-            var searchVal = $("#searchBox").val ();
-            location.href = "../../search.html";
-          });
+  // editing comments
+  $("#edit_com").submit (function (e) {
+    e.preventDefault ();
+    $(".editcontainer").css ("display", "none");
+    var URL = window.location.href + (" #com_div_" + $("#commentID").val ());
+    
+    $.post($("#origEditDiv").attr ("name"), 
+      {
+        edit_txt : $("#edit_text").val (),
+        commentID : $("#commentID").val ()
+      }, function (result) {
+          $('#com_div_' + $("#commentID").val ()).load (URL);
+    })
+  });
 
-        function comment_func ()
+  $(".dlt_btn").click (function () {
+    var commentID = $(this).attr ("id").substring (5, $(this).attr ("id").length);
+
+    var route = window.location.href;
+    route = route.substring (21, route.length) + "/" + commentID + "/delete";
+
+    var URL = window.location.href + " #comment";
+    
+    $.post(route, {commentID : commentID}, function (result) {
+      $("#div_" + commentID).empty ();
+      $("#div_" + commentID).remove ();
+    });
+  });
+
+  // commenting on a comment
+  // making the create comment container visible
+  $(".cmt_btn").click (function ()
+  {
+    var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "comment";
+    var container = $("#createDiv");
+    $(".containers").css ("display", "none");
+    container.css ("display", "block");
+    container.attr ("name", commentDiv);
+    
+
+    var btn_id = $(this).attr ("id");
+    var commentID = btn_id.substring (5, btn_id.length);
+    $("#c_commentID").val (commentID);
+  });
+
+  // sends the information to the database
+  $("#new_com").submit (function (e) {
+    e.preventDefault ();
+    $(".createcontainer").css ("display", "none");
+    $.post($("#createDiv").attr ("name"), 
+      {
+        comment_text : $("#new_comment").val ()
+      }, function (comment, status) {
+        if(status == 'success')
         {
-          $(this).closest(".commentDiv").find (".createcontainer").css ("display", "block");
+          // assigning the values that the user entered
+          var commentVal =  comment.content;
+          var fName = comment.fName;
+          var lName = comment.lName;
+          var username = comment.username;
+
+          // creating the HTML elements
+          var commentNode = $("<h6/>").html (commentVal);
+          commentNode.attr ("class", "comment_content");
+          commentNode.attr ("id", comment.commentID);
+          var innerDiv = $("<div/>");
+          innerDiv.attr ("id", "com_div_" + comment.commentID);
+          innerDiv.append (commentNode);
+
+          var nameNode = $("<h5/>").html (fName + " " + lName);
+          var commentDiv = $("#origCommentDiv").clone ();
+
+          commentDiv.prepend (innerDiv);
+          commentDiv.prepend (nameNode);
+          commentDiv.append ($("<br/><hr/>"));
+          commentDiv.attr ("id", "div_" + comment.commentID);
+          commentDiv.attr ("class", "commentDiv");
+          var URL = window.location.href;
+          URL = URL.substring (21, URL.length);
+          commentDiv.attr ("name", URL + "/" + comment.commentID);
+
+          var commentButton  = commentDiv.find ("#comment_btn");
+          commentButton.attr ("id", "cbtn_" + comment.commentID);
+          commentButton.click (comment_func);
+
+          var editButton = commentDiv.find ("#edit_btn");
+          editButton.attr ("id", "ebtn_" + comment.commentID);
+          editButton.click (edit_func);
+
+          var delButton = commentDiv.find ("#delete_btn");
+          delButton.attr ("id", "dbtn_" + comment.commentID);
+          delButton.click (delete_func);
+
+          $("#comment").append (commentDiv);
+          commentDiv.css ("display", "block");
+          $(".createcontainer").css ("display", "none");
+          $("#new_comment").val ("");
         }
+    });
+  });
 
-        function edit_func ()
-        {
-          var div = $(this).closest(".commentDiv");
-          var content = div.children (".comment_content").html ();
+  // adding click events to buttons 
+  function comment_func ()
+  {
+    $(".createcontainer").css ("display", "block");
+  }
 
-          var container = div.find (".editcontainer");
-          container.find (".container").children ().val (content);
-          container.css ("display", "block");
-        }
+  function edit_func ()
+  {
+    var btn_id = $(this).attr ("id");
+    var commentID = btn_id.substring (5, btn_id.length);
+    $(".containers").css ("display", "none");
+    $("#origEditDiv").css ("display", "block");
+    $(".edit_txt").val ($("#" + commentID).html ());
 
-        function post_comment ()
-        {
-        
-            var form = $(this).closest(".createcontainer").find (".container");
-            var comment_box = form.children ();
-            var commentVal =  comment_box.val ();
-            var numOfComments = $(".commentDiv").length;
-            
-            var commentNode = $("<h6/>").html (commentVal);
-            commentNode.attr ("class", "comment_content");
-            var nameNode = $("<h5/>").html ("Harry Potter");
-            var commentDiv = $("#origCommentDiv").clone ();
-            
-            commentDiv.prepend (commentNode);
-            commentDiv.prepend (nameNode);
-            commentDiv.append ($("<br/><hr/>"));
-            commentDiv.attr ("id", "commentDiv" + numOfComments);
-            commentDiv.attr ("class", "commentDiv");
+    $("#origEditDiv").attr ("name", $("#div_" + commentID).attr ("name") + "/edit");
+    $("#commentID").val (commentID);
+  }
 
-            var commentButton  = commentDiv.find ("#comment_btn");
-            commentButton.attr ("id", "comment_btn" + numOfComments);
-            commentButton.click (comment_func);
+  function delete_func ()
+  {
+    var commentID = $(this).attr ("id").substring (5, $(this).attr ("id").length);
 
-            var editButton = commentDiv.find ("#edit_btn");
-            editButton.attr ("id", "edit_btn" + numOfComments);
-            editButton.click (edit_func);
+    var route = window.location.href;
+    route = route.substring (21, route.length) + "/" + commentID + "/delete";
 
-            var delButton = commentDiv.find ("#delete_btn");
-            delButton.attr ("id", "delete_btn" + numOfComments);
-            delButton.click (delete_func);
+    var URL = window.location.href + " #comment";
+    
+    $.post(route, {commentID : commentID}, function (result) {
+      $("#div_" + commentID).empty ();
+      $("#div_" + commentID).remove ();
+    })
+  }
 
-            var createC = $("#origCreateDiv").clone ();
-            createC.attr ("id", "createcontainer" + numOfComments);
-            createC.find ("#comment_button").attr ("id", "comment_button" + numOfComments).click (post_comment);
-            createC.find (".container").children ().val ("");
+  /* MODIFYING DISCUSSION */
+  // setting the value of the edit container of the notes to the notes value
+  $("#main_notes_text").val ($("#note").html ());
 
-            var editC = $("#origEditDiv").clone ();
-            editC.attr ("id", "editcontainer" + numOfComments);
-            editC.find ("#edit_button").attr ("id", "edit_button" + numOfComments).click (edit_comment);
+  $("#main_edit_button").click (function () {
+    $(".main_cmt").html ($("#main_txt").val ());
+    $("#main_edit_container").css ("display", "none");
+  });
 
-            commentDiv.append (createC);
-            commentDiv.append (editC);
+  // showing the containers
+  $("#main_edit_btn").click (function () {
+    $(".containers").css ("display", "none");
+    $("#main_edit_container").css ("display", "block");
+  });
 
-            $(".main").append (commentDiv);
-            commentDiv.css ("display", "block");
-            $(".createcontainer").css ("display", "none");
-            comment_box.val ("");
-        }
+  $("#main_comment_btn").click (function () {
+    $(".containers").css ("display", "none");
+    $("#main_CreateDiv").css ("display", "block");
+  });
 
-        function edit_comment ()
-        {
-          var form = $(this).closest(".editcontainer").find (".container");
-          var edit_box = form.children ();
-          var commentVal = edit_box.val ();
-          
-          $(this).closest (".commentDiv").children (".comment_content").html (commentVal);
-          
-          $(".editcontainer").css ("display", "none");
-        }
+  $("#edit_notes").submit (function (e) {
+    e.preventDefault ();
+    var URL = window.location.href;
+    var route = URL;
+    URL = URL.substring (21, URL.length) + "/edit";
 
-        $(".createcontainer").on ("click", ".Addcmt_btn", post_comment);
-
-        $(".editcontainer").on ("click", ".Editcmt_btn", edit_comment);
-
-        $(".cmt_btn").click (function ()
-        {
-          var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "comment";
-          var container = $("#createDiv");
-          $(".containers").css ("display", "none");
-          container.css ("display", "block");
-          container.children ().attr ("action", commentDiv);
-        });
-
-        $(".edt_btn").click (function ()
-        {
-          var btn_id = $(this).attr ("id");
-          var commentID = btn_id.substring (5, btn_id.length);
-          $(".containers").css ("display", "none");
-          $(".editcontainer").css ("display", "block");
-          $(".edit_txt").val ($("#" + commentID).html ());
-          $("#edit_com").attr ("action", $("#div_" + commentID).attr ("name") + "edit");
-        });
-
-        $("#main_edit_button").click (function () {
-          $(".main_cmt").html ($("#main_txt").val ());
-          $("#main_edit_container").css ("display", "none");
-        });
-
-        $("#main_edit_btn").click (function () {
-          $(".containers").css ("display", "none");
-          $("#main_edit_container").css ("display", "block");
-        });
-
-        $("#main_comment_btn").click (function () {
-          $(".containers").css ("display", "none");
-          $("#main_CreateDiv").css ("display", "block");
-        });
+    $.post (URL, {main_notes_text : $("#main_notes_text").val ()}, function (result) {
+        $("#note").load (route + " #note");
       });
+  });
+
+  $("#comment_notes").submit (function (e) {
+    e.preventDefault ();
+    var URL = window.location.href;
+    URL = URL.substring (21, URL.length) + "/comment";
+    $.post(URL, {main_notes_text : $("#main_comment_text").val ()}, function (comment, status) {
+      if(status == 'success')
+        {
+          // assigning the values that the user entered
+          var commentVal =  comment.content;
+          var fName = comment.fName;
+          var lName = comment.lName;
+          var username = comment.username;
+
+          // creating the HTML elements
+          var commentNode = $("<h6/>").html (commentVal);
+          commentNode.attr ("class", "comment_content");
+          commentNode.attr ("id", comment.commentID);
+          var innerDiv = $("<div/>");
+          innerDiv.attr ("name", "com_div_" + comment.commentID);
+          innerDiv.append (commentNode);
+
+          var nameNode = $("<h5/>").html (fName + " " + lName);
+          var commentDiv = $("#origCommentDiv").clone ();
+
+          commentDiv.prepend (innerDiv);
+          commentDiv.prepend (nameNode);
+          commentDiv.append ($("<br/><hr/>"));
+          commentDiv.attr ("id", "div_" + comment.commentID);
+          commentDiv.attr ("class", "commentDiv");
+          
+          var URL = window.location.href;
+          URL = URL.substring (21, URL.length);
+          commentDiv.attr ("name", URL + "/" + comment.commentID);
+
+          var commentButton  = commentDiv.find ("#comment_btn");
+          commentButton.attr ("id", "cbtn_" + comment.commentID);
+          commentButton.click (comment_func);
+
+          var editButton = commentDiv.find ("#edit_btn");
+          editButton.attr ("id", "ebtn_" + comment.commentID);
+          editButton.click (edit_func);
+
+          var delButton = commentDiv.find ("#delete_btn");
+          delButton.attr ("id", "dbtn_" + comment.commentID);
+          delButton.click (delete_func);
+
+          $("#comment").append (commentDiv);
+          commentDiv.css ("display", "block");
+          $("#main_CreateDiv").css ("display", "none");
+          $("#main_comment_text").val ("");
+        }
+    });
+  });
+});

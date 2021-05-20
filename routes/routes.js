@@ -81,6 +81,7 @@ app.post('/classes/:classID/notebook/add', notesController.postAddNotes);
 
 // notebook post
 app.get('/classes/:classID/notebook/:notesID', notesController.getNotesPost);
+app.post('/classes/:classID/notebook/:notesID', notesController.getNotesPost);
 app.post('/classes/:classID/notebook/:notesID/edit', notesController.editNotesPost);
 app.post('/classes/:classID/notebook/:notesID/delete', notesController.deleteNotesPost);
 
