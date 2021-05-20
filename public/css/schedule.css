@@ -87,7 +87,7 @@ table {
 
 }
 
-#create_button, #drop_button, #edit_button, #comment_button,
+#create_button, #drop_button, #confirm_button, #edit_button, #comment_button,
 .Addcmt_btn, .Editcmt_btn
 #confirm_button, .Editcmt_btn, .Addcmt_, #create_discussion
 {
@@ -113,3 +113,4 @@ table {
 .newclass {
 	border-radius: 0px; 
 }
+
