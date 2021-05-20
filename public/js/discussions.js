@@ -2,7 +2,6 @@ $(document).ready (function ()
 {
   var URL = window.location.href;
           URL = URL.substring (21, URL.length) + "/comment";
-          console.log (URL);
   /* MODIFYING COMMENTS */
   // deleting comments
   $(".dlt_btn").click (function () {

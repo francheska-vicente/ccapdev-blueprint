@@ -58,7 +58,7 @@ app.set('view engine', 'hbs');
 app.use(express.static('public'));
 
 app.use('/', routes);
-
+/*
 app.use(function(err, req, res, next){
     res.status(err.status);
     res.render('error', { 
@@ -74,7 +74,7 @@ app.use(function (req, res) {
     };
    res.render('error', details);
 });
-
+*/
 db.connect();
 
 app.listen(port, () => {

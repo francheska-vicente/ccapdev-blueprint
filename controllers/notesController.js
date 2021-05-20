@@ -209,7 +209,7 @@ const notesController = {
 	addCommentToNotes: function (req, res) {
         var d = req.params.notesID;
         var c = req.params.classID;
-
+        console.log (main_notes_text);
         if(!req.session.username) res.redirect('/error/401');
         else {
             db.findOne (User, {username: req.session.username}, null, function (user) {
@@ -228,7 +228,7 @@ const notesController = {
                         lName : user.lName, 
                         parentID : d, 
                         mainID : d, 
-                        content : req.body.main_comment_text,
+                        content : req.body.main_notes_text,
                         commentID: id
                     };
 
@@ -240,7 +240,7 @@ const notesController = {
                     });
 
                     db.insertOne (Comment, comment, function (discInfo) {
-                        res.redirect ('/classes/' + c + '/notebook/' + d);
+                        res.send (comment);
                     });
                 }
             }); 
