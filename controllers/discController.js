@@ -166,10 +166,10 @@ const discController = {
             }); 
 
             db.findOne (Discussion, {discID : d}, null, function (discInfo) {
-                discInfo.content = req.body.main_discussion_text;
+                discInfo.content = req.body.main_edit_text;
 
                 db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
-                    res.redirect ('/classes/' + discInfo.classID + '/discussions/' + d);
+                    res.send (result);
                 });
             });
         }

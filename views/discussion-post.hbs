@@ -59,22 +59,24 @@
         </ul> 
 
         <!-- Main discussion topic -->
-        <h1>{{#with disc}}{{title}} {{/with}}</h1>
-        <a href="../../../../{{#with disc}}{{username}}{{/with}}/profile" class="link"><h5>By: {{#with disc}}{{fName}} {{lName}}{{/with}}</h5></a>
-        <h6 class = "main_cmt">{{#with disc}}{{content}}{{/with}}</h6>
-        <button class = "btn" id = "main_comment_btn">
-          <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
-        </button>
-        {{#ifEqual currentUser disc.username}}
-        <button class="btn" id = "main_edit_btn">
-            <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
-        </button>
-        <form action="/classes/{{classID}}/discussions/{{#with disc}}{{discID}}{{/with}}/delete" method="post">
-            <button class="btn" id = "main_delete_btn" title = "Delete discussion">
-              <i class="fas fa-eraser disc_icon"></i>
-            </button>
-        </form>
-        {{/ifEqual}}
+        <div id = "main_disc_div">
+          <h1>{{#with disc}}{{title}} {{/with}}</h1>
+          <a href="../../../../{{#with disc}}{{username}}{{/with}}/profile" class="link"><h5>By: {{#with disc}}{{fName}} {{lName}}{{/with}}</h5></a>
+          <h6 id = "main_content">{{#with disc}}{{content}}{{/with}}</h6>
+          <button class = "btn" id = "main_comment_btn">
+            <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
+          </button>
+          {{#ifEqual currentUser disc.username}}
+          <button class="btn" id = "main_edit_btn">
+              <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
+          </button>
+          <form action="/classes/{{classID}}/discussions/{{#with disc}}{{discID}}{{/with}}/delete" method="post">
+              <button class="btn" id = "main_delete_btn" title = "Delete discussion">
+                <i class="fas fa-eraser disc_icon"></i>
+              </button>
+          </form>
+          {{/ifEqual}}
+        </div>
         <br>
         <hr>
         
@@ -86,7 +88,9 @@
             <a href="../../../../{{../../disc}}{{username}}/profile" class="link">
             <h5>{{fName}} {{lName}}</h5>
             </a>
-            <h6 id = "{{commentID}}">{{content}}</h6>
+            <div id = "com_div_{{commentID}}">
+              <h6 id = "{{commentID}}">{{content}}</h6>
+            </div>
             <button class="btn cmt_btn" id = "cbtn_{{commentID}}">
               <i class="fas fa-comment disc_icon" title = "Reply to this comment"></i>
             </button>
@@ -94,11 +98,9 @@
             <button class="btn edt_btn" id = "ebtn_{{commentID}}">
               <i class="fa fa-pencil disc_icon" title = "Edit comment"></i>
             </button>
-            
-              <button class = "btn dlt_btn" id = "dbtn_{{commentID}}" title = "Delete comment">
-                <i class = "fas fa-eraser disc_icon"></i>
-              </button>
-
+            <button class = "btn dlt_btn" id = "dbtn_{{commentID}}" title = "Delete comment">
+              <i class = "fas fa-eraser disc_icon"></i>
+            </button>
             {{/ifEqual}}
 
             <br>
@@ -168,11 +170,9 @@
 
         <div id = "main_edit_container"
              style = "margin-right: auto; margin-left: auto" class = "containers">
-          <form style = "width: 100%; height: 80%;" 
-                action="/classes/{{classID}}/discussions/{{#with disc}}{{discID}}{{/with}}/edit" 
-                method="post">
+          <form style = "width: 100%; height: 80%;" method="post" id = "edit_disc">
               <div class = "container input-group mb-3">
-                <textarea name = "main_discussion_text" cols = "97" rows = "10" class = "main_discussion_text" id = "main_txt"></textarea>
+                <textarea name = "main_edit_text" cols = "97" rows = "10" class = "main_edit_text" id = "main_edit_text"></textarea>
               </div>
             <div class = "display" style = "padding: 0 40px; margin-top: 10px; ">
               <input type = "submit" name = "main_edit_button" id = "main_edit_button" 
