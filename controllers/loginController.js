@@ -6,7 +6,10 @@ const User = require('../models/UserModel.js');
 const loginController = {
 
     getLogin: function (req, res) {
-        res.render('login');
+        if(req.session.username) 
+            res.redirect('/home');
+        else
+            res.render('login');
     },
 
     postLogin: function (req, res) {
