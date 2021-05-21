@@ -233,9 +233,11 @@ const notesController = {
                     };
 
                     db.findOne (Note, {notesID: d}, {}, function (result) {
-                        result.numOfComments = result.numOfComments + 1;
+                        var num = result.numOfComments;
+                        num++; 
+                        result.numOfComments = num;
 
-                        db.updateOne (Note, {}, result, function (result) {
+                        db.updateOne (Note, {notesID: d}, result, function (result) {
                         });
                     });
 
@@ -277,9 +279,10 @@ const notesController = {
                 };
 
                 db.findOne (Note, {notesID: d}, {}, function (result) {
-                    result.numOfComments = result.numOfComments + 1;
-
-                    db.updateOne (Note, {}, result, function (result) {
+                    var num = result.numOfComments;
+                    num++; 
+                    result.numOfComments = num;
+                    db.updateOne (Note, {notesID: d}, result, function (result) {
                     });
                 });
 
@@ -308,7 +311,9 @@ const notesController = {
 
             db.findOne (Note, {notesID : d}, null, function (notesInfo) {
                 db.deleteOne (Comment, {commentID : c}, function (result) {
-                    notesInfo.numOfComments = notesInfo.numOfComments - 1;
+                    var num = notesInfo.numOfComments;
+                    num--; 
+                    notesInfo.numOfComments = num;
                     db.updateOne (Note, {notesID : d}, notesInfo, function (result) {
                         res.send (result);
                     });
