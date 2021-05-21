@@ -254,6 +254,7 @@ const discController = {
                 
                 db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
                     // res.redirect ('/classes/' + classID + '/discussions/' + discID);
+                    console.log (result);
                     res.send (result);
                 });
             });
@@ -263,6 +264,8 @@ const discController = {
     addCommentToComment : function (req, res) {
         if(!req.session.username) res.redirect('/error/401');
         else {
+            
+            console.log (req.session.username);
             db.findOne (User, {username: req.session.username}, null, function (user) {
                 var d = req.params.discID;
                 var c = req.params.classID;
@@ -284,7 +287,7 @@ const discController = {
                     commentID : id,
                     content : req.body.comment_text
                 };
-
+                console.log ("comment: " + comment);
                 db.findOne (Discussion, {discID: d}, {}, function (result) {
                     var num = result.numOfComments;
                     num++;

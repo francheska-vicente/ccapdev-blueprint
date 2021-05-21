@@ -1,5 +1,11 @@
 $(document).ready (function ()
 {
+  // creating comment threads
+
+
+
+
+
   /* MODIFYING COMMENTS */
   // deleting comments
   $(".dlt_btn").click (function () {
@@ -21,14 +27,14 @@ $(document).ready (function ()
     e.preventDefault ();
     $(".editcontainer").css ("display", "none");
     
-    
     $.post($("#origEditDiv").attr ("name"), 
       {
         edit_txt : $("#edit_text").val (),
         commentID : $("#commentID").val ()
       }, function (result) {
         
-        var URL = window.location.href + (" #com_div_" + $("#commentID").val ());
+        var URL = window.location.href + " #com_div_" + $("#commentID").val ();
+         
           $('#com_div_' + $("#commentID").val ()).load (URL);
     })
   });
@@ -50,13 +56,14 @@ $(document).ready (function ()
   // making the create comment container visible
   $(".cmt_btn").click (function ()
   {
-    var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "comment";
+    setTimeout(function(){ alert($("#createDiv").attr ("name")); }, 3000);
+    var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "/comment";
     var container = $("#createDiv");
     $(".containers").css ("display", "none");
     container.css ("display", "block");
     container.attr ("name", commentDiv);
-    
 
+    
     var btn_id = $(this).attr ("id");
     var commentID = btn_id.substring (5, btn_id.length);
     $("#c_commentID").val (commentID);
@@ -64,6 +71,7 @@ $(document).ready (function ()
 
   // sends the information to the database
   $("#new_com").submit (function (e) {
+    setTimeout(function(){ alert($("#createDiv").attr ("name")); }, 3000);
     e.preventDefault ();
     $(".createcontainer").css ("display", "none");
     $.post($("#createDiv").attr ("name"), 
@@ -121,7 +129,16 @@ $(document).ready (function ()
   // adding click events to buttons 
   function comment_func ()
   {
-    $(".createcontainer").css ("display", "block");
+    var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "/comment";
+    var container = $("#createDiv");
+    $(".containers").css ("display", "none");
+    container.css ("display", "block");
+    container.attr ("name", commentDiv);
+
+    
+    var btn_id = $(this).attr ("id");
+    var commentID = btn_id.substring (5, btn_id.length);
+    $("#c_commentID").val (commentID);
   }
 
   function edit_func ()
@@ -185,13 +202,13 @@ $(document).ready (function ()
           var fName = comment.fName;
           var lName = comment.lName;
           var username = comment.username;
-
+          
           // creating the HTML elements
           var commentNode = $("<h6/>").html (commentVal);
           commentNode.attr ("class", "comment_content");
           commentNode.attr ("id", comment.commentID);
           var innerDiv = $("<div/>");
-          innerDiv.attr ("name", "com_div_" + comment.commentID);
+          innerDiv.attr ("id", "com_div_" + comment.commentID);
           innerDiv.append (commentNode);
 
           var nameNode = $("<h5/>").html (fName + " " + lName);
@@ -221,7 +238,7 @@ $(document).ready (function ()
           $("#comment").append (commentDiv);
           commentDiv.css ("display", "block");
           $("#main_CreateDiv").css ("display", "none");
-          $("#commentbox_disc").val ("")
+          $("#main_edit_text").val ("")
         }
       });
   });
