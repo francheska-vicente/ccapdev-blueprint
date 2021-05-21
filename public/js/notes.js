@@ -46,7 +46,7 @@ $(document).ready (function ()
   // making the create comment container visible
   $(".cmt_btn").click (function ()
   {
-    var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "comment";
+    var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "/comment";
     var container = $("#createDiv");
     $(".containers").css ("display", "none");
     container.css ("display", "block");
@@ -117,7 +117,16 @@ $(document).ready (function ()
   // adding click events to buttons 
   function comment_func ()
   {
-    $(".createcontainer").css ("display", "block");
+    var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "/comment";
+    var container = $("#createDiv");
+    $(".containers").css ("display", "none");
+    container.css ("display", "block");
+    container.attr ("name", commentDiv);
+    
+
+    var btn_id = $(this).attr ("id");
+    var commentID = btn_id.substring (5, btn_id.length);
+    $("#c_commentID").val (commentID);
   }
 
   function edit_func ()
