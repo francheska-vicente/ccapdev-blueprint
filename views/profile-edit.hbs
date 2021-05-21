@@ -33,9 +33,13 @@
       </ul> 
       <h1>Edit Profile</h1>
       <h5>Ensure that your details are up-to-date! If you do not wish to edit a field, leave it blank!</h5><hr>
-      {{#if notif}}
-      <h6 id="notif-text">{{notif}}</h6>
-      {{/if}}
+      <h6 id="error" class="error">{{error}}</h6>
+      <h6 id="fNameError" class="error">{{fNameError}}</h6>
+      <h6 id="lNameError" class="error">{{lNameError}}</h6>
+      <h6 id="emailError" class="error">{{emailError}}</h6>
+      <h6 id="usernameError" class="error">{{usernameError}}</h6>
+      <h6 id="passwordError" class="error">{{passwordError}}</h6>
+      <h6 id="schoolError" class="error">{{schoolError}}</h6>
       <div class="create-container" style="margin-right: auto; margin-left: auto">
         <form style = "width: 100%; height: 80%" method="post">
           <div class = "container input-group mb-3">
