@@ -50,7 +50,9 @@ const profileController = {
                     var datestring = d.getFullYear() + "-" + ("0" + (d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
                     user.bday = datestring; 
                 }
-                res.render('profile-edit', user);
+
+                var temp = {user : user}
+                res.render('profile-edit', temp);
             });
         }  
     },
@@ -95,10 +97,6 @@ const profileController = {
                                 if (req.body.bio != '') update.bio = req.body.bio;
                                 if (req.body.n_password != '') update.password = hash;
 
-                                console.log(req.body.password)
-                                console.log(user.password)
-
-
                                 // updates user in db
                                 db.updateOne(User, {username: user.username}, update, function(flag) 
                                 {
@@ -109,6 +107,7 @@ const profileController = {
                             else 
                             {
                                 var temp = {user : user, error : 'Incorrect password. Please try again.'};
+                                console.log(user.username)
                                 res.render('profile-edit', temp);
                             }
                         });
