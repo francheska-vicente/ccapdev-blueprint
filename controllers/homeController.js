@@ -44,7 +44,7 @@ const homeController = {
                         days: days,
                         year: today.getFullYear()
                     };
-                    console.log (temp.reqs);
+                    
                     res.render('home', temp);
                 });
             });
@@ -73,7 +73,7 @@ const homeController = {
                                            {deadline : {$gte : start, 
                                                         $lt  : end}}
                                            ]}, null, function (result1) {
-                    console.log (result1);
+                    
                     res.send(result1);
                 });
             });
