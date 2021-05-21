@@ -69,6 +69,7 @@ table {
 	background-color: #ECF7F8;
 	text-decoration: underline #a8dadc;
 	text-decoration-thickness: 5px;
+	transition: all 0.5s;
 }
 
 .with-task p {
