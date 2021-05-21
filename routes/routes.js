@@ -44,7 +44,7 @@ app.get('/profile/edit', profileController.getEditProfile);
 app.post('/profile/edit', profileController.postEditProfile);
 app.get('/profile/delete', profileController.getDelProfile);
 app.post('/profile/delete', profileController.postDelProfile);
-app.get('/profile-deletion-success', successController.getSuccessReg);
+app.get('/profile-deletion-success', successController.getSuccessDel);
 
 // schedule + class management getClasses
 app.get('/schedule', scheduleController.getYourSchedule);
