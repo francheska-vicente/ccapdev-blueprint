@@ -14,6 +14,7 @@ const profileController = require('../controllers/profileController.js');
 const userController = require('../controllers/userController.js');
 const successController = require('../controllers/successController.js');
 const errorController = require('../controllers/errorController.js');
+
 const validation = require('../helpers/validation.js');
 
 const app = express();
@@ -45,6 +46,7 @@ app.post('/profile/edit', validation.editProfile (), profileController.postEditP
 app.get('/profile/delete', profileController.getDelProfile);
 app.post('/profile/delete', profileController.postDelProfile);
 app.get('/profile-deletion-success', successController.getSuccessDel);
+app.get('/getCheckNewUsername', profileController.getCheckNewUsername);
 
 // schedule + class management getClasses
 app.get('/schedule', scheduleController.getYourSchedule);

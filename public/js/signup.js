@@ -68,7 +68,6 @@ $(document).ready(function () {
     }
 
     function checkIfValidPassword(password, passwordc, errorfield) {
-        console.log(validator.isStrongPassword(password))
         if (!validator.isAscii(password))
             setInvalid($('#password'), 'Invalid password. Use ASCII characters only.', errorfield);
         else if (!validator.isLength(password, {min: 12, max: 20}))
@@ -84,8 +83,6 @@ $(document).ready(function () {
             setValid($('#c_password'), errorfield);
         }
     }
-
-    
 
     $('#fName').keyup(function () {
         var fName = validator.trim($('#fName').val());

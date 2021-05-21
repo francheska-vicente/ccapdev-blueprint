@@ -8,7 +8,10 @@ const User = require('../models/UserModel.js');
 const signupController = {
 
     getSignUp: function (req, res) {
-        res.render('register');
+        if(req.session.username) 
+            res.redirect('/home');
+        else
+            res.render('register');
     },
 
     getCheckUsername: function (req, res) {

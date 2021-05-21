@@ -6,10 +6,8 @@ const controller = {
     getSplash: function (req, res) {
         if(req.session.username) 
             res.redirect('/home');
-        else {
-            var details = {flag: false};
+        else 
             res.render('splash');
-        }
     },
 
     getSearch : function (req, res) {
@@ -31,7 +29,7 @@ const controller = {
                 {lName: arr [arr.length - 1]},
                 {fName : {"$in": arr}},
                 {lName : {"$in": arr}}
-        ]}, null, function (result) {
+            ]}, null, function (result) {
                 var temp = {
                     result : result,
                     search_val : search
