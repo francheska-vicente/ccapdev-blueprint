@@ -28,4 +28,10 @@ $(document).ready(function () {
             setInvalid($('#username'), 'Invalid PH phone number.', errorfield);
         else setValid($('#username'), errorfield);
     }
+
+    $('#username').keyup(function () {
+        var username = validator.trim($('#username').val());
+        checkIfValidUsername($('#username'), $('#usernameError'));
+        checkIfFilled();
+    });
 });
