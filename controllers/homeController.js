@@ -21,16 +21,18 @@ const homeController = {
 
                 var today = new Date();
                 var year = "" + today.getFullYear();
-                var month = "" + today.getMonth() + 1;
+                var month = "" + (today.getMonth() + 1);
                 var day = (new Date(today.getFullYear(), today.getMonth() + 1, 0)).getDate();
 
                 var start = today.toISOString();
-                var end =  new Date (year - 3, month - 1, day);
+                
+                var end =  new Date (year, month, 1);
+                end.setHours (7, 59, 59, 59);
                 var end = end.toISOString();
 
                 var cal = new Calendar();
                 var days = cal.monthDays(today.getFullYear(), today.getMonth());
-               
+                console.log (start + " " + end);
                 db.findManyReqs (Reqs, {$and: [{classID  : {$in : classes}},
                                            {deadline : {$gte : start, 
                                                         $lt  : end}}
@@ -42,7 +44,7 @@ const homeController = {
                         days: days,
                         year: today.getFullYear()
                     };
-
+                    
                     res.render('home', temp);
                 });
             });
@@ -58,18 +60,20 @@ const homeController = {
 
                 var today = new Date();
                 var year = "" + today.getFullYear();
-                var month = "" + today.getMonth() + 1;
+                var month = "" + (today.getMonth() + 1);
                 var day = (new Date(today.getFullYear(), today.getMonth() + 1, 0)).getDate();
 
                 var start = today.toISOString();
-                var end =  new Date (year - 3, month - 1, day);
+                
+                var end =  new Date (year, month, 1);
+                end.setHours (7, 59, 59, 59);
                 var end = end.toISOString();
-               
+                
                 db.findMany (Reqs, {$and: [{classID  : {$in : classes}},
                                            {deadline : {$gte : start, 
                                                         $lt  : end}}
                                            ]}, null, function (result1) {
-
+                    
                     res.send(result1);
                 });
             });
