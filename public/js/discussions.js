@@ -56,7 +56,7 @@ $(document).ready (function ()
   // making the create comment container visible
   $(".cmt_btn").click (function ()
   {
-    setTimeout(function(){ alert($("#createDiv").attr ("name")); }, 3000);
+
     var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "/comment";
     var container = $("#createDiv");
     $(".containers").css ("display", "none");
@@ -71,7 +71,7 @@ $(document).ready (function ()
 
   // sends the information to the database
   $("#new_com").submit (function (e) {
-    setTimeout(function(){ alert($("#createDiv").attr ("name")); }, 3000);
+    
     e.preventDefault ();
     $(".createcontainer").css ("display", "none");
     $.post($("#createDiv").attr ("name"), 
