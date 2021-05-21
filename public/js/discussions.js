@@ -1,7 +1,5 @@
 $(document).ready (function ()
 {
-  var URL = window.location.href;
-  URL = URL.substring (21, URL.length) + "/comment";
   /* MODIFYING COMMENTS */
   // deleting comments
   $(".dlt_btn").click (function () {
@@ -22,13 +20,15 @@ $(document).ready (function ()
   $("#edit_com").submit (function (e) {
     e.preventDefault ();
     $(".editcontainer").css ("display", "none");
-    var URL = window.location.href + (" #com_div_" + $("#commentID").val ());
+    
     
     $.post($("#origEditDiv").attr ("name"), 
       {
         edit_txt : $("#edit_text").val (),
         commentID : $("#commentID").val ()
       }, function (result) {
+        
+        var URL = window.location.href + (" #com_div_" + $("#commentID").val ());
           $('#com_div_' + $("#commentID").val ()).load (URL);
     })
   });
@@ -77,7 +77,7 @@ $(document).ready (function ()
           var fName = comment.fName;
           var lName = comment.lName;
           var username = comment.username;
-
+          
           // creating the HTML elements
           var commentNode = $("<h6/>").html (commentVal);
           commentNode.attr ("class", "comment_content");
