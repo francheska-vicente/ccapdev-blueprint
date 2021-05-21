@@ -60,6 +60,7 @@ const profileController = {
         // error 401 if not logged in
         if(!req.session.username) res.redirect('/error/401');
         else {
+
             var errors = validationResult(req);
 
             if (!errors.isEmpty()) 
@@ -75,15 +76,16 @@ const profileController = {
             else
             {
                 // gets user from db
-                db.findOne(User, {username: req.session.username}, '', function (user) {
-
+                db.findOne(User, {username: req.session.username}, '', function (user) 
+                {
                     // hashes password
-                    bcrypt.hash(req.body.n_password, saltRounds, function(err, hash) {
-
+                    bcrypt.hash(req.body.n_password, saltRounds, function(err, hash) 
+                    {
                         // checks if password matches user's password
-                        bcrypt.compare(req.body.password, user.password, function(err, equal) {
-                            if(equal) {
-
+                        bcrypt.compare(req.body.password, user.password, function(err, equal) 
+                        {
+                            if(equal) 
+                            {
                                 // creates updated user object
                                 var update = user;
                                 if (req.body.username != '') update.username = req.body.username;
@@ -98,20 +100,21 @@ const profileController = {
 
 
                                 // updates user in db
-                                db.updateOne(User, {username: user.username}, update, function(flag) {
+                                db.updateOne(User, {username: user.username}, update, function(flag) 
+                                {
                                     if(flag) res.redirect('/profile?editsuccess=true');
                                     else res.redirect('/profile?editsuccess=false');
                                 });
                             }
-                            else {
-                                var temp = {user : user, notif : 'Incorrect password. Please try again.'};
+                            else 
+                            {
+                                var temp = {user : user, error : 'Incorrect password. Please try again.'};
                                 res.render('profile-edit', temp);
                             }
                         });
                     });
                 });
-            }
-            
+            } 
         }  
     },
 
