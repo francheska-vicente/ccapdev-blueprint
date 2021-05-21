@@ -117,6 +117,16 @@ const profileController = {
         }  
     },
 
+    getCheckNewUsername: function (req, res) {
+        var username = req.query.username;
+        db.findOne(User, {username: username}, 'username', function (result) {
+            if(result && req.session.username != result.username)
+                res.send(result);
+            else
+                res.send(false);
+        });
+    },
+
     getDelProfile: function (req, res) {
 
         // error 401 if not logged in
