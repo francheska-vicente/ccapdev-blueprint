@@ -12,12 +12,9 @@
 2. Open Command Prompt.
 3. Naviate to the project project (using the cd command) 
 (i.e. the main folder containing the file app.js)
-4. Run the following commands in order to install all the modules needed in order to run the project successfully:
+4. Run the command in order to install all the modules needed in order to run the project successfully:
 ```
-npm install express --save
-npm install body-parser
-npm install mongodb --save
-npm install mongoose
+npm install 
 ```
 5. We may now run the server by typing ```node app.js```
 6. Since the web application is running on localhost:3000, type ```http://localhost:3000``` on your browser of choice.
