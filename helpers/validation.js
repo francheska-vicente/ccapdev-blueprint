@@ -26,7 +26,6 @@ const validation = {
 			.isLength ({min: 12, max: 20}).custom((value,{req, loc, path}) => {
 			value = value.split ("-").join ("").split ("_").join ("").split (".").join ("");
             if (!value.match (/^[a-z0-9]+$/i)) {
-            	console.log (value);
                 throw new Error("Invalid username. Use valid characters only.");
             } else {
                 return value;
@@ -69,7 +68,15 @@ const validation = {
                     return value;
                 }
             }),
-            check ('degree', 'Invalid bio. Use letters only.').isLength ({min: 0}).isAlpha (),
+            check ('degree').optional ({nullable: true, checkFalsy: true})
+            .custom((value,{req, loc, path}) => {
+                value = value.split (" ").join ("");
+                if (!value.match (/^[a-z]+$/i)) {
+                    throw new Error("Invalid degree. Use letters only.");
+                } else {
+                    return value;
+                }
+            }),
             check ('bio', 'Invalid bio. Maximum of 100 characters.').isLength ({min: 0, max: 100}),
             check ('n_password').optional ({nullable: true, checkFalsy: true})
             .custom((value,{req, loc, path}) => {
@@ -78,7 +85,8 @@ const validation = {
                 } else {
                     return value;
                 }
-            })
+            }),
+            check ("password", "Please enter your password to edit your profile").notEmpty ()
         ]
 
         return validation;
