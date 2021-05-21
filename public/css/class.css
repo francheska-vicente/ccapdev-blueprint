@@ -47,6 +47,10 @@
 
 }
 
+.post {
+    transition: all 0.5s;
+}
+
 .post:hover {
   background-color: #dddddd;
 }
