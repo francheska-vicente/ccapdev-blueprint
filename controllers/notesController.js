@@ -198,8 +198,9 @@ const notesController = {
             });
             db.findOne (Comment, {commentID : commentID}, null, function (comment) {
                 comment.content = req.body.edit_txt;
-
+                console.log ("content " + comment.content);
                 db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
+                    console.log (result);
                     res.send (result);
                 });
             });

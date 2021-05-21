@@ -17,14 +17,14 @@ $(document).ready (function ()
   $("#edit_com").submit (function (e) {
     e.preventDefault ();
     $(".editcontainer").css ("display", "none");
-    var URL = window.location.href + (" #com_div_" + $("#commentID").val ());
     
     $.post($("#origEditDiv").attr ("name"), 
       {
         edit_txt : $("#edit_text").val (),
         commentID : $("#commentID").val ()
       }, function (result) {
-          $('#com_div_' + $("#commentID").val ()).load (URL);
+        var  URL = window.location.href + " #com_div_" + $("#commentID").val ();
+        $('#com_div_' + $("#commentID").val ()).load (URL);
     })
   });
 
@@ -139,6 +139,9 @@ $(document).ready (function ()
 
     $("#origEditDiv").attr ("name", $("#div_" + commentID).attr ("name") + "/edit");
     $("#commentID").val (commentID);
+
+    var btn_id = $(this).attr ("id");
+   var commentID = btn_id.substring (5, btn_id.length);
   }
 
   function delete_func ()
@@ -194,7 +197,6 @@ $(document).ready (function ()
     $.post(URL, {main_notes_text : $("#main_comment_text").val ()}, function (comment, status) {
       if(status == 'success')
         {
-          // assigning the values that the user entered
           var commentVal =  comment.content;
           var fName = comment.fName;
           var lName = comment.lName;
@@ -205,7 +207,7 @@ $(document).ready (function ()
           commentNode.attr ("class", "comment_content");
           commentNode.attr ("id", comment.commentID);
           var innerDiv = $("<div/>");
-          innerDiv.attr ("name", "com_div_" + comment.commentID);
+          innerDiv.attr ("id", "com_div_" + comment.commentID);
           innerDiv.append (commentNode);
 
           var nameNode = $("<h5/>").html (fName + " " + lName);
@@ -216,7 +218,6 @@ $(document).ready (function ()
           commentDiv.append ($("<br/><hr/>"));
           commentDiv.attr ("id", "div_" + comment.commentID);
           commentDiv.attr ("class", "commentDiv");
-          
           var URL = window.location.href;
           URL = URL.substring (21, URL.length);
           commentDiv.attr ("name", URL + "/" + comment.commentID);

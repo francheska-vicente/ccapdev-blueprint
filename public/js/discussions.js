@@ -32,10 +32,8 @@ $(document).ready (function ()
         edit_txt : $("#edit_text").val (),
         commentID : $("#commentID").val ()
       }, function (result) {
-        
-        var URL = window.location.href + " #com_div_" + $("#commentID").val ();
-         
-          $('#com_div_' + $("#commentID").val ()).load (URL);
+        var URL = window.location.href + " #com_div_" + $("#commentID").val (); 
+        $('#com_div_' + $("#commentID").val ()).load (URL);
     })
   });
   
