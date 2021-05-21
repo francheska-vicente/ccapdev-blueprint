@@ -26,7 +26,6 @@ $(document).ready(function () {
     function checkIfValidContactNo(username, errorfield) {
         if (!validator.isMobilePhone(str, 'en-PH'))
             setInvalid($('#username'), 'Invalid PH phone number.', errorfield);
-
         else setValid($('#username'), errorfield);
     }
 });
