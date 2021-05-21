@@ -90,7 +90,7 @@ const profileController = {
                             });
                         }
                         else {
-                            var temp = {user : user, notif : 'Incorrect password. Please try again.'};
+                            var temp = {user : user, error : 'Incorrect password. Please try again.'};
                             res.render('profile-edit', temp);
                         }
                     });
