@@ -45,7 +45,44 @@ const validation = {
 		]
 
 		return validation;
-	}
+	},
+
+    editProfile : function () {
+
+        var validation = [
+            check ('username', 'Invalid username. Minimum of 12 characters and maximum of 20 characters.')
+                .isLength ({min: 12, max: 20}).custom((value,{req, loc, path}) => {
+                value = value.split ("-").join ("").split ("_").join ("").split (".").join ("");
+                if (!value.match (/^[a-z0-9]+$/i)) {
+                    console.log (value);
+                    throw new Error("Invalid username. Use valid characters only.");
+                } else {
+                    return value;
+                }
+            }),
+            check ('contact_no').optional ({nullable: true, checkFalsy: true})
+            .custom((value,{req, loc, path}) => {
+                var temp = parseInt (value);
+                if (!Number.isInteger (temp)) {
+                    throw new Error("Invalid contact number. Use numbers only.");
+                } else {
+                    return value;
+                }
+            }),
+            check ('degree', 'Invalid bio. Use letters only.').isLength ({min: 0}).isAlpha (),
+            check ('bio', 'Invalid bio. Maximum of 100 characters.').isLength ({min: 0, max: 100}),
+            check ('n_password').optional ({nullable: true, checkFalsy: true})
+            .custom((value,{req, loc, path}) => {
+                if (!(value.length == 0 || (value.length >= 12 && value.length <= 20))) {
+                    throw new Error("Invalid password. Minimum of 12 characters and maximum of 20 characters.");
+                } else {
+                    return value;
+                }
+            })
+        ]
+
+        return validation;
+    }
 }
 
 module.exports = validation;

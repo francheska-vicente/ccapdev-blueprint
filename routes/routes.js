@@ -41,7 +41,7 @@ app.get('/search', controller.getSearch);
 // profile
 app.get('/profile', profileController.getYourProfile);
 app.get('/profile/edit', profileController.getEditProfile);
-app.post('/profile/edit', profileController.postEditProfile);
+app.post('/profile/edit', validation.editProfile (), profileController.postEditProfile);
 app.get('/profile/delete', profileController.getDelProfile);
 app.post('/profile/delete', profileController.postDelProfile);
 app.get('/profile-deletion-success', successController.getSuccessDel);
