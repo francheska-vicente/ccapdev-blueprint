@@ -66,7 +66,7 @@ $(document).ready (function () {
   $("#edit_form").submit (function (e) {
     e.preventDefault ();
     var temp1 = window.location.href;
-    var temp = temp1.substring (21, temp1.length);
+    var temp = temp1.substring (32, temp1.length);
 
     var URL = temp + " #info_" + $(".form").attr ("name");
     
