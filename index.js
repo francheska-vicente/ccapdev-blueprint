@@ -5,12 +5,14 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
 const bodyParser = require('body-parser');
 const validator = require('validator');
-
+const dotenv = require (`dotenv`);
 const routes = require('./routes/routes.js');
 const db = require('./models/db.js');
 
 const app = express();
-const port = 3000;
+dotenv.config ();
+port = process.env.PORT;
+hostname = process.env.HOSTNAME;
 
 app.use(session({
     secret: 'blueprint',
