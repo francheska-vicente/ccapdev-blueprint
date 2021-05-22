@@ -282,7 +282,6 @@ $(document).ready (function ()
     var URL = window.location.href;
     var route = URL;
     URL = URL.substring (32, URL.length) + '/edit';
-    setTimeout(function(){ alert(URL + " " + route); }, 3000);
     $.post (URL, {main_notes_text : $("#main_notes_text").val ()}, function (result) {
         $("#note").load (route + " #note");
       });
