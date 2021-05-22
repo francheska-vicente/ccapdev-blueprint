@@ -4,7 +4,7 @@ $(document).ready (function () {
     var reqID = btn_id.substring (5, btn_id.length);
 
     var temp1 = window.location.href;
-    var temp = temp1.substring (21, temp1.length) + '/' + reqID + "/delete";
+    var temp = temp1.substring (32, temp1.length) + '/' + reqID + "/delete";
 
     $.post(temp, null, function (result) {
       $("#div_" + reqID).empty ();
