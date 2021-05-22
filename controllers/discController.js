@@ -153,6 +153,20 @@ const discController = {
         }
     },
 
+     getDiscussionComments : function (req, res) {
+        var d = req.params.discID;
+        var a = req.params.classID;
+        console.log ("hello");
+        db.findMany (Comment, {mainID: d}, null, function (result) {
+            var temp =  {
+                comments : result,
+                current_user : req.session.username
+            }
+            console.log (temp.comments.length);
+            res.send (temp);
+        });
+    },
+
     editDiscussionPost: function (req, res) {
         var d = req.params.discID;
         
@@ -322,10 +336,13 @@ const discController = {
                 db.deleteOne (Comment, {commentID : c}, function (result) {
                     var num = discInfo.numOfComments;
                     num--; 
-                    discInfo.numOfComments = num;
-                    db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
-                        res.send (result);
-                    });
+                    db.deleteMany (Comment, {parentID : c}, function (result) {
+                        num = num - result;
+                        discInfo.numOfComments = num;
+                         db.updateOne (Discussion, {discID : d}, discInfo, function (result) {
+                            res.send (result);
+                        });
+                    })
                 });
             });
         }

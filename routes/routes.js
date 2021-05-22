@@ -101,6 +101,7 @@ app.post('/classes/:classID/discussions/add', discController.postAddDiscussion);
 
 // discussion post
 app.get('/classes/:classID/discussions/:discID', discController.getDiscussionPost);
+app.get('/classes/:classID/discussions/:discID/comments', discController.getDiscussionComments);
 app.post('/classes/:classID/discussions/:discID', discController.getDiscussionPost);
 app.post('/classes/:classID/discussions/:discID/edit', discController.editDiscussionPost);
 app.post('/classes/:classID/discussions/:discID/delete', discController.deleteDiscussionPost);
