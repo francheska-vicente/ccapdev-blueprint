@@ -55,7 +55,7 @@ $(document).ready (function ()
   $(".cmt_btn").click (function ()
   {
 
-    var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "/comment";
+    var commentDiv =  $(this).closest(".commentDiv").attr ("name") + "comment";
     var container = $("#createDiv");
     $(".containers").css ("display", "none");
     container.css ("display", "block");
