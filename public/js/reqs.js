@@ -50,11 +50,13 @@ $(document).ready (function () {
     else if (m == 'Nov')
       month = 10;
     
+    month = month + 1;
+
     if (month >= 10)
       month = "" + month;
     else
       month = "0" + month;
- 
+
     var day = parseInt (temp [4]);
     var year = parseInt (temp [5]);
     var time = temp [6].split (":");
