@@ -281,6 +281,8 @@ $(document).ready (function ()
     e.preventDefault ();
     var URL = window.location.href;
     var route = URL;
+    URL = URL.substring (33, URL.length) + '/edit';
+    
 
     $.post (URL, {main_notes_text : $("#main_notes_text").val ()}, function (result) {
         $("#note").load (route + " #note");
