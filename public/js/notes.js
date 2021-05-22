@@ -126,7 +126,7 @@ $(document).ready (function ()
     var commentID = $(this).attr ("id").substring (5, $(this).attr ("id").length);
     $(".containers").css ("display", "none");
     var route = window.location.href;
-    route = route.substring (33, route.length) + "/" + commentID + "/delete";
+    route = route.substring (32, route.length) + "/" + commentID + "/delete";
 
     var URL = window.location.href + " #comment";
     
@@ -247,7 +247,7 @@ $(document).ready (function ()
     var commentID = $(this).attr ("id").substring (5, $(this).attr ("id").length);
 
     var route = window.location.href;
-    route = route.substring (33, route.length) + "/" + commentID + "/delete";
+    route = route.substring (32, route.length) + "/" + commentID + "/delete";
 
     var URL = window.location.href + " #comment";
     
@@ -281,7 +281,7 @@ $(document).ready (function ()
     e.preventDefault ();
     var URL = window.location.href;
     var route = URL;
-    URL = URL.substring (33, URL.length) + '/edit';
+    URL = URL.substring (32, URL.length) + '/edit';
     setTimeout(function(){ alert(URL + " " + route); }, 3000);
     $.post (URL, {main_notes_text : $("#main_notes_text").val ()}, function (result) {
         $("#note").load (route + " #note");
