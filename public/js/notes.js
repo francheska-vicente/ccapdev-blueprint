@@ -53,7 +53,6 @@ $(document).ready (function ()
     commentDiv.attr ("id", "div_" + elem.commentID);
     commentDiv.attr ("class", "commentDiv");
     var URL = window.location.href;
-    URL = URL.substring (21, URL.length);
     commentDiv.attr ("name", URL + "/" + elem.commentID);
 
     var commentButton  = commentDiv.find ("#comment_btn");
@@ -127,7 +126,7 @@ $(document).ready (function ()
     var commentID = $(this).attr ("id").substring (5, $(this).attr ("id").length);
     $(".containers").css ("display", "none");
     var route = window.location.href;
-    route = route.substring (21, route.length) + "/" + commentID + "/delete";
+    route = route.substring (33, route.length) + "/" + commentID + "/delete";
 
     var URL = window.location.href + " #comment";
     
@@ -186,7 +185,6 @@ $(document).ready (function ()
           commentDiv.attr ("id", "div_" + comment.commentID);
           commentDiv.attr ("class", "commentDiv");
           var URL = window.location.href;
-          URL = URL.substring (21, URL.length);
           commentDiv.attr ("name", URL + "/" + comment.commentID);
 
           var commentButton  = commentDiv.find ("#comment_btn");
@@ -249,7 +247,7 @@ $(document).ready (function ()
     var commentID = $(this).attr ("id").substring (5, $(this).attr ("id").length);
 
     var route = window.location.href;
-    route = route.substring (21, route.length) + "/" + commentID + "/delete";
+    route = route.substring (33, route.length) + "/" + commentID + "/delete";
 
     var URL = window.location.href + " #comment";
     
@@ -283,7 +281,6 @@ $(document).ready (function ()
     e.preventDefault ();
     var URL = window.location.href;
     var route = URL;
-    URL = URL.substring (21, URL.length) + "/edit";
 
     $.post (URL, {main_notes_text : $("#main_notes_text").val ()}, function (result) {
         $("#note").load (route + " #note");
@@ -292,8 +289,7 @@ $(document).ready (function ()
 
   $("#comment_notes").submit (function (e) {
     e.preventDefault ();
-    var URL = window.location.href;
-    URL = URL.substring (21, URL.length) + "/comment";
+    var URL = window.location.href + "/comment";
     $.post(URL, {main_notes_text : $("#main_comment_text").val ()}, function (comment, status) {
       if(status == 'success')
         {
@@ -319,7 +315,6 @@ $(document).ready (function ()
           commentDiv.attr ("id", "div_" + comment.commentID);
           commentDiv.attr ("class", "commentDiv");
           var URL = window.location.href;
-          URL = URL.substring (21, URL.length);
           commentDiv.attr ("name", URL + "/" + comment.commentID);
 
           var commentButton  = commentDiv.find ("#comment_btn");
