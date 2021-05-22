@@ -1,5 +1,82 @@
 $(document).ready (function ()
 {
+  var commentRoute = window.location.href + '/comments';
+  var notesID = window.location.href.split ("/")[6];
+  $.get (commentRoute, null, function (result) {
+    console.log (notesID);
+    if (Array.isArray(result.comments) && result.comments.length)
+    {
+      var parentID = notesID;
+      var arr = result.comments;
+      while (Array.isArray(arr) && arr.length)
+      {
+        var elem = arr.shift ();
+        parentID = elem.parentID;
+        create_node (parentID, elem);
+        parentID = elem.commentID;
+        while (arr.some (temp => temp.parentID == parentID) == 'true')
+        {
+          var temp = arr.find (element => element.parentID == parentID);
+          var index = arr.indexOf (temp);
+          arr.splice (index, 1);
+          arr.unshift (temp);
+        }
+      }
+    }
+  });
+
+  function create_node (parentID, elem)
+  {
+    // assigning the values that the user entered
+    var commentVal =  elem.content;
+    var fName = elem.fName;
+    var lName = elem.lName;
+    var username = elem.username;
+
+    // creating the HTML elements
+    var commentNode = $("<h6/>").html (commentVal);
+    commentNode.attr ("class", "comment_content");
+    commentNode.attr ("id", elem.commentID);
+    var innerDiv = $("<div/>");
+    innerDiv.attr ("id", "com_div_" + elem.commentID);
+    innerDiv.append (commentNode);
+
+    var nameNode = $("<h5/>").html (fName + " " + lName);
+    var commentDiv = $("#origCommentDiv").clone ();
+
+    commentDiv.prepend (innerDiv);
+    commentDiv.prepend (nameNode);
+    commentDiv.append ($("<br/><hr/>"));
+    commentDiv.attr ("id", "div_" + elem.commentID);
+    commentDiv.attr ("class", "commentDiv");
+    var URL = window.location.href;
+    URL = URL.substring (21, URL.length);
+    commentDiv.attr ("name", URL + "/" + elem.commentID);
+
+    var commentButton  = commentDiv.find ("#comment_btn");
+    commentButton.attr ("id", "cbtn_" + elem.commentID);
+    commentButton.click (comment_func);
+
+    var editButton = commentDiv.find ("#edit_btn");
+    editButton.attr ("id", "ebtn_" + elem.commentID);
+    editButton.click (edit_func);
+
+    var delButton = commentDiv.find ("#delete_btn");
+    delButton.attr ("id", "dbtn_" + elem.commentID);
+    delButton.click (delete_func);
+
+    if (notesID == parentID)
+      $("#comment").append (commentDiv);
+    else
+    {
+      $("#div_" + parentID).append (commentDiv);
+      commentDiv.css ("width", "90%");
+      commentDiv.css ("margin-left", "10%");
+    }
+
+    commentDiv.css ("display", "block");
+  }
+
   // making the edit container  visible
   $(".edt_btn").click (function ()
   {

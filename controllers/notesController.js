@@ -124,7 +124,7 @@ const notesController = {
                         lName = notesInfo.lName;
                     }
 
-                    db.findMany (Comment, {mainID: b}, null, function (result) {
+                    // db.findMany (Comment, {mainID: b}, null, function (result) {
                         var notes = {
                             content: content,
                             title: title,
@@ -137,16 +137,29 @@ const notesController = {
                         var temp = {
                             coursecode: coursecode,
                             notes : notes,
-                            comments : result, 
+                            // comments : result, 
                             classID: c,
                             currentUser : req.session.username,
                         }
 
                         res.render('notes-post', temp);
-                    });
+                    // });
                 });
             });
         }
+    },
+
+    getNotesComments : function (req, res) {
+        var d = req.params.notesID;
+        var a = req.params.classID;
+        console.log ("hello");
+        db.findMany (Comment, {mainID: d}, null, function (result) {
+            var temp =  {
+                comments : result
+            }
+            console.log (temp.comments.length);
+            res.send (temp);
+        });
     },
 
     editNotesPost : function (req, res) {
@@ -196,6 +209,7 @@ const notesController = {
                 if(!user.classes.includes(req.params.classID)) 
                     res.redirect('/error/403');
             });
+            
             db.findOne (Comment, {commentID : commentID}, null, function (comment) {
                 comment.content = req.body.edit_txt;
                 console.log ("content " + comment.content);
