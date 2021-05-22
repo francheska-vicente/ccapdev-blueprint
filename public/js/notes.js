@@ -108,18 +108,18 @@ $(document).ready (function ()
   $("#edit_com").submit (function (e) {
     e.preventDefault ();
     $(".editcontainer").css ("display", "none");
-    
+    var commentID = $("#commentID").val ();
     $.post($("#origEditDiv").attr ("name"), 
       {
         edit_txt : $("#edit_text").val (),
         commentID : $("#commentID").val ()
       }, function (result) {
-        var  URL = window.location.href;
-        URL =  URL.substring (21, URL.length) + " #com_div_" + $("#commentID").val ();
-        setTimeout(function(){ alert($("#commentID").val ()); }, 3000);
+        // var  URL = window.location.href;
+        // URL =  URL.substring (21, URL.length) + " #com_div_" + $("#commentID").val ();
+        // setTimeout(function(){ alert(URL); }, 3000);
         // $('#com_div_' + $("#commentID").val ()).load (URL);
        
-        $('#' + $("#commentID").val ()).val ($("#edit_text").val ());
+        $('#' + commentID).html (result.content);
     })
   });
 

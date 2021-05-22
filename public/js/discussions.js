@@ -113,14 +113,13 @@ $(document).ready (function ()
   $("#edit_com").submit (function (e) {
     e.preventDefault ();
     $(".editcontainer").css ("display", "none");
-    
+    var commentID = $("#commentID").val ();
     $.post($("#origEditDiv").attr ("name"), 
       {
         edit_txt : $("#edit_text").val (),
         commentID : $("#commentID").val ()
       }, function (result) {
-        var URL = window.location.href + " #com_div_" + $("#commentID").val (); 
-        $('#com_div_' + $("#commentID").val ()).load (URL);
+        $('#' + commentID).html (result.content);
     })
   });
   

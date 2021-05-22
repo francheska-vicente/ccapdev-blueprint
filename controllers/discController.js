@@ -267,9 +267,9 @@ const discController = {
                 comment.content = req.body.edit_txt;
                 
                 db.updateOne (Comment, {commentID : commentID}, comment, function (result) {
-                    // res.redirect ('/classes/' + classID + '/discussions/' + discID);
-                    console.log (result);
-                    res.send (result);
+                    db.findOne (Comment, {commentID : commentID}, comment, function (updated) {
+                        res.send (comment);
+                    });
                 });
             });
         } 
