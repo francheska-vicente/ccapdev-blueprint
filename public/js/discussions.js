@@ -328,7 +328,7 @@ $(document).ready (function ()
           $("#comment").append (commentDiv);
           commentDiv.css ("display", "block");
           $("#main_CreateDiv").css ("display", "none");
-          $("#main_edit_text").val ("")
+          $("#commentbox_disc").val ("")
         }
       });
   });
