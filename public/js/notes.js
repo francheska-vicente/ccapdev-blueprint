@@ -8,11 +8,14 @@ $(document).ready (function ()
     {
       var parentID = notesID;
       var arr = result.comments;
+      var user = result.current_user;
+      console.log ("arr length : " + arr.length);
       while (Array.isArray(arr) && arr.length)
       {
         var elem = arr.shift ();
         parentID = elem.parentID;
-        create_node (parentID, elem);
+        create_node (parentID, elem, user);
+        console.log ();
         parentID = elem.commentID;
         while (arr.some (temp => temp.parentID == parentID) == 'true')
         {
@@ -25,7 +28,7 @@ $(document).ready (function ()
     }
   });
 
-  function create_node (parentID, elem)
+  function create_node (parentID, elem, user)
   {
     // assigning the values that the user entered
     var commentVal =  elem.content;
@@ -57,13 +60,24 @@ $(document).ready (function ()
     commentButton.attr ("id", "cbtn_" + elem.commentID);
     commentButton.click (comment_func);
 
-    var editButton = commentDiv.find ("#edit_btn");
-    editButton.attr ("id", "ebtn_" + elem.commentID);
-    editButton.click (edit_func);
+    if (user == elem.username)
+    {
+      console.log (user + " " + elem.username);
+      var editButton = commentDiv.find ("#edit_btn");
+      editButton.attr ("id", "ebtn_" + elem.commentID);
+      editButton.click (edit_func);
 
-    var delButton = commentDiv.find ("#delete_btn");
-    delButton.attr ("id", "dbtn_" + elem.commentID);
-    delButton.click (delete_func);
+      var delButton = commentDiv.find ("#delete_btn");
+      delButton.attr ("id", "dbtn_" + elem.commentID);
+      delButton.click (delete_func);
+    }
+    else
+    {
+      var delButton = commentDiv.find ("#delete_btn");
+      delButton.remove ();
+      var editButton = commentDiv.find ("#edit_btn");
+      editButton.remove ();
+    }
 
     if (notesID == parentID)
       $("#comment").append (commentDiv);
@@ -100,14 +114,18 @@ $(document).ready (function ()
         edit_txt : $("#edit_text").val (),
         commentID : $("#commentID").val ()
       }, function (result) {
-        var  URL = window.location.href + " #com_div_" + $("#commentID").val ();
-        $('#com_div_' + $("#commentID").val ()).load (URL);
+        var  URL = window.location.href;
+        URL =  URL.substring (21, URL.length) + " #com_div_" + $("#commentID").val ();
+        setTimeout(function(){ alert($("#commentID").val ()); }, 3000);
+        // $('#com_div_' + $("#commentID").val ()).load (URL);
+       
+        $('#' + $("#commentID").val ()).val ($("#edit_text").val ());
     })
   });
 
   $(".dlt_btn").click (function () {
     var commentID = $(this).attr ("id").substring (5, $(this).attr ("id").length);
-
+    $(".containers").css ("display", "none");
     var route = window.location.href;
     route = route.substring (21, route.length) + "/" + commentID + "/delete";
 
@@ -183,7 +201,15 @@ $(document).ready (function ()
           delButton.attr ("id", "dbtn_" + comment.commentID);
           delButton.click (delete_func);
 
-          $("#comment").append (commentDiv);
+          if (notesID == comment.parentID)
+            $("#comment").append (commentDiv);
+          else
+          {
+            $("#div_" + comment.parentID).append (commentDiv);
+            commentDiv.css ("width", "90%");
+            commentDiv.css ("margin-left", "10%");
+          }
+
           commentDiv.css ("display", "block");
           $(".createcontainer").css ("display", "none");
           $("#new_comment").val ("");
@@ -216,9 +242,6 @@ $(document).ready (function ()
 
     $("#origEditDiv").attr ("name", $("#div_" + commentID).attr ("name") + "/edit");
     $("#commentID").val (commentID);
-
-    var btn_id = $(this).attr ("id");
-   var commentID = btn_id.substring (5, btn_id.length);
   }
 
   function delete_func ()

@@ -155,7 +155,8 @@ const notesController = {
         console.log ("hello");
         db.findMany (Comment, {mainID: d}, null, function (result) {
             var temp =  {
-                comments : result
+                comments : result,
+                current_user : req.session.username
             }
             console.log (temp.comments.length);
             res.send (temp);
@@ -329,9 +330,14 @@ const notesController = {
                     var num = notesInfo.numOfComments;
                     num--; 
                     notesInfo.numOfComments = num;
-                    db.updateOne (Note, {notesID : d}, notesInfo, function (result) {
-                        res.send (result);
-                    });
+
+                    db.deleteMany (Comment, {parentID : c}, function (result) {
+                        num = num - result;
+                        notesInfo.numOfComments = num;
+                        db.updateOne (Note, {notesID : d}, notesInfo, function (result) {
+                            res.send (result);
+                        });
+                    })
                 });
             });
         }
