@@ -106,6 +106,7 @@ A user may also access their classmate's profile and schedule through clicking t
 ## Dependencies
 - bcrypt
 - body-parser
+- calendar
 - connect-mongo
 - dotenv
 - express
