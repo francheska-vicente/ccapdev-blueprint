@@ -103,7 +103,7 @@ A user may also access their classmate's profile and schedule through clicking t
 
 ![alt text](https://github.com/DLSU-CCAPDEV/2021T2-G28/blob/phase-2/readme_images/other-user.png "Other Users Page")
 
-##Dependencies
+## Dependencies
 - bcrypt
 - body-parser
 - connect-mongo
