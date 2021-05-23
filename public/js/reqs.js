@@ -82,7 +82,8 @@ $(document).ready (function () {
         paragraph_text: $("#desc_txt").val (), 
         type: $("#req_type").val ()
       }, function (result) {
-        $("#" + reqID + "req-type").html ($("#desc_txt").val () + " | Due " + $("#deadline").val ());
+        result.deadline = result.deadline.split("T")
+        $("#" + reqID + "req-type").html ($("#req_type").val () + " | Due " + result.deadline[0]);
         $("#" + reqID + "req-details").html ($("#desc_txt").val ());
       });
   });
