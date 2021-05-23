@@ -3,7 +3,6 @@ const controller = require('../controllers/controller.js');
 
 const User = require('../models/UserModel.js');
 const Course = require ('../models/ClassModel.js');
-const Discussion = require('../models/DiscModel.js');
 const Comment = require ('../models/CommentModel.js');
 
 const { validationResult } = require('express-validator');
