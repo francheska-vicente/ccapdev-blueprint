@@ -1,6 +1,7 @@
 $(document).ready (function ()
 {
   var URL = $("#delete_disc").attr ("action");
+  console.log ("HEHEHHE" + URL);
   URL = URL.substring (0, URL.length - 6);
   var commentRoute = URL + '/comments';
   var notesID = URL.split ("/")[4];
