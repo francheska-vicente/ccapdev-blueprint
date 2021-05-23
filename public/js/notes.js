@@ -1,10 +1,11 @@
 $(document).ready (function ()
 {
-  var URL = $("#delete_disc").attr ("action");
+  var URL = $("#note").attr ("name");
   console.log ("HEHEHHE" + URL);
-  URL = URL.substring (0, URL.length - 6);
   var commentRoute = URL + '/comments';
-  var notesID = URL.split ("/")[4];
+  var temp = URL;
+  console.log (temp);
+  var notesID = temp.split ("/")[4];
 
   $.get (commentRoute, null, function (result) {
     if (Array.isArray(result.comments) && result.comments.length)

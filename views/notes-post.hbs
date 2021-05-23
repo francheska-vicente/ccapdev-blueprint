@@ -62,14 +62,14 @@
         </ul> 
   
         <h1 style="margin-bottom: 0px">{{#with notes}} {{title}} {{/with}}</h1>
-        <div id="note" class = "main_cmt">{{#with notes}}{{content}} {{/with}}</div>
+        <div id="note" class = "main_cmt" name = "/classes/{{classID}}/discussions/{{#with disc}}{{notesID}}{{/with}}/">{{#with notes}}{{content}} {{/with}}</div>
         <button class = "btn" id = "main_comment_btn">
           <i class="fas fa-comment disc_icon" title="Comment on note"></i>
         </button>
         <button class="btn" id = "main_edit_btn">
             <i class="fa fa-pencil disc_icon" title = "Edit discussion"></i>
         </button>
-        <form method = "post"  action="/classes/{{classID}}/discussions/{{#with disc}}{{notesID}}{{/with}}/delete">
+        <form method = "post"  action="/classes/{{classID}}/discussions/{{#with disc}}{{notesID}}{{/with}}/delete" id = "delete_disc">
             <button class="btn" id = "main_delete_btn" title = "Delete discussion">
               <i class="fas fa-eraser disc_icon"></i>
             </button>
