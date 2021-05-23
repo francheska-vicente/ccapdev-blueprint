@@ -1,7 +1,8 @@
 $(document).ready(function () {
     $('.ui-timepicker-list').timepicker({
         step : 15,
-        timeFormat : 'H:i'
+        timeFormat : 'H:i',
+        forceRoundTime : true
     });
 
 
