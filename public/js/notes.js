@@ -1,21 +1,23 @@
 $(document).ready (function ()
 {
-  var commentRoute = window.location.href + '/comments';
-  var notesID = window.location.href.split ("/")[6];
+  var URL = $("#delete_disc").attr ("action");
+  URL = URL.substring (0, URL.length - 6);
+  var commentRoute = URL + '/comments';
+  var notesID = URL.split ("/")[4];
+
   $.get (commentRoute, null, function (result) {
-    console.log (notesID);
     if (Array.isArray(result.comments) && result.comments.length)
     {
       var parentID = notesID;
       var arr = result.comments;
       var user = result.current_user;
-      console.log ("arr length : " + arr.length);
+
       while (Array.isArray(arr) && arr.length)
       {
         var elem = arr.shift ();
         parentID = elem.parentID;
         create_node (parentID, elem, user);
-        console.log ();
+
         parentID = elem.commentID;
         while (arr.some (temp => temp.parentID == parentID) == 'true')
         {
@@ -52,8 +54,7 @@ $(document).ready (function ()
     commentDiv.append ($("<br/><hr/>"));
     commentDiv.attr ("id", "div_" + elem.commentID);
     commentDiv.attr ("class", "commentDiv");
-    var URL = window.location.href;
-    commentDiv.attr ("name", URL + "/" + elem.commentID);
+    commentDiv.attr ("name", URL + elem.commentID);
 
     var commentButton  = commentDiv.find ("#comment_btn");
     commentButton.attr ("id", "cbtn_" + elem.commentID);
@@ -125,11 +126,9 @@ $(document).ready (function ()
   $(".dlt_btn").click (function () {
     var commentID = $(this).attr ("id").substring (5, $(this).attr ("id").length);
     $(".containers").css ("display", "none");
-    var route = window.location.href;
-    route = route.substring (32, route.length) + "/" + commentID + "/delete";
+    var route = URL;
+    route = route + commentID + "/delete";
 
-    var URL = window.location.href + " #comment";
-    
     $.post(route, {commentID : commentID}, function (result) {
       $("#div_" + commentID).empty ();
       $("#div_" + commentID).remove ();
@@ -184,8 +183,7 @@ $(document).ready (function ()
           commentDiv.append ($("<br/><hr/>"));
           commentDiv.attr ("id", "div_" + comment.commentID);
           commentDiv.attr ("class", "commentDiv");
-          var URL = window.location.href;
-          commentDiv.attr ("name", URL + "/" + comment.commentID);
+          commentDiv.attr ("name", URL + comment.commentID);
 
           var commentButton  = commentDiv.find ("#comment_btn");
           commentButton.attr ("id", "cbtn_" + comment.commentID);
@@ -246,10 +244,8 @@ $(document).ready (function ()
   {
     var commentID = $(this).attr ("id").substring (5, $(this).attr ("id").length);
 
-    var route = window.location.href;
-    route = route.substring (32, route.length) + "/" + commentID + "/delete";
-
-    var URL = window.location.href + " #comment";
+    var route = URL;
+    route = route + commentID + "/delete";
     
     $.post(route, {commentID : commentID}, function (result) {
       $("#div_" + commentID).empty ();
@@ -279,18 +275,18 @@ $(document).ready (function ()
 
   $("#edit_notes").submit (function (e) {
     e.preventDefault ();
-    var URL = window.location.href;
-    var route = URL;
-    URL = URL.substring (32, URL.length) + '/edit';
-    $.post (URL, {main_notes_text : $("#main_notes_text").val ()}, function (result) {
+    var temp = URL
+    var route = URL.substring (0, URL.length - 1);
+    temp = temp + 'edit';
+    $.post (temp, {main_notes_text : $("#main_notes_text").val ()}, function (result) {
         $("#note").load (route + " #note");
       });
   });
 
   $("#comment_notes").submit (function (e) {
     e.preventDefault ();
-    var URL = window.location.href + "/comment";
-    $.post(URL, {main_notes_text : $("#main_comment_text").val ()}, function (comment, status) {
+    var route = URL+ "comment";
+    $.post(route, {main_notes_text : $("#main_comment_text").val ()}, function (comment, status) {
       if(status == 'success')
         {
           var commentVal =  comment.content;
@@ -314,8 +310,7 @@ $(document).ready (function ()
           commentDiv.append ($("<br/><hr/>"));
           commentDiv.attr ("id", "div_" + comment.commentID);
           commentDiv.attr ("class", "commentDiv");
-          var URL = window.location.href;
-          commentDiv.attr ("name", URL + "/" + comment.commentID);
+          commentDiv.attr ("name", URL + comment.commentID);
 
           var commentButton  = commentDiv.find ("#comment_btn");
           commentButton.attr ("id", "cbtn_" + comment.commentID);
