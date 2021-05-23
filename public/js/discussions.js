@@ -2,35 +2,35 @@ $(document).ready (function ()
 {
   // creating comment threads
   var URL = $("#main_content").attr ("name");
-  var commentRoute = URL + '/comments';
-  var temp = URL;
-  var notesID = temp.split ("/")[4];
+  var commentRoute = URL + 'comments';
+  // var temp = URL;
+  // var notesID = temp.split ("/")[4];
   
-  $.get (commentRoute, null, function (result) {
-    console.log (notesID);
-    if (Array.isArray(result.comments) && result.comments.length)
-    {
-      var parentID = notesID;
-      var arr = result.comments;
-      var user = result.current_user;
+  // $.get (commentRoute, null, function (result) {
+  //   console.log (notesID);
+  //   if (Array.isArray(result.comments) && result.comments.length)
+  //   {
+  //     var parentID = notesID;
+  //     var arr = result.comments;
+  //     var user = result.current_user;
 
-      while (Array.isArray(arr) && arr.length)
-      {
-        var elem = arr.shift ();
-        parentID = elem.parentID;
-        create_node (parentID, elem, user);
+  //     while (Array.isArray(arr) && arr.length)
+  //     {
+  //       var elem = arr.shift ();
+  //       parentID = elem.parentID;
+  //       create_node (parentID, elem, user);
 
-        parentID = elem.commentID;
-        while (arr.some (temp => temp.parentID == parentID) == 'true')
-        {
-          var temp = arr.find (element => element.parentID == parentID);
-          var index = arr.indexOf (temp);
-          arr.splice (index, 1);
-          arr.unshift (temp);
-        }
-      }
-    }
-  });
+  //       parentID = elem.commentID;
+  //       while (arr.some (temp => temp.parentID == parentID) == 'true')
+  //       {
+  //         var temp = arr.find (element => element.parentID == parentID);
+  //         var index = arr.indexOf (temp);
+  //         arr.splice (index, 1);
+  //         arr.unshift (temp);
+  //       }
+  //     }
+  //   }
+  // });
 
   function create_node (parentID, elem, user)
   {

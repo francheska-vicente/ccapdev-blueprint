@@ -2,7 +2,7 @@ $(document).ready (function ()
 {
   var URL = $("#note").attr ("name");
   console.log ("HEHEHHE" + URL);
-  var commentRoute = URL + '/comments';
+  var commentRoute = URL + 'comments';
   var temp = URL;
   console.log (temp);
   var notesID = temp.split ("/")[4];
