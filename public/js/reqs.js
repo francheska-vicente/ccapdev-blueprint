@@ -3,8 +3,9 @@ $(document).ready (function () {
     var btn_id = $(this).attr ("id");
     var reqID = btn_id.substring (5, btn_id.length);
 
-    var temp1 = window.location.href;
-    var temp = temp1.substring (32, temp1.length) + '/' + reqID + "/delete";
+    var temp1 = $("#div_" + reqID).attr ("name");
+    var URL = temp1.substring (0, temp1.length - 4);
+    var temp = URL + "delete";
 
     $.post(temp, null, function (result) {
       $("#div_" + reqID).empty ();
@@ -67,21 +68,22 @@ $(document).ready (function () {
 
   $("#edit_form").submit (function (e) {
     e.preventDefault ();
-    var temp1 = window.location.href;
-    var temp = temp1.substring (32, temp1.length);
+    var reqID = $(".form").attr ("name");
+    var temp = $("#div_" + reqID).attr ("name");
 
-    var URL = temp + " #info_" + $(".form").attr ("name");
+    var URL = temp.substring (0, temp.length - 5);
+    URL = URL + " #info_" + reqID;
     
     $(".editcontainer").css ("display", "none");
-    var route = temp +  "/" + $(".form").attr ("name") + "/edit";
     
-    $.post (route, 
+    $.post (temp, 
       {
         deadline: $("#deadline").val (), 
         paragraph_text: $("#desc_txt").val (), 
         type: $("#req_type").val ()
       }, function (result) {
-        $("#info_" + $(".form").attr ("name")).load (URL);
+        $("#" + reqID + "req-type").html ($("#desc_txt").val () + " | Due " + $("#deadline").val ());
+        $("#" + reqID + "req-details").html ($("#desc_txt").val ());
       });
   });
 });
