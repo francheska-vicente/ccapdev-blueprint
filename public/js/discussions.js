@@ -3,34 +3,34 @@ $(document).ready (function ()
   // creating comment threads
   var URL = $("#main_content").attr ("name");
   var commentRoute = URL + 'comments';
-  // var temp = URL;
-  // var notesID = temp.split ("/")[4];
+  var temp = URL;
+  var notesID = temp.split ("/")[4];
   
-  // $.get (commentRoute, null, function (result) {
-  //   console.log (notesID);
-  //   if (Array.isArray(result.comments) && result.comments.length)
-  //   {
-  //     var parentID = notesID;
-  //     var arr = result.comments;
-  //     var user = result.current_user;
+  $.get (commentRoute, null, function (result) {
+    console.log (notesID);
+    if (Array.isArray(result.comments) && result.comments.length)
+    {
+      var parentID = notesID;
+      var arr = result.comments;
+      var user = result.current_user;
 
-  //     while (Array.isArray(arr) && arr.length)
-  //     {
-  //       var elem = arr.shift ();
-  //       parentID = elem.parentID;
-  //       create_node (parentID, elem, user);
-
-  //       parentID = elem.commentID;
-  //       while (arr.some (temp => temp.parentID == parentID) == 'true')
-  //       {
-  //         var temp = arr.find (element => element.parentID == parentID);
-  //         var index = arr.indexOf (temp);
-  //         arr.splice (index, 1);
-  //         arr.unshift (temp);
-  //       }
-  //     }
-  //   }
-  // });
+      while (Array.isArray(arr) && arr.length)
+      {
+        var elem = arr.shift ();
+        parentID = elem.parentID;
+        create_node (parentID, elem, user);
+  
+         parentID = elem.commentID;
+         while (arr.some (temp => temp.parentID == parentID) == 'true')
+         {
+            var temp = arr.find (element => element.parentID == parentID);
+            var index = arr.indexOf (temp);
+            arr.splice (index, 1);
+            arr.unshift (temp);
+         }
+       }
+     }
+  });
 
   function create_node (parentID, elem, user)
   {
@@ -103,7 +103,7 @@ $(document).ready (function ()
     route = route + commentID + "/delete";
 
     var route = URL + " #comment";
-    
+    console.log (route);
     $.post(route, {commentID : commentID}, function (result) {
       $("#div_" + commentID).empty ();
       $("#div_" + commentID).remove ();
@@ -247,10 +247,8 @@ $(document).ready (function ()
   {
     var commentID = $(this).attr ("id").substring (5, $(this).attr ("id").length);
 
-    var route = window.location.href;
-    route = route.substring (32, route.length) + "/" + commentID + "/delete";
-
-    var URL = window.location.href + " #comment";
+    var route = URL;
+    route = route + commentID + "/delete";
     
     $.post(route, {commentID : commentID}, function (result) {
       $("#div_" + commentID).empty ();
@@ -281,7 +279,7 @@ $(document).ready (function ()
   // adding a comment
   $("#comment_disc").submit (function (e) {
     e.preventDefault ();
-      var route = route + "/comment";
+      var route = URL + "comment";
 
       $.post(route, {main_comment_text : $("#commentbox_disc").val ()}, function (comment, status) {
         if(status == 'success')
@@ -308,7 +306,7 @@ $(document).ready (function ()
           commentDiv.append ($("<br/><hr/>"));
           commentDiv.attr ("id", "div_" + comment.commentID);
           commentDiv.attr ("class", "commentDiv");
-          commentDiv.attr ("name", route + comment.commentID);
+          commentDiv.attr ("name", URL + comment.commentID);
 
           var commentButton  = commentDiv.find ("#comment_btn");
           commentButton.attr ("id", "cbtn_" + comment.commentID);

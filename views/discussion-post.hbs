@@ -62,7 +62,7 @@
         <div id = "main_disc_div">
           <h1>{{#with disc}}{{title}} {{/with}}</h1>
           <a href="../../../../{{#with disc}}{{username}}{{/with}}/profile" class="link"><h5>By: {{#with disc}}{{fName}} {{lName}}{{/with}}</h5></a>
-          <h6 id = "main_content" name = "/classes/{{classID}}/discussions/{{#with disc}}{{notesID}}{{/with}}/">{{#with disc}}{{content}}{{/with}}</h6>
+          <h6 id = "main_content" name = "/classes/{{classID}}/discussions/{{#with disc}}{{discID}}{{/with}}/">{{#with disc}}{{content}}{{/with}}</h6>
           <button class = "btn" id = "main_comment_btn">
             <i class="fas fa-comment disc_icon" title="Comment on discussion"></i>
           </button>
