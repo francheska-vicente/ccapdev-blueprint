@@ -56,7 +56,8 @@ const signupController = {
                     phone: '',
                     degree: '',
                     bio: '',
-                    classes: []
+                    classes: [],
+                    picfilename: ''
                 };
                 
                 db.insertOne(User, user, function(flag) {

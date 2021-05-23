@@ -41,11 +41,14 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    classes :
-    {
+    classes: {
         type: [String],
         required: false
-    }
+    },
+    picfilename: {
+        type: String,
+        required: false
+    },
 });
 
 module.exports = mongoose.model('User', UserSchema);

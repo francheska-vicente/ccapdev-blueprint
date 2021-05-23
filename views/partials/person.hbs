@@ -1,6 +1,12 @@
 <a href="/{{username}}/profile" class="link">
   <div class="person-container">
-    <div class="img-container"><img src = "/images/user.png" class = "img" alt = "Blueprint Logo"></div>
+    <div class="img-container">
+      {{#if picfilename}}
+        <img src = "/uploads/{{picfilename}}" class = "logo" alt = "Profile Picture">
+      {{else}}
+        <img src = "/images/user.png" class = "logo" alt = "Profile Picture">
+      {{/if}}
+    </div>
     <div class="text-container">
       <h2>{{fName}} {{lName}}</h2>
       <h3>{{degree}}</h3><hr>

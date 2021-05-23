@@ -2,8 +2,13 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const { validationResult } = require('express-validator');
 
+const path = require('path')
+
 const db = require('../models/db.js');
 const User = require('../models/UserModel.js');
+const Course = require ('../models/ClassModel.js');
+const Discussion = require('../models/DiscModel.js');
+const Comment = require ('../models/CommentModel.js');
 
 const profileController = {
 
@@ -86,8 +91,7 @@ const profileController = {
                         // checks if password matches user's password
                         bcrypt.compare(req.body.password, user.password, function(err, equal) 
                         {
-                            if(equal) 
-                            {
+                            if(equal) {
                                 // creates updated user object
                                 var update = user;
                                 if (req.body.username != '') update.username = req.body.username;
@@ -98,16 +102,13 @@ const profileController = {
                                 if (req.body.n_password != '') update.password = hash;
 
                                 // updates user in db
-                                db.updateOne(User, {username: user.username}, update, function(flag) 
-                                {
+                                db.updateOne(User, {username: req.session.username}, update, function(flag) {
                                     if(flag) res.redirect('/profile?editsuccess=true');
                                     else res.redirect('/profile?editsuccess=false');
                                 });
                             }
-                            else 
-                            {
+                            else {
                                 var temp = {user : user, error : 'Incorrect password. Please try again.'};
-                                console.log(user.username)
                                 res.render('profile-edit', temp);
                             }
                         });
@@ -117,13 +118,20 @@ const profileController = {
         }  
     },
 
+    postEditProfilePic: function (req, res) {
+        db.findOne(User, {username: req.session.username}, '', function (user) {
+            db.updateOne(User, user, {picfilename: user.username + path.extname(req.file.originalname)}, function (data) { 
+                res.redirect('/profile');
+            });
+        });
+    },
+
     getCheckNewUsername: function (req, res) {
         var username = req.query.username;
         db.findOne(User, {username: username}, 'username', function (result) {
             if(result && req.session.username != result.username)
                 res.send(result);
-            else
-                res.send(false);
+            else res.send(false);
         });
     },
 
@@ -149,18 +157,33 @@ const profileController = {
             // gets user from db
             db.findOne(User, {username: req.session.username}, '', function (user) {
                 if (req.body.c_password == req.body.password) {
+
                     // checks if passwords match user's password 
                     bcrypt.compare(req.body.password, user.password, function(err, equal) {
                         if(equal) {
-                            // deletes user from db
-                            db.deleteOne(User, {username: user.username}, function(flag) {
-                                if(flag) {
-                                    req.session.destroy(function(err) {
-                                        if(err) throw err;
-                                        res.redirect('/profile-deletion-success');
-                                    });
-                                }
-                                else res.redirect('/profile?deletesuccess=false');
+                            var query = {$pull:{classlist: {$in: [user.username]}}};
+
+                            // removes user from classes 
+                            db.updateMany(Course, {}, query, function(flag) {
+
+                                // removes all discussions by user
+                                db.deleteMany (Discussion, {username: user.username}, function (result) {
+
+                                    // removes all comments by user
+                                    db.deleteMany (Comment, {username: user.username}, function (result) {
+
+                                        // deletes user from db
+                                        db.deleteOne(User, {username: user.username}, function(flag) {
+                                            if(flag) {
+                                                req.session.destroy(function(err) {
+                                                    if(err) throw err;
+                                                    res.redirect('/profile-deletion-success');
+                                                });
+                                            }
+                                            else res.redirect('/profile?deletesuccess=false');
+                                        });
+                                    })
+                                })
                             });
                         }
                         else {

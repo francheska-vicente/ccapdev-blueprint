@@ -8,6 +8,7 @@ const validator = require('validator');
 const dotenv = require (`dotenv`);
 const routes = require('./routes/routes.js');
 const db = require('./models/db.js');
+const multer = require('multer');
 
 const app = express();
 dotenv.config ();
@@ -58,6 +59,7 @@ app.use(bodyParser.json());
 app.set('view engine', 'hbs');
 
 app.use(express.static('public'));
+
 
 app.use('/', routes);
 

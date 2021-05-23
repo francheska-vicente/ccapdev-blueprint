@@ -1,7 +1,10 @@
 const db = require('../models/db.js');
+const { validationResult } = require('express-validator');
 
 const User = require('../models/UserModel.js');
 const Course = require ('../models/ClassModel.js');
+const Discussion = require('../models/DiscModel.js');
+const Comment = require ('../models/CommentModel.js');
 
 const scheduleController = {
 
@@ -51,56 +54,70 @@ const scheduleController = {
         // error 401 if not logged in
         if(!req.session.username) res.redirect('/error/401');
         else {
-
-            // gets user from db
-            db.findOne(User, {username: req.session.username}, '', function (user) {
-
-                // creates class object
-                var classes = user.classes;
-
-                var search = req.body.classname;
-                var arr = search.split (' ');
-
-                for (var i = 0; i < arr.length; i++)
-                {
-                    arr [i] = arr [i].toLowerCase ();
-                    arr [i] = arr [i].charAt (0).toUpperCase () + arr [i].substring (1, arr [i].length);
-
-                    if (i > 0)
-                        arr [i] = arr [i - 1] + " " + arr [i];
-                }
-
-                var course = {
-                    classname : arr[arr.length - 1],
-                    coursecode : req.body.coursecode.toUpperCase (),
-                    professor : req.body.professor,
-                    start_classtimeA : req.body.start_classtimeA,
-                    end_classtimeA : req.body.end_classtimeA,
-                    classdayA : req.body.classdayA,
-                    start_classtimeB : req.body.start_classtimeB,
-                    end_classtimeB : req.body.end_classtimeB,
-                    classdayB : req.body.classdayB
-                }
+            var errors = validationResult(req);
+            console.log (errors);
+            if (!errors.isEmpty()) 
+            {
+                errors = errors.errors;
+                var details = {};
                 
-                // checks if class alrerady exists
-                db.findOne(Course, course, '', function(flag) {
-                    if(!flag) {
-                        course.classID = db.getObjectID();
-                        course.classlist = [req.session.username];
+                for(i = 0; i < errors.length; i++)
+                    details[errors[i].param + 'Error'] = errors[i].msg;
+                console.log ("details: " + details);
+                res.render('class-new', details);
+            }
+            else
+            {
+                // gets user from db
+                db.findOne(User, {username: req.session.username}, '', function (user) {
 
-                        // creates class and adds user as part of class
-                        db.insertOne(Course, course, function(flag) {
-                            classes.push(course.classID);
+                    // creates class object
+                    var classes = user.classes;
 
-                            // updates user's classes
-                            db.updateOne(User, {username: req.session.username}, {classes: classes}, function(result) {
-                                res.redirect('/classes/' + course.classID + '/home');
-                            });
-                        });
+                    var search = req.body.classname;
+                    var arr = search.split (' ');
+
+                    for (var i = 0; i < arr.length; i++)
+                    {
+                        arr [i] = arr [i].toLowerCase ();
+                        arr [i] = arr [i].charAt (0).toUpperCase () + arr [i].substring (1, arr [i].length);
+
+                        if (i > 0)
+                            arr [i] = arr [i - 1] + " " + arr [i];
                     }
-                    // add else here (if class exists)
+
+                    var course = {
+                        classname : arr[arr.length - 1],
+                        coursecode : req.body.coursecode.toUpperCase (),
+                        professor : req.body.professor,
+                        start_classtimeA : req.body.start_classtimeA,
+                        end_classtimeA : req.body.end_classtimeA,
+                        classdayA : req.body.classdayA,
+                        start_classtimeB : req.body.start_classtimeB,
+                        end_classtimeB : req.body.end_classtimeB,
+                        classdayB : req.body.classdayB
+                    }
+                    
+                    // checks if class alrerady exists
+                    db.findOne(Course, course, '', function(flag) {
+                        if(!flag) {
+                            course.classID = db.getObjectID();
+                            course.classlist = [req.session.username];
+
+                            // creates class and adds user as part of class
+                            db.insertOne(Course, course, function(flag) {
+                                classes.push(course.classID);
+
+                                // updates user's classes
+                                db.updateOne(User, {username: req.session.username}, {classes: classes}, function(result) {
+                                    res.redirect('/classes/' + course.classID + '/home');
+                                });
+                            });
+                        }
+                        // add else here (if class exists)
+                    });
                 });
-            });
+            }
         }    
     },
 
@@ -217,14 +234,31 @@ const scheduleController = {
             db.findOne(User, {username: req.session.username}, '', function (user) {
 
                 // gets coursecode of class to drop, removes from user's classes
-                var coursecode = req.body.drop;
-                var index = user.classes.indexOf(coursecode);
+                var classID = req.body.drop;
+                var index = user.classes.indexOf(classID);
                 if (index > -1) user.classes.splice(index, 1);
 
-                // updates user in db
-                db.updateOne(User, {username: user.username}, {classes : user.classes}, function (flag) {
-                    if(flag) res.redirect('/classes/dashboard?removesuccess=true');
-                    else res.redirect('/classes/dashboard?removesuccess=false');
+                db.findOne(Course, {classID: classID}, '', function (course) {
+                    var index = course.classlist.indexOf(user.username);
+                    if (index > -1) course.classlist.splice(index, 1);
+
+                    // removes user from classlist
+                    db.updateOne(Course, {classID : classID}, {classlist : course.classlist}, function (flag) {
+
+                        // removes all discussions by user
+                        db.deleteMany (Discussion, {username: user.username, classID : classID}, function (result) {
+
+                            // removes all comments by user
+                            db.deleteMany (Comment, {username: user.username, classID : classID}, function (result) {
+
+                                // updates user in db
+                                db.updateOne(User, {username: user.username}, {classes : user.classes}, function (flag) {
+                                    if(flag) res.redirect('/classes/dashboard?removesuccess=true');
+                                    else res.redirect('/classes/dashboard?removesuccess=false');
+                                });
+                            });
+                        });
+                    });
                 });
             });
         }

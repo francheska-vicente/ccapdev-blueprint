@@ -28,8 +28,14 @@
     <div class = "side-prof">
       <div class = "logo_container">
         <span title="Click to edit the profile picture">
-          <img src = "/images/user.png" class = "logo" alt = "Profile picture">
-          <input type="file" id="prof-picture">
+          {{#if user.picfilename}}
+            <img src = "/uploads/{{user.picfilename}}" class = "logo" alt = "Profile Picture">
+          {{else}}
+            <img src = "/images/user.png" class = "logo" alt = "Profile Picture">
+          {{/if}}
+          <form action="/profile/edit/prof-picture" method="post" enctype="multipart/form-data">
+            <input type="file" id="prof-picture" name="prof-picture" onchange="form.submit()">
+          </form>
         </span>
       </div>
       <h2>{{user.fName}} {{user.lName}}</h2>
@@ -56,7 +62,7 @@
           <li>Your Profile</li>
         </ul> 
         <h1>Profile</h1>
-        <h5>These are your personal details and bio. Make sure your information is up to date!</h5><hr>
+        <h5>These are your personal details and bio. Hint: Click on your profile picture to change it!</h5><hr>
         <h3>Personal Information</h3>
         <div class="row">
           <div class="col">

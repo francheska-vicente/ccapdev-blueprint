@@ -90,6 +90,68 @@ const validation = {
         ]
 
         return validation;
+    },
+
+    addClass : function () {
+
+        var temp = false;
+
+        var validation = [
+            check ('classname', 'Required fields must be filled.').notEmpty ().custom((value,{req, loc, path}) => {
+                value = value.split ("-").join ("").split ("_").join ("").split (".").join ("").split ("ñ").join ("").split (" ").join ("");
+                if (!value.match (/^[a-z0-9]+$/i) && value != "") {
+                    console.log (value);
+                    throw new Error("Invalid input. Use valid characters only.");
+                } else {
+                    return value;
+                }
+            }),
+            check ('coursecode', 'Required fields must be filled.').notEmpty ().custom((value,{req, loc, path}) => {
+                value = value.split ("-").join ("").split ("_").join ("").split (".").join ("").split ("ñ").join ("").split (" ").join ("");
+                if (!value.match (/^[a-z0-9]+$/i) && value != "") {
+                    console.log (value);
+                    throw new Error("Invalid input. Use valid characters only.");
+                } else {
+                    return value;
+                }
+            }),
+            check ('professor', 'Required fields must be filled.').notEmpty ().custom((value,{req, loc, path}) => {
+                value = value.split ("-").join ("").split ("_").join ("").split (".").join ("").split ("ñ").join ("").split (" ").join ("");
+                if (!value.match (/^[a-z]+$/i) && value != "") {
+                    console.log (value);
+                    throw new Error("Invalid input. Use valid characters only.");
+                } else {
+                    return value;
+                }
+            }),
+            check ('classdayA', 'Required fields must be filled.').notEmpty (),
+            check ('start_classtimeA', 'Required fields must be filled.').notEmpty (),
+            check ('end_classtimeA', 'Required fields must be filled.').notEmpty (),
+            check ('classdayB').optional ({nullable: true, checkFalsy: true})
+            .custom((value,{req, loc, path}) => {
+                if (value != null)
+                    temp = true;
+                return value;
+            }),
+            check ('start_classtimeB').optional ({nullable: true, checkFalsy: true})
+            .custom((value, {req, loc, path}) => {
+                if (temp && value == null) {
+                    throw new Error("Required fields must be filled.");
+                } else {
+                    return value;
+                }
+            }),
+            check ('end_classtimeB').optional ({nullable: true, checkFalsy: true})
+            .custom((value, {req, loc, path}) => {
+                if (temp && value == null) {
+                    throw new Error("Required fields must be filled.");
+                } else {
+                    return value;
+                }
+            }),
+        ]
+
+        return validation;
     }
 }
 

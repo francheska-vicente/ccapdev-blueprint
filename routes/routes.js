@@ -15,6 +15,18 @@ const userController = require('../controllers/userController.js');
 const successController = require('../controllers/successController.js');
 const errorController = require('../controllers/errorController.js');
 
+const multer = require('multer')
+const path = require('path')
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './public/uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, req.session.username + path.extname(file.originalname))
+    }
+});
+const upload = multer({storage : storage});
+
 const validation = require('../helpers/validation.js');
 
 const app = express();
@@ -27,7 +39,7 @@ app.get('/login', loginController.getLogin);
 app.post('/login', loginController.postLogin);
 app.get('/logout', logoutController.getLogout);
 app.get('/register', signupController.getSignUp);
-app.post('/register', validation.signUpValidation (), signupController.postSignUp);
+app.post('/register', validation.signUpValidation(), signupController.postSignUp);
 app.get('/register-success', successController.getSuccessReg);
 app.get('/getCheckUsername', signupController.getCheckUsername);
 app.get('/getCheckEmail', signupController.getCheckEmail);
@@ -42,7 +54,8 @@ app.get('/search', controller.getSearch);
 // profile
 app.get('/profile', profileController.getYourProfile);
 app.get('/profile/edit', profileController.getEditProfile);
-app.post('/profile/edit', validation.editProfile (), profileController.postEditProfile);
+app.post('/profile/edit', validation.editProfile(), profileController.postEditProfile);
+app.post('/profile/edit/prof-picture', upload.single('prof-picture'), profileController.postEditProfilePic);
 app.get('/profile/delete', profileController.getDelProfile);
 app.post('/profile/delete', profileController.postDelProfile);
 app.get('/profile-deletion-success', successController.getSuccessDel);
@@ -52,7 +65,7 @@ app.get('/getCheckNewUsername', profileController.getCheckNewUsername);
 app.get('/schedule', scheduleController.getYourSchedule);
 app.get('/getClasses', scheduleController.getClasses);
 app.get('/schedule/create', scheduleController.getCreateClass);
-app.post('/schedule/create', scheduleController.postCreateClass);
+app.post('/schedule/create', validation.addClass (), scheduleController.postCreateClass);
 app.get('/schedule/search', scheduleController.getSearchClass);
 app.post('/schedule/search', scheduleController.postSearchClass);
 app.get('/schedule/search/results', scheduleController.getSearchClassResults);

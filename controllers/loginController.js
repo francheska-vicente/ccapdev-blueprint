@@ -13,7 +13,10 @@ const loginController = {
     },
 
     postLogin: function (req, res) {
-        db.findOne(User, {username: req.body.username}, '', function(result) {
+        var username = req.body.username;
+        username = username.toLowerCase ();
+        // console.log ("this be my username: " + username);
+        db.findOne(User, {username: username}, '', function(result) {
             if(result){
                 bcrypt.compare(req.body.password, result.password, function(err, equal) {
                     if(equal) {

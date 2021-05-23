@@ -116,3 +116,10 @@ table {
 	border-radius: 0px; 
 }
 
+input[type="text"] {
+	color: black;
+}
+
+.error {
+    text-align: center;
+}

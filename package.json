@@ -1,11 +1,11 @@
 {
   "name": "2021t2-g28",
   "version": "1.0.0",
-  "description": "<p><img src=\"https://github.com/DLSU-CCAPDEV/2021T2-G28/blob/15ec5b6bf1ae579b7bd4a88375c06626d0887f23/images/logo.png\" width=\"400px\"></p>",
-  "main": "index.js",
   "engines": {
     "node": "14.x"
   },
+  "description": "<p><img src=\"https://github.com/DLSU-CCAPDEV/2021T2-G28/blob/15ec5b6bf1ae579b7bd4a88375c06626d0887f23/images/logo.png\" width=\"400px\"></p>",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
@@ -27,6 +27,7 @@
     "bootstrap": "^4.6.0",
     "calendar": "^0.1.1",
     "connect-mongo": "^4.4.1",
+    "dot-env": "0.0.1",
     "dotenv": "^10.0.0",
     "e": "^0.2.0",
     "express": "^4.17.1",
@@ -36,7 +37,9 @@
     "hbs": "^4.1.2",
     "jquery": "^3.6.0",
     "mongoose": "^5.12.7",
+    "multer": "^1.4.2",
     "node-calendar-js": "^1.0.3",
+    "path": "^0.12.7",
     "popper.js": "^1.16.1",
     "validator": "^13.6.0"
   }
