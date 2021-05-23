@@ -105,6 +105,7 @@ A user may also access their classmate's profile and schedule through clicking t
 
 ## External Libraries
 - Bootstrap 
+- [Timepicker](https://github.com/jonthornton/jquery-timepicker)
 
 ## Resources
 - [Unsplash](https://unsplash.com/)
