@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="../external/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/css.css" rel="stylesheet">
-  <link href="../css/search.css" rel="stylesheet">
-  <link rel="icon" href="../images/logo-nt.png">
+	<link href="/external/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/css.css" rel="stylesheet">
+  <link href="/css/search.css" rel="stylesheet">
+  <link rel="icon" href="/images/logo-nt.png">
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   <title>Search | blueprint</title>
 </head>
@@ -12,7 +12,7 @@
 	{{>topnav}}
     <div class="main-content">
       <ul class="breadcrumb">
-        <li><a href="home.html">blueprint</a></li>
+        <li><a href="/home">blueprint</a></li>
         <li>User Search</li>
       </ul> 
       <div id="search-user-results">
@@ -32,7 +32,7 @@
         {{#each result}}
         <a href="/{{username}}/profile" class="link">
           <div class="person-container">
-            <div class="img-container"><img src = "../images/user.png" class = "img" alt = "Blueprint Logo"></div>
+            <div class="img-container"><img src = "/images/user.png" class = "img" alt = "Blueprint Logo"></div>
             <div class="text-container">
               <h2>{{fName}} {{lName}}</h2>
               <h3>{{uni}}</h3><hr>
@@ -45,6 +45,5 @@
         {{/each}}
     </div>
   </div>
-  
 </body>
 </html>
