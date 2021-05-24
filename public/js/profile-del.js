@@ -23,10 +23,10 @@ $(document).ready(function () {
     }
 
     $('#password').keyup(function () {
-        checkIfPasswordFilled($('#password'), 'Please enter your password to delete your profile.', $('#passwordError'));
+        checkIfFilled($('#password'), 'Please enter your password to delete your profile.', $('#passwordError'));
     });
 
     $('#c_password').keyup(function () {
-        checkIfPasswordFilled($('#c_password'), 'Please confirm your password to delete your profile.', $('#c_passwordError'));
+        checkIfFilled($('#c_password'), 'Please confirm your password to delete your profile.', $('#c_passwordError'));
     });
 });
