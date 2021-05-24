@@ -247,10 +247,8 @@ $(document).ready (function ()
   {
     var commentID = $(this).attr ("id").substring (5, $(this).attr ("id").length);
 
-    var route = window.location.href;
-    route = route.substring (32, route.length) + "/" + commentID + "/delete";
-
-    var URL = window.location.href + " #comment";
+    var route = URL;
+    route = route + commentID + "/delete";
     
     $.post(route, {commentID : commentID}, function (result) {
       $("#div_" + commentID).empty ();
@@ -333,10 +331,11 @@ $(document).ready (function ()
   $("#edit_disc").submit (function (e) {
     e.preventDefault ();
       var route = URL;
+      route = route.substring (0, URL.length - 1);
       var temp = URL;
           temp = temp + "edit";
 
-      $.post (URL, {main_edit_text : $("#main_edit_text").val ()}, function (result) {
+      $.post (temp, {main_edit_text : $("#main_edit_text").val ()}, function (result) {
         $("#main_content").load (route + " #main_content");
       });
   });
