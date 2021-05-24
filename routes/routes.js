@@ -33,6 +33,7 @@ const app = express();
 
 // index
 app.get('/', controller.getSplash);
+app.get('/about-us', controller.getAboutUs);
 
 // login + register
 app.get('/login', loginController.getLogin);
