@@ -18,7 +18,7 @@ $(document).ready(function () {
     function checkIfPasswordFilled() {
         var password = validator.trim($('#password').val());
         if (validator.isEmpty(password)) {
-            $('#passwordError').text('Please enter your password to edit your profile.');
+            $('#passwordError').text('Please enter your password to delete your profile.');
             $('#edit_button').attr("disabled", true);
         }
         else setValid($('#password'), $('#passwordError'));
