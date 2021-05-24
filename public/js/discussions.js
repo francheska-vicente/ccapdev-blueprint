@@ -331,10 +331,11 @@ $(document).ready (function ()
   $("#edit_disc").submit (function (e) {
     e.preventDefault ();
       var route = URL;
+      route = route.substring (0, URL.length - 1);
       var temp = URL;
           temp = temp + "edit";
-
-      $.post (URL, {main_edit_text : $("#main_edit_text").val ()}, function (result) {
+      console.log (temp);
+      $.post (temp, {main_edit_text : $("#main_edit_text").val ()}, function (result) {
         $("#main_content").load (route + " #main_content");
       });
   });
