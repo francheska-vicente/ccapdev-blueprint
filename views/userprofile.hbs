@@ -24,7 +24,11 @@
     <div class="main">
       <div class = "side-prof">
         <div class = "logo_container">
-          <img src = "/uploads/{{picfilename}}" class = "logo" alt = "Profile Picture">
+          {{#if picfilename}}
+            <img src = "/uploads/{{picfilename}}" class = "logo" alt = "Profile Picture">
+          {{else}}
+            <img src = "/images/user.png" class = "logo" alt = "Profile Picture">
+          {{/if}}
         </div>
         <h2>{{fName}} {{lName}}</h2>
         {{#if bio}}
