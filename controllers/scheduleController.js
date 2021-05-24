@@ -93,9 +93,12 @@ const scheduleController = {
                         start_classtimeA : req.body.start_classtimeA,
                         end_classtimeA : req.body.end_classtimeA,
                         classdayA : req.body.classdayA,
-                        start_classtimeB : req.body.start_classtimeB,
-                        end_classtimeB : req.body.end_classtimeB,
                         classdayB : req.body.classdayB
+                    }
+
+                    if(req.body.classdayB != '') {
+                        course.start_classtimeB = req.body.start_classtimeB;
+                        course.end_classtimeB = req.body.end_classtimeB;
                     }
                     
                     // checks if class alrerady exists
@@ -113,6 +116,9 @@ const scheduleController = {
                                     res.redirect('/classes/' + course.classID + '/home');
                                 });
                             });
+                        }
+                        else {
+                            res.render('class-new', {error: 'Class already exists.'})
                         }
                         // add else here (if class exists)
                     });
