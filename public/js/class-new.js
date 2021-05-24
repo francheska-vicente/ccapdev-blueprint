@@ -1,17 +1,13 @@
 $(document).ready(function () {
-    $('.ui-timepicker-list').timepicker({
-        step : 15,
-        timeFormat : 'H:i',
-        forceRoundTime : true
-    });
-
     var start_classtimeA = '';
     var end_classtimeA = '';
     var start_classtimeB = '';
     var end_classtimeB = '';
+    var dayA = $('#classdayA').val();
 
-
+    checkIfTimeFilled(start_classtimeA, end_classtimeA, $('#classdayAError'), 'Time for Day 1 must not be empty.', 'A');
     checkIfAllFilled();
+
     function setInvalid(field, errormsg, errorfield) {
         field.css('background-color', '#FFB0B0');
         errorfield.text(errormsg);
@@ -24,16 +20,50 @@ $(document).ready(function () {
         $('#create_button').attr("disabled", false);
     }
 
-    function checkIfTimeFilled() {
+    function checkIfValidTime(day) {
+        if(day == 'A') {
+            var start = new Date("01/01/2021 " + $('#start_classtimeA').val());
+            var end = new Date("01/01/2021 " +$('#end_classtimeA').val());
+            if(end-start>0) {
+                $('#start_classtimeA').css('background-color', '#FFFFFF');
+                $('#end_classtimeA').css('background-color', '#FFFFFF');
+                $('#start_classtimeAError').text('');
+                $('#create_button').attr("disabled", false);
+            }
+            else {
+                $('#start_classtimeA').css('background-color', '#FFB0B0');
+                $('#end_classtimeA').css('background-color', '#FFB0B0');
+                $('#start_classtimeAError').text('Invalid time.');
+                $('#create_button').attr("disabled", true);
+            }
+        }
+        else {
+            var start = new Date("01/01/2021 " + $('#start_classtimeB').val());
+            var end = new Date("01/01/2021 " + $('#end_classtimeB').val());
+            if(end-start>0) {
+                $('#start_classtimeB').css('background-color', '#FFFFFF');
+                $('#end_classtimeB').css('background-color', '#FFFFFF');
+                $('#start_classtimeBError').text('');
+                $('#create_button').attr("disabled", false);
+            }
+            else {
+                $('#start_classtimeB').css('background-color', '#FFB0B0');
+                $('#end_classtimeB').css('background-color', '#FFB0B0');
+                $('#start_classtimeBError').text('Invalid time.');
+                $('#create_button').attr("disabled", true);
+            }
+        }
+    }
 
-        if (validator.isEmpty(start_classtimeB) || validator.isEmpty(end_classtimeB)) {
-            $('#classdayBError').text('Time for Day 2 must not be empty.');
+    function checkIfTimeFilled(start, end, errorfield, errormsg, day) {
+        if (validator.isEmpty(start) || validator.isEmpty(end)) {
+            errorfield.text(errormsg);
             $('#create_button').attr("disabled", true);
         }
-            
         else { 
-            $('#classdayBError').text('');
+            errorfield.text('');
             $('#create_button').attr("disabled", false);
+            checkIfValidTime(day);
         }
     }
 
@@ -79,26 +109,56 @@ $(document).ready(function () {
         checkIfAllFilled();
     });
 
-    $('#start_classtimeA').timepicker().on('changeTime', function(e) {
+    $('#start_classtimeA').timepicker({
+        step : 15,
+        timeFormat : 'H:i',
+        forceRoundTime : true
+    }).on('changeTime', function(e) {
         start_classtimeA = $(this).val();
+        checkIfTimeFilled(start_classtimeA, end_classtimeA, $('#classdayAError'), 'Time for Day 1 must not be empty.', 'A');
+        checkIfAllFilled();
     });
 
-    $('#end_classtimeA').timepicker().on('changeTime', function(e) {
+    $('#end_classtimeA').timepicker({
+        step : 15,
+        timeFormat : 'H:i',
+        forceRoundTime : true
+    }).on('changeTime', function(e) {
         end_classtimeA = $(this).val();
+        checkIfTimeFilled(start_classtimeA, end_classtimeA, $('#classdayAError'), 'Time for Day 1 must not be empty.', 'A');
+        checkIfAllFilled();
+    });
+
+    $('#classdayA').change(function () {
+        dayA = $('#classdayA').val();
+        checkIfTimeFilled(start_classtimeA, end_classtimeA, $('#classdayAError'), 'Time for Day 1 must not be empty.', 'A');
+        checkIfAllFilled();
     });
 
     $('#classdayB').change(function () {
         var dayB = $('#classdayB').val();
         if (dayB != '')
-            checkIfTimeFilled();
+            checkIfTimeFilled(start_classtimeB, end_classtimeB, $('#classdayBError'), 'Time for Day 2 must not be empty.', 'B');
         checkIfAllFilled();
     });
 
-    $('#start_classtimeB').timepicker().on('changeTime', function(e) {
+    $('#start_classtimeB').timepicker({
+        step : 15,
+        timeFormat : 'H:i',
+        forceRoundTime : true
+    }).on('changeTime', function(e) {
         start_classtimeB = $(this).val();
+        checkIfTimeFilled(start_classtimeB, end_classtimeB, $('#classdayBError'), 'Time for Day 2 must not be empty.', 'B');
+        checkIfAllFilled();
     });
 
-    $('#end_classtimeB').timepicker().on('changeTime', function(e) {
+    $('#end_classtimeB').timepicker({
+        step : 15,
+        timeFormat : 'H:i',
+        forceRoundTime : true
+    }).on('changeTime', function(e) {
         end_classtimeB = $(this).val();
+        checkIfTimeFilled(start_classtimeB, end_classtimeB, $('#classdayBError'), 'Time for Day 2 must not be empty.', 'B');
+        checkIfAllFilled();
     });
 });
