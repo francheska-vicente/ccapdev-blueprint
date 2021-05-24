@@ -121,6 +121,8 @@ A user may also access their classmate's profile and schedule through clicking t
 
 ## External Libraries
 - [Bootstrap](https://github.com/twbs/bootstrap) 
+- [jQuery](https://jquery.com)
+- [Popper](https://github.com/popperjs/popper-core)
 - [Timepicker](https://github.com/jonthornton/jquery-timepicker)
 - [validator.js](https://github.com/validatorjs/validator.js)
 
