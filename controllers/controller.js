@@ -10,6 +10,10 @@ const controller = {
             res.render('splash');
     },
 
+    getAboutUs: function (req, res) {
+        res.render('aboutus');
+    },
+
     getSearch : function (req, res) {
         var search = req.query.search_val;
         var arr = search.split (' ');
