@@ -187,13 +187,13 @@ const profileController = {
                             });
                         }
                         else {
-                            var temp = {user : user, notif : 'Incorrect password. Please try again.'};
+                            var temp = {user : user, passwordError : 'Incorrect password. Please try again.'};
                             res.render('profile-del', temp);
                         }
                     });
                 }
                 else {
-                    var temp = {user : user, notif : 'Incorrect password. Please try again.'};
+                    var temp = {user : user, passwordError : 'Incorrect password. Please try again.'};
                     res.render('profile-del', temp);
                 }
             });
