@@ -5,6 +5,11 @@ $(document).ready(function () {
         forceRoundTime : true
     });
 
+    var start_classtimeA = '';
+    var end_classtimeA = '';
+    var start_classtimeB = '';
+    var end_classtimeB = '';
+
 
     checkIfAllFilled();
     function setInvalid(field, errormsg, errorfield) {
@@ -19,14 +24,28 @@ $(document).ready(function () {
         $('#create_button').attr("disabled", false);
     }
 
+    function checkIfTimeFilled() {
+
+        if (validator.isEmpty(start_classtimeB) || validator.isEmpty(end_classtimeB)) {
+            $('#classdayBError').text('Time for Day 2 must not be empty.');
+            $('#create_button').attr("disabled", true);
+        }
+            
+        else { 
+            $('#classdayBError').text('');
+            $('#create_button').attr("disabled", false);
+        }
+    }
+
     function checkIfAllFilled() {
         var classname = validator.trim($('#classname').val());
         var coursecode = validator.trim($('#coursecode').val());
         var professor = validator.trim($('#professor').val());
 
         if (validator.isEmpty(classname) || validator.isEmpty(coursecode) ||
-            validator.isEmpty(professor)) {
-            $('#error').text('Required fields must be filled.');
+            validator.isEmpty(professor) || validator.isEmpty(start_classtimeA) || 
+            validator.isEmpty(end_classtimeA)) {
+            $('#classnameError').text('Required fields must be filled.');
             $('#create_button').attr("disabled", true);
         }
             
@@ -58,5 +77,28 @@ $(document).ready(function () {
         var professor = validator.trim($('#professor').val());
         checkIfValidName($('#professor'), professor, $('#professorError'));
         checkIfAllFilled();
+    });
+
+    $('#start_classtimeA').timepicker().on('changeTime', function(e) {
+        start_classtimeA = $(this).val();
+    });
+
+    $('#end_classtimeA').timepicker().on('changeTime', function(e) {
+        end_classtimeA = $(this).val();
+    });
+
+    $('#classdayB').change(function () {
+        var dayB = $('#classdayB').val();
+        if (dayB != '')
+            checkIfTimeFilled();
+        checkIfAllFilled();
+    });
+
+    $('#start_classtimeB').timepicker().on('changeTime', function(e) {
+        start_classtimeB = $(this).val();
+    });
+
+    $('#end_classtimeB').timepicker().on('changeTime', function(e) {
+        end_classtimeB = $(this).val();
     });
 });
