@@ -1,5 +1,5 @@
 # blueprint by S11G28
-<p><img src="https://github.com/DLSU-CCAPDEV/2021T2-G28/blob/15ec5b6bf1ae579b7bd4a88375c06626d0887f23/images/logo.png" width="400px"></p>
+<p><img src="/images/logo.png" width="400px"></p>
 
 `blueprint` is a collaborative scheduling and note-taking app. It allows its users to join classes to find their classmates, and collaborate smartly and effectively. It has three main features: (1) discussion board where the users can open intelligent conversations about topics, (2) note sharing boards to share your knowledge with your classmates, and (3) class requirements calendar to make sure that you won’t miss a single thing!
 
