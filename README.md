@@ -26,17 +26,17 @@ You can also access this project through this Heroku [link](https://blueeprint.h
 ## Getting your way around the Web Application
 These are the different pages that would help your collaborate with your classmates and friends! Opening the web application would land you on the website splash page. Here, you would see the Sign Up and Log In button to access the application.
 
-![alt text](https://github.com/DLSU-CCAPDEV/2021T2-G28/blob/phase-2/readme_images/splash.png "Splash Page")
+![alt text](readme_images/splash.png "Splash Page")
 
 ### Register
 To use the different features of the application, a user needs to register. All fields need to be filled up with information that passes the requirements set up by the creators. Note that the username entered should be unique.
 
-![alt text](https://github.com/DLSU-CCAPDEV/2021T2-G28/blob/phase-2/readme_images/signup.png "Sign Up Page")
+![alt text](readme_images/signup.png "Sign Up Page")
 
 ### Log In
 Using the information you used to register, login.
 
-![alt text](https://github.com/DLSU-CCAPDEV/2021T2-G28/blob/phase-2/readme_images/login.png "Login Page")
+![alt text](readme_images/login.png "Login Page")
 
 ### Your Calendar and Tasks
 In the home page, the user would be able to see all the tasks and requirements for all of their classes for that month. This is the landing page for all of the users that has an existing session in the web application.
